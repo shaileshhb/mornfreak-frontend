@@ -1,0 +1,78 @@
+@import "tailwindcss";
+@import "../design/themes/light.css";
+@import "../design/tokens/products.css";
+@import "../design/typography/fonts.css";
+@import "../design/animations/keyframes.css";
+
+@theme inline {
+  /* Semantic colors */
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+
+  /* Product semantic colors (scoped via [data-product]) */
+  --color-product-primary: var(--product-primary);
+  --color-product-secondary: var(--product-secondary);
+  --color-product-background: var(--product-background);
+  --color-product-foreground: var(--product-foreground);
+  --color-product-badge: var(--product-badge);
+  --color-product-badge-foreground: var(--product-badge-foreground);
+  --color-product-glow: var(--product-glow);
+
+  /* Typography */
+  --font-sans: var(--font-dm-sans), var(--font-sans-fallback);
+  --font-display: var(--font-bebas), var(--font-display-fallback);
+
+  /* Radius */
+  --radius-sm: var(--ds-radius-sm);
+  --radius-md: var(--ds-radius-md);
+  --radius-lg: var(--ds-radius-lg);
+  --radius-xl: var(--ds-radius-xl);
+  --radius-full: var(--ds-radius-full);
+
+  /* Shadows */
+  --shadow-sm: var(--ds-shadow-sm);
+  --shadow-md: var(--ds-shadow-md);
+  --shadow-lg: var(--ds-shadow-lg);
+
+  /* Animations */
+  --animate-fade-in: fade-in var(--duration-normal) var(--ease-out) both;
+  --animate-rise: rise var(--duration-normal) var(--ease-out) both;
+  --animate-scale-in: scale-in var(--duration-normal) var(--ease-out) both;
+}
+
+@layer base {
+  * {
+    border-color: var(--border);
+  }
+
+  body {
+    background-color: var(--background);
+    color: var(--foreground);
+    font-family: var(--font-dm-sans), var(--font-sans-fallback);
+  }
+}

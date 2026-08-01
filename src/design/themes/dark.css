@@ -1,0 +1,39 @@
+/**
+ * Dark theme placeholder.
+ *
+ * TODO: Define dark-mode semantic token values when dark theme is required.
+ * Do NOT import this file into globals.css until dark mode is intentionally enabled.
+ * Do NOT add a dark mode toggle or prefers-color-scheme media query yet.
+ *
+ * When activating: import this file and apply `.dark` on <html>, then only
+ * token values need updating — components already consume semantic utilities.
+ */
+.dark {
+  /* TODO: --background */
+  /* TODO: --foreground */
+
+  /* TODO: --card */
+  /* TODO: --card-foreground */
+
+  /* TODO: --popover */
+  /* TODO: --popover-foreground */
+
+  /* TODO: --primary */
+  /* TODO: --primary-foreground */
+
+  /* TODO: --secondary */
+  /* TODO: --secondary-foreground */
+
+  /* TODO: --muted */
+  /* TODO: --muted-foreground */
+
+  /* TODO: --accent */
+  /* TODO: --accent-foreground */
+
+  /* TODO: --destructive */
+  /* TODO: --destructive-foreground */
+
+  /* TODO: --border */
+  /* TODO: --input */
+  /* TODO: --ring */
+}

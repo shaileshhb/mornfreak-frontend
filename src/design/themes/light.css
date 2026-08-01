@@ -28,6 +28,10 @@
   --input: #eaeaea;
   --ring: #fd0103;
 
+  /* Orange accent */
+  --orange: #ff6a00;
+  --orange-foreground: #ffffff;
+
   /* Radius (ds-* avoids circular @theme references) */
   --ds-radius-sm: 0.25rem;
   --ds-radius-md: 0.5rem;

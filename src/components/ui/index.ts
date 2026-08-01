@@ -12,4 +12,5 @@ export {
 export { Container, type ContainerProps } from "./container";
 export { Heading, headingVariants, type HeadingProps } from "./heading";
 export { Section, type SectionProps } from "./section";
+export { StatChip, statChipVariants, type StatChipProps } from "./stat-chip";
 export { Text, textVariants, type TextProps } from "./text";

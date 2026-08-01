@@ -34,6 +34,10 @@
   --color-input: var(--input);
   --color-ring: var(--ring);
 
+  /* Orange accent */
+  --color-orange: var(--orange);
+  --color-orange-foreground: var(--orange-foreground);
+
   /* Product semantic colors (scoped via [data-product]) */
   --color-product-primary: var(--product-primary);
   --color-product-secondary: var(--product-secondary);

@@ -1,6 +1,7 @@
 @import "tailwindcss";
 @import "../design/themes/light.css";
 @import "../design/themes/draft2.css";
+@import "../design/themes/draft3.css";
 @import "../design/tokens/products.css";
 @import "../design/typography/fonts.css";
 @import "../design/animations/keyframes.css";

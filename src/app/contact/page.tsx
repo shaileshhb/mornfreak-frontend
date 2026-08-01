@@ -8,7 +8,7 @@ import { ContactForm } from "@/features/contact/contact-form";
 
 export const metadata: Metadata = {
   title: "Contact",
-  description: "Get in touch with Mornfreak — questions, feedback, or just to say hi.",
+  description: "Get in touch with Mornfreak. Questions, feedback, or just to say hi.",
 };
 
 export default function ContactPage() {
@@ -25,7 +25,7 @@ export default function ContactPage() {
               Contact Us
             </Heading>
             <Text variant="lead" className="max-w-md text-primary-foreground/80">
-              Questions, feedback, wholesale enquiries, or just to say hi — we&apos;re here.
+              Questions, feedback, wholesale enquiries, or just to say hi. We&apos;re here.
             </Text>
           </div>
         </Container>

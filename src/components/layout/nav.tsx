@@ -8,7 +8,7 @@ import { cn } from "@/lib/cn";
 import { Button } from "../ui/button";
 
 const NAV_LINKS = [
-  { label: "Products", href: "/#products" },
+  { label: "Products", href: "/products" },
   { label: "About", href: "/about" },
   { label: "Contact", href: "/contact" },
 ] as const;
@@ -38,7 +38,7 @@ export function Nav() {
           <Link
             href="/"
             className="font-display text-2xl tracking-wide text-primary-foreground uppercase hover:opacity-90 transition-opacity"
-            aria-label="Mornfreak — home"
+            aria-label="Mornfreak home"
           >
             MORNFREAK
           </Link>

@@ -9,13 +9,13 @@ import "./globals.css";
 export const metadata: Metadata = {
   metadataBase: new URL("https://mornfreak.com"),
   title: {
-    default: "MORNFREAK — Fuel Your Start",
+    default: "MORNFREAK: Fuel Your Start",
     template: "%s | MORNFREAK",
   },
   description:
     "Protein-forward breakfast for people who train, work, and move fast in the morning. Mornfreak Protein Oats and Pure Peanut Butter Powder.",
   openGraph: {
-    title: "MORNFREAK — Fuel Your Start",
+    title: "MORNFREAK: Fuel Your Start",
     description:
       "Protein-forward breakfast for people who train, work, and move fast in the morning.",
     url: "https://mornfreak.com",
@@ -26,7 +26,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "MORNFREAK — Fuel Your Start",
+    title: "MORNFREAK: Fuel Your Start",
     description:
       "Protein-forward breakfast for people who train, work, and move fast in the morning.",
     images: ["/images/logo.jpeg"],

@@ -55,7 +55,7 @@ export function HomeHero() {
               >
                 Coming Soon
               </Button>
-              <a href="#products">
+              <a href="/products">
                 <Button variant="ghost" size="lg" className="text-primary-foreground border border-primary-foreground/30 hover:bg-primary-foreground/10">
                   Explore Products
                 </Button>
@@ -63,24 +63,27 @@ export function HomeHero() {
             </div>
           </div>
 
-          {/* Product images */}
-          <div className="relative flex items-center justify-center gap-4 lg:justify-end">
-            <div className="relative h-64 w-44 overflow-hidden rounded-2xl shadow-lg sm:h-80 sm:w-56 lg:h-96 lg:w-64 -rotate-3 transition-transform hover:rotate-0 duration-500">
+          {/* Product collage */}
+          <div className="relative mx-auto h-[340px] w-[280px] sm:h-[400px] sm:w-[320px] lg:ml-auto lg:mr-0 lg:h-[440px] lg:w-[360px]">
+            {/* Back — oats lifestyle */}
+            <div className="absolute left-0 top-2 z-0 aspect-[3/4] w-[72%] overflow-hidden rounded-2xl bg-white shadow-xl -rotate-6 transition-transform duration-500 hover:rotate-[-3deg]">
               <Image
                 src="/images/oats_1.jpeg"
-                alt="Mornfreak Protein Oats — Rich Chocolate"
+                alt="Mornfreak Protein Oats: Rich Chocolate"
                 fill
-                sizes="(max-width: 640px) 176px, (max-width: 1024px) 224px, 256px"
+                sizes="(max-width: 640px) 200px, (max-width: 1024px) 230px, 260px"
                 className="object-cover"
                 priority
               />
             </div>
-            <div className="relative h-64 w-44 overflow-hidden rounded-2xl shadow-lg sm:h-80 sm:w-56 lg:h-96 lg:w-64 rotate-3 transition-transform hover:rotate-0 duration-500 mt-8">
+
+            {/* Front — peanut butter powder */}
+            <div className="absolute bottom-0 right-0 z-10 aspect-[3/4] w-[68%] overflow-hidden rounded-2xl bg-white shadow-xl rotate-3 transition-transform duration-500 hover:rotate-0">
               <Image
-                src="/images/peanut_butter_powder_1.jpeg"
+                src="/images/peanut_butter_powder_2.jpeg"
                 alt="Mornfreak Pure Peanut Butter Powder"
                 fill
-                sizes="(max-width: 640px) 176px, (max-width: 1024px) 224px, 256px"
+                sizes="(max-width: 640px) 190px, (max-width: 1024px) 220px, 245px"
                 className="object-cover"
                 priority
               />

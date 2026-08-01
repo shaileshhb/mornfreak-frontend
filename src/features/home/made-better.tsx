@@ -62,7 +62,7 @@ export function MadeBetter() {
               {
                 icon: "🌱",
                 title: "All Natural",
-                body: "Dates, seeds, nuts, oats — real food with nothing hidden on the label.",
+                body: "Dates, seeds, nuts, oats. Real food with nothing hidden on the label.",
               },
               {
                 icon: "💪",

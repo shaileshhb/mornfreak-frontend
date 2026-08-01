@@ -24,7 +24,7 @@ export default function Home() {
       <BrandStrip />
 
       {/* Products section */}
-      <Section id="products">
+      <Section id="products" className="scroll-mt-20">
         <Container>
           <div className="mb-12 text-center">
             <Heading variant="h2" className="text-foreground">
@@ -39,7 +39,7 @@ export default function Home() {
             {ALL_PRODUCTS.map((product) => (
               <Link
                 key={product.id}
-                href={`/products/${product.slug}`}
+                href="/products"
                 className="group block focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 rounded-lg"
               >
                 <ProductCard
@@ -68,7 +68,7 @@ export default function Home() {
                       alt={product.name}
                       fill
                       sizes="(max-width: 640px) 100vw, 50vw"
-                      className="object-cover transition-transform duration-500 group-hover:scale-105"
+                      className="object-contain transition-transform duration-500 group-hover:scale-105"
                     />
                   </div>
                   <p className="font-sans text-xs text-product-foreground/60">{product.weight}</p>

@@ -27,7 +27,7 @@ export const PRODUCT_CONTENT: Record<ProductId, ProductContent> = {
     name: "Mornfreak Protein Oats",
     tagline: "Rich Chocolate. Real Gains.",
     description:
-      "26g of protein per 100g, sweetened naturally with dates, loaded with super seeds & nuts — the breakfast that works as hard as you do.",
+      "26g of protein per 100g, sweetened naturally with dates, loaded with super seeds and nuts. The breakfast that works as hard as you do.",
     images: ["/images/oats_1.jpeg", "/images/oats_2.jpeg"],
     heroImage: "/images/oats_1.jpeg",
     serveImage: "/images/oats_2.jpeg",
@@ -49,7 +49,7 @@ export const PRODUCT_CONTENT: Record<ProductId, ProductContent> = {
       },
       {
         title: "Zero Nasties",
-        body: "No preservatives, no added sugar, no artificial anything — just real food.",
+        body: "No preservatives, no added sugar, no artificial anything. Just real food.",
       },
       {
         title: "Protein-Forward",
@@ -64,7 +64,7 @@ export const PRODUCT_CONTENT: Record<ProductId, ProductContent> = {
     name: "Mornfreak Pure Peanut Butter Powder",
     tagline: "Clean Fuel. Real Results.",
     description:
-      "100% peanuts. 9g protein per serving, 87% less fat than traditional peanut butter — the clean, versatile protein boost your mornings have been missing.",
+      "100% peanuts. 9g protein per serving, 87% less fat than traditional peanut butter. The clean, versatile protein boost your mornings have been missing.",
     images: [
       "/images/peanut_butter_powder_1.jpeg",
       "/images/peanut_butter_powder_2.jpeg",
@@ -81,7 +81,7 @@ export const PRODUCT_CONTENT: Record<ProductId, ProductContent> = {
     benefits: [
       {
         title: "100% Peanuts",
-        body: "Nothing else. No fillers, no additives — just the pure, clean taste of peanuts.",
+        body: "Nothing else. No fillers, no additives. Just the pure, clean taste of peanuts.",
       },
       {
         title: "Plant-Based Protein",
@@ -89,7 +89,7 @@ export const PRODUCT_CONTENT: Record<ProductId, ProductContent> = {
       },
       {
         title: "Versatile",
-        body: "Mix into oats, shakes, or baking — the lightest way to add peanut flavour.",
+        body: "Mix into oats, shakes, or baking. The lightest way to add peanut flavour.",
       },
       {
         title: "Lighter Choice",

@@ -12,7 +12,7 @@ import { ALL_PRODUCTS } from "@/lib/products";
 export const metadata: Metadata = {
   title: "Our Story",
   description:
-    "Mornfreak was built for the people who refuse to skip breakfast — the ones who train, work hard, and need real fuel.",
+    "Mornfreak was built for the people who refuse to skip breakfast: the ones who train, work hard, and need real fuel.",
 };
 
 // TODO: Replace all placeholder copy below with final brand-approved text.
@@ -21,12 +21,12 @@ const VALUES = [
   {
     icon: "🌾",
     title: "Real Ingredients",
-    body: "Every ingredient is there because it works — oats, peanuts, dates, seeds. Nothing synthetic, nothing unnecessary.",
+    body: "Every ingredient is there because it works: oats, peanuts, dates, seeds. Nothing synthetic, nothing unnecessary.",
   },
   {
     icon: "🌅",
     title: "Built for Mornings",
-    body: "Designed around the constraints of a real morning: fast, easy, and genuinely nourishing — not just \"healthy-ish\".",
+    body: "Designed around the constraints of a real morning: fast, easy, and genuinely nourishing. Not just \"healthy-ish\".",
   },
   {
     icon: "⚡",
@@ -34,9 +34,9 @@ const VALUES = [
     body: "Protein targets met. Sugar kept to zero. Taste uncompromised. The brief was simple: don't make people choose.",
   },
   {
-    icon: "🇮🇳",
-    title: "Made in India",
-    body: "Proudly made here, for the Indian morning — a market that runs early, trains hard, and has been underserved for too long.",
+    icon: "🏷️",
+    title: "Clean Label",
+    body: "Every ingredient is declared and deliberate. No hidden additives, no proprietary blends. What's on the label is everything that's in the bag.",
   },
 ];
 
@@ -76,7 +76,7 @@ export default function AboutPage() {
               <p className="mt-5 font-sans text-base leading-relaxed text-foreground">
                 We built Mornfreak for the people who train before sunrise, who commute far, who sit in
                 long meetings and need to actually think clearly by 11am. The brief was uncompromising:
-                high protein, zero added sugar, genuinely delicious — or we don&apos;t ship it.
+                high protein, zero added sugar, genuinely delicious. If it falls short, we don&apos;t ship it.
               </p>
               <p className="mt-5 font-sans text-base leading-relaxed text-foreground">
                 Right now we have two products and a lot of conviction. Our Protein Oats bring 26g of
@@ -130,7 +130,7 @@ export default function AboutPage() {
               {ALL_PRODUCTS.map((product) => (
                 <Link
                   key={product.id}
-                  href={`/products/${product.slug}`}
+                  href="/products"
                   className="group relative overflow-hidden rounded-2xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
                 >
                   <div className="relative aspect-[4/3] w-full">

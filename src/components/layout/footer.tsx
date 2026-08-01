@@ -70,7 +70,7 @@ export function Footer() {
 
           {/* Products */}
           <div>
-            <p className="font-sans text-xs font-semibold uppercase tracking-widest text-primary-foreground/40">
+            {/* <p className="font-sans text-xs font-semibold uppercase tracking-widest text-primary-foreground/40">
               Products
             </p>
             <ul className="mt-4 space-y-2">
@@ -84,7 +84,7 @@ export function Footer() {
                   </Link>
                 </li>
               ))}
-            </ul>
+            </ul> */}
             <p className="mt-6 font-sans text-xs font-semibold uppercase tracking-widest text-primary-foreground/40">
               Company
             </p>

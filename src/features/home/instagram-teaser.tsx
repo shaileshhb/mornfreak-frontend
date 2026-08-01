@@ -15,8 +15,8 @@ const GRID_TILES = [
   { src: "/images/oats_2.jpeg", alt: "Protein Oats serving suggestion" },
   { src: "/images/peanut_butter_powder_1.jpeg", alt: "Mornfreak Peanut Butter Powder" },
   { src: "/images/peanut_butter_powder_2.jpeg", alt: "Peanut Butter Powder in use" },
-  { src: null, alt: "Mornfreak on Instagram — placeholder", gradient: "from-orange to-primary" },
-  { src: null, alt: "Mornfreak on Instagram — placeholder", gradient: "from-primary to-orange" },
+  { src: null, alt: "Mornfreak on Instagram", gradient: "from-orange to-primary" },
+  { src: null, alt: "Mornfreak on Instagram", gradient: "from-primary to-orange" },
 ];
 
 export function InstagramTeaser() {

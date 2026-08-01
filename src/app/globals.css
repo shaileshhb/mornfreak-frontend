@@ -1,5 +1,6 @@
 @import "tailwindcss";
 @import "../design/themes/light.css";
+@import "../design/themes/draft2.css";
 @import "../design/tokens/products.css";
 @import "../design/typography/fonts.css";
 @import "../design/animations/keyframes.css";
@@ -67,6 +68,7 @@
   --animate-fade-in: fade-in var(--duration-normal) var(--ease-out) both;
   --animate-rise: rise var(--duration-normal) var(--ease-out) both;
   --animate-scale-in: scale-in var(--duration-normal) var(--ease-out) both;
+  --animate-ken-burns: ken-burns 1.4s var(--ease-out) both;
 }
 
 @layer base {

@@ -1,7 +1,5 @@
 import type { Metadata } from "next";
 
-import { Footer } from "@/components/layout/footer";
-import { Nav } from "@/components/layout/nav";
 import { fontVariables } from "@/design/typography";
 
 import "./globals.css";
@@ -41,9 +39,7 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${fontVariables} h-full antialiased`}>
       <body className="flex min-h-full flex-col bg-background font-sans text-foreground">
-        <Nav />
-        <main className="flex-1 pt-16">{children}</main>
-        <Footer />
+        {children}
       </body>
     </html>
   );

@@ -1,35 +1,35 @@
 :root {
   /* Semantic colors — light theme */
-  --background: #fcfaf8;
-  --foreground: #1a1a1a;
+  --background: #f3e4ce;
+  --foreground: #241510;
 
-  --card: #ffffff;
-  --card-foreground: #1a1a1a;
+  --card: #fff9ef;
+  --card-foreground: #241510;
 
-  --popover: #ffffff;
-  --popover-foreground: #1a1a1a;
+  --popover: #fff9ef;
+  --popover-foreground: #241510;
 
   --primary: #fd0103;
   --primary-foreground: #ffffff;
 
-  --secondary: #f5f5f5;
-  --secondary-foreground: #1a1a1a;
+  --secondary: #fff9ef;
+  --secondary-foreground: #241510;
 
-  --muted: #f5f5f5;
-  --muted-foreground: #5f5f5f;
+  --muted: #ead5b9;
+  --muted-foreground: #725e52;
 
-  --accent: #f5f5f5;
-  --accent-foreground: #1a1a1a;
+  --accent: #ead5b9;
+  --accent-foreground: #241510;
 
   --destructive: #fd0103;
   --destructive-foreground: #ffffff;
 
-  --border: #eaeaea;
-  --input: #eaeaea;
+  --border: #d9bea0;
+  --input: #d9bea0;
   --ring: #fd0103;
 
   /* Orange accent */
-  --orange: #ff6a00;
+  --orange: #bd401f;
   --orange-foreground: #ffffff;
 
   /* Radius (ds-* avoids circular @theme references) */

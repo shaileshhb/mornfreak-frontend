@@ -1,38 +1,38 @@
 /**
- * Draft2 “Ember Signal” theme — scoped under [data-theme="draft2"].
+ * Draft2 outline theme — scoped under [data-theme="draft2"].
+ * Warm brown / cream base with orange-red accents, matching the client outline.
  * Does not mutate the live light theme tokens on :root.
  */
 [data-theme="draft2"] {
-  --background: #f6f1eb;
-  --foreground: #1c1410;
+  --background: #f3e4ce;
+  --foreground: #241510;
 
-  --card: #fffaf5;
-  --card-foreground: #1c1410;
+  --card: #fff9ef;
+  --card-foreground: #241510;
 
-  --popover: #fffaf5;
-  --popover-foreground: #1c1410;
+  --popover: #fff9ef;
+  --popover-foreground: #241510;
 
   --primary: #e85d04;
   --primary-foreground: #ffffff;
 
-  --secondary: #f0e6da;
-  --secondary-foreground: #1c1410;
+  --secondary: #fff9ef;
+  --secondary-foreground: #241510;
 
-  --muted: #ebe2d6;
-  --muted-foreground: #6b5a4e;
+  --muted: #ead5b9;
+  --muted-foreground: #725e52;
 
-  --accent: #f3e8dc;
-  --accent-foreground: #1c1410;
+  --accent: #ead5b9;
+  --accent-foreground: #241510;
 
   --destructive: #c1121f;
   --destructive-foreground: #ffffff;
 
-  --border: #e4d5c4;
-  --input: #e4d5c4;
+  --border: #d9bea0;
+  --input: #d9bea0;
   --ring: #e85d04;
 
-  /* Ember red — used via orange token in draft2 */
-  --orange: #c1121f;
+  --orange: #e8612d;
   --orange-foreground: #ffffff;
 
   --ds-radius-sm: 0.125rem;
@@ -41,9 +41,9 @@
   --ds-radius-xl: 0.5rem;
   --ds-radius-full: 9999px;
 
-  --ds-shadow-sm: 0 1px 2px rgb(28 20 16 / 0.06);
-  --ds-shadow-md: 0 6px 18px rgb(28 20 16 / 0.1);
-  --ds-shadow-lg: 0 16px 40px rgb(28 20 16 / 0.14);
+  --ds-shadow-sm: 0 1px 2px rgb(36 21 16 / 0.06);
+  --ds-shadow-md: 0 6px 18px rgb(36 21 16 / 0.1);
+  --ds-shadow-lg: 0 16px 40px rgb(36 21 16 / 0.14);
 
   --font-sans: var(--font-manrope), var(--font-sans-fallback);
   --font-display: var(--font-oswald), var(--font-display-fallback);
@@ -51,8 +51,4 @@
   font-family: var(--font-manrope), var(--font-sans-fallback);
   color: var(--foreground);
   background-color: var(--background);
-  background-image:
-    radial-gradient(ellipse 90% 55% at 10% -10%, rgb(232 93 4 / 0.14), transparent 55%),
-    radial-gradient(ellipse 70% 45% at 95% 5%, rgb(193 18 31 / 0.08), transparent 50%);
-  background-attachment: fixed;
 }

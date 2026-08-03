@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 
+import { Draft2AnnouncementBar } from "@/components/layout/draft2-announcement-bar";
 import { Draft2Footer } from "@/components/layout/draft2-footer";
 import { Draft2Nav } from "@/components/layout/draft2-nav";
 import { draft2FontVariables } from "@/design/typography";
@@ -22,6 +23,7 @@ export default function Draft2Layout({
       data-theme="draft2"
       className={`${draft2FontVariables} flex min-h-full flex-1 flex-col`}
     >
+      <Draft2AnnouncementBar />
       <Draft2Nav />
       <main className="flex-1">{children}</main>
       <Draft2Footer />

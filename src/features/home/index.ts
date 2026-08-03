@@ -1,4 +1,6 @@
-export { BrandStrip } from "./brand-strip";
+export { HowWeStackUp } from "./how-we-stack-up";
 export { HomeHero } from "./home-hero";
-export { InstagramTeaser } from "./instagram-teaser";
-export { MadeBetter } from "./made-better";
+export { OneSachet } from "./one-sachet";
+export { RaisingTheBar } from "./raising-the-bar";
+export { Reviews } from "./reviews";
+export { WhyMornfreak } from "./why-mornfreak";

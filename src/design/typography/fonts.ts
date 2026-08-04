@@ -1,11 +1,11 @@
 import {
   Bebas_Neue,
-  Big_Shoulders,
   DM_Sans,
   Manrope,
   Oswald,
   Source_Sans_3,
 } from "next/font/google";
+import localFont from "next/font/local";
 
 export const fontDisplay = Bebas_Neue({
   weight: "400",
@@ -37,9 +37,15 @@ export const fontDraft2Sans = Manrope({
 
 export const draft2FontVariables = `${fontDraft2Display.variable} ${fontDraft2Sans.variable}`;
 
-/** Draft3 “Heat Wake” — Big Shoulders + Source Sans 3 */
-export const fontDraft3Display = Big_Shoulders({
-  subsets: ["latin"],
+/**
+ * Draft3 “Heat Wake” — Big Shoulders + Source Sans 3
+ * Self-hosted via `next/font/local` (rather than `next/font/google`) because
+ * Next's bundled fallback-metrics table has no entry for the bare "Big
+ * Shoulders" family, which otherwise logs a build-time error on every request.
+ */
+export const fontDraft3Display = localFont({
+  src: "./fonts/big-shoulders/BigShoulders-Variable.woff2",
+  weight: "100 900",
   variable: "--font-big-shoulders",
   display: "swap",
 });

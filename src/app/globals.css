@@ -5,6 +5,7 @@
 @import "../design/tokens/products.css";
 @import "../design/typography/fonts.css";
 @import "../design/animations/keyframes.css";
+@import "../design/utilities/scrollbar.css";
 
 @theme inline {
   /* Semantic colors */

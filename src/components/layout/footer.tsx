@@ -6,7 +6,7 @@ const FOOTER_GROUPS = [
     links: [
       { label: "Protein Oats", href: "/products" },
       { label: "Peanut Butter Powder", href: "/products" },
-      { label: "Bundles & Combos", href: "/products" },
+      // { label: "Bundles & Combos", href: "/products" },
       { label: "New Arrivals", href: "/products" },
     ],
   },
@@ -15,8 +15,8 @@ const FOOTER_GROUPS = [
     links: [
       { label: "Our Story", href: "/about" },
       { label: "Ingredients We Trust", href: "/about" },
-      { label: "Science Behind It", href: "/about" },
-      { label: "Mornfreak Community", href: "/contact" },
+      { label: "Science Behind It", href: "/science" },
+      // { label: "Mornfreak Community", href: "/contact" },
     ],
   },
   {

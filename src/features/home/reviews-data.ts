@@ -8,7 +8,6 @@ export type Review = {
   productLabel: string;
   productImage?: string;
   videoUrl?: string;
-  videoPoster?: string;
 };
 
 export const REVIEWS: Review[] = [
@@ -21,8 +20,7 @@ export const REVIEWS: Review[] = [
     verified: true,
     productLabel: "Peanut Butter Powder",
     productImage: "/images/peanut_butter_powder_1.jpeg",
-    videoUrl: "https://mornfreak-frontend.vercel.app/videos/review_3.mp4",
-    videoPoster: "/images/peanut_butter_powder_1.jpeg",
+    videoUrl: "/videos/review_3.mp4",
   },
   {
     id: "rohan-video",
@@ -33,8 +31,7 @@ export const REVIEWS: Review[] = [
     verified: true,
     productLabel: "Protein Oats",
     productImage: "/images/oats_1.jpeg",
-    videoUrl: "https://mornfreak-frontend.vercel.app/videos/review_1.mp4",
-    videoPoster: "/images/oats_1.jpeg",
+    videoUrl: "/videos/review_1.mp4",
   },
   {
     id: "kabir-video",
@@ -45,8 +42,7 @@ export const REVIEWS: Review[] = [
     verified: true,
     productLabel: "Protein Oats",
     productImage: "/images/oats_2.jpeg",
-    videoUrl: "https://mornfreak-frontend.vercel.app/videos/review_2.mp4",
-    videoPoster: "/images/oats_2.jpeg",
+    videoUrl: "/videos/review_2.mp4",
   },
   {
     id: "ananya",

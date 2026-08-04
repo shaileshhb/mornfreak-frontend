@@ -1,0 +1,9 @@
+/** Hides the native scrollbar on scrollable containers (e.g. drag/snap carousels) while keeping scroll behavior intact. */
+@utility scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}

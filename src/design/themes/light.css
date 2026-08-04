@@ -1,35 +1,35 @@
 :root {
-  /* Semantic colors — light theme */
-  --background: #f3e4ce;
-  --foreground: #241510;
+  /* Semantic colors — Warm Morning */
+  --background: #faf5ee;
+  --foreground: #1e1109;
 
-  --card: #fff9ef;
-  --card-foreground: #241510;
+  --card: #ffffff;
+  --card-foreground: #1e1109;
 
-  --popover: #fff9ef;
-  --popover-foreground: #241510;
+  --popover: #ffffff;
+  --popover-foreground: #1e1109;
 
-  --primary: #fd0103;
+  --primary: #c8392b;
   --primary-foreground: #ffffff;
 
-  --secondary: #fff9ef;
-  --secondary-foreground: #241510;
+  --secondary: #ffffff;
+  --secondary-foreground: #1e1109;
 
-  --muted: #ead5b9;
-  --muted-foreground: #725e52;
+  --muted: #e8d5b7;
+  --muted-foreground: #7a6350;
 
-  --accent: #ead5b9;
-  --accent-foreground: #241510;
+  --accent: #e8d5b7;
+  --accent-foreground: #1e1109;
 
-  --destructive: #fd0103;
+  --destructive: #c8392b;
   --destructive-foreground: #ffffff;
 
-  --border: #d9bea0;
-  --input: #d9bea0;
-  --ring: #fd0103;
+  --border: #e0d0b8;
+  --input: #e0d0b8;
+  --ring: #c8392b;
 
-  /* Orange accent */
-  --orange: #bd401f;
+  /* Warm amber accent */
+  --orange: #c9872a;
   --orange-foreground: #ffffff;
 
   /* Radius (ds-* avoids circular @theme references) */

@@ -134,7 +134,7 @@ function Reviewer({ review, inverse = false }: { review: Review; inverse?: boole
 
 function TextReviewCard({ review }: { review: Review }) {
   return (
-    <article className="flex min-h-[31rem] w-[19rem] shrink-0 snap-start flex-col bg-[#fff9ef] p-6 sm:w-[21rem]">
+    <article className="flex min-h-[31rem] w-[19rem] shrink-0 snap-start flex-col bg-card p-6 sm:w-[21rem]">
       <Stars rating={review.rating} />
       <h3 className="mt-6 font-display text-3xl uppercase leading-none tracking-wide">{review.title}</h3>
       <p className="mt-5 flex-1 text-sm leading-relaxed text-muted-foreground">{review.body}</p>
@@ -150,7 +150,7 @@ function TextReviewCard({ review }: { review: Review }) {
 
 function VideoReviewCard({ review, onPlay }: { review: Review; onPlay: () => void }) {
   return (
-    <article className="relative min-h-[31rem] w-[19rem] shrink-0 snap-start overflow-hidden bg-[#2a0e0c] text-white sm:w-[21rem]">
+    <article className="relative min-h-[31rem] w-[19rem] shrink-0 snap-start overflow-hidden bg-foreground text-white sm:w-[21rem]">
       {review.videoPoster && (
         <Image
           src={review.videoPoster}
@@ -174,7 +174,7 @@ function VideoReviewCard({ review, onPlay }: { review: Review; onPlay: () => voi
         </button>
         <div className="border-t border-white/20 pt-5">
           <Reviewer review={review} inverse />
-          <p className="mt-4 text-[0.65rem] font-bold uppercase tracking-[0.12em] text-[#ffc65c]">
+          <p className="mt-4 text-[0.65rem] font-bold uppercase tracking-[0.12em] text-orange">
             Review for: {review.productLabel}
           </p>
         </div>

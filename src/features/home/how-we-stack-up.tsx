@@ -25,7 +25,7 @@ const COLUMNS = ["Mornfreak", "Other Oats", "Traditional Oats"] as const;
 
 export function HowWeStackUp() {
   return (
-    <section className="bg-[#fff9ef] py-20 sm:py-28">
+    <section className="bg-card py-20 sm:py-28">
       <Container className="max-w-[76rem]">
         <header className="flex items-center justify-center gap-4 text-center">
           <Zap aria-hidden className="text-primary" size={25} fill="currentColor" />

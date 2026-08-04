@@ -19,7 +19,7 @@ export function HomeHero() {
 
   return (
     <section
-      className="relative isolate flex min-h-[calc(100svh-7.25rem)] w-full items-center overflow-hidden bg-[#2a0e0c]"
+      className="relative isolate flex min-h-[calc(100svh-7.25rem)] w-full items-center overflow-hidden bg-foreground"
       aria-label="Hero"
     >
       <div className="absolute inset-y-0 right-0 w-full lg:w-[58%]">
@@ -32,7 +32,7 @@ export function HomeHero() {
           className="animate-ken-burns object-cover object-center"
         />
       </div>
-      <div className="absolute inset-0 bg-[linear-gradient(90deg,#2a0e0c_0%,rgba(42,14,12,.97)_38%,rgba(42,14,12,.56)_68%,rgba(42,14,12,.15)_100%)] max-lg:bg-[linear-gradient(180deg,rgba(42,14,12,.72)_0%,#2a0e0c_63%)]" />
+      <div className="absolute inset-0 bg-[linear-gradient(90deg,#1e1109_0%,rgba(30,17,9,.97)_38%,rgba(30,17,9,.56)_68%,rgba(30,17,9,.15)_100%)] max-lg:bg-[linear-gradient(180deg,rgba(30,17,9,.72)_0%,#1e1109_63%)]" />
       <div className="absolute -left-28 bottom-0 h-72 w-72 rounded-full bg-primary/25 blur-3xl" aria-hidden />
 
       <div className="relative z-10 mx-auto w-full max-w-[90rem] px-4 py-16 sm:px-6 lg:px-10 lg:py-20">
@@ -45,7 +45,7 @@ export function HomeHero() {
             )}
           >
             <div className="mb-5 flex items-center gap-3 text-white">
-              <span className="flex gap-0.5 text-[#ffc65c]" aria-label="5 out of 5 stars">
+              <span className="flex gap-0.5 text-orange" aria-label="5 out of 5 stars">
                 {Array.from({ length: 5 }).map((_, index) => (
                   <Star key={index} aria-hidden size={14} fill="currentColor" />
                 ))}
@@ -56,7 +56,7 @@ export function HomeHero() {
             </div>
             <h1 className="max-w-xl font-display text-[clamp(4.25rem,9vw,8rem)] uppercase italic leading-[0.82] tracking-[0.01em] text-white">
               Fuel your day.
-              <span className="mt-2 block text-[#ffc65c]">Feed your goals.</span>
+              <span className="mt-2 block text-orange">Feed your goals.</span>
             </h1>
             <p className="mt-6 max-w-xl font-sans text-base leading-relaxed text-white/75 sm:text-lg">
               Rich chocolate oats with 26g protein, super seeds, nuts and prebiotics.
@@ -65,7 +65,7 @@ export function HomeHero() {
             <div className="mt-8 grid max-w-xl grid-cols-2 gap-x-5 gap-y-5 sm:grid-cols-4">
               {HERO_BENEFITS.map(({ label, detail, icon: Icon }) => (
                 <div key={label} className="flex items-center gap-3 sm:block">
-                  <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full border border-white/25 bg-white/10 text-[#ffc65c] sm:mb-2">
+                  <span className="mb-0 flex h-11 w-11 shrink-0 items-center justify-center rounded-full border border-white/25 bg-white/10 text-orange sm:mb-2">
                     <Icon aria-hidden size={20} strokeWidth={1.8} />
                   </span>
                   <div>
@@ -78,13 +78,13 @@ export function HomeHero() {
             <div className="mt-8 flex flex-wrap gap-3">
               <Link
                 href="/products"
-                className="inline-flex h-12 items-center justify-center gap-2 bg-[#ffc65c] px-7 font-sans text-sm font-bold uppercase tracking-[0.12em] text-[#241510] transition-transform hover:-translate-y-0.5"
+                className="inline-flex h-12 items-center justify-center gap-2 bg-orange px-7 font-sans text-sm font-bold uppercase tracking-[0.12em] text-foreground transition-transform hover:-translate-y-0.5"
               >
                 Shop now <ArrowRight aria-hidden size={17} />
               </Link>
               <Link
                 href="/products"
-                className="inline-flex h-12 items-center justify-center border border-white/40 px-7 font-sans text-sm font-bold uppercase tracking-[0.12em] text-white transition-colors hover:bg-white hover:text-[#241510]"
+                className="inline-flex h-12 items-center justify-center border border-white/40 px-7 font-sans text-sm font-bold uppercase tracking-[0.12em] text-white transition-colors hover:bg-white hover:text-foreground"
               >
                 Explore flavours
               </Link>

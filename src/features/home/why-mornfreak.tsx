@@ -26,7 +26,7 @@ const REASONS = [
 
 export function WhyMornfreak() {
   return (
-    <section className="bg-[#fff9ef] py-20 sm:py-28">
+    <section className="bg-card py-20 sm:py-28">
       <Container className="max-w-[82rem]">
         <div className="grid gap-14 lg:grid-cols-[1.05fr_0.95fr] lg:items-stretch">
           <div className="lg:py-6">
@@ -63,7 +63,7 @@ export function WhyMornfreak() {
             </Link>
           </div>
 
-          <div className="relative min-h-[34rem] overflow-hidden bg-[#ead5b9] lg:min-h-full">
+          <div className="relative min-h-[34rem] overflow-hidden bg-muted lg:min-h-full">
             <div className="absolute inset-5 border border-dashed border-primary/35" aria-hidden />
             <div className="absolute inset-0 flex flex-col items-center justify-center px-8 text-center text-foreground/55">
               <span className="font-display text-4xl uppercase tracking-wide">Lifestyle image</span>

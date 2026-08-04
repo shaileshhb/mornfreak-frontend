@@ -80,7 +80,7 @@ export function RaisingTheBar() {
 
           <div className="relative mx-auto flex aspect-square w-full max-w-[31rem] items-center justify-center">
             <div className="absolute inset-[12%] rotate-45 border border-dashed border-primary/45" aria-hidden />
-            <div className="relative z-10 flex h-[72%] w-[53%] items-center justify-center bg-[#fff9ef] px-5 text-center shadow-[0_24px_70px_rgba(36,21,16,0.12)]">
+            <div className="relative z-10 flex h-[72%] w-[53%] items-center justify-center bg-card px-5 text-center shadow-[0_24px_70px_rgba(30,17,9,0.12)]">
               <div>
                 <p className="font-display text-4xl uppercase leading-none text-primary">
                   {product.placeholder}

@@ -46,3 +46,12 @@
     transform: translateX(-50%);
   }
 }
+
+@keyframes hero-progress {
+  from {
+    transform: scaleX(0);
+  }
+  to {
+    transform: scaleX(1);
+  }
+}

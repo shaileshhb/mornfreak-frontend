@@ -1,4 +1,5 @@
 import {
+  Caveat,
   DM_Sans,
   Manrope,
   Montserrat,
@@ -21,7 +22,13 @@ export const fontSans = DM_Sans({
   display: "swap",
 });
 
-export const fontVariables = `${fontDisplay.variable} ${fontSans.variable}`;
+export const fontScript = Caveat({
+  subsets: ["latin"],
+  variable: "--font-caveat",
+  display: "swap",
+});
+
+export const fontVariables = `${fontDisplay.variable} ${fontSans.variable} ${fontScript.variable}`;
 
 /** Draft2 “Ember Signal” — Oswald display + Manrope body */
 export const fontDraft2Display = Oswald({

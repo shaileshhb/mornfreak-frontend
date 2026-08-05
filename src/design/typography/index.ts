@@ -7,5 +7,6 @@ export {
   fontDraft3Display,
   fontDraft3Sans,
   fontSans,
+  fontScript,
   fontVariables,
 } from "./fonts";

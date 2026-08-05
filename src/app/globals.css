@@ -51,6 +51,7 @@
   /* Typography */
   --font-sans: var(--font-dm-sans), var(--font-sans-fallback);
   --font-display: var(--font-montserrat), var(--font-display-fallback);
+  --font-script: var(--font-caveat), cursive;
 
   /* Radius */
   --radius-sm: var(--ds-radius-sm);
@@ -70,6 +71,7 @@
   --animate-scale-in: scale-in var(--duration-normal) var(--ease-out) both;
   --animate-ken-burns: ken-burns 1.4s var(--ease-out) both;
   --animate-marquee: marquee 90s linear infinite;
+  --animate-hero-progress: hero-progress 5s linear forwards;
 }
 
 @media (prefers-reduced-motion: reduce) {

@@ -1,23 +1,23 @@
 import { ArrowRight, Clock3, Leaf, Zap } from "lucide-react";
 import Link from "next/link";
-
+import Image from "next/image";
 import { Container } from "@/components/ui/container";
 
 const REASONS = [
   {
-    number: "02",
+    number: "01",
     title: "Every ingredient earns its place.",
     body: "Real oats, super seeds, nuts and dates. Nothing is added unless it makes your breakfast work harder.",
     icon: Leaf,
   },
   {
-    number: "03",
+    number: "02",
     title: "Energy that stays with you.",
     body: "Protein, complex carbs and fibre work together to help you move through the morning without the crash.",
     icon: Zap,
   },
   {
-    number: "04",
+    number: "03",
     title: "Built for busy mornings.",
     body: "A complete, satisfying breakfast that is ready in minutes and easy to take wherever your day starts.",
     icon: Clock3,
@@ -63,7 +63,7 @@ export function WhyMornfreak() {
             </Link>
           </div>
 
-          <div className="relative min-h-[34rem] overflow-hidden bg-muted lg:min-h-full">
+          {/* <div className="relative min-h-[34rem] overflow-hidden bg-muted lg:min-h-full">
             <div className="absolute inset-5 border border-dashed border-primary/35" aria-hidden />
             <div className="absolute inset-0 flex flex-col items-center justify-center px-8 text-center text-foreground/55">
               <span className="font-display text-4xl uppercase tracking-wide">Lifestyle image</span>
@@ -71,6 +71,17 @@ export function WhyMornfreak() {
                 Replace with a portrait-oriented morning movement or outdoor training photo
               </span>
             </div>
+            <div className="absolute -bottom-16 -right-16 h-48 w-48 rounded-full border-[2.5rem] border-primary/10" aria-hidden />
+          </div> */}
+          <div className="relative min-h-[34rem] overflow-hidden bg-muted lg:min-h-full">
+            <Image
+              src="/images/why-mornfreak.avif"
+              alt="A person moving through their morning routine, fuelled by Mornfreak"
+              fill
+              sizes="(max-width: 1024px) 100vw, 45vw"
+              className="object-cover object-center"
+            />
+            <div className="absolute inset-5 border border-dashed border-primary/35" aria-hidden />
             <div className="absolute -bottom-16 -right-16 h-48 w-48 rounded-full border-[2.5rem] border-primary/10" aria-hidden />
           </div>
         </div>

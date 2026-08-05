@@ -23,16 +23,6 @@ export function OneSachet() {
             <h2 className="mt-4 max-w-xl font-display text-6xl uppercase leading-[0.9] tracking-wide text-foreground sm:text-7xl">
               One sachet. Everything that matters.
             </h2>
-            <div className="mt-10 grid grid-cols-2 gap-x-5 gap-y-7 sm:grid-cols-4 lg:grid-cols-2 xl:grid-cols-4">
-              {BENEFITS.map(({ label, icon: Icon }) => (
-                <div key={label}>
-                  <Icon aria-hidden className="mb-3 text-primary" size={26} strokeWidth={1.7} />
-                  <p className="max-w-24 font-sans text-xs font-bold uppercase leading-snug tracking-[0.1em]">
-                    {label}
-                  </p>
-                </div>
-              ))}
-            </div>
             <Link
               href="/products"
               className="mt-10 inline-flex h-12 items-center justify-center gap-2 bg-foreground px-7 font-sans text-sm font-bold uppercase tracking-[0.12em] text-white transition-transform hover:-translate-y-0.5"

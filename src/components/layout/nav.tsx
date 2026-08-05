@@ -6,7 +6,7 @@ import { useState } from "react";
 
 const NAV_LINKS = [
   { label: "Shop", href: "/products" },
-  { label: "About", href: "/about" },
+  { label: "Our Story", href: "/our-story" },
   { label: "Science", href: "/science" },
 ] as const;
 
@@ -22,10 +22,10 @@ export function Nav() {
             className="shrink-0 text-foreground transition-colors hover:text-primary"
             aria-label="Mornfreak home"
           >
-            <span className="block font-display text-3xl uppercase leading-none tracking-[0.08em]">
+            <span className="block font-display text-3xl uppercase leading-none tracking-normal">
               Mornfreak
             </span>
-            <span className="mt-1 block font-sans text-[0.55rem] font-bold uppercase tracking-[0.28em]">
+            <span className="mt-1 block font-sans text-[0.55rem] font-bold uppercase tracking-[0.18em]">
               Fuel your start!
             </span>
           </Link>

@@ -54,7 +54,7 @@ export function HomeHero() {
                 5.0 Stars <span className="mx-1 text-white/40">|</span> Loved by early tasters
               </span>
             </div>
-            <h1 className="max-w-xl font-display text-[clamp(4.25rem,9vw,8rem)] uppercase italic leading-[0.82] tracking-[0.01em] text-white">
+            <h1 className="max-w-xl font-display text-[clamp(2.75rem,6vw,5.5rem)] uppercase italic leading-[0.95] tracking-[0.01em] text-white">
               Fuel your day.
               <span className="mt-2 block text-orange">Feed your goals.</span>
             </h1>
@@ -62,19 +62,6 @@ export function HomeHero() {
               Rich chocolate oats with 26g protein, super seeds, nuts and prebiotics.
               Built for powerful mornings without added sugar or preservatives.
             </p>
-            <div className="mt-8 grid max-w-xl grid-cols-2 gap-x-5 gap-y-5 sm:grid-cols-4">
-              {HERO_BENEFITS.map(({ label, detail, icon: Icon }) => (
-                <div key={label} className="flex items-center gap-3 sm:block">
-                  <span className="mb-0 flex h-11 w-11 shrink-0 items-center justify-center rounded-full border border-white/25 bg-white/10 text-orange sm:mb-2">
-                    <Icon aria-hidden size={20} strokeWidth={1.8} />
-                  </span>
-                  <div>
-                    <p className="font-sans text-xs font-bold uppercase tracking-wide text-white">{label}</p>
-                    <p className="mt-0.5 font-sans text-[0.65rem] uppercase tracking-wide text-white/50">{detail}</p>
-                  </div>
-                </div>
-              ))}
-            </div>
             <div className="mt-8 flex flex-wrap gap-3">
               <Link
                 href="/products"

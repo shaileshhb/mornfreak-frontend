@@ -1,7 +1,5 @@
 @import "tailwindcss";
 @import "../design/themes/light.css";
-@import "../design/themes/draft2.css";
-@import "../design/themes/draft3.css";
 @import "../design/tokens/products.css";
 @import "../design/typography/fonts.css";
 @import "../design/animations/keyframes.css";
@@ -52,7 +50,7 @@
 
   /* Typography */
   --font-sans: var(--font-dm-sans), var(--font-sans-fallback);
-  --font-display: var(--font-bebas), var(--font-display-fallback);
+  --font-display: var(--font-montserrat), var(--font-display-fallback);
 
   /* Radius */
   --radius-sm: var(--ds-radius-sm);

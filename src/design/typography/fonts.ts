@@ -1,16 +1,17 @@
 import {
-  Bebas_Neue,
   DM_Sans,
   Manrope,
+  Montserrat,
   Oswald,
   Source_Sans_3,
 } from "next/font/google";
 import localFont from "next/font/local";
 
-export const fontDisplay = Bebas_Neue({
-  weight: "400",
+export const fontDisplay = Montserrat({
+  weight: "700",
+  style: ["normal", "italic"],
   subsets: ["latin"],
-  variable: "--font-bebas",
+  variable: "--font-montserrat",
   display: "swap",
 });
 

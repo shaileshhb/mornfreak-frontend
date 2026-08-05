@@ -13,8 +13,8 @@ const FOOTER_GROUPS = [
   {
     title: "Explore",
     links: [
-      { label: "Our Story", href: "/about" },
-      { label: "Ingredients We Trust", href: "/about" },
+      { label: "Our Story", href: "/our-story" },
+      { label: "Ingredients We Trust", href: "/our-story" },
       { label: "Science Behind It", href: "/science" },
       // { label: "Mornfreak Community", href: "/contact" },
     ],
@@ -61,7 +61,7 @@ export function Footer() {
               <Link
                 href="/"
                 aria-label="Mornfreak home"
-                className="inline-block font-display text-4xl uppercase leading-none tracking-[0.06em] text-foreground transition-colors hover:text-primary"
+                className="inline-block font-display text-4xl uppercase leading-none tracking-normal text-foreground transition-colors hover:text-primary"
               >
                 Mornfreak
               </Link>
@@ -120,7 +120,7 @@ export function Footer() {
         aria-label="Mornfreak home"
         className="flex min-h-40 items-center justify-center bg-primary px-4 text-primary-foreground"
       >
-        <span className="font-display text-[clamp(3rem,10vw,8rem)] uppercase leading-none tracking-[0.04em]">
+        <span className="font-display text-[clamp(2rem,6vw,5rem)] uppercase leading-none tracking-normal">
           Mornfreak
         </span>
       </Link>

@@ -35,6 +35,43 @@ const SLIDE_3_BENEFITS = [
   { label: "Sustained Energy", icon: BatteryCharging },
 ] as const;
 
+function HeroPicture({
+  desktopSrc,
+  mobileSrc,
+  alt,
+  priority,
+  sizes,
+  className,
+}: {
+  desktopSrc: string;
+  mobileSrc: string;
+  alt: string;
+  priority?: boolean;
+  sizes: string;
+  className?: string;
+}) {
+  return (
+    <>
+      <Image
+        src={mobileSrc}
+        alt={alt}
+        fill
+        priority={priority}
+        sizes={sizes}
+        className={cn("object-cover object-center lg:hidden", className)}
+      />
+      <Image
+        src={desktopSrc}
+        alt={alt}
+        fill
+        priority={priority}
+        sizes={sizes}
+        className={cn("hidden object-cover object-center lg:block", className)}
+      />
+    </>
+  );
+}
+
 export function HomeHero() {
   const [index, setIndex] = useState(0);
   const [paused, setPaused] = useState(false);
@@ -159,13 +196,12 @@ function HeroSlideLifestyle({ active }: { active: boolean }) {
       aria-roledescription="slide"
       aria-label="Functional. Simple. Purposeful."
     >
-      <Image
-        src="/images/hero/img_1.avif"
+      <HeroPicture
+        mobileSrc="/images/hero/img_1_mobile.png"
+        desktopSrc="/images/hero/img_1_desktop.avif"
         alt="People fueling their mornings with Mornfreak — eating, commuting, training, and studying"
-        fill
         priority={active}
         sizes="100vw"
-        className="object-cover object-center"
       />
       <div className="absolute inset-0 bg-foreground/45" />
       <div className="relative z-10 flex h-full items-center justify-center px-6 pb-20 pt-16 text-center">
@@ -202,19 +238,18 @@ function HeroSlideOats({ active }: { active: boolean }) {
       aria-label="Fuel your day. Feed your goals."
     >
       <div className="absolute inset-y-0 right-0 w-full lg:w-[58%]">
-        <Image
-          src="/images/hero/img_2.avif"
+        <HeroPicture
+          mobileSrc="/images/hero/img_2_mobile.png"
+          desktopSrc="/images/hero/img_2_desktop.png"
           alt="Mornfreak Rich Chocolate Protein Oats with fruit, seeds and nuts"
-          fill
           priority={active}
           sizes="(max-width: 1024px) 100vw, 58vw"
-          className="object-cover object-center"
         />
       </div>
       <div className="absolute inset-0 bg-[linear-gradient(90deg,#1e1109_0%,rgba(30,17,9,.97)_38%,rgba(30,17,9,.56)_68%,rgba(30,17,9,.15)_100%)] max-lg:bg-[linear-gradient(180deg,rgba(30,17,9,.72)_0%,#1e1109_63%)]" />
       <div className="absolute -left-28 bottom-0 h-72 w-72 rounded-full bg-primary/25 blur-3xl" aria-hidden />
 
-      <div className="relative z-10 mx-auto flex h-full w-full max-w-[90rem] items-center px-4 py-16 sm:px-6 lg:px-10 lg:py-20">
+      <div className="relative z-10 mx-auto flex h-full w-full max-w-[90rem] items-center px-4 pb-16 pt-28 sm:px-6 lg:px-10 lg:py-20">
         <div className="max-w-2xl pb-10">
           <div className="mb-5 flex items-center gap-3 text-white">
             <span className="flex gap-0.5 text-orange" aria-label="5 out of 5 stars">
@@ -267,17 +302,20 @@ function HeroSlidePeanutButter({ active }: { active: boolean }) {
       aria-roledescription="slide"
       aria-label="Good morning. Great choice."
     >
-      <Image
-        src="/images/hero/img_3.avif"
+      <HeroPicture
+        mobileSrc="/images/hero/img_3_mobile.png"
+        desktopSrc="/images/hero/img_3_desktop.avif"
         alt="Mornfreak product jar with high-protein callouts"
-        fill
         priority={active}
         sizes="100vw"
-        className="object-cover object-[78%_center]"
+      />
+      <div
+        className="absolute inset-0 max-lg:bg-[linear-gradient(180deg,rgba(255,248,220,.9)_0%,rgba(255,248,220,.65)_45%,rgba(255,248,220,.28)_58%,transparent_74%)] lg:bg-[linear-gradient(90deg,rgba(255,248,220,.92)_0%,rgba(255,248,220,.7)_34%,transparent_65%)]"
+        aria-hidden
       />
 
       <div className="relative z-10 mx-auto flex h-full w-full max-w-[90rem] items-center px-4 py-16 sm:px-6 lg:px-10 lg:py-20">
-        <div className="max-w-xl rounded-2xl bg-[#f7e37a]/92 p-5 pb-14 shadow-sm backdrop-blur-[2px] sm:p-6 lg:max-w-[26rem] lg:bg-transparent lg:p-0 lg:shadow-none lg:backdrop-blur-none xl:max-w-xl">
+        <div className="max-w-xl pb-14 lg:max-w-[26rem] xl:max-w-xl">
           <h1 className="font-display text-[clamp(2.75rem,7vw,5.25rem)] font-bold uppercase leading-[0.9] tracking-tight text-[#001d4a]">
             Good morning.
           </h1>
@@ -308,8 +346,12 @@ function HeroSlidePeanutButter({ active }: { active: boolean }) {
             >
               Shop now <ArrowRight aria-hidden size={17} />
             </Link>
-            <p className="flex items-center gap-2 font-sans text-sm font-medium text-[#001d4a]">
+            {/* <p className="flex items-center gap-2 font-sans text-sm font-medium text-[#001d4a]">
               <ShieldCheck aria-hidden size={18} className="text-[#001d4a]" />
+              Clean Ingredients. Nothing to Hide.
+            </p> */}
+            <p className="flex items-center gap-2 font-sans text-sm font-medium text-white lg:text-[#001d4a]">
+              <ShieldCheck aria-hidden size={18} className="text-white lg:text-[#001d4a]" />
               Clean Ingredients. Nothing to Hide.
             </p>
           </div>

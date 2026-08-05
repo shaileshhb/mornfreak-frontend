@@ -3,13 +3,8 @@ import {
   ArrowRight,
   BriefcaseBusiness,
   Dumbbell,
-  FlaskConical,
   GraduationCap,
   HeartPulse,
-  Lightbulb,
-  MessageCircleQuestion,
-  Sunrise,
-  UsersRound,
 } from "lucide-react";
 import { getImageProps } from "next/image";
 import Image from "next/image";
@@ -17,36 +12,7 @@ import Link from "next/link";
 
 import { Container } from "@/components/ui/container";
 
-const MILESTONES = [
-  {
-    number: "01",
-    year: "2023",
-    title: "The problem",
-    body: "Healthy breakfasts became complicated. Most options are packed with processed ingredients, hidden sugars, and fall short on real nutrition. We knew there had to be a better way.",
-    icon: MessageCircleQuestion,
-  },
-  {
-    number: "02",
-    year: "2023",
-    title: "The idea",
-    body: "What if breakfast could be clean, functional, delicious, and actually keep you satisfied? Not another cereal. A complete morning routine in one bowl.",
-    icon: Lightbulb,
-  },
-  {
-    number: "03",
-    year: "2024",
-    title: "The formula",
-    body: "We combined science, nutrition, and clean ingredients. No junk. No shortcuts. Just real food nutrition that is backed by science. High in protein, prebiotics, superfoods and taste.",
-    icon: FlaskConical,
-  },
-  {
-    number: "04",
-    year: "Now",
-    title: "The movement",
-    body: "Today, Mornfreak is becoming a community of people who refuse to compromise their mornings. Because healthy mornings create better lives.",
-    icon: UsersRound,
-  },
-] as const;
+import { StoryTimeline } from "./story-timeline";
 
 const AUDIENCES = [
   {
@@ -142,75 +108,6 @@ function StoryHero() {
           >
             Read our story <ArrowDown aria-hidden size={16} />
           </a>
-        </div>
-      </Container>
-    </section>
-  );
-}
-
-function StoryTimeline() {
-  return (
-    <section id="our-beginning" className="scroll-mt-24 bg-card py-20 sm:py-28">
-      <Container className="max-w-[82rem]">
-        <div className="grid gap-14 lg:grid-cols-[0.82fr_1.18fr] lg:gap-20">
-          <div className="lg:sticky lg:top-32 lg:self-start">
-            <Sunrise aria-hidden className="text-orange" size={28} strokeWidth={1.7} />
-            <h2 className="mt-4 max-w-xl font-display text-[clamp(2.75rem,5vw,4.75rem)] uppercase leading-[0.92] tracking-wide">
-              WE BELIEVE <span>MORNINGS</span> CHANGE EVERYTHING.
-            </h2>
-            <div className="mt-5 h-[2px] w-12 bg-primary" aria-hidden />
-            <div className="mt-7 max-w-lg space-y-4 font-sans text-base leading-relaxed text-muted-foreground">
-              <p>
-                The first fuel of your day shapes the rest of your health.
-              </p>
-              <p>
-                We millions of people begin every morning rushing, skipping breakfast, or settling for foods loaded with sugar and empty calories.
-              </p>
-              <p>
-                We started <span className="text-primary">Mornfreak</span> because we belive breakfast should power the mission you chase, not slow it down.
-              </p>
-            </div>
-            <p className="mt-7 font-sans text-base font-bold italic leading-relaxed text-primary">
-              Instead, it should become your biggest advantage.
-            </p>
-          </div>
-
-          <ol>
-            {MILESTONES.map(({ number, year, title, body, icon: Icon }, index) => (
-              <li
-                key={number}
-                className="relative flex gap-5 border-b border-foreground/12 py-8 first:pt-0 last:border-0 last:pb-0 sm:gap-6"
-              >
-                <div className="relative flex w-9 shrink-0 justify-center self-stretch">
-                  <span className="relative z-10 flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-foreground font-display text-sm tracking-wide text-white">
-                    {number}
-                  </span>
-                  {index < MILESTONES.length - 1 ? (
-                    <span
-                      className="absolute top-9 bottom-[-2rem] left-1/2 w-px -translate-x-1/2 bg-foreground/15"
-                      aria-hidden
-                    />
-                  ) : null}
-                </div>
-                <div className="flex min-w-0 flex-1 gap-4 sm:gap-5">
-                  <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full border border-primary/30 text-primary">
-                    <Icon aria-hidden size={20} strokeWidth={1.7} />
-                  </span>
-                  <div>
-                    <p className="font-sans text-[0.68rem] font-bold uppercase tracking-[0.18em] text-primary">
-                      {year}
-                    </p>
-                    <h3 className="mt-2 font-display text-2xl uppercase leading-tight tracking-wide sm:text-3xl">
-                      {title}
-                    </h3>
-                    <p className="mt-3 max-w-xl font-sans text-sm leading-relaxed text-muted-foreground sm:text-base">
-                      {body}
-                    </p>
-                  </div>
-                </div>
-              </li>
-            ))}
-          </ol>
         </div>
       </Container>
     </section>

@@ -69,6 +69,13 @@
   --animate-rise: rise var(--duration-normal) var(--ease-out) both;
   --animate-scale-in: scale-in var(--duration-normal) var(--ease-out) both;
   --animate-ken-burns: ken-burns 1.4s var(--ease-out) both;
+  --animate-marquee: marquee 90s linear infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-marquee {
+    animation: none !important;
+  }
 }
 
 @layer base {

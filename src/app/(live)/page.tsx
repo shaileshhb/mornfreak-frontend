@@ -1,4 +1,5 @@
 import {
+  BenefitsMarquee,
   HowWeStackUp,
   HomeHero,
   OneSachet,
@@ -11,6 +12,7 @@ export default function Home() {
   return (
     <>
       <HomeHero />
+      <BenefitsMarquee />
       <OneSachet />
       <WhyMornfreak />
       <RaisingTheBar />

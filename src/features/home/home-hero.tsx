@@ -27,14 +27,6 @@ const SLIDE_COUNT = 3;
 const AUTO_MS = 5000;
 const SWIPE_THRESHOLD = 48;
 
-const SLIDE_3_BENEFITS = [
-  { label: "26g Protein", icon: Dumbbell },
-  { label: "Prebiotics", icon: Sprout },
-  { label: "No Added Sugar", icon: CandyOff },
-  { label: "Super Seeds", icon: Leaf },
-  { label: "Sustained Energy", icon: BatteryCharging },
-] as const;
-
 function HeroPicture({
   desktopSrc,
   mobileSrc,
@@ -276,12 +268,6 @@ function HeroSlideOats({ active }: { active: boolean }) {
             >
               Shop now <ArrowRight aria-hidden size={17} />
             </Link>
-            <Link
-              href="/products"
-              className="inline-flex h-12 items-center justify-center border border-white/40 px-7 font-sans text-sm font-bold uppercase tracking-[0.12em] text-white transition-colors hover:bg-white hover:text-foreground"
-            >
-              Explore flavours
-            </Link>
           </div>
         </div>
       </div>
@@ -328,17 +314,6 @@ function HeroSlidePeanutButter({ active }: { active: boolean }) {
             A smarter choice for a stronger, healthier you.
           </p>
 
-          <ul className="mt-7 flex flex-wrap gap-x-4 gap-y-3">
-            {SLIDE_3_BENEFITS.map(({ label, icon: Icon }) => (
-              <li key={label} className="flex w-[4.75rem] flex-col items-center gap-1.5 text-center sm:w-[5.25rem]">
-                <Icon aria-hidden size={22} className="text-[#001d4a]" strokeWidth={1.5} />
-                <span className="font-sans text-[0.55rem] font-bold uppercase leading-tight tracking-[0.06em] text-[#001d4a] sm:text-[0.62rem]">
-                  {label}
-                </span>
-              </li>
-            ))}
-          </ul>
-
           <div className="mt-8 flex flex-wrap items-center gap-4">
             <Link
               href="/products"
@@ -346,10 +321,6 @@ function HeroSlidePeanutButter({ active }: { active: boolean }) {
             >
               Shop now <ArrowRight aria-hidden size={17} />
             </Link>
-            {/* <p className="flex items-center gap-2 font-sans text-sm font-medium text-[#001d4a]">
-              <ShieldCheck aria-hidden size={18} className="text-[#001d4a]" />
-              Clean Ingredients. Nothing to Hide.
-            </p> */}
             <p className="flex items-center gap-2 font-sans text-sm font-medium text-white lg:text-[#001d4a]">
               <ShieldCheck aria-hidden size={18} className="text-white lg:text-[#001d4a]" />
               Clean Ingredients. Nothing to Hide.

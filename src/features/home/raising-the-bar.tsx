@@ -25,18 +25,17 @@ type CalloutSide = "top" | "bottom" | "left" | "right";
 
 type Feature = {
   title: string;
-  detail: string;
   icon: LucideIcon;
 };
 
-/** Clockwise from top: top, upper-right, lower-right, bottom, lower-left, upper-left. */
+/** Clockwise from top — matches HexagonFrame SVG vertices. */
 const CALLOUT_POSITIONS: { className: string; side: CalloutSide }[] = [
-  { className: "left-1/2 top-0 -translate-x-1/2", side: "top" },
-  { className: "right-0 top-[22%]", side: "right" },
-  { className: "right-0 bottom-[22%]", side: "right" },
-  { className: "bottom-0 left-1/2 -translate-x-1/2", side: "bottom" },
-  { className: "bottom-[22%] left-0", side: "left" },
-  { className: "left-0 top-[22%]", side: "left" },
+  { className: "left-1/2 top-[3%]", side: "top" },
+  { className: "left-[90.7%] top-[26.5%]", side: "right" },
+  { className: "left-[90.7%] top-[73.5%]", side: "right" },
+  { className: "left-1/2 top-[97%]", side: "bottom" },
+  { className: "left-[9.3%] top-[73.5%]", side: "left" },
+  { className: "left-[9.3%] top-[26.5%]", side: "left" },
 ];
 
 const PRODUCT_FEATURES = {
@@ -47,38 +46,26 @@ const PRODUCT_FEATURES = {
     features: [
       {
         title: "High Protein 30G+",
-        detail:
-          "Whey + Soy protein blend supports muscle recovery, keeps you full and energised.",
         icon: Dumbbell,
       },
       {
         title: "Naturally Sweetened",
-        detail:
-          "Made with Dates & Monkfruit – 100% natural sweetness, no refined sugar.",
         icon: Leaf,
       },
       {
         title: "Super Seeds & Almonds",
-        detail:
-          "Pumpkin, Sunflower, Chia, Flax Seeds + Almonds for healthy fats & micronutrients.",
         icon: Sprout,
       },
       {
         title: "Clean & Honest Ingredients",
-        detail:
-          "No preservatives. No artificial flavours. Only real ingredients your body understands.",
         icon: ShieldCheck,
       },
       {
         title: "Gut-Friendly Prebiotics",
-        detail:
-          "Prebiotic fibre nourishes good gut bacteria and supports digestion.",
         icon: HeartPulse,
       },
       {
         title: "Slow & Sustained Energy",
-        detail:
-          "Rolled oats provide complex carbs and fibre for steady energy all morning.",
         icon: Wheat,
       },
     ],
@@ -90,35 +77,26 @@ const PRODUCT_FEATURES = {
     features: [
       {
         title: "High Protein",
-        detail:
-          "Up to 50% protein helps support muscle health and your daily nutrition.",
         icon: Dumbbell,
       },
       {
         title: "No Added Sugar",
-        detail: "100% clean label. Only roasted peanuts, nothing else.",
         icon: Ban,
       },
       {
         title: "No Added Salt",
-        detail: "No salt, no additives. Just pure peanut goodness.",
         icon: Leaf,
       },
       {
         title: "Easy To Mix",
-        detail: "Perfect for smoothies, oats, shakes, baking and more.",
         icon: ShieldCheck,
       },
       {
         title: "1/3 Less Fat*",
-        detail:
-          "Defatted peanut powder delivers great taste with significantly less fat.",
         icon: Droplet,
       },
       {
         title: "87% Less Calories*",
-        detail:
-          "Enjoy the taste of peanuts with 87% less calories than regular peanut butter.",
         icon: Ban,
       },
     ],
@@ -169,44 +147,42 @@ export function RaisingTheBar() {
         </div>
 
         {/* Unified responsive stage: hexagon + product + corner callouts */}
-        <div className="relative mx-auto mt-14 aspect-square w-full max-w-[22rem] sm:max-w-[28rem] md:max-w-[36rem] lg:max-w-[48rem] xl:max-w-[56rem]">
-          <div className="absolute left-1/2 top-1/2 aspect-square w-[62%] -translate-x-1/2 -translate-y-1/2 sm:w-[58%] lg:w-[54%]">
+        <div className="relative mx-auto aspect-square w-full max-w-[22rem] sm:max-w-[28rem] md:max-w-[36rem] lg:max-w-[48rem] xl:max-w-[56rem]">
+          <div className="absolute left-1/2 top-1/2 aspect-square w-[62%] -translate-x-1/2 -translate-y-1/2 overflow-visible sm:w-[58%] lg:w-[54%]">
             <HexagonFrame />
             <div
               className="pointer-events-none absolute inset-[22%] rounded-full bg-primary/20 blur-3xl"
               aria-hidden
             />
             <div className="absolute inset-[14%] z-10 animate-float sm:inset-[16%] lg:inset-[18%]">
-              <Image
-                src={product.image}
-                alt={product.imageAlt}
-                fill
-                sizes="(max-width: 640px) 14rem, (max-width: 1024px) 20rem, 30rem"
-                className="object-contain"
-                priority
-              />
-            </div>
-          </div>
-
-          {product.features.map((feature, index) => {
-            const position = CALLOUT_POSITIONS[index];
-            const isVertical = position.side === "top" || position.side === "bottom";
-
-            return (
-              <div
-                key={feature.title}
-                className={cn(
-                  "absolute z-20",
-                  isVertical
-                    ? "w-[9rem] sm:w-[11rem] md:w-[13rem] lg:w-[15rem]"
-                    : "w-[6.5rem] sm:w-[8.5rem] md:w-[10.5rem] lg:w-[12.5rem] xl:w-[14rem]",
-                  position.className,
-                )}
-              >
-                <FeatureCallout {...feature} side={position.side} />
+              <div className="relative h-full w-full rotate-5">
+                <Image
+                  src={product.image}
+                  alt={product.imageAlt}
+                  fill
+                  sizes="(max-width: 640px) 14rem, (max-width: 1024px) 20rem, 30rem"
+                  className="object-contain"
+                  priority
+                />
               </div>
-            );
-          })}
+            </div>
+
+            {product.features.map((feature, index) => {
+              const position = CALLOUT_POSITIONS[index];
+
+              return (
+                <div
+                  key={feature.title}
+                  className={cn(
+                    "absolute z-20 -translate-x-1/2 -translate-y-1/2",
+                    position.className,
+                  )}
+                >
+                  <FeatureCallout {...feature} side={position.side} />
+                </div>
+              );
+            })}
+          </div>
         </div>
 
         <div className="mt-14 text-center">
@@ -243,32 +219,32 @@ function HexagonFrame() {
 
 function FeatureCallout({
   title,
-  detail,
   icon: Icon,
   side,
 }: Feature & {
   side: CalloutSide;
 }) {
   return (
-    <div
-      className={cn(
-        "flex gap-2 sm:gap-3",
-        side === "top" && "flex-col-reverse items-center text-center",
-        side === "bottom" && "flex-col items-center text-center",
-        side === "left" && "flex-row-reverse items-center text-right",
-        side === "right" && "flex-row items-center text-left",
-      )}
-    >
+    <div className="relative">
       <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-primary/40 bg-card text-primary shadow-sm sm:h-10 sm:w-10 lg:h-11 lg:w-11">
         <Icon aria-hidden className="size-3.5 sm:size-[18px] lg:size-5" strokeWidth={1.7} />
       </span>
-      <div className="min-w-0">
+      <div
+        className={cn(
+          "absolute",
+          side === "top" &&
+            "bottom-full left-1/2 mb-2 w-[9rem] -translate-x-1/2 text-center sm:mb-3 sm:w-[11rem] md:w-[13rem] lg:w-[15rem]",
+          side === "bottom" &&
+            "left-1/2 top-full mt-2 w-[9rem] -translate-x-1/2 text-center sm:mt-3 sm:w-[11rem] md:w-[13rem] lg:w-[15rem]",
+          side === "left" &&
+            "right-full top-1/2 mr-2 w-[6.5rem] -translate-y-1/2 text-right sm:mr-3 sm:w-[8.5rem] md:w-[10.5rem] lg:w-[12.5rem] xl:w-[14rem]",
+          side === "right" &&
+            "left-full top-1/2 ml-2 w-[6.5rem] -translate-y-1/2 text-left sm:ml-3 sm:w-[8.5rem] md:w-[10.5rem] lg:w-[12.5rem] xl:w-[14rem]",
+        )}
+      >
         <h3 className="font-sans text-[0.55rem] font-bold uppercase leading-tight tracking-[0.1em] text-primary sm:text-[0.7rem] sm:tracking-[0.12em] lg:text-xs">
           {title}
         </h3>
-        <p className="mt-0.5 text-[0.65rem] leading-snug text-muted-foreground sm:mt-1 sm:text-sm">
-          {detail}
-        </p>
       </div>
     </div>
   );

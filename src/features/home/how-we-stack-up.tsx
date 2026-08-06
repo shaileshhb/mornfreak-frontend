@@ -15,6 +15,7 @@ import {
 import { useState } from "react";
 
 import { Container } from "@/components/ui/container";
+import { Heading } from "@/components/ui/heading";
 import { cn } from "@/lib/cn";
 
 type ProductKey = "proteinOats" | "peanutButter";
@@ -113,12 +114,22 @@ export function HowWeStackUp() {
   return (
     <section className="bg-card py-20 sm:py-28">
       <Container className="max-w-[82rem]">
-        <header className="flex items-center justify-center gap-4 text-center">
-          <Zap aria-hidden className="text-primary" size={25} fill="currentColor" />
-          <h2 className="font-display text-6xl uppercase leading-none tracking-wide sm:text-7xl">
+        <header className="flex items-center justify-center gap-3 text-center sm:gap-4">
+          <Zap
+            aria-hidden
+            className="hidden shrink-0 text-primary sm:block"
+            size={25}
+            fill="currentColor"
+          />
+          <Heading variant="display" as="h2" className="min-w-0 leading-none">
             How we stack up
-          </h2>
-          <Zap aria-hidden className="scale-x-[-1] text-primary" size={25} fill="currentColor" />
+          </Heading>
+          <Zap
+            aria-hidden
+            className="hidden shrink-0 scale-x-[-1] text-primary sm:block"
+            size={25}
+            fill="currentColor"
+          />
         </header>
 
         <p className="mx-auto mt-5 max-w-xl text-center leading-relaxed text-muted-foreground">
@@ -126,7 +137,7 @@ export function HowWeStackUp() {
         </p>
 
         <div
-          className="mx-auto mt-9 flex w-fit rounded-full bg-muted/70 p-1"
+          className="mx-auto mt-9 flex w-full max-w-md rounded-full bg-muted/70 p-1"
           role="tablist"
           aria-label="Choose a product"
         >
@@ -138,7 +149,7 @@ export function HowWeStackUp() {
               aria-selected={activeProduct === key}
               onClick={() => setActiveProduct(key)}
               className={cn(
-                "rounded-full px-5 py-2.5 font-sans text-[0.7rem] font-bold uppercase tracking-[0.14em] transition-colors sm:px-8",
+                "min-w-0 flex-1 rounded-full px-3 py-2.5 font-sans text-[0.65rem] font-bold uppercase tracking-[0.12em] transition-colors sm:px-5 sm:text-[0.7rem] sm:tracking-[0.14em] md:px-8",
                 activeProduct === key
                   ? "bg-primary text-primary-foreground"
                   : "bg-transparent text-foreground hover:bg-foreground/5",

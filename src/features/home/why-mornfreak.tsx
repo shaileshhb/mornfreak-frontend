@@ -2,6 +2,7 @@ import { ArrowRight, Clock3, Leaf, Zap } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
 import { Container } from "@/components/ui/container";
+import { Heading } from "@/components/ui/heading";
 
 const REASONS = [
   {
@@ -33,10 +34,10 @@ export function WhyMornfreak() {
             <p className="font-sans text-xs font-bold uppercase tracking-[0.22em] text-primary">
               Why Mornfreak
             </p>
-            <h2 className="mt-4 max-w-2xl font-display text-5xl uppercase leading-[0.92] tracking-wide sm:text-7xl">
+            <Heading variant="display" as="h2" className="mt-4 max-w-2xl leading-[0.92]">
               We don&apos;t just make breakfast.
               <span className="mt-1 block text-primary">We build better mornings.</span>
-            </h2>
+            </Heading>
 
             <div className="mt-10 max-w-2xl divide-y divide-foreground/15">
               {REASONS.map(({ number, title, body, icon: Icon }) => (

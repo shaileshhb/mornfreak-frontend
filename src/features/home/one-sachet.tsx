@@ -3,6 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 
 import { Container } from "@/components/ui/container";
+import { Heading } from "@/components/ui/heading";
 
 const BENEFITS = [
   { label: "High protein", icon: Dumbbell },
@@ -20,9 +21,9 @@ export function OneSachet() {
             <p className="font-sans text-xs font-bold uppercase tracking-[0.22em] text-primary">
               Built for real mornings
             </p>
-            <h2 className="mt-4 max-w-xl font-display text-6xl uppercase leading-[0.9] tracking-wide text-foreground sm:text-7xl">
+            <Heading variant="display" as="h2" className="mt-4 max-w-xl leading-[0.9]">
               One sachet. Everything that matters.
-            </h2>
+            </Heading>
             <Link
               href="/products"
               className="mt-10 inline-flex h-12 items-center justify-center gap-2 bg-foreground px-7 font-sans text-sm font-bold uppercase tracking-[0.12em] text-white transition-transform hover:-translate-y-0.5"

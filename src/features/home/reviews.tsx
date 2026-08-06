@@ -14,6 +14,7 @@ import Image from "next/image";
 import { useRef, useState } from "react";
 
 import { Container } from "@/components/ui/container";
+import { Heading } from "@/components/ui/heading";
 
 import { REVIEWS, type Review } from "./reviews-data";
 
@@ -39,9 +40,9 @@ export function Reviews() {
           <p className="mt-3 font-sans text-xs font-bold uppercase tracking-[0.18em]">
             5.0 Stars <span className="mx-2 text-foreground/30">|</span> Early customer reviews
           </p>
-          <h2 className="mt-4 font-display text-6xl uppercase leading-none tracking-wide sm:text-7xl">
+          <Heading variant="display" as="h2" className="mt-4 leading-none">
             The reviews are in!
-          </h2>
+          </Heading>
         </header>
 
         <div className="mt-12 flex snap-x gap-5 overflow-x-auto scrollbar-hide">

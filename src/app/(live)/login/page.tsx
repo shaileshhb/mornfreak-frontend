@@ -3,6 +3,7 @@ import Link from "next/link";
 
 import { Button } from "@/components/ui/button";
 import { Container } from "@/components/ui/container";
+import { Heading } from "@/components/ui/heading";
 
 export const metadata: Metadata = {
   title: "Login",
@@ -17,9 +18,9 @@ export default function LoginPage() {
           <p className="font-sans text-xs font-bold uppercase tracking-[0.22em] text-primary">
             Account
           </p>
-          <h1 className="mt-4 font-display text-6xl uppercase leading-none tracking-wide sm:text-7xl">
+          <Heading variant="display" as="h1" className="mt-4 leading-none">
             Login
-          </h1>
+          </Heading>
           <p className="mx-auto mt-5 max-w-md text-sm leading-relaxed text-muted-foreground sm:text-base">
             Account access is coming soon. We&apos;re building a cleaner way to
             manage your orders, favourites, and morning routine.

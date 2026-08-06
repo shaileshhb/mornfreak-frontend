@@ -17,6 +17,7 @@ import Link from "next/link";
 import { useState } from "react";
 
 import { Container } from "@/components/ui/container";
+import { Heading } from "@/components/ui/heading";
 import { cn } from "@/lib/cn";
 
 type ProductKey = "proteinOats" | "peanutButter";
@@ -45,7 +46,7 @@ const PRODUCT_FEATURES = {
     imageAlt: "Mornfreak Protein Oats pouch",
     features: [
       {
-        title: "High Protein 30G+",
+        title: "High Protein 26gm",
         icon: Dumbbell,
       },
       {
@@ -114,16 +115,16 @@ export function RaisingTheBar() {
           <p className="font-sans text-xs font-bold uppercase tracking-[0.22em] text-primary">
             How we&apos;re raising the bar
           </p>
-          <h2 className="mt-4 font-display text-6xl uppercase leading-[0.9] tracking-wide sm:text-7xl">
+          <Heading variant="display" as="h2" className="mt-4 leading-[0.9]">
             Better ingredients. Higher standards.
-          </h2>
+          </Heading>
           <p className="mx-auto mt-5 max-w-xl leading-relaxed text-muted-foreground">
             Premium nutrition and a promise of purity—because your mornings deserve nothing less.
           </p>
         </header>
 
         <div
-          className="mx-auto mt-9 flex w-fit rounded-full bg-muted/70 p-1"
+          className="mx-auto mt-9 flex w-full max-w-md rounded-full bg-muted/70 p-1"
           role="tablist"
           aria-label="Choose a product"
         >
@@ -135,7 +136,7 @@ export function RaisingTheBar() {
               aria-selected={activeProduct === key}
               onClick={() => setActiveProduct(key)}
               className={cn(
-                "rounded-full px-5 py-2.5 font-sans text-[0.7rem] font-bold uppercase tracking-[0.14em] transition-colors sm:px-8",
+                "min-w-0 flex-1 rounded-full px-3 py-2.5 font-sans text-[0.65rem] font-bold uppercase tracking-[0.12em] transition-colors sm:px-5 sm:text-[0.7rem] sm:tracking-[0.14em] md:px-8",
                 activeProduct === key
                   ? "bg-primary text-primary-foreground"
                   : "bg-transparent text-foreground hover:bg-foreground/5",

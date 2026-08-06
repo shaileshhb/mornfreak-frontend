@@ -175,7 +175,7 @@ function BreakfastCta() {
               </Link>
             </div>
           </div>
-          <div className="relative aspect-[4/3] min-h-[20rem] lg:aspect-auto">
+          <div className="relative aspect-[4/3] min-h-[20rem] min-w-0 w-full overflow-hidden lg:aspect-auto">
             <Image
               src="/images/science-oats-bowl.jpg"
               alt="A chocolate oat bowl topped with fruit, nuts, seeds and dark chocolate"

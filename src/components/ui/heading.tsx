@@ -6,8 +6,9 @@ import { cn } from "@/lib/cn";
 const headingVariants = cva("text-foreground", {
   variants: {
     variant: {
-      display: "font-display text-5xl tracking-wide uppercase sm:text-6xl lg:text-7xl",
-      h1: "font-display text-4xl tracking-wide uppercase sm:text-5xl",
+      display:
+        "font-display text-[clamp(2.25rem,7vw,4.5rem)] tracking-wide uppercase text-balance",
+      h1: "font-display text-[clamp(2rem,6vw,3.75rem)] tracking-wide uppercase text-balance",
       h2: "font-display text-3xl tracking-wide uppercase sm:text-4xl",
       h3: "font-sans text-2xl font-semibold tracking-tight",
       h4: "font-sans text-xl font-semibold tracking-tight",

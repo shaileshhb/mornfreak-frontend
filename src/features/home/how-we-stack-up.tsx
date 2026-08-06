@@ -125,7 +125,11 @@ export function HowWeStackUp() {
           Real ingredients. Real benefits. No compromises.
         </p>
 
-        <div className="mt-9 flex justify-center" role="tablist" aria-label="Choose a product">
+        <div
+          className="mx-auto mt-9 flex w-fit rounded-full bg-muted/70 p-1"
+          role="tablist"
+          aria-label="Choose a product"
+        >
           {(Object.keys(PRODUCT_COMPARISONS) as ProductKey[]).map((key) => (
             <button
               key={key}
@@ -134,10 +138,10 @@ export function HowWeStackUp() {
               aria-selected={activeProduct === key}
               onClick={() => setActiveProduct(key)}
               className={cn(
-                "border border-foreground px-5 py-3 font-sans text-[0.7rem] font-bold uppercase tracking-[0.14em] transition-colors sm:px-8",
+                "rounded-full px-5 py-2.5 font-sans text-[0.7rem] font-bold uppercase tracking-[0.14em] transition-colors sm:px-8",
                 activeProduct === key
-                  ? "bg-foreground text-white"
-                  : "bg-transparent text-foreground hover:bg-foreground/10",
+                  ? "bg-primary text-primary-foreground"
+                  : "bg-transparent text-foreground hover:bg-foreground/5",
               )}
             >
               {PRODUCT_COMPARISONS[key].label}

@@ -72,10 +72,12 @@
   --animate-ken-burns: ken-burns 1.4s var(--ease-out) both;
   --animate-marquee: marquee 90s linear infinite;
   --animate-hero-progress: hero-progress 5s linear forwards;
+  --animate-float: float 4.5s ease-in-out infinite;
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .animate-marquee {
+  .animate-marquee,
+  .animate-float {
     animation: none !important;
   }
 }

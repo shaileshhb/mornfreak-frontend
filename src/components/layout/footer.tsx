@@ -14,7 +14,7 @@ const FOOTER_GROUPS = [
     title: "Explore",
     links: [
       { label: "Our Story", href: "/our-story" },
-      { label: "Ingredients We Trust", href: "/our-story" },
+      { label: "Ingredients We Trust", href: "/ingredients" },
       { label: "Science Behind It", href: "/science" },
       // { label: "Mornfreak Community", href: "/contact" },
     ],

@@ -275,11 +275,39 @@ function HeroSlideOats({ active }: { active: boolean }) {
   );
 }
 
+const PEANUT_STATS = [
+  { value: "87%", label: "LESS CALORIES*" },
+  { value: "HIGH", label: "PROTEIN" },
+  { value: "1/3", label: "LESS FAT*" },
+] as const;
+
+function PeanutStatBadge({
+  value,
+  label,
+}: {
+  value: string;
+  label: string;
+}) {
+  return (
+    <div className="flex size-20 shrink-0 flex-col items-center justify-center rounded-full border-2 border-[#f5c518] bg-[#001d4a] px-2 text-center shadow-md lg:size-24">
+      <span className="font-display text-xl font-bold leading-none tracking-tight text-[#f5c518] lg:text-2xl">
+        {value}
+      </span>
+      <span className="mt-0.5 max-w-full font-sans text-[0.58rem] font-bold uppercase leading-tight tracking-wide text-white lg:text-[0.65rem]">
+        {label}
+      </span>
+    </div>
+  );
+}
+
+// Previous flattened slide assets (not rendered):
+// mobile: /images/hero/img_3_mobile.png
+// desktop: /images/hero/img_3_desktop.avif
 function HeroSlidePeanutButter({ active }: { active: boolean }) {
   return (
     <div
       className={cn(
-        "absolute inset-0 transition-opacity duration-700 ease-out",
+        "absolute inset-0 bg-[linear-gradient(135deg,#fff8dc_0%,#ffe9a8_55%,#ffd978_100%)] transition-opacity duration-700 ease-out",
         active ? "opacity-100" : "pointer-events-none opacity-0",
       )}
       aria-hidden={!active}
@@ -288,43 +316,59 @@ function HeroSlidePeanutButter({ active }: { active: boolean }) {
       aria-roledescription="slide"
       aria-label="Good morning. Great choice."
     >
-      <HeroPicture
-        mobileSrc="/images/hero/img_3_mobile.png"
-        desktopSrc="/images/hero/img_3_desktop.avif"
-        alt="Mornfreak product jar with high-protein callouts"
-        priority={active}
-        sizes="100vw"
-      />
-      <div
-        className="absolute inset-0 max-lg:bg-[linear-gradient(180deg,rgba(255,248,220,.9)_0%,rgba(255,248,220,.65)_45%,rgba(255,248,220,.28)_58%,transparent_74%)] lg:bg-[linear-gradient(90deg,rgba(255,248,220,.92)_0%,rgba(255,248,220,.7)_34%,transparent_65%)]"
-        aria-hidden
-      />
-
-      <div className="relative z-10 mx-auto flex h-full w-full max-w-[90rem] items-center px-4 py-16 sm:px-6 lg:px-10 lg:py-20">
-        <div className="max-w-xl pb-14 lg:max-w-[26rem] xl:max-w-xl">
-          <h1 className="font-display text-[clamp(2.75rem,7vw,5.25rem)] font-bold uppercase leading-[0.9] tracking-tight text-[#001d4a]">
+      <div className="relative z-10 mx-auto flex h-full w-full max-w-[90rem] flex-col gap-2 overflow-hidden px-4 pb-14 pt-10 sm:gap-3 sm:px-6 sm:pb-16 sm:pt-12 lg:flex-row lg:items-center lg:gap-10 lg:px-10 lg:py-20">
+        <div className="w-full shrink-0 lg:w-[42%] lg:max-w-[26rem] xl:max-w-xl">
+          <h1 className="font-display text-[clamp(2rem,8vw,5.25rem)] font-bold uppercase leading-[0.9] tracking-tight text-[#001d4a]">
             Good morning.
           </h1>
-          <p className="mt-1 font-script text-[clamp(2.25rem,5vw,3.75rem)] leading-none text-[#f39c12]">
+          <p className="mt-0.5 font-script text-[clamp(1.65rem,5.5vw,3.75rem)] leading-none text-[#f39c12]">
             Great Choice.
           </p>
-          <p className="mt-5 max-w-md font-sans text-base leading-relaxed text-[#001d4a] sm:text-lg">
+          <p className="mt-2 max-w-md font-sans text-sm leading-relaxed text-[#001d4a] sm:mt-4 sm:text-base lg:mt-5 lg:text-lg">
             Real oats. Real nutrition.
             <br />
             A smarter choice for a stronger, healthier you.
           </p>
 
-          <div className="mt-8 flex flex-wrap items-center gap-4">
+          <div className="mt-4 flex flex-wrap items-center gap-3 sm:mt-6 sm:gap-4 lg:mt-8">
             <Link
               href="/products"
-              className="inline-flex h-12 items-center justify-center gap-2 rounded-full bg-[#001d4a] px-7 font-sans text-sm font-bold uppercase tracking-[0.12em] text-white transition-transform hover:-translate-y-0.5"
+              className="inline-flex h-10 items-center justify-center gap-2 rounded-full bg-[#001d4a] px-5 font-sans text-xs font-bold uppercase tracking-[0.12em] text-white transition-transform hover:-translate-y-0.5 sm:h-12 sm:px-7 sm:text-sm"
             >
               Shop now <ArrowRight aria-hidden size={17} />
             </Link>
-            <p className="flex items-center gap-2 font-sans text-sm font-medium text-white lg:text-[#001d4a]">
-              <ShieldCheck aria-hidden size={18} className="text-white lg:text-[#001d4a]" />
+            <p className="flex items-center gap-2 font-sans text-xs font-medium text-[#001d4a] sm:text-sm">
+              <ShieldCheck aria-hidden size={16} className="shrink-0 text-[#001d4a] sm:size-[18px]" />
               Clean Ingredients. Nothing to Hide.
             </p>
+          </div>
+
+          <div className="mt-4 flex justify-center gap-3 sm:mt-5 sm:gap-4 lg:hidden" aria-label="Product highlights">
+            {PEANUT_STATS.map((stat) => (
+              <PeanutStatBadge key={stat.label} value={stat.value} label={stat.label} />
+            ))}
+          </div>
+        </div>
+
+        <div className="relative min-h-0 w-full flex-1 lg:h-full">
+          <div className="relative h-full w-full lg:min-h-[18rem]">
+            <Image
+              src="/images/raising-the-bar/peanut_butter_powder.png"
+              alt="Mornfreak peanut butter powder jar with peanuts, leaves, and powder bowl"
+              fill
+              priority={active}
+              sizes="(max-width: 1024px) 100vw, 50vw"
+              className="object-contain object-bottom lg:object-center"
+            />
+
+            <div
+              className="pointer-events-none absolute inset-y-[10%] right-2 z-10 hidden flex-col justify-between lg:flex xl:right-3"
+              aria-hidden
+            >
+              {PEANUT_STATS.map((stat) => (
+                <PeanutStatBadge key={stat.label} value={stat.value} label={stat.label} />
+              ))}
+            </div>
           </div>
         </div>
       </div>

@@ -218,7 +218,7 @@ export function BenefitsMarquee() {
   return (
     <section
       aria-label="Product benefits"
-      className="group overflow-hidden"
+      className="group overflow-hidden mt-5"
       style={{ backgroundColor: "#FDE8E3", color: "#B90B19" }}
     >
       <div className="flex w-max animate-marquee group-hover:[animation-play-state:paused]">

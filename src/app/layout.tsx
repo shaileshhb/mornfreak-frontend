@@ -1,5 +1,8 @@
 import type { Metadata } from "next";
 
+import { AnnouncementBar } from "@/components/layout/announcement-bar";
+import { Footer } from "@/components/layout/footer";
+import { Nav } from "@/components/layout/nav";
 import { fontVariables } from "@/design/typography";
 
 import "./globals.css";
@@ -39,7 +42,10 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${fontVariables} h-full antialiased`}>
       <body className="flex min-h-full flex-col bg-background font-sans text-foreground">
-        {children}
+        <AnnouncementBar />
+        <Nav />
+        <main className="flex-1">{children}</main>
+        <Footer />
       </body>
     </html>
   );

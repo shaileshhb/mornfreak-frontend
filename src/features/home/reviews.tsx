@@ -12,10 +12,8 @@ import {
 } from "lucide-react";
 import Image from "next/image";
 import { useRef, useState } from "react";
-
 import { Container } from "@/components/ui/container";
 import { Heading } from "@/components/ui/heading";
-
 import { REVIEWS, type Review } from "./reviews-data";
 
 const TRUST_POINTS = [

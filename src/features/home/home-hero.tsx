@@ -220,7 +220,7 @@ function HeroSlideOats({ active }: { active: boolean }) {
   return (
     <div
       className={cn(
-        "absolute inset-0 transition-opacity duration-700 ease-out",
+        "absolute inset-0 bg-[linear-gradient(135deg,#5c4030_0%,#3a2418_55%,#1e1109_100%)] transition-opacity duration-700 ease-out",
         active ? "opacity-100" : "pointer-events-none opacity-0",
       )}
       aria-hidden={!active}
@@ -229,45 +229,47 @@ function HeroSlideOats({ active }: { active: boolean }) {
       aria-roledescription="slide"
       aria-label="Fuel your day. Feed your goals."
     >
-      <div className="absolute inset-y-0 right-0 w-full lg:w-[58%]">
-        <HeroPicture
-          mobileSrc="/images/hero/img_2_mobile.png"
-          desktopSrc="/images/hero/img_2_desktop.png"
-          alt="Mornfreak Rich Chocolate Protein Oats with fruit, seeds and nuts"
-          priority={active}
-          sizes="(max-width: 1024px) 100vw, 58vw"
-        />
-      </div>
-      <div className="absolute inset-0 bg-[linear-gradient(90deg,#1e1109_0%,rgba(30,17,9,.97)_38%,rgba(30,17,9,.56)_68%,rgba(30,17,9,.15)_100%)] max-lg:bg-[linear-gradient(180deg,rgba(30,17,9,.72)_0%,#1e1109_63%)]" />
-      <div className="absolute -left-28 bottom-0 h-72 w-72 rounded-full bg-primary/25 blur-3xl" aria-hidden />
-
-      <div className="relative z-10 mx-auto flex h-full w-full max-w-[90rem] items-center px-4 pb-16 pt-28 sm:px-6 lg:px-10 lg:py-20">
-        <div className="max-w-2xl pb-10">
-          <div className="mb-5 flex items-center gap-3 text-white">
-            <span className="flex gap-0.5 text-orange" aria-label="5 out of 5 stars">
-              {Array.from({ length: 5 }).map((_, starIndex) => (
-                <Star key={starIndex} aria-hidden size={14} fill="currentColor" />
-              ))}
-            </span>
-            <span className="font-sans text-xs font-bold uppercase tracking-[0.16em]">
-              5.0 Stars <span className="mx-1 text-white/40">|</span> Loved by early tasters
-            </span>
-          </div>
-          <h1 className="max-w-xl font-display text-[clamp(2.75rem,6vw,5.5rem)] uppercase italic leading-[0.95] tracking-[0.01em] text-white">
+      <div className="relative z-10 mx-auto flex h-full w-full max-w-[90rem] flex-col gap-2 overflow-hidden px-4 pb-14 pt-10 sm:gap-3 sm:px-6 sm:pb-16 sm:pt-12 lg:flex-row lg:items-center lg:gap-10 lg:px-10 lg:py-20">
+        <div className="w-full shrink-0 lg:w-[42%] lg:max-w-[26rem] xl:max-w-xl">
+          <h1 className="font-display text-[clamp(2rem,8vw,5.25rem)] uppercase italic leading-[0.9] tracking-tight text-white">
             Fuel your day.
-            <span className="mt-2 block text-orange">Feed your goals.</span>
+            <span className="mt-1 block text-orange sm:mt-2">Feed your goals.</span>
           </h1>
-          <p className="mt-6 max-w-xl font-sans text-base leading-relaxed text-white/75 sm:text-lg">
+          <p className="mt-2 max-w-md font-sans text-sm leading-relaxed text-white/75 sm:mt-4 sm:text-base lg:mt-5 lg:text-lg">
             Rich chocolate oats with 26g protein, super seeds, nuts and prebiotics.
             Built for powerful mornings without added sugar or preservatives.
           </p>
-          <div className="mt-8 flex flex-wrap gap-3">
+
+          <div className="mt-4 flex flex-wrap items-center gap-3 sm:mt-6 sm:gap-4 lg:mt-8">
             <Link
               href="/products"
-              className="inline-flex h-12 items-center justify-center gap-2 bg-orange px-7 font-sans text-sm font-bold uppercase tracking-[0.12em] text-foreground transition-transform hover:-translate-y-0.5"
+              className="inline-flex h-10 items-center justify-center gap-2 rounded-full bg-orange px-5 font-sans text-xs font-bold uppercase tracking-[0.12em] text-foreground transition-transform hover:-translate-y-0.5 sm:h-12 sm:px-7 sm:text-sm"
             >
               Shop now <ArrowRight aria-hidden size={17} />
             </Link>
+            <p className="flex items-center gap-2 font-sans text-xs font-medium text-white sm:text-sm">
+              <span className="flex gap-0.5 text-orange" aria-label="5 out of 5 stars">
+                {Array.from({ length: 5 }).map((_, starIndex) => (
+                  <Star key={starIndex} aria-hidden size={14} fill="currentColor" />
+                ))}
+              </span>
+              <span className="font-sans text-xs font-bold uppercase tracking-[0.12em]">
+                5.0 Stars <span className="mx-1 text-white/40">|</span> Loved by early tasters
+              </span>
+            </p>
+          </div>
+        </div>
+
+        <div className="relative min-h-0 w-full flex-1 lg:h-full">
+          <div className="relative h-full w-full min-h-[14rem] sm:min-h-[18rem] lg:min-h-[18rem]">
+            <Image
+              src="/images/raising-the-bar/protein_oats.png"
+              alt="Mornfreak Protein Oats – Rich Chocolate flavour, 425g pouch with 26g protein, super seeds & nuts"
+              fill
+              priority={active}
+              sizes="(max-width: 1024px) 100vw, 50vw"
+              className="rotate-[8deg] scale-[0.88] object-contain object-bottom lg:object-center"
+            />
           </div>
         </div>
       </div>
@@ -301,8 +303,6 @@ function PeanutStatBadge({
 }
 
 // Previous flattened slide assets (not rendered):
-// mobile: /images/hero/img_3_mobile.png
-// desktop: /images/hero/img_3_desktop.avif
 function HeroSlidePeanutButter({ active }: { active: boolean }) {
   return (
     <div
@@ -343,11 +343,11 @@ function HeroSlidePeanutButter({ active }: { active: boolean }) {
             </p>
           </div>
 
-          <div className="mt-4 flex justify-center gap-3 sm:mt-5 sm:gap-4 lg:hidden" aria-label="Product highlights">
+          {/* <div className="mt-4 flex justify-center gap-3 sm:mt-5 sm:gap-4 lg:hidden" aria-label="Product highlights">
             {PEANUT_STATS.map((stat) => (
               <PeanutStatBadge key={stat.label} value={stat.value} label={stat.label} />
             ))}
-          </div>
+          </div> */}
         </div>
 
         <div className="relative min-h-0 w-full flex-1 lg:h-full">
@@ -361,14 +361,14 @@ function HeroSlidePeanutButter({ active }: { active: boolean }) {
               className="object-contain object-bottom lg:object-center"
             />
 
-            <div
+            {/* <div
               className="pointer-events-none absolute inset-y-[10%] right-2 z-10 hidden flex-col justify-between lg:flex xl:right-3"
               aria-hidden
             >
               {PEANUT_STATS.map((stat) => (
                 <PeanutStatBadge key={stat.label} value={stat.value} label={stat.label} />
               ))}
-            </div>
+            </div> */}
           </div>
         </div>
       </div>

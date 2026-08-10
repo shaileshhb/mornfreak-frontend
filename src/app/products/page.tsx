@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
 import Image from "next/image";
+import Link from "next/link";
 
 import { ProductBadge } from "@/components/common/product-badge";
-import { Button } from "@/components/ui/button";
 import { Container } from "@/components/ui/container";
 import { Heading } from "@/components/ui/heading";
 import { Section } from "@/components/ui/section";
@@ -39,10 +39,11 @@ export default function ProductsPage() {
         <Container>
           <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
             {ALL_PRODUCTS.map((product) => (
-              <div
+              <Link
                 key={product.id}
+                href={`/products/${product.slug}`}
                 data-product={product.id}
-                className="flex flex-col overflow-hidden rounded-2xl border border-border bg-product-background shadow-sm"
+                className="flex flex-col overflow-hidden rounded-2xl border border-border bg-product-background shadow-sm transition-shadow hover:shadow-md"
               >
                 {/* Product image */}
                 <div className="relative aspect-square w-full bg-product-background">
@@ -91,16 +92,11 @@ export default function ProductsPage() {
 
                   <p className="font-sans text-xs text-product-foreground/50">{product.weight}</p>
 
-                  <Button
-                    variant="primary"
-                    size="md"
-                    disabled
-                    className="mt-auto w-full cursor-not-allowed opacity-80 bg-product-primary text-primary-foreground"
-                  >
-                    Coming Soon
-                  </Button>
+                  <span className="mt-auto inline-flex h-10 w-full items-center justify-center rounded-md bg-product-primary px-4 font-sans text-sm font-medium text-primary-foreground">
+                    View Product
+                  </span>
                 </div>
-              </div>
+              </Link>
             ))}
           </div>
         </Container>

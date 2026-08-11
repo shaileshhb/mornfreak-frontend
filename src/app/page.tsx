@@ -2,7 +2,7 @@ import {
   BenefitsMarquee,
   HowWeStackUp,
   HomeHero,
-  OneSachet,
+  BuiltForRealMornings,
   RaisingTheBar,
   Reviews,
   WhyMornfreak,
@@ -13,7 +13,7 @@ export default function Home() {
     <>
       <HomeHero />
       <BenefitsMarquee />
-      <OneSachet />
+      <BuiltForRealMornings />
       <WhyMornfreak />
       <RaisingTheBar />
       <HowWeStackUp />

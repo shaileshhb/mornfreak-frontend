@@ -12,7 +12,7 @@ const BENEFITS = [
   { label: "Easy to digest", icon: HeartPulse },
 ] as const;
 
-export function OneSachet() {
+export function BuiltForRealMornings() {
   return (
     <section className="overflow-hidden bg-background py-20 sm:py-28">
       <Container className="max-w-[82rem]">
@@ -22,7 +22,7 @@ export function OneSachet() {
               Built for real mornings
             </p>
             <Heading variant="display" as="h2" className="mt-4 max-w-xl leading-[0.9]">
-              One sachet. Everything that matters.
+              Nutrition behind every great morning.
             </Heading>
             <Link
               href="/products"
@@ -38,8 +38,8 @@ export function OneSachet() {
               className="absolute inset-8 border border-dashed border-primary/25 sm:inset-12"
             />
             <Image
-              src="/images/oats_2.jpeg"
-              alt="Mornfreak Protein Oats pouch, single serve sachet and prepared breakfast bowl"
+              src="/images/built-for-real-morning.png"
+              alt="Mornfreak built for real mornings"
               fill
               sizes="(max-width: 1024px) 100vw, 55vw"
               className="object-cover transition-transform duration-700 hover:scale-[1.025]"

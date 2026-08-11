@@ -294,7 +294,8 @@ function SlideText({
         </Link>
       </div>
 
-      <div className="mt-8 w-full">
+      {/* Mobile only — must not render in the text column on md+ */}
+      <div className="mt-8 hidden w-full max-md:block">
         {active ? (
           <FuelGauge
             index={index}
@@ -396,18 +397,22 @@ function FullBleedSlide({
             Shop now
           </Link>
 
-          <div className="mt-8 w-full max-w-xs">
-            {active ? (
-              <FuelGauge
-                index={index}
-                progressKey={progressKey}
-                paused={paused}
-                reducedMotion={reducedMotion}
-                theme="dark"
-                onSelect={onSelect}
-              />
-            ) : null}
-          </div>
+        </div>
+      </div>
+
+      {/* Mobile only — pinned to hero bottom, matching desktop shared gauge */}
+      <div className="pointer-events-none absolute bottom-6 left-1/2 z-20 w-[min(180px,calc(100%-3rem))] -translate-x-1/2 drop-shadow-[0_1px_3px_rgba(0,0,0,0.55)] md:hidden">
+        <div className="pointer-events-auto">
+          {active ? (
+            <FuelGauge
+              index={index}
+              progressKey={progressKey}
+              paused={paused}
+              reducedMotion={reducedMotion}
+              theme="dark"
+              onSelect={onSelect}
+            />
+          ) : null}
         </div>
       </div>
     </div>
@@ -585,6 +590,26 @@ export function HomeHero() {
 
           return <SplitSlide key={slide.id} {...shared} />;
         })}
+
+        {/* Desktop: hero-level fuel gauge, centered at bottom of the band */}
+        <div
+          className={cn(
+            "pointer-events-none absolute bottom-6 left-1/2 z-20 hidden w-[min(180px,calc(100%-3rem))] -translate-x-1/2 md:block",
+            // Soft shadow keeps segments legible over slide 1 imagery
+            "drop-shadow-[0_1px_3px_rgba(0,0,0,0.55)]",
+          )}
+        >
+          <div className="pointer-events-auto">
+            <FuelGauge
+              index={index}
+              progressKey={progressKey}
+              paused={autoplayPaused}
+              reducedMotion={reducedMotion}
+              theme={SLIDES[index].theme}
+              onSelect={goTo}
+            />
+          </div>
+        </div>
       </div>
     </section>
   );

@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { Bricolage_Grotesque, Fraunces, Inter } from "next/font/google";
 
 import { AnnouncementBar } from "@/components/layout/announcement-bar";
 import { Footer } from "@/components/layout/footer";
@@ -6,6 +7,28 @@ import { Nav } from "@/components/layout/nav";
 import { fontVariables } from "@/design/typography";
 
 import "./globals.css";
+
+const fontBricolage = Bricolage_Grotesque({
+  weight: ["600", "700"],
+  subsets: ["latin"],
+  variable: "--font-bricolage",
+  display: "swap",
+});
+
+const fontInter = Inter({
+  weight: ["400", "500"],
+  subsets: ["latin"],
+  variable: "--font-inter",
+  display: "swap",
+});
+
+const fontFraunces = Fraunces({
+  weight: "400",
+  style: ["italic"],
+  subsets: ["latin"],
+  variable: "--font-fraunces",
+  display: "swap",
+});
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://mornfreak.com"),
@@ -40,7 +63,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${fontVariables} h-full antialiased`}>
+    <html
+      lang="en"
+      className={`${fontVariables} ${fontBricolage.variable} ${fontInter.variable} ${fontFraunces.variable} h-full antialiased`}
+    >
       <body className="flex min-h-full flex-col bg-background font-sans text-foreground">
         <AnnouncementBar />
         <Nav />

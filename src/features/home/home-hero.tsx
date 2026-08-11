@@ -1,19 +1,8 @@
 "use client";
 
-import {
-  ArrowRight,
-  BatteryCharging,
-  CandyOff,
-  Dumbbell,
-  Leaf,
-  ShieldCheck,
-  Sprout,
-  Star,
-} from "lucide-react";
-import Image from "next/image";
+import Image, { type StaticImageData } from "next/image";
 import Link from "next/link";
 import {
-  useCallback,
   useEffect,
   useEffectEvent,
   useRef,
@@ -23,44 +12,471 @@ import {
 
 import { cn } from "@/lib/cn";
 
-const SLIDE_COUNT = 3;
-const AUTO_MS = 5000;
+import img1Desktop from "../../../public/images/hero/img_1_desktop.avif";
+import img1Mobile from "../../../public/images/hero/img_1_mobile.png";
+import img2Desktop from "../../../public/images/hero/img_2_desktop.png";
+import img2Mobile from "../../../public/images/hero/img_2_mobile.png";
+import img3Desktop from "../../../public/images/img_3_desktop.avif";
+import img3Mobile from "../../../public/images/img_3_mobile.png";
+
+interface Slide {
+  id: string;
+  kicker: string;
+  headline: string;
+  body?: string;
+  rating?: string;
+  ctaLabel: string;
+  ctaHref: string;
+  imageDesktop: StaticImageData;
+  imageMobile: StaticImageData;
+  imageAlt: string;
+  theme: "light" | "dark";
+  layout: "full-bleed" | "split";
+  /**
+   * Product shots with tight framing (no spare margin) should use contain +
+   * toasted-almond panel. Current oats/PB assets have enough margin for cover.
+   */
+  objectFit: "cover" | "contain";
+  objectPositionMobile?: string;
+  objectPositionDesktop?: string;
+}
+
+const SLIDES: Slide[] = [
+  {
+    id: "lifestyle",
+    kicker: "Fuel your morning",
+    headline: "Functional. Simple. Purposeful.",
+    ctaLabel: "Shop now",
+    ctaHref: "/products",
+    imageDesktop: img1Desktop,
+    imageMobile: img1Mobile,
+    imageAlt:
+      "People fueling their mornings with Mornfreak — eating, commuting, training, and studying",
+    theme: "dark",
+    layout: "full-bleed",
+    objectFit: "cover",
+    objectPositionMobile: "center",
+    objectPositionDesktop: "center",
+  },
+  {
+    id: "protein-oats",
+    kicker: "Protein oats",
+    headline: "Fuel your day. Feed your goals.",
+    body: "Rich chocolate oats with 26g protein, super seeds, nuts and prebiotics — no added sugar.",
+    rating: "5.0 stars — loved by early tasters",
+    ctaLabel: "Shop Protein Oats",
+    ctaHref: "/products/protein-oats",
+    imageDesktop: img2Desktop,
+    imageMobile: img2Mobile,
+    imageAlt:
+      "Mornfreak Protein Oats pouches with a bowl of rich chocolate oats and fresh toppings",
+    theme: "light",
+    layout: "split",
+    objectFit: "cover",
+    // Portrait mobile crop: product cluster is mid-frame.
+    objectPositionMobile: "center",
+    // Landscape → tall column: keep pouch + bowl, bias slightly right.
+    objectPositionDesktop: "62% center",
+  },
+  {
+    id: "peanut-butter",
+    kicker: "Peanut butter powder",
+    headline: "Good morning. Great choice.",
+    body: "Real peanuts. Real nutrition. A smarter spread for a stronger, healthier you.",
+    rating: "Clean ingredients. Nothing to hide.",
+    ctaLabel: "Shop Peanut Butter",
+    ctaHref: "/products/peanut-butter-powder",
+    imageDesktop: img3Desktop,
+    imageMobile: img3Mobile,
+    imageAlt:
+      "Mornfreak peanut butter powder jar with peanuts and a bowl of peanut powder",
+    theme: "dark",
+    layout: "split",
+    objectFit: "cover",
+    // Portrait mobile: jar sits mid-frame with yellow/blue margins.
+    objectPositionMobile: "center",
+    // Landscape → tall column: jar is center-right; keep jar + badges in frame.
+    objectPositionDesktop: "72% center",
+  },
+];
+
+const SLIDE_COUNT = SLIDES.length;
+const AUTO_MS = 5500;
 const SWIPE_THRESHOLD = 48;
 
-function HeroPicture({
-  desktopSrc,
-  mobileSrc,
-  alt,
+function HeroArtDirection({
+  slide,
   priority,
-  sizes,
-  className,
+  sizesMobile,
+  sizesDesktop,
 }: {
-  desktopSrc: string;
-  mobileSrc: string;
-  alt: string;
+  slide: Slide;
   priority?: boolean;
-  sizes: string;
-  className?: string;
+  sizesMobile: string;
+  sizesDesktop: string;
+}) {
+  const isContain = slide.objectFit === "contain";
+  // Fallback for future tight product shots: contain + toasted-almond panel.
+  const panelClass = isContain ? "bg-toasted-almond" : undefined;
+  // next/image `fill` writes inline object-fit/position — pass style so our
+  // per-crop framing wins over the default `center center` inline styles.
+  const fit = isContain ? "contain" : "cover";
+  const posMobile = slide.objectPositionMobile ?? "center";
+  const posDesktop = slide.objectPositionDesktop ?? "center";
+
+  return (
+    <div className={cn("relative h-full w-full", panelClass)}>
+      <Image
+        src={slide.imageMobile}
+        alt={slide.imageAlt}
+        fill
+        priority={priority}
+        sizes={sizesMobile}
+        className="block md:hidden"
+        style={{ objectFit: fit, objectPosition: posMobile }}
+      />
+      <Image
+        src={slide.imageDesktop}
+        alt={slide.imageAlt}
+        fill
+        priority={priority}
+        sizes={sizesDesktop}
+        className="hidden md:block"
+        style={{ objectFit: fit, objectPosition: posDesktop }}
+      />
+    </div>
+  );
+}
+
+function FuelGauge({
+  index,
+  progressKey,
+  paused,
+  reducedMotion,
+  theme,
+  onSelect,
+}: {
+  index: number;
+  progressKey: number;
+  paused: boolean;
+  reducedMotion: boolean;
+  theme: "light" | "dark";
+  onSelect: (slideIndex: number) => void;
 }) {
   return (
-    <>
-      <Image
-        src={mobileSrc}
-        alt={alt}
-        fill
-        priority={priority}
-        sizes={sizes}
-        className={cn("object-cover object-center lg:hidden", className)}
-      />
-      <Image
-        src={desktopSrc}
-        alt={alt}
-        fill
-        priority={priority}
-        sizes={sizes}
-        className={cn("hidden object-cover object-center lg:block", className)}
-      />
-    </>
+    <div className="flex w-full gap-1.5" role="tablist" aria-label="Hero slides">
+      {SLIDES.map((slide, slideIndex) => {
+        const isActive = slideIndex === index;
+        return (
+          <button
+            key={slide.id}
+            type="button"
+            role="tab"
+            aria-selected={isActive}
+            aria-label={`Go to slide ${slideIndex + 1}: ${slide.headline}`}
+            onClick={() => onSelect(slideIndex)}
+            className={cn(
+              "relative h-[2px] flex-1 overflow-hidden bg-toasted-almond/20",
+              "focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4",
+              theme === "dark"
+                ? "focus-visible:outline-oat-cream"
+                : "focus-visible:outline-ink",
+            )}
+          >
+            <span
+              key={
+                isActive ? `${progressKey}-${slideIndex}` : `idle-${slideIndex}`
+              }
+              className={cn(
+                "absolute inset-y-0 left-0 w-full origin-left bg-ember-clay",
+                isActive && !reducedMotion && "animate-hero-progress",
+                isActive &&
+                  !reducedMotion &&
+                  paused &&
+                  "[animation-play-state:paused]",
+                isActive && reducedMotion && "scale-x-100",
+                !isActive && "scale-x-0",
+              )}
+            />
+          </button>
+        );
+      })}
+    </div>
+  );
+}
+
+function SlideText({
+  slide,
+  active,
+  introReady,
+  reducedMotion,
+  index,
+  progressKey,
+  paused,
+  onSelect,
+}: {
+  slide: Slide;
+  active: boolean;
+  introReady: boolean;
+  reducedMotion: boolean;
+  index: number;
+  progressKey: number;
+  paused: boolean;
+  onSelect: (slideIndex: number) => void;
+}) {
+  const isDark = slide.theme === "dark";
+
+  return (
+    <div
+      className={cn(
+        "flex w-full max-w-[42ch] flex-col",
+        "motion-reduce:translate-y-0",
+        !reducedMotion && "transition-[opacity,transform] ease-out",
+        active
+          ? "translate-y-0 opacity-100 duration-300"
+          : "pointer-events-none translate-y-3 opacity-0 duration-200",
+      )}
+    >
+      <p
+        className={cn(
+          "font-display text-kicker font-semibold uppercase",
+          isDark ? "text-oat-cream/80" : "text-ink/70",
+        )}
+      >
+        {slide.kicker}
+      </p>
+
+      <h2
+        className={cn(
+          "mt-3 font-display text-h1 font-bold",
+          isDark ? "text-paper" : "text-ink",
+        )}
+      >
+        {slide.headline}
+      </h2>
+
+      {slide.body ? (
+        <p
+          className={cn(
+            "mt-4 font-body text-body font-normal",
+            isDark ? "text-oat-cream/85" : "text-ink/80",
+          )}
+        >
+          {slide.body}
+        </p>
+      ) : null}
+
+      {slide.rating ? (
+        <p
+          className={cn(
+            "mt-4 font-accent text-body italic",
+            isDark ? "text-toasted-almond" : "text-cocoa-espresso",
+          )}
+        >
+          {slide.rating}
+        </p>
+      ) : null}
+
+      <div className="mt-6">
+        <Link
+          href={slide.ctaHref}
+          tabIndex={active ? 0 : -1}
+          className={cn(
+            "inline-flex items-center justify-center bg-ember-clay px-6 py-3",
+            "font-display text-cta font-semibold text-paper",
+            "focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4",
+            isDark
+              ? "focus-visible:outline-oat-cream"
+              : "focus-visible:outline-ink",
+          )}
+        >
+          {slide.ctaLabel}
+        </Link>
+      </div>
+
+      <div className="mt-8 w-full">
+        {active ? (
+          <FuelGauge
+            index={index}
+            progressKey={progressKey}
+            paused={paused}
+            reducedMotion={reducedMotion}
+            theme={slide.theme}
+            onSelect={onSelect}
+          />
+        ) : null}
+      </div>
+    </div>
+  );
+}
+
+function slideShellClass(active: boolean, reducedMotion: boolean) {
+  return cn(
+    // Active slide sets height below lg; all slides fill the fixed band at lg+.
+    active ? "relative z-10 lg:absolute lg:inset-0" : "absolute inset-0 z-0",
+    !reducedMotion && "transition-opacity ease-out",
+    active
+      ? "opacity-100 duration-300"
+      : "pointer-events-none opacity-0 duration-200",
+    reducedMotion && (active ? "opacity-100" : "pointer-events-none opacity-0"),
+  );
+}
+
+/**
+ * Slide 1 — restored to pre-redesign HeroSlideLifestyle:
+ * full-bleed cover image, centered copy, yellow CTA. No collage strip markup.
+ */
+function FullBleedSlide({
+  slide,
+  active,
+  priority,
+  introReady,
+  reducedMotion,
+  index,
+  progressKey,
+  paused,
+  onSelect,
+}: {
+  slide: Slide;
+  active: boolean;
+  priority?: boolean;
+  introReady: boolean;
+  reducedMotion: boolean;
+  index: number;
+  progressKey: number;
+  paused: boolean;
+  onSelect: (slideIndex: number) => void;
+}) {
+  return (
+    <div
+      className={cn(
+        slideShellClass(active, reducedMotion),
+        active && "min-h-[clamp(560px,78vh,860px)] lg:min-h-0",
+      )}
+      aria-hidden={!active}
+      inert={!active ? true : undefined}
+      role="group"
+      aria-roledescription="slide"
+      aria-label="Functional. Simple. Purposeful."
+    >
+      <div className="absolute inset-0">
+        <HeroArtDirection
+          slide={slide}
+          priority={priority}
+          sizesMobile="(max-width: 767px) 100vw, 1px"
+          sizesDesktop="(min-width: 768px) 100vw, 1px"
+        />
+      </div>
+
+      <div className="absolute inset-0 bg-foreground/45" aria-hidden />
+
+      <div className="relative z-10 flex h-full items-center justify-center px-6 pb-20 pt-16 text-center">
+        <div
+          className={cn(
+            "flex max-w-3xl flex-col items-center",
+            !reducedMotion &&
+              "transition-[opacity,transform] duration-300 ease-out",
+            !reducedMotion &&
+              (introReady
+                ? "translate-y-0 opacity-100"
+                : "translate-y-3 opacity-0"),
+          )}
+        >
+          <h1 className="font-display text-[clamp(2rem,5.5vw,4.25rem)] font-bold leading-[1.05] tracking-tight text-white">
+            Functional. Simple. Purposeful.
+          </h1>
+          <p className="mt-4 font-sans text-xs font-bold uppercase tracking-[0.18em] text-white/90 sm:text-sm">
+            FUEL YOUR MORNING. ELEVATE YOUR EVERYDAY.
+          </p>
+          <Link
+            href="/products"
+            tabIndex={active ? 0 : -1}
+            className="mt-8 inline-flex h-12 items-center justify-center bg-[#f5c518] px-8 font-sans text-sm font-bold uppercase tracking-[0.14em] text-foreground transition-transform hover:-translate-y-0.5 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white"
+          >
+            Shop now
+          </Link>
+
+          <div className="mt-8 w-full max-w-xs">
+            {active ? (
+              <FuelGauge
+                index={index}
+                progressKey={progressKey}
+                paused={paused}
+                reducedMotion={reducedMotion}
+                theme="dark"
+                onSelect={onSelect}
+              />
+            ) : null}
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function SplitSlide({
+  slide,
+  active,
+  introReady,
+  reducedMotion,
+  index,
+  progressKey,
+  paused,
+  onSelect,
+}: {
+  slide: Slide;
+  active: boolean;
+  introReady: boolean;
+  reducedMotion: boolean;
+  index: number;
+  progressKey: number;
+  paused: boolean;
+  onSelect: (slideIndex: number) => void;
+}) {
+  const panelBg =
+    slide.theme === "light" ? "bg-oat-cream" : "bg-cocoa-espresso";
+
+  return (
+    <div
+      className={slideShellClass(active, reducedMotion)}
+      aria-hidden={!active}
+      inert={!active ? true : undefined}
+      role="group"
+      aria-roledescription="slide"
+      aria-label={slide.headline}
+    >
+      <div className="grid h-full min-h-[clamp(560px,78vh,860px)] grid-cols-1 lg:min-h-0 lg:grid-cols-[minmax(420px,38%)_1fr]">
+        {/* Image first on mobile/tablet; right column on desktop — h-full, zero padding */}
+        <div className="relative order-1 h-[min(100vw,32rem)] w-full p-0 md:h-[min(75vw,36rem)] lg:order-2 lg:h-full lg:min-h-0">
+          <div className="relative h-full w-full">
+            <HeroArtDirection
+              slide={slide}
+              sizesMobile="(max-width: 1023px) 100vw, 1px"
+              sizesDesktop="(min-width: 1024px) 62vw, (min-width: 768px) 100vw, 1px"
+            />
+          </div>
+        </div>
+
+        <div
+          className={cn(
+            "order-2 flex items-center lg:order-1 lg:h-full",
+            "p-4 md:p-8 lg:p-16 xl:p-24 2xl:p-[clamp(6rem,6vw,10rem)]",
+            panelBg,
+          )}
+        >
+          <SlideText
+            slide={slide}
+            active={active}
+            introReady={introReady}
+            reducedMotion={reducedMotion}
+            index={index}
+            progressKey={progressKey}
+            paused={paused}
+            onSelect={onSelect}
+          />
+        </div>
+      </div>
+    </div>
   );
 }
 
@@ -69,6 +485,8 @@ export function HomeHero() {
   const [paused, setPaused] = useState(false);
   const [reducedMotion, setReducedMotion] = useState(false);
   const [progressKey, setProgressKey] = useState(0);
+  const [introReady, setIntroReady] = useState(false);
+  const [tabHidden, setTabHidden] = useState(false);
   const pointerStartX = useRef<number | null>(null);
 
   useEffect(() => {
@@ -79,20 +497,34 @@ export function HomeHero() {
     return () => mq.removeEventListener("change", sync);
   }, []);
 
-  const goTo = useCallback((next: number) => {
+  useEffect(() => {
+    const onVisibility = () => setTabHidden(document.hidden);
+    onVisibility();
+    document.addEventListener("visibilitychange", onVisibility);
+    return () => document.removeEventListener("visibilitychange", onVisibility);
+  }, []);
+
+  useEffect(() => {
+    const id = window.requestAnimationFrame(() => setIntroReady(true));
+    return () => window.cancelAnimationFrame(id);
+  }, []);
+
+  const goTo = (next: number) => {
     setIndex(((next % SLIDE_COUNT) + SLIDE_COUNT) % SLIDE_COUNT);
     setProgressKey((key) => key + 1);
-  }, []);
+  };
 
   const advance = useEffectEvent(() => {
     goTo(index + 1);
   });
 
+  const autoplayPaused = paused || tabHidden || reducedMotion;
+
   useEffect(() => {
-    if (paused || reducedMotion) return;
+    if (autoplayPaused) return;
     const id = window.setTimeout(() => advance(), AUTO_MS);
     return () => window.clearTimeout(id);
-  }, [index, paused, reducedMotion, progressKey]);
+  }, [index, autoplayPaused, progressKey]);
 
   const onPointerDown = (event: ReactPointerEvent<HTMLElement>) => {
     pointerStartX.current = event.clientX;
@@ -108,11 +540,11 @@ export function HomeHero() {
 
   return (
     <section
-      className="w-full px-3 pt-3 sm:px-4 sm:pt-4"
+      className="w-full"
       aria-label="Hero"
       aria-roledescription="carousel"
-      // onMouseEnter={() => setPaused(true)}
-      // onMouseLeave={() => setPaused(false)}
+      onMouseEnter={() => setPaused(true)}
+      onMouseLeave={() => setPaused(false)}
       onFocusCapture={() => setPaused(true)}
       onBlurCapture={(event) => {
         if (!event.currentTarget.contains(event.relatedTarget as Node | null)) {
@@ -121,257 +553,39 @@ export function HomeHero() {
       }}
     >
       <div
-        className="relative isolate min-h-[calc(100svh-8.5rem)] overflow-hidden rounded-[1.75rem] bg-foreground shadow-md"
+        className="relative isolate min-h-[clamp(560px,78vh,860px)] overflow-hidden bg-ink lg:h-[clamp(560px,78vh,860px)] lg:min-h-0"
         onPointerDown={onPointerDown}
         onPointerUp={onPointerUp}
         onPointerCancel={() => {
           pointerStartX.current = null;
         }}
       >
-        <div className="absolute inset-0">
-          <HeroSlideLifestyle active={index === 0} />
-          <HeroSlideOats active={index === 1} />
-          <HeroSlidePeanutButter active={index === 2} />
-        </div>
+        {SLIDES.map((slide, slideIndex) => {
+          const active = slideIndex === index;
+          const shared = {
+            slide,
+            active,
+            introReady,
+            reducedMotion,
+            index,
+            progressKey,
+            paused: autoplayPaused,
+            onSelect: goTo,
+          };
 
-        <div
-          className="pointer-events-none absolute inset-x-0 bottom-0 z-20 bg-gradient-to-t from-black/45 via-black/15 to-transparent pt-16"
-          aria-hidden
-        />
+          if (slide.layout === "full-bleed") {
+            return (
+              <FullBleedSlide
+                key={slide.id}
+                {...shared}
+                priority={slideIndex === 0}
+              />
+            );
+          }
 
-        <div className="pointer-events-none absolute inset-x-0 bottom-0 z-20 flex items-end justify-between gap-6 p-5 sm:p-7 lg:p-9">
-          <div className="pointer-events-auto flex w-full max-w-xs flex-col gap-3">
-            <div className="flex gap-2" role="tablist" aria-label="Hero slides">
-              {Array.from({ length: SLIDE_COUNT }).map((_, slideIndex) => {
-                const isActive = slideIndex === index;
-                return (
-                  <button
-                    key={slideIndex}
-                    type="button"
-                    role="tab"
-                    aria-selected={isActive}
-                    aria-label={`Go to slide ${slideIndex + 1}`}
-                    onClick={() => goTo(slideIndex)}
-                    className="relative h-1 flex-1 overflow-hidden rounded-full bg-white/35"
-                  >
-                    <span
-                      key={isActive ? `${progressKey}-${slideIndex}` : `idle-${slideIndex}`}
-                      className={cn(
-                        "absolute inset-y-0 left-0 w-full origin-left rounded-full bg-white",
-                        isActive && !reducedMotion && "animate-hero-progress",
-                        isActive && !reducedMotion && paused && "[animation-play-state:paused]",
-                        isActive && reducedMotion && "scale-x-100",
-                        !isActive && "scale-x-0",
-                      )}
-                    />
-                  </button>
-                );
-              })}
-            </div>
-          </div>
-        </div>
+          return <SplitSlide key={slide.id} {...shared} />;
+        })}
       </div>
     </section>
-  );
-}
-
-function HeroSlideLifestyle({ active }: { active: boolean }) {
-  return (
-    <div
-      className={cn(
-        "absolute inset-0 transition-opacity duration-700 ease-out",
-        active ? "opacity-100" : "pointer-events-none opacity-0",
-      )}
-      aria-hidden={!active}
-      inert={!active ? true : undefined}
-      role="group"
-      aria-roledescription="slide"
-      aria-label="Functional. Simple. Purposeful."
-    >
-      <HeroPicture
-        mobileSrc="/images/hero/img_1_mobile.png"
-        desktopSrc="/images/hero/img_1_desktop.avif"
-        alt="People fueling their mornings with Mornfreak — eating, commuting, training, and studying"
-        priority={active}
-        sizes="100vw"
-      />
-      <div className="absolute inset-0 bg-foreground/45" />
-      <div className="relative z-10 flex h-full items-center justify-center px-6 pb-20 pt-16 text-center">
-        <div className="flex max-w-3xl flex-col items-center">
-          <h1 className="font-display text-[clamp(2rem,5.5vw,4.25rem)] font-bold leading-[1.05] tracking-tight text-white">
-            Functional. Simple. Purposeful.
-          </h1>
-          <p className="mt-4 font-sans text-xs font-bold uppercase tracking-[0.18em] text-white/90 sm:text-sm">
-            FUEL YOUR MORNING. ELEVATE YOUR EVERYDAY.
-          </p>
-          <Link
-            href="/products"
-            className="mt-8 inline-flex h-12 items-center justify-center bg-[#f5c518] px-8 font-sans text-sm font-bold uppercase tracking-[0.14em] text-foreground transition-transform hover:-translate-y-0.5"
-          >
-            Shop now
-          </Link>
-        </div>
-      </div>
-    </div>
-  );
-}
-
-function HeroSlideOats({ active }: { active: boolean }) {
-  return (
-    <div
-      className={cn(
-        "absolute inset-0 bg-[linear-gradient(135deg,#5c4030_0%,#3a2418_55%,#1e1109_100%)] transition-opacity duration-700 ease-out",
-        active ? "opacity-100" : "pointer-events-none opacity-0",
-      )}
-      aria-hidden={!active}
-      inert={!active ? true : undefined}
-      role="group"
-      aria-roledescription="slide"
-      aria-label="Fuel your day. Feed your goals."
-    >
-      <div className="relative z-10 mx-auto flex h-full w-full max-w-[90rem] flex-col gap-2 overflow-hidden px-4 pb-14 pt-10 sm:gap-3 sm:px-6 sm:pb-16 sm:pt-12 lg:flex-row lg:items-center lg:gap-10 lg:px-10 lg:py-20">
-        <div className="w-full shrink-0 lg:w-[42%] lg:max-w-[26rem] xl:max-w-xl">
-          <h1 className="font-display text-[clamp(2rem,8vw,5.25rem)] uppercase italic leading-[0.9] tracking-tight text-white">
-            Fuel your day.
-            <span className="mt-1 block text-orange sm:mt-2">Feed your goals.</span>
-          </h1>
-          <p className="mt-2 max-w-md font-sans text-sm leading-relaxed text-white/75 sm:mt-4 sm:text-base lg:mt-5 lg:text-lg">
-            Rich chocolate oats with 26g protein, super seeds, nuts and prebiotics.
-            Built for powerful mornings without added sugar or preservatives.
-          </p>
-
-          <div className="mt-4 flex flex-wrap items-center gap-3 sm:mt-6 sm:gap-4 lg:mt-8">
-            <Link
-              href="/products"
-              className="inline-flex h-10 items-center justify-center gap-2 rounded-full bg-orange px-5 font-sans text-xs font-bold uppercase tracking-[0.12em] text-foreground transition-transform hover:-translate-y-0.5 sm:h-12 sm:px-7 sm:text-sm"
-            >
-              Shop now <ArrowRight aria-hidden size={17} />
-            </Link>
-            <p className="flex items-center gap-2 font-sans text-xs font-medium text-white sm:text-sm">
-              <span className="flex gap-0.5 text-orange" aria-label="5 out of 5 stars">
-                {Array.from({ length: 5 }).map((_, starIndex) => (
-                  <Star key={starIndex} aria-hidden size={14} fill="currentColor" />
-                ))}
-              </span>
-              <span className="font-sans text-xs font-bold uppercase tracking-[0.12em]">
-                5.0 Stars <span className="mx-1 text-white/40">|</span> Loved by early tasters
-              </span>
-            </p>
-          </div>
-        </div>
-
-        <div className="relative min-h-0 w-full flex-1 lg:h-full">
-          <div className="relative h-full w-full min-h-[14rem] sm:min-h-[18rem] lg:min-h-[18rem]">
-            <Image
-              src="/images/raising-the-bar/protein_oats.png"
-              alt="Mornfreak Protein Oats – Rich Chocolate flavour, 425g pouch with 26g protein, super seeds & nuts"
-              fill
-              priority={active}
-              sizes="(max-width: 1024px) 100vw, 50vw"
-              className="rotate-[8deg] scale-[0.88] object-contain object-bottom lg:object-center"
-            />
-          </div>
-        </div>
-      </div>
-    </div>
-  );
-}
-
-const PEANUT_STATS = [
-  { value: "87%", label: "LESS CALORIES*" },
-  { value: "HIGH", label: "PROTEIN" },
-  { value: "1/3", label: "LESS FAT*" },
-] as const;
-
-function PeanutStatBadge({
-  value,
-  label,
-}: {
-  value: string;
-  label: string;
-}) {
-  return (
-    <div className="flex size-20 shrink-0 flex-col items-center justify-center rounded-full border-2 border-[#f5c518] bg-[#001d4a] px-2 text-center shadow-md lg:size-24">
-      <span className="font-display text-xl font-bold leading-none tracking-tight text-[#f5c518] lg:text-2xl">
-        {value}
-      </span>
-      <span className="mt-0.5 max-w-full font-sans text-[0.58rem] font-bold uppercase leading-tight tracking-wide text-white lg:text-[0.65rem]">
-        {label}
-      </span>
-    </div>
-  );
-}
-
-// Previous flattened slide assets (not rendered):
-function HeroSlidePeanutButter({ active }: { active: boolean }) {
-  return (
-    <div
-      className={cn(
-        "absolute inset-0 bg-[linear-gradient(135deg,#fff8dc_0%,#ffe9a8_55%,#ffd978_100%)] transition-opacity duration-700 ease-out",
-        active ? "opacity-100" : "pointer-events-none opacity-0",
-      )}
-      aria-hidden={!active}
-      inert={!active ? true : undefined}
-      role="group"
-      aria-roledescription="slide"
-      aria-label="Good morning. Great choice."
-    >
-      <div className="relative z-10 mx-auto flex h-full w-full max-w-[90rem] flex-col gap-2 overflow-hidden px-4 pb-14 pt-10 sm:gap-3 sm:px-6 sm:pb-16 sm:pt-12 lg:flex-row lg:items-center lg:gap-10 lg:px-10 lg:py-20">
-        <div className="w-full shrink-0 lg:w-[42%] lg:max-w-[26rem] xl:max-w-xl">
-          <h1 className="font-display text-[clamp(2rem,8vw,5.25rem)] font-bold uppercase leading-[0.9] tracking-tight text-[#001d4a]">
-            Good morning.
-          </h1>
-          <p className="mt-0.5 font-script text-[clamp(1.65rem,5.5vw,3.75rem)] leading-none text-[#f39c12]">
-            Great Choice.
-          </p>
-          <p className="mt-2 max-w-md font-sans text-sm leading-relaxed text-[#001d4a] sm:mt-4 sm:text-base lg:mt-5 lg:text-lg">
-            Real oats. Real nutrition.
-            <br />
-            A smarter choice for a stronger, healthier you.
-          </p>
-
-          <div className="mt-4 flex flex-wrap items-center gap-3 sm:mt-6 sm:gap-4 lg:mt-8">
-            <Link
-              href="/products"
-              className="inline-flex h-10 items-center justify-center gap-2 rounded-full bg-[#001d4a] px-5 font-sans text-xs font-bold uppercase tracking-[0.12em] text-white transition-transform hover:-translate-y-0.5 sm:h-12 sm:px-7 sm:text-sm"
-            >
-              Shop now <ArrowRight aria-hidden size={17} />
-            </Link>
-            <p className="flex items-center gap-2 font-sans text-xs font-medium text-[#001d4a] sm:text-sm">
-              <ShieldCheck aria-hidden size={16} className="shrink-0 text-[#001d4a] sm:size-[18px]" />
-              Clean Ingredients. Nothing to Hide.
-            </p>
-          </div>
-
-          {/* <div className="mt-4 flex justify-center gap-3 sm:mt-5 sm:gap-4 lg:hidden" aria-label="Product highlights">
-            {PEANUT_STATS.map((stat) => (
-              <PeanutStatBadge key={stat.label} value={stat.value} label={stat.label} />
-            ))}
-          </div> */}
-        </div>
-
-        <div className="relative min-h-0 w-full flex-1 lg:h-full">
-          <div className="relative h-full w-full lg:min-h-[18rem]">
-            <Image
-              src="/images/raising-the-bar/peanut_butter_powder.png"
-              alt="Mornfreak peanut butter powder jar with peanuts, leaves, and powder bowl"
-              fill
-              priority={active}
-              sizes="(max-width: 1024px) 100vw, 50vw"
-              className="object-contain object-bottom lg:object-center"
-            />
-
-            {/* <div
-              className="pointer-events-none absolute inset-y-[10%] right-2 z-10 hidden flex-col justify-between lg:flex xl:right-3"
-              aria-hidden
-            >
-              {PEANUT_STATS.map((stat) => (
-                <PeanutStatBadge key={stat.label} value={stat.value} label={stat.label} />
-              ))}
-            </div> */}
-          </div>
-        </div>
-      </div>
-    </div>
   );
 }

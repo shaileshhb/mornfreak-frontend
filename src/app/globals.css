@@ -1,3 +1,4 @@
+@config "../../tailwind.config.ts";
 @import "tailwindcss";
 @import "../design/themes/light.css";
 @import "../design/tokens/products.css";
@@ -39,6 +40,15 @@
   --color-orange: var(--orange);
   --color-orange-foreground: var(--orange-foreground);
 
+  /* Hero carousel palette (mirrors tailwind.config.ts theme.extend) */
+  --color-cocoa-espresso: #2b1b14;
+  --color-ink: #1c1a17;
+  --color-oat-cream: #f1e9da;
+  --color-toasted-almond: #c9a876;
+  --color-sage-prebiotic: #7c8b6f;
+  --color-ember-clay: #b5502e;
+  --color-paper: #faf7f1;
+
   /* Product semantic colors (scoped via [data-product]) */
   --color-product-primary: var(--product-primary);
   --color-product-secondary: var(--product-secondary);
@@ -50,8 +60,25 @@
 
   /* Typography */
   --font-sans: var(--font-dm-sans), var(--font-sans-fallback);
-  --font-display: var(--font-montserrat), var(--font-display-fallback);
+  --font-display: var(--font-bricolage), var(--font-display-fallback);
+  --font-body: var(--font-inter), var(--font-sans-fallback);
+  --font-accent: var(--font-fraunces), Georgia, serif;
   --font-script: var(--font-caveat), cursive;
+  --font-montserrat-display: var(--font-montserrat), var(--font-display-fallback);
+
+  /* Hero type scale (mirrors tailwind.config.ts theme.extend.fontSize) */
+  --text-kicker: clamp(0.75rem, 0.65rem + 0.3vw, 0.875rem);
+  --text-kicker--letter-spacing: 0.08em;
+  --text-h1: clamp(2.1rem, 1.3rem + 3.2vw, 4.25rem);
+  --text-h1--line-height: 1.08;
+  --text-h1--letter-spacing: -0.01em;
+  --text-h2: clamp(1.75rem, 1.2rem + 2.2vw, 3rem);
+  --text-h2--line-height: 1.08;
+  --text-h2--letter-spacing: -0.01em;
+  --text-body: clamp(1rem, 0.94rem + 0.25vw, 1.125rem);
+  --text-body--line-height: 1.55;
+  --text-cta: clamp(0.95rem, 0.9rem + 0.2vw, 1.05rem);
+  --text-cta--line-height: 1.2;
 
   /* Radius */
   --radius-sm: var(--ds-radius-sm);
@@ -71,7 +98,7 @@
   --animate-scale-in: scale-in var(--duration-normal) var(--ease-out) both;
   --animate-ken-burns: ken-burns 1.4s var(--ease-out) both;
   --animate-marquee: marquee 90s linear infinite;
-  --animate-hero-progress: hero-progress 5s linear forwards;
+  --animate-hero-progress: hero-progress 5.5s linear forwards;
   --animate-float: float 4.5s ease-in-out infinite;
 }
 

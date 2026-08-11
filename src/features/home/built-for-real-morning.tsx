@@ -32,7 +32,7 @@ export function BuiltForRealMornings() {
             </Link>
           </div>
 
-          <div className="relative min-h-[28rem] overflow-hidden bg-card sm:min-h-[35rem]">
+          <div className="relative min-h-[28rem] overflow-hidden sm:min-h-[35rem]">
             <div
               aria-hidden
               className="absolute inset-8 border border-dashed border-primary/25 sm:inset-12"

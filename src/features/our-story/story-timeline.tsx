@@ -16,21 +16,21 @@ import { cn } from "@/lib/cn";
 const MILESTONES = [
   {
     number: "01",
-    year: "2023",
+    year: "2025",
     title: "The problem",
     body: "Healthy breakfasts became complicated. Most options are packed with processed ingredients, hidden sugars, and fall short on real nutrition. We knew there had to be a better way.",
     icon: MessageCircleQuestion,
   },
   {
     number: "02",
-    year: "2023",
+    year: "2025",
     title: "The idea",
     body: "What if breakfast could be clean, functional, delicious, and actually keep you satisfied? Not another cereal. A complete morning routine in one bowl.",
     icon: Lightbulb,
   },
   {
     number: "03",
-    year: "2024",
+    year: "2026",
     title: "The formula",
     body: "We combined science, nutrition, and clean ingredients. No junk. No shortcuts. Just real food nutrition that is backed by science. High in protein, prebiotics, superfoods and taste.",
     icon: FlaskConical,

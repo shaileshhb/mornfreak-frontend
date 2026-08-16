@@ -6,6 +6,7 @@ import {
   RaisingTheBar,
   Reviews,
   WhyMornfreak,
+  MornfreakStandard,
 } from "@/features/home";
 
 export default function Home() {
@@ -18,6 +19,7 @@ export default function Home() {
       <RaisingTheBar />
       <HowWeStackUp />
       <Reviews />
+      <MornfreakStandard />
     </>
   );
 }

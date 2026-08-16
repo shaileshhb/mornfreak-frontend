@@ -18,7 +18,7 @@ export default function ContactPage() {
       <section className="bg-primary py-16">
         <Container>
           <div className="flex flex-col gap-3">
-            <span className="font-sans text-xs font-semibold uppercase tracking-widest text-primary-foreground/60">
+            <span className="font-sans text-s font-semibold uppercase tracking-widest text-primary-foreground/60">
               Get in touch
             </span>
             <Heading variant="h1" className="text-primary-foreground" as="h1">

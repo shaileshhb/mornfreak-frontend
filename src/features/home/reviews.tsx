@@ -16,12 +16,6 @@ import { Container } from "@/components/ui/container";
 import { Heading } from "@/components/ui/heading";
 import { REVIEWS, type Review } from "./reviews-data";
 
-const TRUST_POINTS = [
-  { label: "Clean Ingredients", icon: Leaf },
-  { label: "High Protein", icon: Dumbbell },
-  { label: "No Added Sugar", icon: ShieldCheck },
-  { label: "Made for Real Results", icon: Sparkles },
-] as const;
 
 export function Reviews() {
   const [playingId, setPlayingId] = useState<string | null>(null);
@@ -58,20 +52,6 @@ export function Reviews() {
               <TextReviewCard key={review.id} review={review} />
             ),
           )}
-        </div>
-
-        <div className="mt-12 grid grid-cols-2 border-y border-foreground/15 md:grid-cols-4">
-          {TRUST_POINTS.map(({ label, icon: Icon }, index) => (
-            <div
-              key={label}
-              className={`flex min-h-28 items-center justify-center gap-3 px-3 py-5 text-center ${
-                index > 0 ? "md:border-l md:border-foreground/15" : ""
-              }`}
-            >
-              <Icon aria-hidden className="shrink-0 text-primary" size={22} strokeWidth={1.7} />
-              <span className="font-sans text-xs font-bold uppercase tracking-[0.1em]">{label}</span>
-            </div>
-          ))}
         </div>
       </Container>
     </section>
@@ -162,9 +142,8 @@ function VideoReviewCard({
         Your browser does not support embedded video.
       </video>
       <div
-        className={`absolute inset-0 bg-gradient-to-b from-black/70 via-black/10 to-black/90 transition-opacity duration-300 ${
-          isPlaying ? "opacity-0 group-hover:opacity-60" : "opacity-100"
-        }`}
+        className={`absolute inset-0 bg-gradient-to-b from-black/70 via-black/10 to-black/90 transition-opacity duration-300 ${isPlaying ? "opacity-0 group-hover:opacity-60" : "opacity-100"
+          }`}
       />
       <div className="relative z-10 flex h-full min-h-[31rem] flex-col p-6">
         <div className={`transition-opacity duration-300 ${isPlaying ? "opacity-0 group-hover:opacity-100" : "opacity-100"}`}>
@@ -175,9 +154,8 @@ function VideoReviewCard({
           type="button"
           aria-label={isPlaying ? `Pause ${review.name}'s video review` : `Play ${review.name}'s video review`}
           onClick={handleToggle}
-          className={`m-auto flex h-16 w-16 items-center justify-center rounded-full bg-white text-primary transition-transform hover:scale-105 ${
-            isPlaying ? "opacity-0 group-hover:opacity-100" : "opacity-100"
-          }`}
+          className={`m-auto flex h-16 w-16 items-center justify-center rounded-full bg-white text-primary transition-transform hover:scale-105 ${isPlaying ? "opacity-0 group-hover:opacity-100" : "opacity-100"
+            }`}
         >
           {isPlaying ? (
             <Pause aria-hidden size={22} fill="currentColor" />
@@ -186,9 +164,8 @@ function VideoReviewCard({
           )}
         </button>
         <div
-          className={`border-t border-white/20 pt-5 transition-opacity duration-300 ${
-            isPlaying ? "opacity-0 group-hover:opacity-100" : "opacity-100"
-          }`}
+          className={`border-t border-white/20 pt-5 transition-opacity duration-300 ${isPlaying ? "opacity-0 group-hover:opacity-100" : "opacity-100"
+            }`}
         >
           <Reviewer review={review} inverse />
           <p className="mt-4 text-[0.65rem] font-bold uppercase tracking-[0.12em] text-orange">

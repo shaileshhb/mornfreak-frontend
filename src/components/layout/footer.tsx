@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { FaTiktok } from "react-icons/fa6";
 
 const FOOTER_GROUPS = [
   {
@@ -26,9 +27,14 @@ const FOOTER_GROUPS = [
       { label: "Shipping & Delivery", href: "/contact" },
       { label: "Returns & Refunds", href: "/contact" },
       { label: "Contact Us", href: "/contact" },
+      { label: "Privacy Policy", href: "/contact" },
+      { label: "Terms of Service", href: "/contact" },
     ],
   },
 ] as const;
+
+const SOCIAL_PILL_CLASS =
+  "inline-flex h-10 w-10 items-center justify-center rounded-full bg-oat-cream text-cocoa-espresso transition-transform hover:-translate-y-0.5";
 
 function InstagramIcon({ size = 17 }: { size?: number }) {
   return (
@@ -51,79 +57,91 @@ function InstagramIcon({ size = 17 }: { size?: number }) {
   );
 }
 
+function TikTokIcon({ size = 16 }: { size?: number }) {
+  return <FaTiktok size={size} aria-hidden />;
+}
+
 export function Footer() {
   return (
-    <footer>
-      <div className="border-t border-foreground/10 bg-background">
-        <div className="mx-auto max-w-[90rem] px-4 py-14 sm:px-6 sm:py-16 lg:px-10">
-          <div className="grid gap-12 sm:grid-cols-2 lg:grid-cols-[1.1fr_0.9fr_0.9fr_0.9fr]">
-            <div>
-              <Link
-                href="/"
-                aria-label="Mornfreak home"
-                className="inline-block font-display text-4xl uppercase leading-none tracking-normal text-foreground transition-colors hover:text-primary"
-              >
-                Mornfreak
-              </Link>
-              <p className="mt-4 max-w-xs text-sm leading-relaxed text-muted-foreground">
-                Protein-forward breakfast for people who train, work, and move fast
-                in the morning.
+    <footer className="bg-ember-clay">
+      <div className="mx-auto max-w-[90rem] px-4 py-14 sm:px-6 sm:py-16 lg:px-10">
+        <div className="grid gap-12 sm:grid-cols-2 lg:grid-cols-[1.1fr_0.9fr_0.9fr_0.9fr] lg:gap-16">
+          <div>
+            <Link
+              href="/"
+              aria-label="Mornfreak home"
+              className="inline-block font-display text-4xl uppercase leading-none tracking-normal text-oat-cream transition-colors hover:text-toasted-almond"
+            >
+              Mornfreak
+            </Link>
+            <p className="mt-4 max-w-xs text-sm leading-relaxed text-oat-cream/70">
+              Protein-forward breakfast for people who train, work, and move fast
+              in the morning.
+            </p>
+            <a
+              href="https://www.instagram.com/mornfreak"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Mornfreak on Instagram"
+              className={`mt-6 ${SOCIAL_PILL_CLASS}`}
+            >
+              <InstagramIcon />
+            </a>
+          </div>
+
+          {FOOTER_GROUPS.map((group) => (
+            <div key={group.title}>
+              <p className="font-sans text-xs font-bold uppercase tracking-[0.18em] text-toasted-almond">
+                {group.title}
               </p>
-              <a
-                href="https://www.instagram.com/mornfreak"
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="Mornfreak on Instagram"
-                className="mt-6 inline-flex h-10 w-10 items-center justify-center rounded-full bg-primary text-primary-foreground transition-transform hover:-translate-y-0.5"
-              >
-                <InstagramIcon />
-              </a>
+              <ul className="mt-6 space-y-3">
+                {group.links.map((link) => (
+                  <li key={link.label}>
+                    <Link
+                      href={link.href}
+                      className="font-sans text-sm text-oat-cream/70 transition-colors hover:text-oat-cream"
+                    >
+                      {link.label}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
             </div>
-
-            {FOOTER_GROUPS.map((group) => (
-              <div key={group.title}>
-                <p className="font-sans text-xs font-bold uppercase tracking-[0.18em] text-primary">
-                  {group.title}
-                </p>
-                <ul className="mt-5 space-y-3">
-                  {group.links.map((link) => (
-                    <li key={link.label}>
-                      <Link
-                        href={link.href}
-                        className="font-sans text-sm text-foreground/65 transition-colors hover:text-foreground"
-                      >
-                        {link.label}
-                      </Link>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            ))}
-          </div>
-
-          <div className="mt-14 flex flex-wrap items-center justify-between gap-4 border-t border-foreground/10 pt-6 text-[0.65rem] uppercase tracking-[0.12em] text-muted-foreground">
-            <p>© {new Date().getFullYear()} Mornfreak. All rights reserved.</p>
-            <div className="flex gap-5">
-              <Link href="/contact" className="hover:text-foreground">
-                Privacy
-              </Link>
-              <Link href="/contact" className="hover:text-foreground">
-                Terms
-              </Link>
-            </div>
-          </div>
+          ))}
         </div>
       </div>
+      <div className="border-t border-cocoa-espresso/20 bg-ember-clay">
+      </div>
 
-      <Link
-        href="/"
-        aria-label="Mornfreak home"
-        className="flex min-h-40 items-center justify-center bg-primary px-4 text-primary-foreground"
-      >
-        <span className="font-display text-[clamp(2rem,6vw,5rem)] uppercase leading-none tracking-normal">
+      <div className="mx-auto flex max-w-[90rem] flex-wrap items-center justify-between gap-4 px-4 py-6 sm:px-6 lg:px-10">
+        <Link
+          href="/"
+          aria-label="Mornfreak home"
+          className="font-display text-xl uppercase tracking-normal text-oat-cream transition-colors hover:text-toasted-almond"
+        >
           Mornfreak
-        </span>
-      </Link>
+        </Link>
+        <div className="flex items-center gap-3">
+          <a
+            href="https://www.instagram.com/mornfreak"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Mornfreak on Instagram"
+            className={SOCIAL_PILL_CLASS}
+          >
+            <InstagramIcon />
+          </a>
+          <a
+            href="https://www.tiktok.com/@mornfreak"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Mornfreak on TikTok"
+            className={SOCIAL_PILL_CLASS}
+          >
+            <TikTokIcon />
+          </a>
+        </div>
+      </div>
     </footer>
   );
 }

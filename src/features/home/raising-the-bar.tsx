@@ -46,7 +46,7 @@ const PRODUCT_FEATURES = {
     imageAlt: "Mornfreak Protein Oats pouch",
     features: [
       {
-        title: "High Protein 26gm",
+        title: "High Protein 26g",
         icon: Dumbbell,
       },
       {
@@ -66,7 +66,7 @@ const PRODUCT_FEATURES = {
         icon: HeartPulse,
       },
       {
-        title: "Slow & Sustained Energy",
+        title: "Sustained Energy",
         icon: Wheat,
       },
     ],
@@ -111,17 +111,27 @@ export function RaisingTheBar() {
   return (
     <section className="overflow-hidden bg-background py-20 sm:py-28">
       <Container className="max-w-[82rem]">
-        <header className="mx-auto max-w-2xl text-center">
-          <p className="font-sans text-xs font-bold uppercase tracking-[0.22em] text-primary">
-            How we&apos;re raising the bar
+        <header className="mx-auto max-w-5xl text-center">
+          <p className="font-sans text-s font-bold uppercase tracking-[0.15em] text-primary">
+            How we're raising the bar
           </p>
-          <Heading variant="display" as="h2" className="mt-4 leading-[0.9]">
-            Better ingredients. Higher standards.
+          <Heading
+            variant="display"
+            as="h2"
+            className="mt-4 px-3 text-center sm:px-0"
+            style={{
+              fontSize: "clamp(1.35rem, 7.2vw, 4.5rem)",
+              lineHeight: 0.94,
+            }}
+          >
+            <span className="block whitespace-nowrap">Better ingredients.</span>
+            <span className="block whitespace-nowrap">Higher standards.</span>
           </Heading>
           <p className="mx-auto mt-5 max-w-xl leading-relaxed text-muted-foreground">
             Premium nutrition and a promise of purity—because your mornings deserve nothing less.
           </p>
         </header>
+
 
         <div
           className="mx-auto mt-9 flex w-full max-w-md rounded-full bg-muted/70 p-1"

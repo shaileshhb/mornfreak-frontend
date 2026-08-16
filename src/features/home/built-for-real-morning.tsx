@@ -18,25 +18,21 @@ export function BuiltForRealMornings() {
       <Container className="max-w-[82rem]">
         <div className="grid items-center gap-14 lg:grid-cols-[0.9fr_1.1fr]">
           <div>
-            <p className="font-sans text-xs font-bold uppercase tracking-[0.22em] text-primary">
+            <p className="font-sans text-s font-bold uppercase tracking-[0.15em] text-primary">
               Built for real mornings
             </p>
             <Heading variant="display" as="h2" className="mt-4 max-w-xl leading-[0.9]">
               Nutrition behind every great morning.
             </Heading>
             <Link
-              href="/products"
               className="mt-10 inline-flex h-12 items-center justify-center gap-2 bg-foreground px-7 font-sans text-sm font-bold uppercase tracking-[0.12em] text-white transition-transform hover:-translate-y-0.5"
-            >
+              href="/products">
               Shop Mornfreak <ArrowRight aria-hidden size={17} />
             </Link>
           </div>
 
           <div className="relative min-h-[28rem] overflow-hidden sm:min-h-[35rem]">
-            <div
-              aria-hidden
-              className="absolute inset-8 border border-dashed border-primary/25 sm:inset-12"
-            />
+            <div aria-hidden className="absolute inset-8 sm:inset-12" />
             <Image
               src="/images/built-for-real-morning.png"
               alt="Mornfreak built for real mornings"

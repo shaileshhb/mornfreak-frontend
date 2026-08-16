@@ -32,7 +32,7 @@ const PRODUCT_COMPARISONS = {
     ] as const,
     rows: [
       {
-        title: "High Protein 30g+",
+        title: "High Protein 26g",
         detail: "Complete protein from Whey + Soy",
         icon: Dumbbell,
         values: [true, true, false] as const,
@@ -69,7 +69,6 @@ const PRODUCT_COMPARISONS = {
     imageAlt: "Mornfreak Peanut Butter Powder jar",
     columns: [
       "MORNFREAK PEANUT BUTTER POWDER",
-      "Other Peanut Powders",
       "Regular Peanut Butter",
     ] as const,
     rows: [
@@ -77,31 +76,31 @@ const PRODUCT_COMPARISONS = {
         title: "High Protein",
         detail: "Up to 50% protein",
         icon: Dumbbell,
-        values: [true, true, true] as const,
+        values: [true, true] as const,
       },
       {
         title: "87% Less Calories*",
         detail: "Than regular peanut butter",
         icon: Ban,
-        values: [true, true, false] as const,
+        values: [true, false] as const,
       },
       {
         title: "1/3 Less Fat*",
         detail: "Defatted peanut powder",
         icon: Droplet,
-        values: [true, true, false] as const,
+        values: [true,  false] as const,
       },
       {
         title: "No Added Sugar",
         detail: "100% clean label",
         icon: Ban,
-        values: [true, true, false] as const,
+        values: [true,  false] as const,
       },
       {
         title: "No Added Salt",
         detail: "Just pure roasted peanuts",
         icon: Leaf,
-        values: [true, true, false] as const,
+        values: [true,  false] as const,
       },
     ],
   },
@@ -163,7 +162,14 @@ export function HowWeStackUp() {
         <div className="mt-14 overflow-x-auto">
 
           <div className="overflow-x-auto">
-            <table className="w-full min-w-[42rem] border-collapse text-left">
+            <table
+              className={cn(
+                "border-collapse text-left",
+                activeProduct === "peanutButter"
+                  ? "mx-auto w-full min-w-[28rem] max-w-3xl"
+                  : "w-full min-w-[42rem]",
+              )}
+            >
               <thead>
                 <tr>
                   <th className="w-[38%] border-b border-foreground/15 p-4 sm:p-5" scope="col">
@@ -175,6 +181,7 @@ export function HowWeStackUp() {
                       scope="col"
                       className={cn(
                         "border-b p-4 text-center font-sans text-[0.65rem] font-bold uppercase tracking-[0.1em] sm:p-5 sm:text-xs sm:tracking-[0.12em]",
+                        activeProduct === "peanutButter" && "w-[10rem] sm:w-[12rem]",
                         index === 0
                           ? "rounded-t-lg border-primary bg-primary text-primary-foreground"
                           : "border-foreground/15 text-foreground/65",
@@ -209,6 +216,7 @@ export function HowWeStackUp() {
                         key={`${title}-${product.columns[index]}`}
                         className={cn(
                           "border-b p-4 text-center sm:p-5",
+                          activeProduct === "peanutButter" && "w-[10rem] sm:w-[12rem]",
                           index === 0
                             ? cn(
                                 "border-primary bg-primary text-primary-foreground",

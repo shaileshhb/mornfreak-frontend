@@ -31,7 +31,7 @@ export function WhyMornfreak() {
       <Container className="max-w-[82rem]">
         <div className="grid gap-14 lg:grid-cols-[1.05fr_0.95fr] lg:items-stretch">
           <div className="lg:py-6">
-            <p className="font-sans text-xs font-bold uppercase tracking-[0.22em] text-primary">
+            <p className="font-sans text-s font-bold uppercase tracking-[0.15em] text-primary">
               Why Mornfreak
             </p>
             <Heading variant="display" as="h2" className="mt-4 max-w-2xl leading-[0.92]">
@@ -64,16 +64,6 @@ export function WhyMornfreak() {
             </Link>
           </div>
 
-          {/* <div className="relative min-h-[34rem] overflow-hidden bg-muted lg:min-h-full">
-            <div className="absolute inset-5 border border-dashed border-primary/35" aria-hidden />
-            <div className="absolute inset-0 flex flex-col items-center justify-center px-8 text-center text-foreground/55">
-              <span className="font-display text-4xl uppercase tracking-wide">Lifestyle image</span>
-              <span className="mt-2 max-w-xs font-sans text-xs uppercase tracking-[0.16em]">
-                Replace with a portrait-oriented morning movement or outdoor training photo
-              </span>
-            </div>
-            <div className="absolute -bottom-16 -right-16 h-48 w-48 rounded-full border-[2.5rem] border-primary/10" aria-hidden />
-          </div> */}
           <div className="relative min-h-[34rem] overflow-hidden bg-muted lg:min-h-full">
             <Image
               src="/images/why-mornfreak.avif"
@@ -82,7 +72,7 @@ export function WhyMornfreak() {
               sizes="(max-width: 1024px) 100vw, 45vw"
               className="object-cover object-center"
             />
-            <div className="absolute inset-5 border border-dashed border-primary/35" aria-hidden />
+            <div className="absolute inset-5" aria-hidden />
             <div className="absolute -bottom-16 -right-16 h-48 w-48 rounded-full border-[2.5rem] border-primary/10" aria-hidden />
           </div>
         </div>

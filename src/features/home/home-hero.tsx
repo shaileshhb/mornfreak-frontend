@@ -371,7 +371,7 @@ function FullBleedSlide({
 
       <div className="absolute inset-0 bg-foreground/45" aria-hidden />
 
-      <div className="relative z-10 flex h-full items-center justify-center px-6 pb-20 pt-16 text-center">
+      <div className="absolute inset-0 z-10 flex items-center justify-center px-6 text-center">
         <div
           className={cn(
             "flex max-w-3xl flex-col items-center",

@@ -78,15 +78,6 @@ export function Footer() {
               Protein-forward breakfast for people who train, work, and move fast
               in the morning.
             </p>
-            <a
-              href="https://www.instagram.com/mornfreak"
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="Mornfreak on Instagram"
-              className={`mt-6 ${SOCIAL_PILL_CLASS}`}
-            >
-              <InstagramIcon />
-            </a>
           </div>
 
           {FOOTER_GROUPS.map((group) => (

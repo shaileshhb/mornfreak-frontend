@@ -103,16 +103,14 @@ const LIFESTYLE = [
   {
     title: "Fuel Your Day",
     body: "Our protein oats and Peanut Butter Powder are crafted to keep you full, focused and energized, every morning.",
-    image:
-      "https://images.unsplash.com/photo-1502904550040-7534597429ae?auto=format&fit=crop&w=1200&q=80",
-    alt: "Athletes running on a track at sunrise",
+    image: "/images/science/fuel-your-day.jpg",
+    alt: "Couple sharing breakfast in a sunlit kitchen",
   },
   {
     title: "Built for Performance",
     body: "High-protein, clean ingredients and smart nutrition to support your training and recovery.",
-    image:
-      "https://images.unsplash.com/photo-1517836357463-d25dfeac3438?auto=format&fit=crop&w=1200&q=80",
-    alt: "Athlete preparing for a heavy lift in the gym",
+    image: "/images/science/performance.jpeg",
+    alt: "Athletes high-fiving over barbells after a workout",
   },
 ] as const;
 

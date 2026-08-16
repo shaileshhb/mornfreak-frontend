@@ -35,7 +35,7 @@ const FORMULA = [
   },
   {
     eyebrow: "Protein Boost",
-    title: "PB Powder",
+    title: "Peanut Butter Powder",
     body: "High protein, low fat nutrition for muscle support.",
     highlighted: false,
   },
@@ -102,7 +102,7 @@ const PB_BENEFITS: Benefit[] = [
 const LIFESTYLE = [
   {
     title: "Fuel Your Day",
-    body: "Our protein oats and PB powder are crafted to keep you full, focused and energized, every morning.",
+    body: "Our protein oats and Peanut Butter Powder are crafted to keep you full, focused and energized, every morning.",
     image:
       "https://images.unsplash.com/photo-1502904550040-7534597429ae?auto=format&fit=crop&w=1200&q=80",
     alt: "Athletes running on a track at sunrise",
@@ -138,27 +138,27 @@ export default function SciencePage() {
   return (
     <>
       {/* Hero */}
-      <section className="overflow-hidden bg-card">
-        <Container className="max-w-[82rem]">
-          <div className="grid items-center gap-10 py-16 sm:py-20 lg:grid-cols-[1.05fr_0.95fr] lg:gap-14 lg:py-28">
-            <div>
-              <p className="font-sans text-xs font-bold uppercase tracking-[0.22em] text-primary">
-                How It Works. One Habit. Big Impact.
-              </p>
-              <Heading variant="display" as="h1" className="mt-4 max-w-xl leading-[0.92]">
-                The Science of Better Mornings.
-              </Heading>
-            </div>
-            <div className="relative min-h-[22rem] overflow-hidden bg-muted sm:min-h-[28rem]">
-              <Image
-                src="/images/science-oats-bowl.jpg"
-                alt="Bowl of chocolate protein oats topped with fruit, with milk pouring in"
-                fill
-                priority
-                sizes="(max-width: 1024px) 100vw, 45vw"
-                className="object-cover"
-              />
-            </div>
+      <section className="relative overflow-hidden bg-ink">
+        <Image
+          src="/images/science/banner.png"
+          alt="Motion-blurred runner in a dark industrial setting"
+          fill
+          priority
+          sizes="100vw"
+          className="object-cover object-center"
+        />
+        <Container className="relative z-10 flex min-h-[22rem] items-center justify-center py-16 text-center sm:min-h-[28rem] lg:min-h-[32rem]">
+          <div className="max-w-3xl">
+            <Heading variant="display" as="h1" className="text-paper leading-[0.92]">
+              How It Works.
+              <br />
+              One Habit.
+              <br />
+              Big Impact.
+            </Heading>
+            <p className="mt-4 font-sans text-base text-paper/90 sm:text-lg">
+              The Science of Better Mornings.
+            </p>
           </div>
         </Container>
       </section>
@@ -171,9 +171,8 @@ export default function SciencePage() {
               <div key={item.title} className="contents">
                 {index > 0 && (
                   <div
-                    aria-hidden
-                    className="flex items-center justify-center font-display text-3xl text-primary lg:px-1"
-                  >
+                    className="flex items-center justify-center font-display text-2xl text-primary lg:px-1"
+                    aria-hidden>
                     {index === 1 ? "+" : "="}
                   </div>
                 )}
@@ -182,22 +181,20 @@ export default function SciencePage() {
                     item.highlighted
                       ? "flex-1 rounded-2xl border border-primary bg-primary p-6 text-primary-foreground sm:p-7"
                       : "flex-1 rounded-2xl border border-border bg-card p-6 sm:p-7"
-                  }
-                >
+                  }>
                   <p
                     className={
                       item.highlighted
                         ? "font-sans text-xs font-bold uppercase tracking-[0.18em] text-primary-foreground/70"
                         : "font-sans text-xs font-bold uppercase tracking-[0.18em] text-primary"
-                    }
-                  >
+                    }>
                     {item.eyebrow}
                   </p>
                   <h2
                     className={
                       item.highlighted
-                        ? "mt-2 font-display text-2xl uppercase tracking-wide text-primary-foreground sm:text-3xl"
-                        : "mt-2 font-display text-2xl uppercase tracking-wide text-foreground sm:text-3xl"
+                        ? "mt-2 font-display text-xl uppercase tracking-wide text-primary-foreground sm:text-xl"
+                        : "mt-2 font-display text-2xl uppercase tracking-wide text-foreground sm:text-2xl"
                     }
                   >
                     {item.title}
@@ -247,7 +244,7 @@ export default function SciencePage() {
             <article className="rounded-2xl border border-border bg-card p-6 sm:p-8">
               <div className="rounded-lg bg-foreground px-4 py-3">
                 <p className="font-sans text-xs font-bold uppercase tracking-[0.16em] text-primary-foreground">
-                  Protein Oats – Chocolate
+                  Protein Oats
                 </p>
               </div>
               <BenefitList benefits={OATS_BENEFITS} />
@@ -256,7 +253,7 @@ export default function SciencePage() {
             <article className="rounded-2xl border border-border bg-card p-6 sm:p-8">
               <div className="rounded-lg bg-primary px-4 py-3">
                 <p className="font-sans text-xs font-bold uppercase tracking-[0.16em] text-primary-foreground">
-                  Peanut Butter Powder – Unsweetened
+                  Peanut Butter Powder
                 </p>
               </div>
               <BenefitList benefits={PB_BENEFITS} />

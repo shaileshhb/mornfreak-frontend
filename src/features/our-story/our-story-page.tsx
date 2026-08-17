@@ -47,7 +47,7 @@ function StoryHeroImage() {
     props: { srcSet: desktopSrcSet },
   } = getImageProps({
     ...common,
-    src: "/images/our-story/person_with_mug.png",
+    src: "/images/our-story/person_with_mug_2.png",
     width: 1983,
     height: 793,
   });
@@ -55,7 +55,7 @@ function StoryHeroImage() {
     props: { srcSet: mobileSrcSet, ...mobileProps },
   } = getImageProps({
     ...common,
-    src: "/images/our-story/person_with_mug_mobile.png",
+    src: "/images/our-story/person_with_mug_mobile_2.png",
     width: 1122,
     height: 1402,
     priority: true,

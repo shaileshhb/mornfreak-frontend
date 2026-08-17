@@ -12,8 +12,8 @@ import {
 
 import { cn } from "@/lib/cn";
 
-import img1Desktop from "../../../public/images/hero/img_1_desktop.avif";
-import img1Mobile from "../../../public/images/hero/img_1_mobile.png";
+import img1Desktop from "../../../public/images/hero/img_1_desktop.jpeg";
+import img1Mobile from "../../../public/images/hero/img_1_mobile.jpeg";
 import img2Desktop from "../../../public/images/hero/img_2_desktop.png";
 import img2Mobile from "../../../public/images/hero/img_2_mobile.png";
 import img3Desktop from "../../../public/images/img_3_desktop.avif";

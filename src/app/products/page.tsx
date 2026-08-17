@@ -47,7 +47,7 @@ export default function ProductsPage() {
               Made Better.
             </Heading>
             <Text variant="lead" className="max-w-md text-muted-foreground lg:text-paper/80">
-              Two high-performance breakfast staples. Real ingredients, real results.
+              Real ingredients, real results.
             </Text>
           </div>
         </Container>

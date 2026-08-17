@@ -12,6 +12,7 @@ function toProductIngredients(
   return ingredients.map((ingredient) => ({
     name: ingredient.title,
     image: ingredient.image,
+    imageAlt: ingredient.imageAlt,
     description: ingredient.description,
     keyFeatures: ingredient.keyFeatures,
   }));
@@ -56,6 +57,17 @@ export const PRODUCT_DETAIL_FIXTURES: Record<string, ProductDetail> = {
     trustBadges: proteinOats.badges,
     servingInfo: proteinOats.weight,
     comingSoon: true,
+    howToUse: [
+      {
+        text: "[TODO: confirm preparation copy] Add one 70g serving (1 cup) to a bowl.",
+      },
+      {
+        text: "[TODO: confirm liquid amount] Pour over hot water or milk.",
+      },
+      {
+        text: "[TODO: confirm timing] Stir until combined, then eat.",
+      },
+    ],
     nutrition: [
       { label: "Serving size", value: "70g (1 cup)" },
       { label: "Energy", value: "268 kcal" },
@@ -67,6 +79,13 @@ export const PRODUCT_DETAIL_FIXTURES: Record<string, ProductDetail> = {
       { label: "Added sugar", value: "0g" },
     ],
     ingredients: toProductIngredients(PROTEIN_OATS_INGREDIENTS),
+    proofPoints: [
+      { icon: "dumbbell", label: "26g Protein / 100g" },
+      { icon: "check", label: "No Added Sugar" },
+      { icon: "wheat", label: "High Fiber" },
+      { icon: "shield", label: "No Preservatives" },
+      { icon: "leaf", label: "Naturally Sweetened" },
+    ],
     reviews: {
       averageRating: 4.3,
       count: 4,
@@ -145,6 +164,17 @@ export const PRODUCT_DETAIL_FIXTURES: Record<string, ProductDetail> = {
     trustBadges: peanutButter.badges,
     servingInfo: peanutButter.weight,
     comingSoon: true,
+    howToUse: [
+      {
+        text: "[TODO: confirm preparation copy] Add 2 tablespoons (12g) to oats, a shake, or baking.",
+      },
+      {
+        text: "[TODO: confirm mixing copy] Stir or blend until smooth.",
+      },
+      {
+        text: "[TODO: confirm serving copy] Use as a lighter peanut flavour boost.",
+      },
+    ],
     nutrition: [
       { label: "Serving size", value: "12g (2 tbsp)" },
       { label: "Energy", value: "50 kcal" },
@@ -156,6 +186,13 @@ export const PRODUCT_DETAIL_FIXTURES: Record<string, ProductDetail> = {
       { label: "Trans fat", value: "0g" },
     ],
     ingredients: toProductIngredients(PEANUT_BUTTER_INGREDIENTS),
+    proofPoints: [
+      { icon: "dumbbell", label: "9g Protein / Serving" },
+      { icon: "droplet", label: "87% Less Fat" },
+      { icon: "check", label: "No Added Sugar" },
+      { icon: "leaf", label: "Plant-Based" },
+      { icon: "shield", label: "Gluten-Free" },
+    ],
     reviews: {
       averageRating: 4.7,
       count: 3,

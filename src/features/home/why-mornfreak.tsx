@@ -1,6 +1,5 @@
 import { ArrowRight, Clock3, Leaf, Zap } from "lucide-react";
 import Link from "next/link";
-import Image from "next/image";
 import { Container } from "@/components/ui/container";
 import { Heading } from "@/components/ui/heading";
 
@@ -57,20 +56,23 @@ export function WhyMornfreak() {
             </div>
 
             <Link
-              href="/products"
               className="mt-8 inline-flex h-12 items-center justify-center gap-2 bg-primary px-7 font-sans text-sm font-bold uppercase tracking-[0.12em] text-white transition-transform hover:-translate-y-0.5"
-            >
+              href="/products">
               Shop now <ArrowRight aria-hidden size={17} />
             </Link>
           </div>
 
           <div className="relative min-h-[34rem] overflow-hidden bg-muted lg:min-h-full">
-            <Image
-              src="/images/why-mornfreak.avif"
-              alt="A person moving through their morning routine, fuelled by Mornfreak"
-              fill
-              sizes="(max-width: 1024px) 100vw, 45vw"
-              className="object-cover object-center"
+            <video
+              className="absolute inset-0 h-full w-full object-cover object-center"
+              src="/images/hero/why-mornfreak.mp4"
+              poster="/images/why-mornfreak.avif"
+              autoPlay
+              muted
+              loop
+              playsInline
+              preload="metadata"
+              aria-label="A person moving through their morning routine, fuelled by Mornfreak"
             />
             <div className="absolute inset-5" aria-hidden />
             <div className="absolute -bottom-16 -right-16 h-48 w-48 rounded-full border-[2.5rem] border-primary/10" aria-hidden />

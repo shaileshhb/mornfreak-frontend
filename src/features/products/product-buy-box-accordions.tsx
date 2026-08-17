@@ -1,0 +1,208 @@
+"use client";
+
+import { ChevronDown } from "lucide-react";
+import { useId, useState, type ReactNode } from "react";
+
+import { cn } from "@/lib/cn";
+
+import type { ProductDetail } from "./types";
+
+type PanelId = "how-to-use" | "description" | "ingredients" | "nutrition";
+
+type ProductBuyBoxAccordionsProps = {
+  product: ProductDetail;
+};
+
+function AccordionPanel({
+  id,
+  title,
+  open,
+  onToggle,
+  children,
+}: {
+  id: string;
+  title: string;
+  open: boolean;
+  onToggle: () => void;
+  children: ReactNode;
+}) {
+  const panelId = `${id}-panel`;
+  const buttonId = `${id}-button`;
+
+  return (
+    <div className="border-t border-border">
+      <h3>
+        <button
+          type="button"
+          id={buttonId}
+          aria-expanded={open}
+          aria-controls={panelId}
+          onClick={onToggle}
+          className="flex w-full items-center justify-between gap-3 py-4 text-left"
+        >
+          <span className="font-sans text-sm font-bold uppercase tracking-[0.12em]">
+            {title}
+          </span>
+          <ChevronDown
+            aria-hidden
+            size={18}
+            className={cn(
+              "shrink-0 motion-safe:transition-transform motion-safe:duration-200",
+              open && "rotate-180",
+            )}
+          />
+        </button>
+      </h3>
+      <div
+        id={panelId}
+        role="region"
+        aria-labelledby={buttonId}
+        className={cn(
+          "grid motion-safe:transition-[grid-template-rows] motion-safe:duration-300 motion-safe:ease-out",
+          open ? "grid-rows-[1fr]" : "grid-rows-[0fr]",
+        )}
+      >
+        <div className="overflow-hidden">
+          <div
+            className="pb-5"
+            {...(!open ? { inert: true as const } : {})}
+          >
+            {children}
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function HowToUseContent({ steps }: { steps: ProductDetail["howToUse"] }) {
+  if (steps.length === 0) {
+    return (
+      <p className="font-sans text-sm leading-relaxed text-foreground/70">
+        [TODO: confirm preparation copy] Preparation instructions coming soon.
+      </p>
+    );
+  }
+
+  return (
+    <ol className="space-y-3">
+      {steps.map((step, index) => (
+        <li key={step.text} className="flex gap-3 font-sans text-sm leading-relaxed text-foreground/80">
+          <span
+            aria-hidden
+            className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-foreground/10 text-xs font-bold tabular-nums text-foreground"
+          >
+            {index + 1}
+          </span>
+          <span>{step.text}</span>
+        </li>
+      ))}
+    </ol>
+  );
+}
+
+function IngredientsContent({
+  ingredients,
+}: {
+  ingredients: ProductDetail["ingredients"];
+}) {
+  if (ingredients.length === 0) {
+    return (
+      <p className="font-sans text-sm text-foreground/70">
+        [TODO: confirm ingredient list] Ingredient details coming soon.
+      </p>
+    );
+  }
+
+  return (
+    <p className="font-sans text-sm leading-relaxed text-foreground/80">
+      {ingredients.map((ingredient) => ingredient.name).join(", ")}
+    </p>
+  );
+}
+
+function NutritionContent({
+  nutrition,
+}: {
+  nutrition: ProductDetail["nutrition"];
+}) {
+  return (
+    <div>
+      <p className="font-sans text-xs text-foreground/50">Per serving</p>
+      <table className="mt-3 w-full text-sm">
+        <caption className="sr-only">Nutrition facts per serving</caption>
+        <tbody>
+          {nutrition.map((row) => (
+            <tr
+              key={row.label}
+              className="border-b border-border/70 last:border-b-0"
+            >
+              <th
+                scope="row"
+                className="py-2.5 pr-4 text-left font-sans font-medium text-foreground/70"
+              >
+                {row.label}
+              </th>
+              <td className="py-2.5 text-right font-sans tabular-nums text-foreground">
+                {row.value}
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  );
+}
+
+export function ProductBuyBoxAccordions({ product }: ProductBuyBoxAccordionsProps) {
+  const baseId = useId();
+  const [openPanel, setOpenPanel] = useState<PanelId | null>("how-to-use");
+
+  const toggle = (panel: PanelId) => {
+    setOpenPanel((current) => (current === panel ? null : panel));
+  };
+
+  return (
+    <div className="border-b border-border">
+      <AccordionPanel
+        id={`${baseId}-how-to-use`}
+        title="How to Use"
+        open={openPanel === "how-to-use"}
+        onToggle={() => toggle("how-to-use")}
+      >
+        <HowToUseContent steps={product.howToUse} />
+      </AccordionPanel>
+
+      <AccordionPanel
+        id={`${baseId}-description`}
+        title="Description"
+        open={openPanel === "description"}
+        onToggle={() => toggle("description")}
+      >
+        <p className="font-sans text-sm leading-relaxed text-foreground/80">
+          {product.description}
+        </p>
+      </AccordionPanel>
+
+      <AccordionPanel
+        id={`${baseId}-ingredients`}
+        title="Ingredients"
+        open={openPanel === "ingredients"}
+        onToggle={() => toggle("ingredients")}
+      >
+        <IngredientsContent ingredients={product.ingredients} />
+      </AccordionPanel>
+
+      {product.nutrition.length > 0 && (
+        <AccordionPanel
+          id={`${baseId}-nutrition`}
+          title="Nutrition"
+          open={openPanel === "nutrition"}
+          onToggle={() => toggle("nutrition")}
+        >
+          <NutritionContent nutrition={product.nutrition} />
+        </AccordionPanel>
+      )}
+    </div>
+  );
+}

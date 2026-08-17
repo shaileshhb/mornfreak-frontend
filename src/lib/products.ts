@@ -13,6 +13,7 @@ export type ProductContent = {
   description: string;
   images: string[];
   heroImage: string;
+  hoverImage: string;
   serveImage: string;
   stats: ProductStat[];
   badges: string[];
@@ -29,7 +30,8 @@ export const PRODUCT_CONTENT: Record<ProductId, ProductContent> = {
     description:
       "26g of protein per 100g, sweetened naturally with dates, loaded with super seeds and nuts. The breakfast that works as hard as you do.",
     images: ["/images/oats_1.jpeg", "/images/oats_2.jpeg"],
-    heroImage: "/images/oats_1.jpeg",
+    heroImage: "/images/oats_2.jpeg",
+    hoverImage: "/images/science-oats-bowl.jpg",
     serveImage: "/images/oats_2.jpeg",
     stats: [
       { value: "26g", label: "Protein / 100g" },
@@ -69,7 +71,8 @@ export const PRODUCT_CONTENT: Record<ProductId, ProductContent> = {
       "/images/peanut_butter_powder_1.jpeg",
       "/images/peanut_butter_powder_2.jpeg",
     ],
-    heroImage: "/images/peanut_butter_powder_1.jpeg",
+    heroImage: "/images/peanut_butter_powder_2.jpeg",
+    hoverImage: "/images/peanut_butter_powder_1.jpeg",
     serveImage: "/images/peanut_butter_powder_2.jpeg",
     stats: [
       { value: "9g", label: "Protein / Serving" },

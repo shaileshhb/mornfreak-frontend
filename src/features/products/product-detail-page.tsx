@@ -3,6 +3,7 @@ import { Container } from "@/components/ui/container";
 import { ProductBuyBox } from "./product-buy-box";
 import { ProductImageCarousel } from "./product-image-carousel";
 import { ProductIngredientsSection } from "./product-ingredients-section";
+import { ProductProofPointsSection } from "./product-proof-points-section";
 import { ProductReviewsSection } from "./product-reviews-section";
 import { StickyMobileCartBar } from "./sticky-mobile-cart-bar";
 import type { ProductDetail } from "./types";
@@ -40,6 +41,11 @@ export function ProductDetailPage({ product }: ProductDetailPageProps) {
         productId={product.id}
         productLabel={productLabel}
         ingredients={product.ingredients}
+      />
+
+      <ProductProofPointsSection
+        productId={product.id}
+        points={product.proofPoints}
       />
 
       <ProductReviewsSection

@@ -21,8 +21,28 @@ export type ProductStat = {
 export type ProductIngredient = {
   name: string;
   image: string;
+  imageAlt: string;
   description: string;
   keyFeatures: string[];
+};
+
+export type ProductHowToUseStep = {
+  text: string;
+};
+
+export type ProductProofPointIcon =
+  | "zap"
+  | "leaf"
+  | "droplet"
+  | "check"
+  | "clock"
+  | "wheat"
+  | "shield"
+  | "dumbbell";
+
+export type ProductProofPoint = {
+  label: string;
+  icon: ProductProofPointIcon;
 };
 
 export type NutritionRow = {
@@ -61,7 +81,9 @@ export type ProductDetail = {
   trustBadges: string[];
   servingInfo: string;
   comingSoon: boolean;
+  howToUse: ProductHowToUseStep[];
   nutrition: NutritionRow[];
   ingredients: ProductIngredient[];
+  proofPoints: ProductProofPoint[];
   reviews: ProductReviews;
 };

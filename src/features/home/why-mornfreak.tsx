@@ -62,7 +62,7 @@ export function WhyMornfreak() {
             </Link>
           </div>
 
-          <div className="relative min-h-[34rem] overflow-hidden bg-muted lg:min-h-full">
+          <div className="relative h-[min(80vh,55rem)] overflow-hidden bg-muted lg:self-center">
             <video
               className="absolute inset-0 h-full w-full object-cover object-center"
               src="/images/hero/why-mornfreak.mp4"
@@ -74,8 +74,6 @@ export function WhyMornfreak() {
               preload="metadata"
               aria-label="A person moving through their morning routine, fuelled by Mornfreak"
             />
-            <div className="absolute inset-5" aria-hidden />
-            <div className="absolute -bottom-16 -right-16 h-48 w-48 rounded-full border-[2.5rem] border-primary/10" aria-hidden />
           </div>
         </div>
       </Container>

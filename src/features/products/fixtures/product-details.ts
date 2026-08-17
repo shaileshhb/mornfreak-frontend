@@ -30,12 +30,52 @@ export const PRODUCT_DETAIL_FIXTURES: Record<string, ProductDetail> = {
     description: proteinOats.description,
     images: [
       {
-        url: "/images/oats_1.jpeg",
-        alt: "Mornfreak Protein Oats pouch and single-serve cup",
+        url: "/images/products/oats/oats-2.jpeg",
+        alt: "Mornfreak Protein Oats 425g Rich Chocolate pouch",
       },
       {
-        url: "/images/oats_2.jpeg",
-        alt: "Bowl of prepared Mornfreak Protein Oats",
+        url: "/images/products/oats/oats-front.jpeg",
+        alt: "Mornfreak Protein Oats 77g single-serve cup",
+      },
+      {
+        url: "/images/products/oats/oats-3.jpeg",
+        alt: "Protein Oats pouch with a prepared chocolate oat bowl",
+      },
+      {
+        url: "/images/products/oats/oats-4.jpeg",
+        alt: "Prepared Protein Oats bowl with banana, berries and chocolate",
+      },
+      {
+        url: "/images/products/oats/oats-clean.jpeg",
+        alt: "Clean, gut-friendly fuel claims next to Protein Oats pouch",
+      },
+      {
+        url: "/images/products/oats/oats-info.jpeg",
+        alt: "Protein Oats free-from icons: no added sugar, non-GMO, gluten free",
+      },
+      {
+        url: "/images/products/oats/oats-info-2.jpeg",
+        alt: "Protein Oats benefits: 26g protein, prebiotics and rich chocolate taste",
+      },
+      {
+        url: "/images/products/oats/oats-5.jpeg",
+        alt: "Bowl of Rich Chocolate oats for breakfast, snacking and travel",
+      },
+      {
+        url: "/images/products/oats/oats-ingredients-2.jpeg",
+        alt: "Meet the ingredients: oats, protein blend, dates, seeds, almonds and raisins",
+      },
+      {
+        url: "/images/products/oats/oats-back.jpeg",
+        alt: "Back of the Protein Oats 425g pouch with nutrition and how to use",
+      },
+      {
+        url: "/images/products/oats/oats-ingredients.jpeg",
+        alt: "Single-serve cup back panel with ingredients and prep steps",
+      },
+      {
+        url: "/images/products/oats/oats-nutrition.jpeg",
+        alt: "Protein Oats nutritional information table",
       },
     ],
     price: 599,
@@ -58,26 +98,26 @@ export const PRODUCT_DETAIL_FIXTURES: Record<string, ProductDetail> = {
     servingInfo: proteinOats.weight,
     comingSoon: true,
     howToUse: [
-      {
-        text: "[TODO: confirm preparation copy] Add one 70g serving (1 cup) to a bowl.",
-      },
-      {
-        text: "[TODO: confirm liquid amount] Pour over hot water or milk.",
-      },
-      {
-        text: "[TODO: confirm timing] Stir until combined, then eat.",
-      },
+      { text: "Add a 70g serving to a bowl." },
+      { text: "Pour over hot milk or water." },
+      { text: "Stir, rest 2 minutes, then eat." },
     ],
+    ingredientStatement:
+      "Gluten-free oats, protein blend (texturized soy protein, whey protein concentrate and soy protein isolate), dates powder, seeds nuts and fruits mix (almonds, pumpkin seeds, sunflower seeds, chia seeds, flax seeds and black raisins), prebiotic fibre, cocoa, pink salt and monk fruit.",
     nutrition: [
-      { label: "Serving size", value: "70g (1 cup)" },
-      { label: "Energy", value: "268 kcal" },
-      { label: "Protein", value: "20g" },
-      { label: "Carbohydrates", value: "32g" },
-      { label: "of which sugars", value: "6g (naturally occurring)" },
-      { label: "Fibre", value: "7g" },
-      { label: "Fat", value: "6g" },
-      { label: "Added sugar", value: "0g" },
+      { label: "Serving size", value: "70g" },
+      { label: "Energy", value: "383 kcal" },
+      { label: "Protein", value: "26.0g" },
+      { label: "Carbohydrates", value: "42.0g" },
+      { label: "of which sugars", value: "10.3g" },
+      { label: "Fibre", value: "8.4g" },
+      { label: "Fat", value: "6.3g" },
+      { label: "Saturated fat", value: "1.6g" },
+      { label: "Trans fat", value: "0.0g" },
+      { label: "Added sugar", value: "0.0g" },
+      { label: "Sodium", value: "349mg" },
     ],
+    nutritionCaption: "Per 100g",
     ingredients: toProductIngredients(PROTEIN_OATS_INGREDIENTS),
     proofPoints: [
       { icon: "dumbbell", label: "26g Protein / 100g" },
@@ -137,12 +177,56 @@ export const PRODUCT_DETAIL_FIXTURES: Record<string, ProductDetail> = {
     description: peanutButter.description,
     images: [
       {
-        url: "/images/peanut_butter_powder_1.jpeg",
-        alt: "Mornfreak Pure Peanut Butter Powder jar",
+        url: "/images/products/peanut-butter/peanut-powder.jpeg",
+        alt: "Mornfreak Pure Peanut Butter Powder 230g jar",
       },
       {
-        url: "/images/peanut_butter_powder_2.jpeg",
-        alt: "Peanut butter powder with whole peanuts",
+        url: "/images/products/peanut-butter/pb-details.jpeg",
+        alt: "Peanut Butter Powder jar with better nutrition and clean claims",
+      },
+      {
+        url: "/images/products/peanut-butter/pb-power-2.jpeg",
+        alt: "Peanut Butter Powder benefits: muscle repair, fibre, energy and weight control",
+      },
+      {
+        url: "/images/products/peanut-butter/pb-peanuts.jpeg",
+        alt: "Premium Java and Bold peanuts slow-roasted in small batches",
+      },
+      {
+        url: "/images/products/peanut-butter/pb-compare.jpeg",
+        alt: "Peanut Butter Powder compared with regular peanut butter",
+      },
+      {
+        url: "/images/products/peanut-butter/pb-serving.jpeg",
+        alt: "Calories and macros: 66.5 kcal per serving versus regular peanut butter",
+      },
+      {
+        url: "/images/products/peanut-butter/pb-graph.jpeg",
+        alt: "Graph of calories per gram of protein versus regular peanut butter",
+      },
+      {
+        url: "/images/products/peanut-butter/pb-recipes.jpeg",
+        alt: "Ways to use peanut butter powder: smoothies, pancakes, toast and baking",
+      },
+      {
+        url: "/images/products/peanut-butter/pb-crafting.jpeg",
+        alt: "How peanut butter powder is crafted: roast, mill, refine and seal",
+      },
+      {
+        url: "/images/products/peanut-butter/pb-power.jpeg",
+        alt: "Pure peanut butter powder with twice the protein and no added sugar",
+      },
+      {
+        url: "/images/products/peanut-butter/pb-ingredients.jpeg",
+        alt: "Jar back panel: 100% roasted peanuts and 7-second mix instructions",
+      },
+      {
+        url: "/images/products/peanut-butter/pb-nutrition.jpeg",
+        alt: "Peanut Butter Powder nutrition panel on the jar",
+      },
+      {
+        url: "/images/products/peanut-butter/pb-nutrition-2.jpeg",
+        alt: "Nutrition table per 100g and per 16g serving",
       },
     ],
     price: 449,
@@ -165,26 +249,25 @@ export const PRODUCT_DETAIL_FIXTURES: Record<string, ProductDetail> = {
     servingInfo: peanutButter.weight,
     comingSoon: true,
     howToUse: [
-      {
-        text: "[TODO: confirm preparation copy] Add 2 tablespoons (12g) to oats, a shake, or baking.",
-      },
-      {
-        text: "[TODO: confirm mixing copy] Stir or blend until smooth.",
-      },
-      {
-        text: "[TODO: confirm serving copy] Use as a lighter peanut flavour boost.",
-      },
+      { text: "Take 2 tbsp (16g) of powder." },
+      { text: "Mix with 1.5–2 tbsp water." },
+      { text: "Stir until smooth (about 7 seconds)." },
     ],
+    ingredientStatement: "Roasted peanuts (100%).",
     nutrition: [
-      { label: "Serving size", value: "12g (2 tbsp)" },
-      { label: "Energy", value: "50 kcal" },
-      { label: "Protein", value: "9g" },
-      { label: "Carbohydrates", value: "4g" },
-      { label: "of which sugars", value: "1g (naturally occurring)" },
-      { label: "Fibre", value: "2g" },
-      { label: "Fat", value: "1.5g" },
-      { label: "Trans fat", value: "0g" },
+      { label: "Serving size", value: "16g (2 tbsp)" },
+      { label: "Energy", value: "66.5 kcal" },
+      { label: "Protein", value: "9.0g" },
+      { label: "Carbohydrates", value: "4.2g" },
+      { label: "of which sugars", value: "0.9g" },
+      { label: "Fibre", value: "2.0g" },
+      { label: "Fat", value: "2.0g" },
+      { label: "Saturated fat", value: "0.4g" },
+      { label: "Trans fat", value: "0.0g" },
+      { label: "Added sugar", value: "0.0g" },
+      { label: "Sodium", value: "0.0mg" },
     ],
+    nutritionCaption: "Per 16g serving (2 tbsp)",
     ingredients: toProductIngredients(PEANUT_BUTTER_INGREDIENTS),
     proofPoints: [
       { icon: "dumbbell", label: "9g Protein / Serving" },

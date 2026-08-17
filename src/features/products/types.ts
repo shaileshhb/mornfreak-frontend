@@ -82,7 +82,9 @@ export type ProductDetail = {
   servingInfo: string;
   comingSoon: boolean;
   howToUse: ProductHowToUseStep[];
+  ingredientStatement: string;
   nutrition: NutritionRow[];
+  nutritionCaption: string;
   ingredients: ProductIngredient[];
   proofPoints: ProductProofPoint[];
   reviews: ProductReviews;

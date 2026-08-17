@@ -71,7 +71,7 @@ export function ProductImageCarousel({
     return (
       <div
         className={cn(
-          "flex aspect-square items-center justify-center rounded-2xl border border-border bg-muted text-sm text-muted-foreground",
+          "flex aspect-[4/3] items-center justify-center rounded-2xl border border-border bg-muted text-sm text-muted-foreground",
           className,
         )}
       >
@@ -81,38 +81,30 @@ export function ProductImageCarousel({
   }
 
   return (
-    <div className={cn("flex flex-col gap-4 lg:flex-row lg:items-start", className)}>
-      {/* Desktop vertical thumbs */}
-      {total > 1 && (
-        <div className="hidden shrink-0 flex-col gap-2 lg:flex">
-          {images.map((image, index) => (
-            <button
-              key={image.url}
-              type="button"
-              aria-label={`Show image ${index + 1} of ${total}`}
-              aria-current={index === activeIndex ? "true" : undefined}
-              onClick={() => goTo(index)}
-              className={cn(
-                "relative h-16 w-16 overflow-hidden rounded-lg border-2 transition-colors",
-                index === activeIndex
-                  ? "border-foreground"
-                  : "border-transparent opacity-70 hover:opacity-100",
-              )}
-            >
-              <Image
-                src={image.url}
-                alt=""
-                fill
-                sizes="64px"
-                className="object-contain p-1"
-                loading={index === 0 ? "eager" : "lazy"}
-              />
-            </button>
-          ))}
-        </div>
-      )}
+    <div className={cn("min-w-0", className)}>
+      <div
+        className="hidden grid-cols-2 gap-3 lg:grid"
+        aria-label={`${productName} product images`}
+      >
+        {images.map((image, index) => (
+          <div
+            key={image.url}
+            className="relative aspect-[4/3] overflow-hidden rounded-2xl border border-border bg-muted"
+          >
+            <Image
+              src={image.url}
+              alt={image.alt}
+              fill
+              sizes="(max-width: 1280px) 40vw, 480px"
+              priority={index < 2}
+              loading={index < 2 ? "eager" : "lazy"}
+              className="object-contain"
+            />
+          </div>
+        ))}
+      </div>
 
-      <div className="min-w-0 flex-1">
+      <div className="lg:hidden">
         <div
           role="region"
           aria-roledescription="carousel"
@@ -129,7 +121,7 @@ export function ProductImageCarousel({
               setShowControls(false);
             }
           }}
-          className="group relative aspect-square touch-pan-y overflow-hidden rounded-2xl border border-border bg-muted outline-none focus-visible:ring-2 focus-visible:ring-ring"
+          className="group relative aspect-[4/3] touch-pan-y overflow-hidden rounded-2xl border border-border bg-muted outline-none focus-visible:ring-2 focus-visible:ring-ring"
         >
           <p id={labelId} className="sr-only">
             {productName} product images
@@ -141,11 +133,11 @@ export function ProductImageCarousel({
               src={image.url}
               alt={image.alt}
               fill
-              sizes="(max-width: 1024px) 100vw, 55vw"
+              sizes="100vw"
               priority={index === 0}
               loading={index === 0 ? "eager" : "lazy"}
               className={cn(
-                "object-contain p-6 motion-safe:transition-opacity motion-safe:duration-500 motion-safe:ease-out",
+                "object-contain motion-safe:transition-opacity motion-safe:duration-500 motion-safe:ease-out",
                 index === activeIndex ? "z-10 opacity-100" : "z-0 opacity-0",
               )}
               aria-hidden={index !== activeIndex}
@@ -160,7 +152,7 @@ export function ProductImageCarousel({
                 onClick={goPrev}
                 className={cn(
                   "absolute left-3 top-1/2 z-20 flex h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full bg-background/90 text-foreground shadow-sm transition-opacity",
-                  showControls ? "opacity-100" : "opacity-0 lg:opacity-0 lg:group-hover:opacity-100",
+                  showControls ? "opacity-100" : "opacity-0",
                 )}
               >
                 <ChevronLeft aria-hidden size={20} />
@@ -171,13 +163,13 @@ export function ProductImageCarousel({
                 onClick={goNext}
                 className={cn(
                   "absolute right-3 top-1/2 z-20 flex h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full bg-background/90 text-foreground shadow-sm transition-opacity",
-                  showControls ? "opacity-100" : "opacity-0 lg:opacity-0 lg:group-hover:opacity-100",
+                  showControls ? "opacity-100" : "opacity-0",
                 )}
               >
                 <ChevronRight aria-hidden size={20} />
               </button>
 
-              <div className="absolute bottom-3 left-1/2 z-20 flex -translate-x-1/2 gap-1.5 lg:hidden">
+              <div className="absolute bottom-3 left-1/2 z-20 flex -translate-x-1/2 gap-1.5">
                 {images.map((image, index) => (
                   <button
                     key={image.url}
@@ -196,9 +188,8 @@ export function ProductImageCarousel({
           )}
         </div>
 
-        {/* Mobile / tablet horizontal thumbs */}
         {total > 1 && (
-          <div className="mt-3 flex gap-2 overflow-x-auto lg:hidden">
+          <div className="mt-3 flex gap-2 overflow-x-auto">
             {images.map((image, index) => (
               <button
                 key={image.url}

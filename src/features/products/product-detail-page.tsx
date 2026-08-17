@@ -29,7 +29,7 @@ export function ProductDetailPage({ product }: ProductDetailPageProps) {
               images={product.images}
               productName={product.name}
             />
-            <div>
+            <div className="lg:sticky lg:top-24">
               <ProductBuyBox product={product} />
               <div id="buy-box-sentinel" className="h-px w-full" aria-hidden />
             </div>

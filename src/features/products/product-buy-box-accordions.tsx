@@ -78,9 +78,9 @@ function AccordionPanel({
 function HowToUseContent({ steps }: { steps: ProductDetail["howToUse"] }) {
   if (steps.length === 0) {
     return (
-      <p className="font-sans text-sm leading-relaxed text-foreground/70">
-        [TODO: confirm preparation copy] Preparation instructions coming soon.
-      </p>
+          <p className="font-sans text-sm leading-relaxed text-foreground/70">
+            Preparation instructions coming soon.
+          </p>
     );
   }
 
@@ -102,33 +102,35 @@ function HowToUseContent({ steps }: { steps: ProductDetail["howToUse"] }) {
 }
 
 function IngredientsContent({
-  ingredients,
+  statement,
 }: {
-  ingredients: ProductDetail["ingredients"];
+  statement: string;
 }) {
-  if (ingredients.length === 0) {
+  if (!statement) {
     return (
       <p className="font-sans text-sm text-foreground/70">
-        [TODO: confirm ingredient list] Ingredient details coming soon.
+        Ingredient details coming soon.
       </p>
     );
   }
 
   return (
     <p className="font-sans text-sm leading-relaxed text-foreground/80">
-      {ingredients.map((ingredient) => ingredient.name).join(", ")}
+      {statement}
     </p>
   );
 }
 
 function NutritionContent({
   nutrition,
+  caption,
 }: {
   nutrition: ProductDetail["nutrition"];
+  caption: string;
 }) {
   return (
     <div>
-      <p className="font-sans text-xs text-foreground/50">Per serving</p>
+      <p className="font-sans text-xs text-foreground/50">{caption}</p>
       <table className="mt-3 w-full text-sm">
         <caption className="sr-only">Nutrition facts per serving</caption>
         <tbody>
@@ -190,7 +192,7 @@ export function ProductBuyBoxAccordions({ product }: ProductBuyBoxAccordionsProp
         open={openPanel === "ingredients"}
         onToggle={() => toggle("ingredients")}
       >
-        <IngredientsContent ingredients={product.ingredients} />
+        <IngredientsContent statement={product.ingredientStatement} />
       </AccordionPanel>
 
       {product.nutrition.length > 0 && (
@@ -200,7 +202,10 @@ export function ProductBuyBoxAccordions({ product }: ProductBuyBoxAccordionsProp
           open={openPanel === "nutrition"}
           onToggle={() => toggle("nutrition")}
         >
-          <NutritionContent nutrition={product.nutrition} />
+          <NutritionContent
+            nutrition={product.nutrition}
+            caption={product.nutritionCaption}
+          />
         </AccordionPanel>
       )}
     </div>

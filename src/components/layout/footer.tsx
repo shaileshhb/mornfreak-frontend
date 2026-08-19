@@ -7,8 +7,6 @@ const FOOTER_GROUPS = [
     links: [
       { label: "Protein Oats", href: "/products" },
       { label: "Peanut Butter Powder", href: "/products" },
-      // { label: "Bundles & Combos", href: "/products" },
-      { label: "New Arrivals", href: "/products" },
     ],
   },
   {
@@ -23,12 +21,12 @@ const FOOTER_GROUPS = [
   {
     title: "Help",
     links: [
-      { label: "FAQs", href: "/contact" },
-      { label: "Shipping & Delivery", href: "/contact" },
-      { label: "Returns & Refunds", href: "/contact" },
+      { label: "FAQs", href: "/faqs" },
+      // { label: "Shipping & Delivery", href: "/contact" },
+      { label: "Returns & Refunds", href: "/refund-policy" },
       { label: "Contact Us", href: "/contact" },
-      { label: "Privacy Policy", href: "/contact" },
-      { label: "Terms of Service", href: "/contact" },
+      { label: "Privacy Policy", href: "/privacy" },
+      { label: "Terms of Service", href: "/terms" },
     ],
   },
 ] as const;

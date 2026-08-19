@@ -4,6 +4,7 @@ import { ChevronLeft, ChevronRight } from "lucide-react";
 import Image from "next/image";
 import {
   useCallback,
+  useEffect,
   useId,
   useRef,
   useState,
@@ -28,8 +29,8 @@ export function ProductImageCarousel({
 }: ProductImageCarouselProps) {
   const labelId = useId();
   const [activeIndex, setActiveIndex] = useState(0);
-  const [showControls, setShowControls] = useState(false);
   const dragStartX = useRef<number | null>(null);
+  const thumbRefs = useRef<Array<HTMLButtonElement | null>>([]);
   const total = images.length;
 
   const goTo = useCallback(
@@ -42,6 +43,14 @@ export function ProductImageCarousel({
 
   const goPrev = useCallback(() => goTo(activeIndex - 1), [activeIndex, goTo]);
   const goNext = useCallback(() => goTo(activeIndex + 1), [activeIndex, goTo]);
+
+  useEffect(() => {
+    thumbRefs.current[activeIndex]?.scrollIntoView({
+      behavior: "smooth",
+      block: "nearest",
+      inline: "nearest",
+    });
+  }, [activeIndex]);
 
   const onKeyDown = (event: KeyboardEvent<HTMLDivElement>) => {
     if (event.key === "ArrowLeft") {
@@ -71,7 +80,7 @@ export function ProductImageCarousel({
     return (
       <div
         className={cn(
-          "flex aspect-[4/3] items-center justify-center rounded-2xl border border-border bg-muted text-sm text-muted-foreground",
+          "flex aspect-[4/3] items-center justify-center text-sm text-muted-foreground",
           className,
         )}
       >
@@ -83,140 +92,89 @@ export function ProductImageCarousel({
   return (
     <div className={cn("min-w-0", className)}>
       <div
-        className="hidden grid-cols-2 gap-3 lg:grid"
-        aria-label={`${productName} product images`}
+        role="region"
+        aria-roledescription="carousel"
+        aria-labelledby={labelId}
+        tabIndex={0}
+        onKeyDown={onKeyDown}
+        onPointerDown={onPointerDown}
+        onPointerUp={onPointerUp}
+        className="relative aspect-[4/3] touch-pan-y overflow-hidden outline-none focus-visible:ring-2 focus-visible:ring-ring"
       >
+        <p id={labelId} className="sr-only">
+          {productName} product images
+        </p>
+
         {images.map((image, index) => (
-          <div
+          <Image
             key={image.url}
-            className="relative aspect-[4/3] overflow-hidden rounded-2xl border border-border bg-muted"
-          >
-            <Image
-              src={image.url}
-              alt={image.alt}
-              fill
-              sizes="(max-width: 1280px) 40vw, 480px"
-              priority={index < 2}
-              loading={index < 2 ? "eager" : "lazy"}
-              className="object-contain"
-            />
-          </div>
+            src={image.url}
+            alt={image.alt}
+            fill
+            sizes="(max-width: 1024px) 100vw, 55vw"
+            priority={index === 0}
+            loading={index === 0 ? "eager" : "lazy"}
+            className={cn(
+              "object-contain motion-safe:transition-opacity motion-safe:duration-500 motion-safe:ease-out",
+              index === activeIndex ? "z-10 opacity-100" : "z-0 opacity-0",
+            )}
+            aria-hidden={index !== activeIndex}
+          />
         ))}
-      </div>
-
-      <div className="lg:hidden">
-        <div
-          role="region"
-          aria-roledescription="carousel"
-          aria-labelledby={labelId}
-          tabIndex={0}
-          onKeyDown={onKeyDown}
-          onPointerDown={onPointerDown}
-          onPointerUp={onPointerUp}
-          onMouseEnter={() => setShowControls(true)}
-          onMouseLeave={() => setShowControls(false)}
-          onFocus={() => setShowControls(true)}
-          onBlur={(event) => {
-            if (!event.currentTarget.contains(event.relatedTarget)) {
-              setShowControls(false);
-            }
-          }}
-          className="group relative aspect-[4/3] touch-pan-y overflow-hidden rounded-2xl border border-border bg-muted outline-none focus-visible:ring-2 focus-visible:ring-ring"
-        >
-          <p id={labelId} className="sr-only">
-            {productName} product images
-          </p>
-
-          {images.map((image, index) => (
-            <Image
-              key={image.url}
-              src={image.url}
-              alt={image.alt}
-              fill
-              sizes="100vw"
-              priority={index === 0}
-              loading={index === 0 ? "eager" : "lazy"}
-              className={cn(
-                "object-contain motion-safe:transition-opacity motion-safe:duration-500 motion-safe:ease-out",
-                index === activeIndex ? "z-10 opacity-100" : "z-0 opacity-0",
-              )}
-              aria-hidden={index !== activeIndex}
-            />
-          ))}
-
-          {total > 1 && (
-            <>
-              <button
-                type="button"
-                aria-label="Previous image"
-                onClick={goPrev}
-                className={cn(
-                  "absolute left-3 top-1/2 z-20 flex h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full bg-background/90 text-foreground shadow-sm transition-opacity",
-                  showControls ? "opacity-100" : "opacity-0",
-                )}
-              >
-                <ChevronLeft aria-hidden size={20} />
-              </button>
-              <button
-                type="button"
-                aria-label="Next image"
-                onClick={goNext}
-                className={cn(
-                  "absolute right-3 top-1/2 z-20 flex h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full bg-background/90 text-foreground shadow-sm transition-opacity",
-                  showControls ? "opacity-100" : "opacity-0",
-                )}
-              >
-                <ChevronRight aria-hidden size={20} />
-              </button>
-
-              <div className="absolute bottom-3 left-1/2 z-20 flex -translate-x-1/2 gap-1.5">
-                {images.map((image, index) => (
-                  <button
-                    key={image.url}
-                    type="button"
-                    aria-label={`Go to image ${index + 1}`}
-                    aria-current={index === activeIndex ? "true" : undefined}
-                    onClick={() => goTo(index)}
-                    className={cn(
-                      "h-2 w-2 rounded-full transition-colors",
-                      index === activeIndex ? "bg-foreground" : "bg-foreground/30",
-                    )}
-                  />
-                ))}
-              </div>
-            </>
-          )}
-        </div>
 
         {total > 1 && (
-          <div className="mt-3 flex gap-2 overflow-x-auto">
-            {images.map((image, index) => (
-              <button
-                key={image.url}
-                type="button"
-                aria-label={`Show image ${index + 1} of ${total}`}
-                aria-current={index === activeIndex ? "true" : undefined}
-                onClick={() => goTo(index)}
-                className={cn(
-                  "relative h-16 w-16 shrink-0 overflow-hidden rounded-lg border-2 transition-colors",
-                  index === activeIndex
-                    ? "border-foreground"
-                    : "border-transparent opacity-70",
-                )}
-              >
-                <Image
-                  src={image.url}
-                  alt=""
-                  fill
-                  sizes="64px"
-                  className="object-contain p-1"
-                  loading="lazy"
-                />
-              </button>
-            ))}
-          </div>
+          <>
+            <button
+              type="button"
+              aria-label="Previous image"
+              onClick={goPrev}
+              className="absolute left-2 top-1/2 z-20 flex h-10 w-10 -translate-y-1/2 items-center justify-center text-foreground/70 transition-colors hover:text-foreground sm:left-3"
+            >
+              <ChevronLeft aria-hidden size={28} />
+            </button>
+            <button
+              type="button"
+              aria-label="Next image"
+              onClick={goNext}
+              className="absolute right-2 top-1/2 z-20 flex h-10 w-10 -translate-y-1/2 items-center justify-center text-foreground/70 transition-colors hover:text-foreground sm:right-3"
+            >
+              <ChevronRight aria-hidden size={28} />
+            </button>
+          </>
         )}
       </div>
+
+      {total > 1 && (
+        <div className="mt-3 flex gap-2 overflow-x-auto pb-1">
+          {images.map((image, index) => (
+            <button
+              key={image.url}
+              ref={(node) => {
+                thumbRefs.current[index] = node;
+              }}
+              type="button"
+              aria-label={`Show image ${index + 1} of ${total}`}
+              aria-current={index === activeIndex ? "true" : undefined}
+              onClick={() => goTo(index)}
+              className={cn(
+                "relative h-16 w-16 shrink-0 overflow-hidden rounded-md border-2 transition-colors sm:h-20 sm:w-20",
+                index === activeIndex
+                  ? "border-foreground"
+                  : "border-transparent opacity-70 hover:opacity-100",
+              )}
+            >
+              <Image
+                src={image.url}
+                alt=""
+                fill
+                sizes="80px"
+                className="object-contain"
+                loading="lazy"
+              />
+            </button>
+          ))}
+        </div>
+      )}
     </div>
   );
 }

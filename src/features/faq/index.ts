@@ -1,1 +1,1 @@
-export {};
+export { FaqPage } from "./faq-page";

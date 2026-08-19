@@ -30,16 +30,28 @@ export const PRODUCT_DETAIL_FIXTURES: Record<string, ProductDetail> = {
     description: proteinOats.description,
     images: [
       {
-        url: "/images/products/oats/oats-2.jpeg",
-        alt: "Mornfreak Protein Oats 425g Rich Chocolate pouch",
-      },
-      {
-        url: "/images/products/oats/oats-front.jpeg",
-        alt: "Mornfreak Protein Oats 77g single-serve cup",
-      },
-      {
         url: "/images/products/oats/oats-3.jpeg",
         alt: "Protein Oats pouch with a prepared chocolate oat bowl",
+      },
+      {
+        url: "/images/products/oats/oats-5.jpeg",
+        alt: "Bowl of Rich Chocolate oats for breakfast, snacking and travel",
+      },
+      {
+        url: "/images/products/oats/oats-nutrition.jpeg",
+        alt: "Protein Oats nutritional information table",
+      },
+      {
+        url: "/images/products/oats/oats-ingredients-2.jpeg",
+        alt: "Meet the ingredients: oats, protein blend, dates, seeds, almonds and raisins",
+      },
+      {
+        url: "/images/products/oats/oats-info-2.jpeg",
+        alt: "Protein Oats benefits: 26g protein, prebiotics and rich chocolate taste",
+      },
+      {
+        url: "/images/products/oats/oats-ingredients.jpeg",
+        alt: "Single-serve cup back panel with ingredients and prep steps",
       },
       {
         url: "/images/products/oats/oats-4.jpeg",
@@ -48,34 +60,6 @@ export const PRODUCT_DETAIL_FIXTURES: Record<string, ProductDetail> = {
       {
         url: "/images/products/oats/oats-clean.jpeg",
         alt: "Clean, gut-friendly fuel claims next to Protein Oats pouch",
-      },
-      {
-        url: "/images/products/oats/oats-info.jpeg",
-        alt: "Protein Oats free-from icons: no added sugar, non-GMO, gluten free",
-      },
-      {
-        url: "/images/products/oats/oats-info-2.jpeg",
-        alt: "Protein Oats benefits: 26g protein, prebiotics and rich chocolate taste",
-      },
-      {
-        url: "/images/products/oats/oats-5.jpeg",
-        alt: "Bowl of Rich Chocolate oats for breakfast, snacking and travel",
-      },
-      {
-        url: "/images/products/oats/oats-ingredients-2.jpeg",
-        alt: "Meet the ingredients: oats, protein blend, dates, seeds, almonds and raisins",
-      },
-      {
-        url: "/images/products/oats/oats-back.jpeg",
-        alt: "Back of the Protein Oats 425g pouch with nutrition and how to use",
-      },
-      {
-        url: "/images/products/oats/oats-ingredients.jpeg",
-        alt: "Single-serve cup back panel with ingredients and prep steps",
-      },
-      {
-        url: "/images/products/oats/oats-nutrition.jpeg",
-        alt: "Protein Oats nutritional information table",
       },
     ],
     price: 599,
@@ -177,36 +161,24 @@ export const PRODUCT_DETAIL_FIXTURES: Record<string, ProductDetail> = {
     description: peanutButter.description,
     images: [
       {
-        url: "/images/products/peanut-butter/peanut-powder.jpeg",
-        alt: "Mornfreak Pure Peanut Butter Powder 230g jar",
-      },
-      {
-        url: "/images/products/peanut-butter/pb-details.jpeg",
-        alt: "Peanut Butter Powder jar with better nutrition and clean claims",
-      },
-      {
         url: "/images/products/peanut-butter/pb-power-2.jpeg",
         alt: "Peanut Butter Powder benefits: muscle repair, fibre, energy and weight control",
-      },
-      {
-        url: "/images/products/peanut-butter/pb-peanuts.jpeg",
-        alt: "Premium Java and Bold peanuts slow-roasted in small batches",
-      },
-      {
-        url: "/images/products/peanut-butter/pb-compare.jpeg",
-        alt: "Peanut Butter Powder compared with regular peanut butter",
       },
       {
         url: "/images/products/peanut-butter/pb-serving.jpeg",
         alt: "Calories and macros: 66.5 kcal per serving versus regular peanut butter",
       },
       {
-        url: "/images/products/peanut-butter/pb-graph.jpeg",
-        alt: "Graph of calories per gram of protein versus regular peanut butter",
+        url: "/images/products/peanut-butter/pb-nutrition-2.jpeg",
+        alt: "Nutrition table per 100g and per 16g serving",
       },
       {
-        url: "/images/products/peanut-butter/pb-recipes.jpeg",
-        alt: "Ways to use peanut butter powder: smoothies, pancakes, toast and baking",
+        url: "/images/products/peanut-butter/pb-ingredients.jpeg",
+        alt: "Jar back panel: 100% roasted peanuts and 7-second mix instructions",
+      },
+      {
+        url: "/images/products/peanut-butter/pb-graph.jpeg",
+        alt: "Graph of calories per gram of protein versus regular peanut butter",
       },
       {
         url: "/images/products/peanut-butter/pb-crafting.jpeg",
@@ -217,16 +189,12 @@ export const PRODUCT_DETAIL_FIXTURES: Record<string, ProductDetail> = {
         alt: "Pure peanut butter powder with twice the protein and no added sugar",
       },
       {
-        url: "/images/products/peanut-butter/pb-ingredients.jpeg",
-        alt: "Jar back panel: 100% roasted peanuts and 7-second mix instructions",
+        url: "/images/products/peanut-butter/pb-peanuts.jpeg",
+        alt: "Premium Java and Bold peanuts slow-roasted in small batches",
       },
       {
-        url: "/images/products/peanut-butter/pb-nutrition.jpeg",
-        alt: "Peanut Butter Powder nutrition panel on the jar",
-      },
-      {
-        url: "/images/products/peanut-butter/pb-nutrition-2.jpeg",
-        alt: "Nutrition table per 100g and per 16g serving",
+        url: "/images/products/peanut-butter/pb-compare.jpeg",
+        alt: "Peanut Butter Powder compared with regular peanut butter",
       },
     ],
     price: 449,

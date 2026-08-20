@@ -21,7 +21,7 @@ export function Reviews() {
   const [playingId, setPlayingId] = useState<string | null>(null);
 
   return (
-    <section className="overflow-hidden bg-background py-20 sm:py-28">
+    <section className="overflow-hidden bg-background py-10 sm:py-10">
       <Container className="max-w-[90rem]">
         <header className="text-center">
           <div className="flex justify-center gap-1 text-primary" aria-label="5 out of 5 stars">

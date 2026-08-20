@@ -26,8 +26,8 @@ const REASONS = [
 
 export function WhyMornfreak() {
   return (
-    <section className="bg-card py-20 sm:py-28">
-      <Container className="max-w-[82rem]">
+    <section className="bg-card py-5 sm:py-10">
+      <Container className="max-w-[90rem]">
         <div className="grid gap-14 lg:grid-cols-[1.05fr_0.95fr] lg:items-stretch">
           <div className="lg:py-6">
             <p className="font-sans text-s font-bold uppercase tracking-[0.15em] text-primary">

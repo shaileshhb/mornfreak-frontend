@@ -14,8 +14,8 @@ const BENEFITS = [
 
 export function BuiltForRealMornings() {
   return (
-    <section className="overflow-hidden bg-background py-20 sm:py-28">
-      <Container className="max-w-[82rem]">
+    <section className="overflow-hidden bg-background py-8 sm:py-10">
+      <Container className="max-w-[90rem]">
         <div className="grid items-center gap-14 lg:grid-cols-[0.9fr_1.1fr]">
           <div>
             <p className="font-sans text-s font-bold uppercase tracking-[0.15em] text-primary">
@@ -31,14 +31,14 @@ export function BuiltForRealMornings() {
             </Link>
           </div>
 
-          <div className="relative min-h-[28rem] overflow-hidden sm:min-h-[35rem]">
-            <div aria-hidden className="absolute inset-8 sm:inset-12" />
+          <div className="overflow-hidden">
             <Image
               src="/images/built-for-real-morning.png"
               alt="Mornfreak built for real mornings"
-              fill
+              width={1199}
+              height={1312}
               sizes="(max-width: 1024px) 100vw, 55vw"
-              className="object-cover transition-transform duration-700 hover:scale-[1.025]"
+              className="h-auto w-full transition-transform duration-700 hover:scale-[1.025]"
             />
           </div>
         </div>

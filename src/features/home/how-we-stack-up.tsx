@@ -33,31 +33,26 @@ const PRODUCT_COMPARISONS = {
     rows: [
       {
         title: "High Protein 26g",
-        detail: "Complete protein from Whey + Soy",
         icon: Dumbbell,
         values: [true, true, false] as const,
       },
       {
         title: "Sweetened with Dates & Monkfruit",
-        detail: "No refined sugar",
         icon: Leaf,
         values: [true, false, false] as const,
       },
       {
         title: "Prebiotics for Gut Health",
-        detail: "Supports digestion and gut balance",
         icon: HeartPulse,
         values: [true, false, false] as const,
       },
       {
         title: "Super Seeds & Almonds",
-        detail: "Pumpkin, Sunflower, Chia, Flax Seeds + Almonds",
         icon: Sprout,
         values: [true, true, false] as const,
       },
       {
         title: "No Artificial Flavours, No Preservatives",
-        detail: "Clean & honest ingredients",
         icon: ShieldCheck,
         values: [true, false, false] as const,
       },
@@ -74,31 +69,26 @@ const PRODUCT_COMPARISONS = {
     rows: [
       {
         title: "High Protein",
-        detail: "Up to 50% protein",
         icon: Dumbbell,
         values: [true, true] as const,
       },
       {
         title: "87% Less Calories*",
-        detail: "Than regular peanut butter",
         icon: Ban,
         values: [true, false] as const,
       },
       {
         title: "1/3 Less Fat*",
-        detail: "Defatted peanut powder",
         icon: Droplet,
         values: [true,  false] as const,
       },
       {
         title: "No Added Sugar",
-        detail: "100% clean label",
         icon: Ban,
         values: [true,  false] as const,
       },
       {
         title: "No Added Salt",
-        detail: "Just pure roasted peanuts",
         icon: Leaf,
         values: [true,  false] as const,
       },
@@ -111,8 +101,8 @@ export function HowWeStackUp() {
   const product = PRODUCT_COMPARISONS[activeProduct];
 
   return (
-    <section className="bg-card py-20 sm:py-28">
-      <Container className="max-w-[82rem]">
+    <section className="bg-card py-10 sm:py-10">
+      <Container className="max-w-[90rem]">
         <header className="flex items-center justify-center gap-3 text-center sm:gap-4">
           <Zap
             aria-hidden
@@ -148,7 +138,7 @@ export function HowWeStackUp() {
               aria-selected={activeProduct === key}
               onClick={() => setActiveProduct(key)}
               className={cn(
-                "min-w-0 flex-1 rounded-full px-3 py-2.5 font-sans text-[0.65rem] font-bold uppercase tracking-[0.12em] transition-colors sm:px-5 sm:text-[0.7rem] sm:tracking-[0.14em] md:px-8",
+                "min-w-0 flex-1 whitespace-nowrap rounded-full px-3 py-2.5 font-sans text-[0.65rem] font-bold uppercase tracking-[0.12em] transition-colors sm:px-5 sm:text-[0.7rem] sm:tracking-[0.14em] md:px-8",
                 activeProduct === key
                   ? "bg-primary text-primary-foreground"
                   : "bg-transparent text-foreground hover:bg-foreground/5",
@@ -193,21 +183,18 @@ export function HowWeStackUp() {
                 </tr>
               </thead>
               <tbody>
-                {product.rows.map(({ title, detail, icon: Icon, values }, rowIndex) => (
-                  <tr key={title}>
+                {product.rows.map(({ title, icon: Icon, values }, rowIndex) => (
+                  <tr key={title + rowIndex}>
                     <th
                       scope="row"
                       className="border-b border-foreground/15 p-4 text-left sm:p-5"
                     >
-                      <span className="flex items-start gap-3">
+                      <span className="flex items-center gap-3">
                         <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-primary text-primary-foreground">
                           <Icon aria-hidden size={18} strokeWidth={1.7} />
                         </span>
                         <span>
-                          <span className="block font-sans text-sm font-bold">{title}</span>
-                          <span className="mt-0.5 block text-xs font-normal text-muted-foreground">
-                            {detail}
-                          </span>
+                          <span className="block text-base font-semibold">{title}</span>
                         </span>
                       </span>
                     </th>

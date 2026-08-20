@@ -109,8 +109,8 @@ export function RaisingTheBar() {
   const product = PRODUCT_FEATURES[activeProduct];
 
   return (
-    <section className="overflow-hidden bg-background py-20 sm:py-28">
-      <Container className="max-w-[82rem]">
+    <section className="overflow-hidden bg-background py-8 sm:py-10">
+      <Container className="max-w-[90rem]">
         <header className="mx-auto max-w-5xl text-center">
           <p className="font-sans text-s font-bold uppercase tracking-[0.15em] text-primary">
             How we're raising the bar
@@ -146,7 +146,7 @@ export function RaisingTheBar() {
               aria-selected={activeProduct === key}
               onClick={() => setActiveProduct(key)}
               className={cn(
-                "min-w-0 flex-1 rounded-full px-3 py-2.5 font-sans text-[0.65rem] font-bold uppercase tracking-[0.12em] transition-colors sm:px-5 sm:text-[0.7rem] sm:tracking-[0.14em] md:px-8",
+                "min-w-0 flex-1 whitespace-nowrap rounded-full px-3 py-2.5 font-sans text-[0.65rem] font-bold uppercase tracking-[0.12em] transition-colors sm:px-5 sm:text-[0.7rem] sm:tracking-[0.14em] md:px-8",
                 activeProduct === key
                   ? "bg-primary text-primary-foreground"
                   : "bg-transparent text-foreground hover:bg-foreground/5",
@@ -196,11 +196,10 @@ export function RaisingTheBar() {
           </div>
         </div>
 
-        <div className="mt-14 text-center">
+        <div className="text-center">
           <Link
-            href="/products"
             className="inline-flex h-12 items-center justify-center gap-2 bg-foreground px-8 font-sans text-sm font-bold uppercase tracking-[0.12em] text-white transition-transform hover:-translate-y-0.5"
-          >
+            href="/products">
             Shop now <ArrowRight aria-hidden size={17} />
           </Link>
         </div>

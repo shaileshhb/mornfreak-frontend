@@ -10,8 +10,8 @@ export const PRODUCTS = {
     badgeForeground: "#FFFFFF",
     glow: "rgb(50 10 133 / 0.35)",
   },
-  proteinOats: {
-    id: "proteinOats",
+  proteinOats425: {
+    id: "proteinOats425",
     label: "Protein Oats",
     primary: "#ECB371",
     secondary: "#F0C892",

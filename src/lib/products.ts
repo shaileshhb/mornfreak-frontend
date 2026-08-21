@@ -22,44 +22,6 @@ export type ProductContent = {
 };
 
 export const PRODUCT_CONTENT: Record<ProductId, ProductContent> = {
-  proteinOats: {
-    id: "proteinOats",
-    slug: "protein-oats",
-    name: "Mornfreak Protein Oats",
-    tagline: "Rich Chocolate. Real Gains.",
-    description:
-      "26g of protein per 100g, sweetened naturally with dates, loaded with super seeds and nuts. The breakfast that works as hard as you do.",
-    images: ["/images/oats_1.jpeg", "/images/oats_2.jpeg"],
-    heroImage: "/images/oats_2.jpeg",
-    hoverImage: "/images/science-oats-bowl.jpg",
-    serveImage: "/images/oats_2.jpeg",
-    stats: [
-      { value: "26g", label: "Protein / 100g" },
-      { value: "10%", label: "Fibre" },
-      { value: "0%", label: "Added Sugar" },
-      { value: "0%", label: "Preservatives" },
-    ],
-    badges: ["Non-GMO", "High Fiber", "No Preservatives", "Naturally Sweetened"],
-    benefits: [
-      {
-        title: "Sustained Energy",
-        body: "Complex carbs and fibre keep you fuelled through the morning, no crash.",
-      },
-      {
-        title: "Easy to Digest",
-        body: "Gentle on the gut with added prebiotics for a clean, comfortable start.",
-      },
-      {
-        title: "Zero Nasties",
-        body: "No preservatives, no added sugar, no artificial anything. Just real food.",
-      },
-      {
-        title: "Protein-Forward",
-        body: "26g of protein per 100g serving from clean, whole-food sources.",
-      },
-    ],
-    weight: "425g resealable pouch · 70g single-serve cup (20g protein/cup)",
-  },
   peanutButter: {
     id: "peanutButter",
     slug: "peanut-butter-powder",
@@ -68,11 +30,11 @@ export const PRODUCT_CONTENT: Record<ProductId, ProductContent> = {
     description:
       "100% peanuts. 9g protein per serving, 87% less fat than traditional peanut butter. The clean, versatile protein boost your mornings have been missing.",
     images: [
-      "/images/peanut_butter_powder_1.jpeg",
       "/images/peanut_butter_powder_2.jpeg",
+      "/images/products/peanut-butter/peanut-butter-pour.jpeg",
     ],
     heroImage: "/images/peanut_butter_powder_2.jpeg",
-    hoverImage: "/images/peanut_butter_powder_1.jpeg",
+    hoverImage: "/images/products/peanut-butter/peanut-butter-pour.jpeg",
     serveImage: "/images/peanut_butter_powder_2.jpeg",
     stats: [
       { value: "9g", label: "Protein / Serving" },
@@ -101,6 +63,45 @@ export const PRODUCT_CONTENT: Record<ProductId, ProductContent> = {
     ],
     weight: "230g jar",
   },
+  proteinOats425: {
+    id: "proteinOats425",
+    slug: "protein-oats-425g",
+    name: "Mornfreak Protein Oats 425g",
+    tagline: "Rich Chocolate. Real Gains.",
+    description:
+      "26g of protein per 100g, sweetened naturally with dates, loaded with super seeds and nuts. The breakfast that works as hard as you do.",
+    images: ["/images/products/oats/oats-425.avif", "/images/products/oats/oats-425-pour.avif"],
+    heroImage: "/images/products/oats/oats-425.avif",
+    hoverImage: "/images/products/oats/oats-425-pour.avif",
+    serveImage: "/images/products/oats/oats-425.avif",
+    stats: [
+      { value: "26g", label: "Protein / 100g" },
+      { value: "10%", label: "Fibre" },
+      { value: "0%", label: "Added Sugar" },
+      { value: "0%", label: "Preservatives" },
+    ],
+    badges: ["Non-GMO", "High Fiber", "No Preservatives", "Naturally Sweetened"],
+    benefits: [
+      {
+        title: "Sustained Energy",
+        body: "Complex carbs and fibre keep you fuelled through the morning, no crash.",
+      },
+      {
+        title: "Easy to Digest",
+        body: "Gentle on the gut with added prebiotics for a clean, comfortable start.",
+      },
+      {
+        title: "Zero Nasties",
+        body: "No preservatives, no added sugar, no artificial anything. Just real food.",
+      },
+      {
+        title: "Protein-Forward",
+        body: "26g of protein per 100g serving from clean, whole-food sources.",
+      },
+    ],
+    weight: "425g resealable pouch · 70g single-serve cup (20g protein/cup)",
+  },
+
 };
 
 export function getProductContent(id: ProductId): ProductContent {

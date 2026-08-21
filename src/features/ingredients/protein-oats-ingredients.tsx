@@ -7,7 +7,7 @@ import { PROTEIN_OATS_INGREDIENTS } from "./ingredients-data";
 
 export function ProteinOatsIngredients() {
   return (
-    <ProductSection product="proteinOats">
+    <ProductSection product="proteinOats425g">
       <Container className="max-w-[82rem]">
         <header className="max-w-2xl">
           <p className="font-sans text-xs font-bold uppercase tracking-[0.22em] text-product-primary">

@@ -1,11 +1,11 @@
 /**
  * Product-scoped design tokens.
  * Completely separate from the global semantic theme.
- * Scope via data-product="peanutButter" | "proteinOats" | …
+ * Scope via data-product starting with "peanutButter" or "proteinOats".
  * Components consume: bg-product-primary, text-product-foreground, etc.
  */
 
-[data-product="peanutButter"] {
+[data-product^="peanutButter"] {
   --product-primary: #320a85;
   --product-secondary: #5b2bb5;
   --product-background: #f3eefa;
@@ -15,7 +15,7 @@
   --product-glow: rgb(50 10 133 / 0.35);
 }
 
-[data-product="proteinOats"] {
+[data-product^="proteinOats"] {
   --product-primary: #ecb371;
   --product-secondary: #f0c892;
   --product-background: #fdf6ee;

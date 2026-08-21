@@ -10,6 +10,17 @@ export const PRODUCTS = {
     badgeForeground: "#FFFFFF",
     glow: "rgb(50 10 133 / 0.35)",
   },
+  peanutButterPackOf2: {
+    id: "peanutButterPackOf2",
+    label: "Peanut Butter",
+    primary: "#320A85",
+    secondary: "#5B2BB5",
+    background: "#F3EEFA",
+    foreground: "#1A0A33",
+    badge: "#320A85",
+    badgeForeground: "#FFFFFF",
+    glow: "rgb(50 10 133 / 0.35)",
+  },
   proteinOats425g: {
     id: "proteinOats425g",
     label: "Protein Oats",
@@ -39,6 +50,9 @@ export const PRODUCTS = {
     secondary: "#F0C892",
     background: "#FDF6EE",
     foreground: "#3D2A14",
+    badge: "#ECB371",
+    badgeForeground: "#3D2A14",
+    glow: "rgb(236 179 113 / 0.4)",
   },
   proteinOats77gPackOf6: {
     id: "proteinOats77gPackOf6",
@@ -47,6 +61,9 @@ export const PRODUCTS = {
     secondary: "#F0C892",
     background: "#FDF6EE",
     foreground: "#3D2A14",
+    badge: "#ECB371",
+    badgeForeground: "#3D2A14",
+    glow: "rgb(236 179 113 / 0.4)",
   },
 } as const;
 

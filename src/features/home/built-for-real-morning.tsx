@@ -6,7 +6,7 @@ import { Container } from "@/components/ui/container";
 
 export function BuiltForRealMornings() {
   return (
-    <section className="overflow-hidden bg-background py-12 lg:min-h-[720px] lg:py-20 xl:min-h-[780px]">
+    <section className="overflow-hidden bg-background py-5 lg:min-h-[720px] lg:py-8 xl:min-h-[780px]">
       <Container className="max-w-[90rem]">
         <div className="grid grid-cols-1 justify-items-center lg:grid-cols-[minmax(0,1.05fr)_minmax(0,0.95fr)] lg:items-center lg:justify-items-start lg:gap-x-10 xl:gap-x-16">
           <div className="w-full text-center lg:flex lg:flex-col lg:items-start lg:text-left">

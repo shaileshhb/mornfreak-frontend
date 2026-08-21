@@ -5,6 +5,7 @@ import {
   BuiltForRealMornings,
   RaisingTheBar,
   Reviews,
+  FollowUsOnInstagram,
   WhyMornfreak,
   MornfreakStandard,
 } from "@/features/home";
@@ -19,7 +20,8 @@ export default function Home() {
       <RaisingTheBar />
       <HowWeStackUp />
       <Reviews />
-      <MornfreakStandard />
+      <FollowUsOnInstagram />
+      {/* <MornfreakStandard /> */}
     </>
   );
 }

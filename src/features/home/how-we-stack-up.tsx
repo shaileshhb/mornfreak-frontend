@@ -121,7 +121,7 @@ export function HowWeStackUp() {
           />
         </header>
 
-        <p className="mx-auto mt-5 max-w-xl text-center leading-relaxed text-muted-foreground">
+        <p className="mx-auto mt-5 max-w-xl text-center text-lg text-muted-foreground">
           Real ingredients. Real benefits. No compromises.
         </p>
 

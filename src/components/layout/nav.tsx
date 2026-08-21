@@ -37,7 +37,7 @@ export function Nav() {
               <Link
                 key={link.label}
                 href={link.href}
-                className="font-sans text-xs font-bold uppercase tracking-[0.16em] transition-colors hover:text-primary"
+                className="font-sans text-sm font-bold uppercase tracking-[0.16em] transition-colors hover:text-primary"
               >
                 {link.label}
               </Link>

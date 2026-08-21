@@ -39,7 +39,7 @@ const config: Config = {
         ],
       },
       fontFamily: {
-        display: ["var(--font-bricolage)", "sans-serif"],
+        display: ["var(--font-sora)", "sans-serif"],
         body: ["var(--font-inter)", "sans-serif"],
         accent: ["var(--font-fraunces)", "serif"],
       },

@@ -60,7 +60,7 @@
 
   /* Typography */
   --font-sans: var(--font-dm-sans), var(--font-sans-fallback);
-  --font-display: var(--font-bricolage), var(--font-display-fallback);
+  --font-display: var(--font-sora), var(--font-display-fallback);
   --font-body: var(--font-inter), var(--font-sans-fallback);
   --font-accent: var(--font-fraunces), Georgia, serif;
   --font-script: var(--font-caveat), cursive;

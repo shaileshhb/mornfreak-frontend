@@ -3,6 +3,7 @@
 import { Menu, ShoppingBag, UserRound, X } from "lucide-react";
 import Link from "next/link";
 import { useState } from "react";
+import Image from "next/image";
 
 const NAV_LINKS = [
   { label: "Shop", href: "/products" },
@@ -19,15 +20,16 @@ export function Nav() {
         <div className="mx-auto flex h-[4.75rem] w-full max-w-[90rem] items-center gap-8 px-4 sm:px-6 lg:px-10">
           <Link
             href="/"
-            className="shrink-0 text-foreground transition-colors hover:text-primary"
-            aria-label="Mornfreak home"
-          >
-            <span className="block font-display text-3xl uppercase leading-none tracking-normal">
-              Mornfreak
-            </span>
-            <span className="mt-1 block font-sans text-[0.55rem] font-bold uppercase tracking-[0.18em]">
-              Fuel your start!
-            </span>
+            className="shrink-0"
+            aria-label="Mornfreak home">
+            <Image
+              src="/logo/logo-2.png"
+              alt="Mornfreak"
+              width={1800}
+              height={600}
+              style={{ height: "3rem", width: "10rem" }}
+              priority
+            />
           </Link>
 
           <div className="hidden items-center gap-8 md:flex">

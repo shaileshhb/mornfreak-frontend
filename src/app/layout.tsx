@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Bricolage_Grotesque, Fraunces, Inter } from "next/font/google";
+import { Sora, Fraunces, Inter } from "next/font/google";
 
 import { AnnouncementBar } from "@/components/layout/announcement-bar";
 import { Footer } from "@/components/layout/footer";
@@ -8,10 +8,10 @@ import { fontVariables } from "@/design/typography";
 
 import "./globals.css";
 
-const fontBricolage = Bricolage_Grotesque({
-  weight: ["600", "700"],
+const fontSora = Sora({
+  weight: ["500", "600", "700", "800"],
   subsets: ["latin"],
-  variable: "--font-bricolage",
+  variable: "--font-sora",
   display: "swap",
 });
 
@@ -65,7 +65,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${fontVariables} ${fontBricolage.variable} ${fontInter.variable} ${fontFraunces.variable} h-full antialiased`}
+      className={`${fontVariables} ${fontSora.variable} ${fontInter.variable} ${fontFraunces.variable} h-full antialiased`}
     >
       <body className="flex min-h-full flex-col bg-background font-sans text-foreground">
         <AnnouncementBar />

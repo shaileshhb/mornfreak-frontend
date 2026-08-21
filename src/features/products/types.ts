@@ -5,14 +5,6 @@ export type ProductImage = {
   alt: string;
 };
 
-export type ProductVariant = {
-  id: string;
-  label: string;
-  sku: string;
-  price: number;
-  inStock: boolean;
-};
-
 export type ProductStat = {
   label: string;
   value: string;
@@ -69,6 +61,7 @@ export type ProductReviews = {
 export type ProductDetail = {
   id: ProductId;
   slug: string;
+  label: string;
   name: string;
   tagline: string;
   description: string;
@@ -76,7 +69,6 @@ export type ProductDetail = {
   price: number;
   compareAtPrice: number | null;
   currency: string;
-  variants: ProductVariant[];
   stats: ProductStat[];
   trustBadges: string[];
   servingInfo: string;

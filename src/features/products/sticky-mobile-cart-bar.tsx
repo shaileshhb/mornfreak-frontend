@@ -36,11 +36,7 @@ export function StickyMobileCartBar({
     return () => observerRef.current?.disconnect();
   }, [sentinelId]);
 
-  const label = product.comingSoon
-    ? "Coming Soon"
-    : product.variants.some((variant) => variant.inStock)
-      ? "Add to Cart"
-      : "Out of Stock";
+  const label = product.comingSoon ? "Coming Soon" : "Add to Cart";
 
   return (
     <div

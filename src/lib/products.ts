@@ -8,6 +8,7 @@ export type ProductStat = {
 export type ProductContent = {
   id: ProductId;
   slug: string;
+  label: string;
   name: string;
   tagline: string;
   description: string;
@@ -25,6 +26,7 @@ export const PRODUCT_CONTENT: Record<ProductId, ProductContent> = {
   peanutButter: {
     id: "peanutButter",
     slug: "peanut-butter-powder",
+    label: "Peanut Butter Powder",
     name: "Mornfreak Pure Peanut Butter Powder",
     tagline: "Clean Fuel. Real Results.",
     description:
@@ -63,24 +65,26 @@ export const PRODUCT_CONTENT: Record<ProductId, ProductContent> = {
     ],
     weight: "230g jar",
   },
-  proteinOats425: {
-    id: "proteinOats425",
+  proteinOats425g: {
+    id: "proteinOats425g",
     slug: "protein-oats-425g",
+    label: "Protein Oats 425g",
     name: "Mornfreak Protein Oats 425g",
     tagline: "Rich Chocolate. Real Gains.",
     description:
       "26g of protein per 100g, sweetened naturally with dates, loaded with super seeds and nuts. The breakfast that works as hard as you do.",
-    images: ["/images/products/oats/oats-425.avif", "/images/products/oats/oats-425-pour.avif"],
-    heroImage: "/images/products/oats/oats-425.avif",
-    hoverImage: "/images/products/oats/oats-425-pour.avif",
-    serveImage: "/images/products/oats/oats-425.avif",
+    images: ["/images/products/oats/oats-425g-2.jpeg", "/images/products/oats/oats-425g-pour.avif"],
+    heroImage: "/images/products/oats/oats-425g-2.jpeg",
+    hoverImage: "/images/products/oats/oats-425g-pour.avif",
+    serveImage: "/images/products/oats/oats-425g-2.jpeg",
+    weight: "425g resealable pouch · 70g single-serve cup (20g protein/cup)",
     stats: [
       { value: "26g", label: "Protein / 100g" },
       { value: "10%", label: "Fibre" },
       { value: "0%", label: "Added Sugar" },
       { value: "0%", label: "Preservatives" },
     ],
-    badges: ["Non-GMO", "High Fiber", "No Preservatives", "Naturally Sweetened"],
+    badges: ["Non-GMO", "High Fiber", "No Preservatives"],
     benefits: [
       {
         title: "Sustained Energy",
@@ -99,9 +103,124 @@ export const PRODUCT_CONTENT: Record<ProductId, ProductContent> = {
         body: "26g of protein per 100g serving from clean, whole-food sources.",
       },
     ],
-    weight: "425g resealable pouch · 70g single-serve cup (20g protein/cup)",
   },
-
+  proteinOats77g: {
+    id: "proteinOats77g",
+    slug: "protein-oats-77g",
+    label: "Protein Oats 77g",
+    name: "Mornfreak Protein Oats 77g",
+    tagline: "Rich Chocolate. Real Gains.",
+    description:
+      "26g of protein per 100g, sweetened naturally with dates, loaded with super seeds and nuts. The breakfast that works as hard as you do.",
+    images: ["/images/products/oats/oats-425.avif", "/images/products/oats/oats-77g-pour.jpeg"],
+    heroImage: "/images/products/oats/oats-425.avif",
+    hoverImage: "/images/products/oats/oats-77g-pour.jpeg",
+    serveImage: "/images/products/oats/oats-425.avif",
+    weight: "425g resealable pouch · 70g single-serve cup (20g protein/cup)",
+    stats: [
+      { value: "26g", label: "Protein / 100g" },
+      { value: "10%", label: "Fibre" },
+      { value: "0%", label: "Added Sugar" },
+      { value: "0%", label: "Preservatives" },
+    ],
+    badges: ["No Preservatives", "Prebiotics Added", "Sustainable Energy", "No Refined Sugar"],
+    benefits: [
+      {
+        title: "Sustained Energy",
+        body: "Complex carbs and fibre keep you fuelled through the morning, no crash.",
+      },
+      {
+        title: "Easy to Digest",
+        body: "Gentle on the gut with added prebiotics for a clean, comfortable start.",
+      },
+      {
+        title: "Zero Nasties",
+        body: "No preservatives, no added sugar, no artificial anything. Just real food.",
+      },
+      {
+        title: "Protein-Forward",
+        body: "26g of protein per 100g serving from clean, whole-food sources.",
+      },
+    ],
+  },
+  proteinOats425gPackOf2: {
+    id: "proteinOats425gPackOf2",
+    slug: "protein-oats-425g-pack-of-2",
+    label: "Protein Oats 425g Pack of 2",
+    name: "Mornfreak Protein Oats 425g Pack of 2",
+    tagline: "Rich Chocolate. Real Gains.",
+    description:
+      "26g of protein per 100g, sweetened naturally with dates, loaded with super seeds and nuts. The breakfast that works as hard as you do.",
+    images: ["/images/products/oats/oats-425g-2.jpeg", "/images/products/oats/oats-425g-pour.avif"],
+    heroImage: "/images/products/oats/oats-425g-2.jpeg",
+    hoverImage: "/images/products/oats/oats-425g-pour.avif",
+    serveImage: "/images/products/oats/oats-425g-2.jpeg",
+    weight: "425g resealable pouch · 70g single-serve cup (20g protein/cup)",
+    stats: [
+      { value: "26g", label: "Protein / 100g" },
+      { value: "10%", label: "Fibre" },
+      { value: "0%", label: "Added Sugar" },
+      { value: "0%", label: "Preservatives" },
+    ],
+    badges: ["Non-GMO", "High Fiber", "No Preservatives"],
+    benefits: [
+      {
+        title: "Sustained Energy",
+        body: "Complex carbs and fibre keep you fuelled through the morning, no crash.",
+      },
+      {
+        title: "Easy to Digest",
+        body: "Gentle on the gut with added prebiotics for a clean, comfortable start.",
+      },
+      {
+        title: "Zero Nasties",
+        body: "No preservatives, no added sugar, no artificial anything. Just real food.",
+      },
+      {
+        title: "Protein-Forward",
+        body: "26g of protein per 100g serving from clean, whole-food sources.",
+      },
+    ],
+  },
+  proteinOats77gPackOf6: {
+    id: "proteinOats77gPackOf6",
+    slug: "protein-oats-77g-pack-of-6",
+    label: "Protein Oats 77g Pack of 6",
+    name: "Mornfreak Protein Oats 77g Pack of 6",
+    tagline: "Rich Chocolate. Real Gains.",
+    description:
+      "26g of protein per 100g, sweetened naturally with dates, loaded with super seeds and nuts. The breakfast that works as hard as you do.",
+    images: ["/images/products/oats/oats-425.avif", "/images/products/oats/oats-77g-pour.jpeg"],
+    heroImage: "/images/products/oats/oats-425.avif",
+    hoverImage: "/images/products/oats/oats-77g-pour.jpeg",
+    serveImage: "/images/products/oats/oats-425.avif",
+    weight: "425g resealable pouch · 70g single-serve cup (20g protein/cup)",
+    stats: [
+      { value: "26g", label: "Protein / 100g" },
+      { value: "10%", label: "Fibre" },
+      { value: "0%", label: "Added Sugar" },
+      { value: "0%", label: "Preservatives" },
+    ],
+    badges: ["No Preservatives", "Prebiotics Added", "Sustainable Energy", "No Refined Sugar"],
+    benefits: [
+      {
+        title: "Sustained Energy",
+        body: "Complex carbs and fibre keep you fuelled through the morning, no crash.",
+      },
+      {
+        title: "Easy to Digest",
+        body: "Gentle on the gut with added prebiotics for a clean, comfortable start.",
+      },
+      {
+        title: "Zero Nasties",
+        body: "No preservatives, no added sugar, no artificial anything. Just real food.",
+      },
+      {
+        title: "Protein-Forward",
+        body: "26g of protein per 100g serving from clean, whole-food sources.",
+      },
+    ],
+  },
 };
 
 export function getProductContent(id: ProductId): ProductContent {

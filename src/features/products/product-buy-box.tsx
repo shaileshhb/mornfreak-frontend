@@ -2,7 +2,7 @@
 
 import { Star } from "lucide-react";
 import Link from "next/link";
-import { useMemo, useState } from "react";
+import { useState } from "react";
 
 import { ProductBadge } from "@/components/common/product-badge";
 import { Button } from "@/components/ui/button";
@@ -11,7 +11,7 @@ import { cn } from "@/lib/cn";
 
 import { ProductBuyBoxAccordions } from "./product-buy-box-accordions";
 import { QuantityStepper } from "./quantity-stepper";
-import type { ProductDetail, ProductVariant } from "./types";
+import type { ProductDetail } from "./types";
 import { formatMoney } from "./utils";
 
 type ProductBuyBoxProps = {
@@ -53,67 +53,10 @@ function StarsSummary({
   );
 }
 
-function VariantSelector({
-  variants,
-  selectedId,
-  onSelect,
-}: {
-  variants: ProductVariant[];
-  selectedId: string;
-  onSelect: (id: string) => void;
-}) {
-  return (
-    <div>
-      <p className="font-sans text-xs font-bold uppercase tracking-[0.14em] text-foreground/60">
-        Size
-      </p>
-      <div className="mt-2 flex flex-wrap gap-2" role="radiogroup" aria-label="Product size">
-        {variants.map((variant) => {
-          const selected = variant.id === selectedId;
-          return (
-            <button
-              key={variant.id}
-              type="button"
-              role="radio"
-              aria-checked={selected}
-              onClick={() => onSelect(variant.id)}
-              className={cn(
-                "rounded-md border px-3 py-2 font-sans text-sm transition-colors",
-                selected
-                  ? "border-foreground bg-foreground text-background"
-                  : "border-border bg-background text-foreground hover:border-foreground/40",
-              )}
-            >
-              {variant.label}
-            </button>
-          );
-        })}
-      </div>
-    </div>
-  );
-}
-
 export function ProductBuyBox({ product }: ProductBuyBoxProps) {
   const [quantity, setQuantity] = useState(1);
-  const [selectedVariantId, setSelectedVariantId] = useState(
-    product.variants[0]?.id ?? "",
-  );
-
-  const selectedVariant = useMemo(
-    () =>
-      product.variants.find((variant) => variant.id === selectedVariantId) ??
-      product.variants[0],
-    [product.variants, selectedVariantId],
-  );
-
-  const unitPrice = selectedVariant?.price ?? product.price;
-  const showVariants = product.variants.length > 1;
-  const canPurchase =
-    !product.comingSoon && Boolean(selectedVariant?.inStock);
-
-  let ctaLabel = "Add to Cart";
-  if (product.comingSoon) ctaLabel = "Coming Soon";
-  else if (!selectedVariant?.inStock) ctaLabel = "Out of Stock";
+  const canPurchase = !product.comingSoon;
+  const ctaLabel = product.comingSoon ? "Coming Soon" : "Add to Cart";
 
   return (
     <div data-product={product.id} className="flex flex-col gap-6">
@@ -168,26 +111,18 @@ export function ProductBuyBox({ product }: ProductBuyBoxProps) {
 
       <div className="flex items-baseline gap-3">
         <p className="font-display text-3xl tracking-wide text-product-foreground">
-          {formatMoney(unitPrice, product.currency)}
+          {formatMoney(product.price, product.currency)}
         </p>
-        {product.compareAtPrice != null && product.compareAtPrice > unitPrice && (
+        {product.compareAtPrice != null && product.compareAtPrice > product.price && (
           <p className="font-sans text-base text-product-foreground/45 line-through">
             {formatMoney(product.compareAtPrice, product.currency)}
           </p>
         )}
       </div>
 
-      {showVariants ? (
-        <VariantSelector
-          variants={product.variants}
-          selectedId={selectedVariant?.id ?? ""}
-          onSelect={setSelectedVariantId}
-        />
-      ) : (
-        <p className="font-sans text-sm text-product-foreground/60">
-          {product.servingInfo}
-        </p>
-      )}
+      <p className="font-sans text-sm text-product-foreground/60">
+        {product.servingInfo}
+      </p>
 
       <div className="flex min-w-0 flex-col gap-3 sm:flex-row sm:items-center">
         <QuantityStepper

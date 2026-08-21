@@ -10,8 +10,8 @@ export const PRODUCTS = {
     badgeForeground: "#FFFFFF",
     glow: "rgb(50 10 133 / 0.35)",
   },
-  proteinOats425: {
-    id: "proteinOats425",
+  proteinOats425g: {
+    id: "proteinOats425g",
     label: "Protein Oats",
     primary: "#ECB371",
     secondary: "#F0C892",
@@ -20,6 +20,33 @@ export const PRODUCTS = {
     badge: "#ECB371",
     badgeForeground: "#3D2A14",
     glow: "rgb(236 179 113 / 0.4)",
+  },
+  proteinOats77g: {
+    id: "proteinOats77g",
+    label: "Protein Oats",
+    primary: "#ECB371",
+    secondary: "#F0C892",
+    background: "#FDF6EE",
+    foreground: "#3D2A14",
+    badge: "#ECB371",
+    badgeForeground: "#3D2A14",
+    glow: "rgb(236 179 113 / 0.4)",
+  },
+  proteinOats425gPackOf2: {
+    id: "proteinOats425gPackOf2",
+    label: "Protein Oats",
+    primary: "#ECB371",
+    secondary: "#F0C892",
+    background: "#FDF6EE",
+    foreground: "#3D2A14",
+  },
+  proteinOats77gPackOf6: {
+    id: "proteinOats77gPackOf6",
+    label: "Protein Oats",
+    primary: "#ECB371",
+    secondary: "#F0C892",
+    background: "#FDF6EE",
+    foreground: "#3D2A14",
   },
 } as const;
 

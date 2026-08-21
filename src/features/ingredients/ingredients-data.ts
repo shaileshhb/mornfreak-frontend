@@ -13,7 +13,7 @@ export const PROTEIN_OATS_INGREDIENTS: Ingredient[] = [
     title: "Oats",
     description:
       "Whole rolled oats for slow-release energy that keeps you going through the morning.",
-    image: "/images/ingredients/oats.avif",
+    image: "/images/ingredients/oats.png",
     imageAlt: "Wooden bowl filled with rolled oats",
     keyFeatures: [
       "Complex carbohydrates for sustained energy",

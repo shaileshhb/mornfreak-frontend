@@ -13,8 +13,7 @@ type ProductDetailPageProps = {
 };
 
 export function ProductDetailPage({ product }: ProductDetailPageProps) {
-  const productLabel =
-    product.id === "proteinOats" ? "Protein Oats" : "Peanut Butter Powder";
+  const productLabel = product.label ?? product.name;
 
   return (
     <>

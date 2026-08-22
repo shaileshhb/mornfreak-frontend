@@ -4,7 +4,12 @@ import {
 } from "@/features/ingredients/ingredients-data";
 import { PRODUCT_CONTENT } from "@/lib/products";
 
-import type { ProductDetail, ProductIngredient } from "../types";
+import type {
+  ProductDetail,
+  ProductGalleryCallout,
+  ProductImage,
+  ProductIngredient,
+} from "../types";
 
 function toProductIngredients(
   ingredients: typeof PROTEIN_OATS_INGREDIENTS,
@@ -25,6 +30,62 @@ const proteinOats77gPackOf6 = PRODUCT_CONTENT.proteinOats77gPackOf6;
 const peanutButter = PRODUCT_CONTENT.peanutButter;
 const peanutButterPackOf2 = PRODUCT_CONTENT.peanutButterPackOf2;
 
+const PEANUT_BUTTER_GALLERY_IMAGES: ProductImage[] = [
+  {
+    url: "/images/peanut_butter_powder_2.jpeg",
+    alt: "Mornfreak Pure Peanut Butter Powder jar",
+  },
+  {
+    url: "/images/products/peanut-butter/peanut-butter-pour.jpeg",
+    alt: "Peanut butter powder poured from the jar",
+  },
+  {
+    url: "/images/products/peanut-butter/pb-power-2.jpeg",
+    alt: "Peanut Butter Powder benefits: muscle repair, fibre, energy and weight control",
+  },
+  {
+    url: "/images/products/peanut-butter/pb-serving.jpeg",
+    alt: "Calories and macros: 66.5 kcal per serving versus regular peanut butter",
+  },
+  {
+    url: "/images/products/peanut-butter/pb-nutrition-2.jpeg",
+    alt: "Nutrition table per 100g and per 16g serving",
+  },
+  {
+    url: "/images/products/peanut-butter/pb-ingredients.jpeg",
+    alt: "Jar back panel: 100% roasted peanuts and 7-second mix instructions",
+  },
+  {
+    url: "/images/products/peanut-butter/pb-graph.jpeg",
+    alt: "Graph of calories per gram of protein versus regular peanut butter",
+  },
+  {
+    url: "/images/products/peanut-butter/pb-crafting.jpeg",
+    alt: "How peanut butter powder is crafted: roast, mill, refine and seal",
+  },
+  {
+    url: "/images/products/peanut-butter/pb-power.jpeg",
+    alt: "Pure peanut butter powder with twice the protein and no added sugar",
+  },
+  {
+    url: "/images/products/peanut-butter/pb-peanuts.jpeg",
+    alt: "Premium Java and Bold peanuts slow-roasted in small batches",
+  },
+  {
+    url: "/images/products/peanut-butter/pb-compare.jpeg",
+    alt: "Peanut Butter Powder compared with regular peanut butter",
+  },
+];
+
+const PEANUT_BUTTER_GALLERY_CALLOUTS: ProductGalleryCallout[] = [
+  { icon: "dumbbell", label: "Muscle Repair" },
+  { icon: "wheat", label: "Fiber Rich" },
+  { icon: "leaf", label: "Nutrient Dense" },
+  { icon: "heart", label: "Cholesterol Free" },
+  { icon: "zap", label: "Sustained Energy" },
+  { icon: "scale", label: "Weight Control" },
+];
+
 export const PRODUCT_DETAIL_FIXTURES: Record<string, ProductDetail> = {
   "peanut-butter-powder": {
     id: peanutButter.id,
@@ -33,44 +94,9 @@ export const PRODUCT_DETAIL_FIXTURES: Record<string, ProductDetail> = {
     label: peanutButter.label,
     tagline: peanutButter.tagline,
     description: peanutButter.description,
-    images: [
-      {
-        url: "/images/products/peanut-butter/pb-power-2.jpeg",
-        alt: "Peanut Butter Powder benefits: muscle repair, fibre, energy and weight control",
-      },
-      {
-        url: "/images/products/peanut-butter/pb-serving.jpeg",
-        alt: "Calories and macros: 66.5 kcal per serving versus regular peanut butter",
-      },
-      {
-        url: "/images/products/peanut-butter/pb-nutrition-2.jpeg",
-        alt: "Nutrition table per 100g and per 16g serving",
-      },
-      {
-        url: "/images/products/peanut-butter/pb-ingredients.jpeg",
-        alt: "Jar back panel: 100% roasted peanuts and 7-second mix instructions",
-      },
-      {
-        url: "/images/products/peanut-butter/pb-graph.jpeg",
-        alt: "Graph of calories per gram of protein versus regular peanut butter",
-      },
-      {
-        url: "/images/products/peanut-butter/pb-crafting.jpeg",
-        alt: "How peanut butter powder is crafted: roast, mill, refine and seal",
-      },
-      {
-        url: "/images/products/peanut-butter/pb-power.jpeg",
-        alt: "Pure peanut butter powder with twice the protein and no added sugar",
-      },
-      {
-        url: "/images/products/peanut-butter/pb-peanuts.jpeg",
-        alt: "Premium Java and Bold peanuts slow-roasted in small batches",
-      },
-      {
-        url: "/images/products/peanut-butter/pb-compare.jpeg",
-        alt: "Peanut Butter Powder compared with regular peanut butter",
-      },
-    ],
+    images: PEANUT_BUTTER_GALLERY_IMAGES,
+    overlayBadge: "100% Peanuts",
+    galleryCallouts: PEANUT_BUTTER_GALLERY_CALLOUTS,
     price: 449,
     compareAtPrice: null,
     currency: "AED",
@@ -150,44 +176,9 @@ export const PRODUCT_DETAIL_FIXTURES: Record<string, ProductDetail> = {
     label: peanutButterPackOf2.label,
     tagline: peanutButterPackOf2.tagline,
     description: peanutButterPackOf2.description,
-    images: [
-      {
-        url: "/images/products/peanut-butter/pb-power-2.jpeg",
-        alt: "Peanut Butter Powder benefits: muscle repair, fibre, energy and weight control",
-      },
-      {
-        url: "/images/products/peanut-butter/pb-serving.jpeg",
-        alt: "Calories and macros: 66.5 kcal per serving versus regular peanut butter",
-      },
-      {
-        url: "/images/products/peanut-butter/pb-nutrition-2.jpeg",
-        alt: "Nutrition table per 100g and per 16g serving",
-      },
-      {
-        url: "/images/products/peanut-butter/pb-ingredients.jpeg",
-        alt: "Jar back panel: 100% roasted peanuts and 7-second mix instructions",
-      },
-      {
-        url: "/images/products/peanut-butter/pb-graph.jpeg",
-        alt: "Graph of calories per gram of protein versus regular peanut butter",
-      },
-      {
-        url: "/images/products/peanut-butter/pb-crafting.jpeg",
-        alt: "How peanut butter powder is crafted: roast, mill, refine and seal",
-      },
-      {
-        url: "/images/products/peanut-butter/pb-power.jpeg",
-        alt: "Pure peanut butter powder with twice the protein and no added sugar",
-      },
-      {
-        url: "/images/products/peanut-butter/pb-peanuts.jpeg",
-        alt: "Premium Java and Bold peanuts slow-roasted in small batches",
-      },
-      {
-        url: "/images/products/peanut-butter/pb-compare.jpeg",
-        alt: "Peanut Butter Powder compared with regular peanut butter",
-      },
-    ],
+    images: PEANUT_BUTTER_GALLERY_IMAGES,
+    overlayBadge: "100% Peanuts",
+    galleryCallouts: PEANUT_BUTTER_GALLERY_CALLOUTS,
     price: 449,
     compareAtPrice: null,
     currency: "AED",

@@ -14,6 +14,7 @@ type ProductDetailPageProps = {
 
 export function ProductDetailPage({ product }: ProductDetailPageProps) {
   const productLabel = product.label ?? product.name;
+  const isPeanutButter = product.id.startsWith("peanutButter");
 
   return (
     <>
@@ -27,6 +28,9 @@ export function ProductDetailPage({ product }: ProductDetailPageProps) {
               key={product.slug}
               images={product.images}
               productName={product.name}
+              overlayBadge={product.overlayBadge}
+              galleryCallouts={product.galleryCallouts}
+              portrait={isPeanutButter}
             />
             <div className="lg:sticky lg:top-24">
               <ProductBuyBox product={product} />

@@ -37,6 +37,16 @@ export type ProductProofPoint = {
   icon: ProductProofPointIcon;
 };
 
+export type ProductGalleryCalloutIcon =
+  | ProductProofPointIcon
+  | "heart"
+  | "scale";
+
+export type ProductGalleryCallout = {
+  icon: ProductGalleryCalloutIcon;
+  label: string;
+};
+
 export type NutritionRow = {
   label: string;
   value: string;
@@ -66,6 +76,8 @@ export type ProductDetail = {
   tagline: string;
   description: string;
   images: ProductImage[];
+  overlayBadge?: string;
+  galleryCallouts?: ProductGalleryCallout[];
   price: number;
   compareAtPrice: number | null;
   currency: string;

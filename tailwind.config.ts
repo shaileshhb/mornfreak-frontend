@@ -42,6 +42,7 @@ const config: Config = {
         display: ["var(--font-sora)", "sans-serif"],
         body: ["var(--font-inter)", "sans-serif"],
         accent: ["var(--font-fraunces)", "serif"],
+        offer: ["var(--font-archivo-black)", "sans-serif"],
       },
     },
   },

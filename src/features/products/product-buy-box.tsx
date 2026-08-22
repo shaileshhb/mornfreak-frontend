@@ -59,7 +59,7 @@ export function ProductBuyBox({ product }: ProductBuyBoxProps) {
   const ctaLabel = product.comingSoon ? "Coming Soon" : "Add to Cart";
 
   return (
-    <div data-product={product.id} className="flex flex-col gap-6">
+    <div data-product={product.id} className="flex flex-col gap-4">
       <nav aria-label="Breadcrumb" className="font-sans text-xs text-foreground/50">
         <ol className="flex flex-wrap items-center gap-1.5">
           <li>
@@ -84,7 +84,7 @@ export function ProductBuyBox({ product }: ProductBuyBoxProps) {
         <h1 className="font-display text-[clamp(1.75rem,4vw,2.75rem)] uppercase leading-[0.95] tracking-wide text-product-foreground">
           {product.name}
         </h1>
-        <p className="mt-2 font-sans text-base text-product-foreground/70">
+        <p className="mt-1.5 font-sans text-base text-product-foreground/70">
           {product.tagline}
         </p>
       </div>
@@ -109,20 +109,21 @@ export function ProductBuyBox({ product }: ProductBuyBoxProps) {
         ))}
       </div>
 
-      <div className="flex items-baseline gap-3">
-        <p className="font-display text-3xl tracking-wide text-product-foreground">
-          {formatMoney(product.price, product.currency)}
-        </p>
-        {product.compareAtPrice != null && product.compareAtPrice > product.price && (
-          <p className="font-sans text-base text-product-foreground/45 line-through">
-            {formatMoney(product.compareAtPrice, product.currency)}
+      <div>
+        <div className="flex items-baseline gap-3">
+          <p className="font-display text-3xl tracking-wide text-product-foreground">
+            {formatMoney(product.price, product.currency)}
           </p>
-        )}
+          {product.compareAtPrice != null && product.compareAtPrice > product.price && (
+            <p className="font-sans text-base text-product-foreground/45 line-through">
+              {formatMoney(product.compareAtPrice, product.currency)}
+            </p>
+          )}
+        </div>
+        <p className="mt-1 font-sans text-sm text-product-foreground/60">
+          {product.servingInfo}
+        </p>
       </div>
-
-      <p className="font-sans text-sm text-product-foreground/60">
-        {product.servingInfo}
-      </p>
 
       <div className="flex min-w-0 flex-col gap-3 sm:flex-row sm:items-center">
         <QuantityStepper

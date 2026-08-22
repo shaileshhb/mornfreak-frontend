@@ -19,10 +19,10 @@ export function ProductDetailPage({ product }: ProductDetailPageProps) {
     <>
       <section
         data-product={product.id}
-        className="bg-background pb-16 pt-10 sm:pb-20 sm:pt-14 lg:pb-24 lg:pt-16"
+        className="bg-background pb-16 pt-6 sm:pb-20 sm:pt-8 lg:pb-24 lg:pt-10"
       >
-        <Container>
-          <div className="grid gap-10 lg:grid-cols-[minmax(0,1.1fr)_minmax(0,0.9fr)] lg:items-start lg:gap-14">
+        <Container className="max-w-[90rem]">
+          <div className="grid gap-8 lg:grid-cols-[minmax(0,1.15fr)_minmax(0,0.85fr)] lg:items-start lg:gap-10">
             <ProductImageCarousel
               key={product.slug}
               images={product.images}

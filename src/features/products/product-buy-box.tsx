@@ -60,7 +60,7 @@ export function ProductBuyBox({ product }: ProductBuyBoxProps) {
 
   return (
     <div data-product={product.id} className="flex flex-col gap-4">
-      <nav aria-label="Breadcrumb" className="font-sans text-xs text-foreground/50">
+      <nav aria-label="Breadcrumb" className="font-sans text-sm text-foreground/50">
         <ol className="flex flex-wrap items-center gap-1.5">
           <li>
             <Link href="/" className="transition-colors hover:text-foreground">

@@ -65,6 +65,7 @@
   --font-accent: var(--font-fraunces), Georgia, serif;
   --font-script: var(--font-caveat), cursive;
   --font-montserrat-display: var(--font-montserrat), var(--font-display-fallback);
+  --font-offer: var(--font-archivo-black), sans-serif;
 
   /* Hero type scale (mirrors tailwind.config.ts theme.extend.fontSize) */
   --text-kicker: clamp(0.75rem, 0.65rem + 0.3vw, 0.875rem);

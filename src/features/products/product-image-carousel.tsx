@@ -80,7 +80,7 @@ export function ProductImageCarousel({
     return (
       <div
         className={cn(
-          "flex aspect-[4/3] items-center justify-center text-sm text-muted-foreground",
+          "flex aspect-square items-center justify-center text-sm text-muted-foreground",
           className,
         )}
       >
@@ -99,7 +99,7 @@ export function ProductImageCarousel({
         onKeyDown={onKeyDown}
         onPointerDown={onPointerDown}
         onPointerUp={onPointerUp}
-        className="relative aspect-[4/3] touch-pan-y overflow-hidden outline-none focus-visible:ring-2 focus-visible:ring-ring"
+        className="relative aspect-square w-full touch-pan-y overflow-hidden outline-none focus-visible:ring-2 focus-visible:ring-ring"
       >
         <p id={labelId} className="sr-only">
           {productName} product images
@@ -111,7 +111,7 @@ export function ProductImageCarousel({
             src={image.url}
             alt={image.alt}
             fill
-            sizes="(max-width: 1024px) 100vw, 55vw"
+            sizes="(max-width: 1024px) 100vw, 50vw"
             priority={index === 0}
             loading={index === 0 ? "eager" : "lazy"}
             className={cn(
@@ -145,7 +145,7 @@ export function ProductImageCarousel({
       </div>
 
       {total > 1 && (
-        <div className="mt-3 flex gap-2 overflow-x-auto pb-1">
+        <div className="mt-4 flex gap-2.5 overflow-x-auto pb-1">
           {images.map((image, index) => (
             <button
               key={image.url}
@@ -157,7 +157,7 @@ export function ProductImageCarousel({
               aria-current={index === activeIndex ? "true" : undefined}
               onClick={() => goTo(index)}
               className={cn(
-                "relative h-16 w-16 shrink-0 overflow-hidden rounded-md border-2 transition-colors sm:h-20 sm:w-20",
+                "relative h-20 w-20 shrink-0 overflow-hidden rounded-md border-2 transition-colors sm:h-24 sm:w-24 lg:h-[6.75rem] lg:w-[6.75rem]",
                 index === activeIndex
                   ? "border-foreground"
                   : "border-transparent opacity-70 hover:opacity-100",
@@ -167,7 +167,7 @@ export function ProductImageCarousel({
                 src={image.url}
                 alt=""
                 fill
-                sizes="80px"
+                sizes="108px"
                 className="object-contain"
                 loading="lazy"
               />

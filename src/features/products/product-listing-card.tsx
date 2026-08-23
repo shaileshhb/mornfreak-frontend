@@ -38,7 +38,7 @@ export function ProductListingCard({ product }: { product: ProductContent }) {
           src={product.heroImage}
           alt={product.name}
           fill
-          sizes="(max-width: 640px) 100vw, 28rem"
+          sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
           className="object-contain transition-opacity duration-500 ease-in-out group-hover:opacity-0 group-focus-within:opacity-0 motion-reduce:transition-none"
         />
         <Image
@@ -46,7 +46,7 @@ export function ProductListingCard({ product }: { product: ProductContent }) {
           alt=""
           fill
           loading="eager"
-          sizes="(max-width: 640px) 100vw, 28rem"
+          sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
           className="object-contain opacity-0 transition-opacity duration-500 ease-in-out group-hover:opacity-100 group-focus-within:opacity-100 motion-reduce:transition-none"
         />
       </div>

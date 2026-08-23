@@ -96,7 +96,7 @@ export const PRODUCT_DETAIL_FIXTURES: Record<string, ProductDetail> = {
     description: peanutButter.description,
     images: PEANUT_BUTTER_GALLERY_IMAGES,
     overlayBadge: "100% Peanuts",
-    galleryCallouts: PEANUT_BUTTER_GALLERY_CALLOUTS,
+    // galleryCallouts: PEANUT_BUTTER_GALLERY_CALLOUTS,
     price: 449,
     compareAtPrice: null,
     currency: "AED",
@@ -292,10 +292,6 @@ export const PRODUCT_DETAIL_FIXTURES: Record<string, ProductDetail> = {
         alt: "Protein Oats nutritional information table",
       },
       {
-        url: "/images/products/oats/oats-ingredients-2.jpeg",
-        alt: "Meet the ingredients: oats, protein blend, dates, seeds, almonds and raisins",
-      },
-      {
         url: "/images/products/oats/oats-ingredients.jpeg",
         alt: "Single-serve cup back panel with ingredients and prep steps",
       },
@@ -335,118 +331,6 @@ export const PRODUCT_DETAIL_FIXTURES: Record<string, ProductDetail> = {
     ingredients: toProductIngredients(PROTEIN_OATS_INGREDIENTS),
     proofPoints: [
       { icon: "dumbbell", label: "26g Protein / 100g" },
-      { icon: "check", label: "No Added Sugar" },
-      { icon: "wheat", label: "High Fiber" },
-      { icon: "shield", label: "No Preservatives" },
-      { icon: "leaf", label: "Naturally Sweetened" },
-    ],
-    reviews: {
-      averageRating: 4.3,
-      count: 4,
-      items: [
-        {
-          id: "po-1",
-          author: "Priya R.",
-          rating: 5,
-          date: "2026-07-12",
-          verified: true,
-          title: "Actually keeps me full till lunch",
-          body: "I've tried three other protein oats brands and always ended up hungry by 10am. This one actually holds me over. Chocolate flavour isn't sickly sweet either, which I was worried about given no added sugar.",
-        },
-        {
-          id: "po-2",
-          author: "Marcus T.",
-          rating: 4,
-          date: "2026-06-28",
-          verified: true,
-          title: "Good but texture takes getting used to",
-          body: "Taste is solid, protein hit is real (I checked the label against what they claim, checks out). Only reason it's not 5 stars is the texture is a bit denser than regular oats, took me a couple bowls to get used to it. Will reorder.",
-        },
-        {
-          id: "po-3",
-          author: "Ayesha K.",
-          rating: 5,
-          date: "2026-06-15",
-          verified: true,
-          title: "My kids don't even notice it's protein oats",
-          body: "Been making this for my two boys before school and they have no idea it's not the regular stuff. Way easier than fighting them to eat breakfast. The 70g cups are clutch for when we're rushing out the door.",
-        },
-        {
-          id: "po-4",
-          author: "Daniel O.",
-          rating: 3,
-          date: "2026-05-30",
-          verified: true,
-          title: "Decent, a bit pricey for the pouch size",
-          body: "Flavour and mixability are good, no complaints there. Just feels like the 425g pouch runs out faster than I'd like given how often I'm having it. Would probably buy a bigger bag if offered.",
-        },
-      ],
-    },
-  },
-  "protein-oats-77g": {
-    id: proteinOats77g.id,
-    slug: proteinOats77g.slug,
-    name: proteinOats77g.name,
-    label: proteinOats77g.label,
-    tagline: proteinOats77g.tagline,
-    description: proteinOats77g.description,
-    images: [
-      {
-        url: "/images/products/oats/oats-77g-1.jpeg",
-        alt: "Protein Oats pouch with a prepared chocolate oat bowl"
-      },
-      {
-        url: "/images/products/oats/oats-77g-2.avif",
-        alt: "Protein Oats pouch with a prepared chocolate oat bowl"
-      },
-      {
-        url: "/images/products/oats/oats-77g-back.jpeg",
-        alt: "Protein Oats pouch back panel"
-      },
-      {
-        url: "/images/products/oats/oats-77g-pour.jpeg",
-        alt: "Protein Oats pour",
-      },
-      {
-        url: "/images/products/oats/oats-ingredients.jpeg",
-        alt: "Meet the ingredients"
-      },
-    ],
-    price: 100,
-    compareAtPrice: null,
-    currency: "AED",
-    stats: proteinOats77g.stats.map((stat) => ({
-      label: stat.label,
-      value: stat.value,
-    })),
-    trustBadges: proteinOats77g.badges,
-    servingInfo: proteinOats77g.weight,
-    comingSoon: true,
-    howToUse: [
-      { text: "Add a 70g serving to a bowl." },
-      { text: "Pour over hot milk or water." },
-      { text: "Stir, rest 2 minutes, then eat." },
-    ],
-    ingredientStatement:
-      "Gluten-free oats, protein blend (texturized soy protein, whey protein concentrate and soy protein isolate), dates powder, seeds nuts and fruits mix (almonds, pumpkin seeds, sunflower seeds, chia seeds, flax seeds and black raisins), prebiotic fibre, cocoa, pink salt and monk fruit.",
-    nutrition: [
-      { label: "Serving size", value: "77g" },
-      { label: "Calories", value: "276 kcal" },
-      { label: "Protein", value: "20.0g" },
-      { label: "Total Fat", value: "5.00g" },
-      { label: "Saturated Fat", value: "1.16g" },
-      { label: "Trans fat", value: "0g" },
-      { label: "Cholesterol", value: "0mg" },
-      { label: "Sodium", value: "262mg" },
-      { label: "Total Carbohydrate", value: "37.6g" },
-      { label: "Dietary Fiber", value: "7.1g" },
-      { label: "Total Sugars", value: "7.11g" },
-      { label: "Added sugar", value: "0.0g" },
-    ],
-    nutritionCaption: "77g serving",
-    ingredients: toProductIngredients(PROTEIN_OATS_INGREDIENTS),
-    proofPoints: [
-      { icon: "dumbbell", label: "20g Protein / 77g" },
       { icon: "check", label: "No Added Sugar" },
       { icon: "wheat", label: "High Fiber" },
       { icon: "shield", label: "No Preservatives" },
@@ -627,6 +511,118 @@ export const PRODUCT_DETAIL_FIXTURES: Record<string, ProductDetail> = {
       ],
     },
 
+  },
+  "protein-oats-77g": {
+    id: proteinOats77g.id,
+    slug: proteinOats77g.slug,
+    name: proteinOats77g.name,
+    label: proteinOats77g.label,
+    tagline: proteinOats77g.tagline,
+    description: proteinOats77g.description,
+    images: [
+      {
+        url: "/images/products/oats/oats-77g-1.jpeg",
+        alt: "Protein Oats pouch with a prepared chocolate oat bowl"
+      },
+      {
+        url: "/images/products/oats/oats-77g-2.avif",
+        alt: "Protein Oats pouch with a prepared chocolate oat bowl"
+      },
+      {
+        url: "/images/products/oats/oats-77g-back.jpeg",
+        alt: "Protein Oats pouch back panel"
+      },
+      {
+        url: "/images/products/oats/oats-77g-pour.jpeg",
+        alt: "Protein Oats pour",
+      },
+      {
+        url: "/images/products/oats/oats-ingredients.jpeg",
+        alt: "Meet the ingredients"
+      },
+    ],
+    price: 100,
+    compareAtPrice: null,
+    currency: "AED",
+    stats: proteinOats77g.stats.map((stat) => ({
+      label: stat.label,
+      value: stat.value,
+    })),
+    trustBadges: proteinOats77g.badges,
+    servingInfo: proteinOats77g.weight,
+    comingSoon: true,
+    howToUse: [
+      { text: "Add a 70g serving to a bowl." },
+      { text: "Pour over hot milk or water." },
+      { text: "Stir, rest 2 minutes, then eat." },
+    ],
+    ingredientStatement:
+      "Gluten-free oats, protein blend (texturized soy protein, whey protein concentrate and soy protein isolate), dates powder, seeds nuts and fruits mix (almonds, pumpkin seeds, sunflower seeds, chia seeds, flax seeds and black raisins), prebiotic fibre, cocoa, pink salt and monk fruit.",
+    nutrition: [
+      { label: "Serving size", value: "77g" },
+      { label: "Calories", value: "276 kcal" },
+      { label: "Protein", value: "20.0g" },
+      { label: "Total Fat", value: "5.00g" },
+      { label: "Saturated Fat", value: "1.16g" },
+      { label: "Trans fat", value: "0g" },
+      { label: "Cholesterol", value: "0mg" },
+      { label: "Sodium", value: "262mg" },
+      { label: "Total Carbohydrate", value: "37.6g" },
+      { label: "Dietary Fiber", value: "7.1g" },
+      { label: "Total Sugars", value: "7.11g" },
+      { label: "Added sugar", value: "0.0g" },
+    ],
+    nutritionCaption: "77g serving",
+    ingredients: toProductIngredients(PROTEIN_OATS_INGREDIENTS),
+    proofPoints: [
+      { icon: "dumbbell", label: "20g Protein / 77g" },
+      { icon: "check", label: "No Added Sugar" },
+      { icon: "wheat", label: "High Fiber" },
+      { icon: "shield", label: "No Preservatives" },
+      { icon: "leaf", label: "Naturally Sweetened" },
+    ],
+    reviews: {
+      averageRating: 4.3,
+      count: 4,
+      items: [
+        {
+          id: "po-1",
+          author: "Priya R.",
+          rating: 5,
+          date: "2026-07-12",
+          verified: true,
+          title: "Actually keeps me full till lunch",
+          body: "I've tried three other protein oats brands and always ended up hungry by 10am. This one actually holds me over. Chocolate flavour isn't sickly sweet either, which I was worried about given no added sugar.",
+        },
+        {
+          id: "po-2",
+          author: "Marcus T.",
+          rating: 4,
+          date: "2026-06-28",
+          verified: true,
+          title: "Good but texture takes getting used to",
+          body: "Taste is solid, protein hit is real (I checked the label against what they claim, checks out). Only reason it's not 5 stars is the texture is a bit denser than regular oats, took me a couple bowls to get used to it. Will reorder.",
+        },
+        {
+          id: "po-3",
+          author: "Ayesha K.",
+          rating: 5,
+          date: "2026-06-15",
+          verified: true,
+          title: "My kids don't even notice it's protein oats",
+          body: "Been making this for my two boys before school and they have no idea it's not the regular stuff. Way easier than fighting them to eat breakfast. The 70g cups are clutch for when we're rushing out the door.",
+        },
+        {
+          id: "po-4",
+          author: "Daniel O.",
+          rating: 3,
+          date: "2026-05-30",
+          verified: true,
+          title: "Decent, a bit pricey for the pouch size",
+          body: "Flavour and mixability are good, no complaints there. Just feels like the 425g pouch runs out faster than I'd like given how often I'm having it. Would probably buy a bigger bag if offered.",
+        },
+      ],
+    },
   },
   "protein-oats-77g-pack-of-6": {
     id: proteinOats77gPackOf6.id,

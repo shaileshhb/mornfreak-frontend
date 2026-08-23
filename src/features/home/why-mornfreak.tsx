@@ -66,7 +66,6 @@ export function WhyMornfreak() {
             <video
               className="absolute inset-0 h-full w-full object-cover object-center"
               src="/images/hero/why-mornfreak.mp4"
-              poster="/images/why-mornfreak.avif"
               autoPlay
               muted
               loop

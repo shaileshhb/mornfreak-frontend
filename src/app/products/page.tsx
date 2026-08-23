@@ -53,7 +53,7 @@ export default function ProductsPage() {
 
       <Section>
         <Container>
-          <div className="mx-auto grid max-w-4xl grid-cols-1 gap-10 sm:grid-cols-2 sm:gap-8">
+          <div className="grid grid-cols-1 gap-10 sm:grid-cols-2 sm:gap-8 lg:grid-cols-3 lg:gap-6">
             {ALL_PRODUCTS.map((product) => (
               <ProductListingCard key={product.id} product={product} />
             ))}

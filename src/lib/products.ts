@@ -146,45 +146,6 @@ export const PRODUCT_CONTENT: Record<ProductId, ProductContent> = {
       },
     ],
   },
-  proteinOats77g: {
-    id: "proteinOats77g",
-    slug: "protein-oats-77g",
-    label: "Protein Oats 77g",
-    name: "Mornfreak Protein Oats 77g",
-    tagline: "Rich Chocolate. Real Gains.",
-    description:
-      "26g of protein per 100g, sweetened naturally with dates, loaded with super seeds and nuts. The breakfast that works as hard as you do.",
-    images: ["/images/products/oats/oats-77g-1.jpeg", "/images/products/oats/oats-77g-pour.jpeg"],
-    heroImage: "/images/products/oats/oats-77g-1.jpeg",
-    hoverImage: "/images/products/oats/oats-77g-pour.jpeg",
-    serveImage: "/images/products/oats/oats-77g-1.jpeg",
-    weight: "77g single-serve cup (20g protein/cup)",
-    stats: [
-      { value: "26g", label: "Protein / 100g" },
-      { value: "10%", label: "Fibre" },
-      { value: "0%", label: "Added Sugar" },
-      { value: "0%", label: "Preservatives" },
-    ],
-    badges: ["No Preservatives", "Prebiotics Added", "Sustainable Energy", "No Refined Sugar"],
-    benefits: [
-      {
-        title: "Sustained Energy",
-        body: "Complex carbs and fibre keep you fuelled through the morning, no crash.",
-      },
-      {
-        title: "Easy to Digest",
-        body: "Gentle on the gut with added prebiotics for a clean, comfortable start.",
-      },
-      {
-        title: "Zero Nasties",
-        body: "No preservatives, no added sugar, no artificial anything. Just real food.",
-      },
-      {
-        title: "Protein-Forward",
-        body: "26g of protein per 100g serving from clean, whole-food sources.",
-      },
-    ],
-  },
   proteinOats425gPackOf2: {
     id: "proteinOats425gPackOf2",
     slug: "protein-oats-425g-pack-of-2",
@@ -205,6 +166,45 @@ export const PRODUCT_CONTENT: Record<ProductId, ProductContent> = {
       { value: "0%", label: "Preservatives" },
     ],
     badges: ["Non-GMO", "High Fiber", "No Preservatives"],
+    benefits: [
+      {
+        title: "Sustained Energy",
+        body: "Complex carbs and fibre keep you fuelled through the morning, no crash.",
+      },
+      {
+        title: "Easy to Digest",
+        body: "Gentle on the gut with added prebiotics for a clean, comfortable start.",
+      },
+      {
+        title: "Zero Nasties",
+        body: "No preservatives, no added sugar, no artificial anything. Just real food.",
+      },
+      {
+        title: "Protein-Forward",
+        body: "26g of protein per 100g serving from clean, whole-food sources.",
+      },
+    ],
+  },
+  proteinOats77g: {
+    id: "proteinOats77g",
+    slug: "protein-oats-77g",
+    label: "Protein Oats 77g",
+    name: "Mornfreak Protein Oats 77g",
+    tagline: "Rich Chocolate. Real Gains.",
+    description:
+      "26g of protein per 100g, sweetened naturally with dates, loaded with super seeds and nuts. The breakfast that works as hard as you do.",
+    images: ["/images/products/oats/oats-77g-1.jpeg", "/images/products/oats/oats-77g-pour.jpeg"],
+    heroImage: "/images/products/oats/oats-77g-1.jpeg",
+    hoverImage: "/images/products/oats/oats-77g-pour.jpeg",
+    serveImage: "/images/products/oats/oats-77g-1.jpeg",
+    weight: "77g single-serve cup (20g protein/cup)",
+    stats: [
+      { value: "26g", label: "Protein / 100g" },
+      { value: "10%", label: "Fibre" },
+      { value: "0%", label: "Added Sugar" },
+      { value: "0%", label: "Preservatives" },
+    ],
+    badges: ["No Preservatives", "Prebiotics Added", "Sustainable Energy", "No Refined Sugar"],
     benefits: [
       {
         title: "Sustained Energy",

@@ -383,7 +383,7 @@ export function ProductImageCarousel({
               aria-current={index === activeIndex ? "true" : undefined}
               onClick={() => goTo(index)}
               className={cn(
-                "relative aspect-square h-20 w-20 shrink-0 overflow-hidden rounded-xl bg-product-background outline-none ring-2 ring-offset-2 ring-offset-background transition-opacity focus-visible:ring-product-primary sm:h-24 sm:w-24 lg:h-[6.75rem] lg:w-[6.75rem]",
+                "relative aspect-square h-20 w-20 mt-1 ms-1  shrink-0 overflow-hidden rounded-xl bg-product-background outline-none ring-2 ring-offset-2 ring-offset-background transition-opacity focus-visible:ring-product-primary sm:h-24 sm:w-24 lg:h-[6.75rem] lg:w-[6.75rem]",
                 index === activeIndex
                   ? "ring-product-primary"
                   : "ring-transparent opacity-70 hover:opacity-100",

@@ -62,7 +62,7 @@ function BuyBoxStat({ stat }: { stat: ProductStat }) {
   const Icon = iconForStat(stat.label);
 
   return (
-    <div className="flex min-w-[6.5rem] flex-1 flex-col items-center rounded-xl border border-product-primary/25 bg-product-background px-3 py-3 text-center text-product-foreground sm:min-w-[7.5rem] sm:px-4 sm:py-3.5">
+    <div className="flex min-w-[6.5rem] flex-1 flex-col items-center rounded-xl border border-product-primary/50 bg-product-background px-3 py-3 text-center text-product-foreground sm:min-w-[7.5rem] sm:px-4 sm:py-3.5">
       <Icon
         aria-hidden
         size={16}
@@ -158,7 +158,7 @@ export function ProductBuyBox({ product }: ProductBuyBoxProps) {
       <ul className="flex flex-wrap gap-2">
         {product.trustBadges.map((badge) => (
           <li key={badge}>
-            <span className="inline-flex items-center rounded-full border border-product-primary/30 bg-product-background px-3 py-1 font-sans text-xs font-medium text-product-foreground">
+            <span className="inline-flex items-center rounded-full border border-product-primary/50 bg-product-background px-3 py-1 font-sans text-xs font-medium text-product-foreground">
               {badge}
             </span>
           </li>

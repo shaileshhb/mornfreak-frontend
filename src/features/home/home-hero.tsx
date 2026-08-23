@@ -586,7 +586,7 @@ function GlowSlide({
                 "radial-gradient(closest-side, var(--product-glow), transparent 70%)",
             }}
           />
-          <div className="relative h-full w-full p-8 md:p-12 lg:p-14 motion-safe:animate-float">
+          <div className="relative h-full w-full p-8 md:p-12 lg:p-10 motion-safe:animate-float">
             {slide.cutoutImage ? (
               <div className="relative h-full w-full">
                 <Image
@@ -605,7 +605,7 @@ function GlowSlide({
         <div
           className={cn(
             "order-2 flex items-center lg:order-1 lg:h-full",
-            "p-4 md:p-8 lg:p-16 xl:p-24 2xl:p-[clamp(6rem,6vw,10rem)]",
+            "p-4 md:p-8 lg:p-10 xl:p-16 2xl:p-[clamp(4rem,4vw,7rem)]",
           )}
         >
           <SlideText

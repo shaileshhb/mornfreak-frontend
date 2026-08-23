@@ -1,3 +1,5 @@
+export const INSTAGRAM_PROFILE_URL = "https://www.instagram.com/mornfreak";
+
 export type InstagramPost = {
   href: string;
   image: string;

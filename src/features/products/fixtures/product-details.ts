@@ -260,7 +260,7 @@ export const PRODUCT_DETAIL_FIXTURES: Record<string, ProductDetail> = {
     description: proteinOats425g.description,
     images: [
       {
-        url: "/images/products/oats/oats-425g-1.jpeg",
+        url: "/images/products/oats/oats-425g-1.avif",
         alt: "Protein Oats 425g pouch",
       },
       {
@@ -388,7 +388,7 @@ export const PRODUCT_DETAIL_FIXTURES: Record<string, ProductDetail> = {
     description: proteinOats425gPackOf2.description,
     images: [
       {
-        url: "/images/products/oats/oats-425g-1.jpeg",
+        url: "/images/products/oats/oats-425g-1.avif",
         alt: "Protein Oats 425g pouch",
       },
       {

@@ -39,7 +39,7 @@ export const PROTEIN_OATS_INGREDIENTS: Ingredient[] = [
     title: "Date Powder",
     description:
       "Naturally sweetened with dates — real fruit sweetness, no refined sugar.",
-    image: "/images/ingredients/dates-powder.avif",
+    image: "/images/ingredients/date-powder.avif",
     imageAlt: "Wooden bowl filled with date powder",
     keyFeatures: [
       "Zero refined sugar",
@@ -146,7 +146,7 @@ export const PEANUT_BUTTER_INGREDIENTS: Ingredient[] = [
     title: "100% Peanuts",
     description:
       "Nothing else. No fillers, no additives — just roasted peanuts pressed into a clean, versatile powder.",
-    image: "/images/ingredients/peanut-powder.png",
+    image: "/images/ingredients/peanut-powder.avif",
     imageAlt: "Wooden bowl filled with peanut powder and whole peanuts",
     keyFeatures: [
       "Single-ingredient formula",

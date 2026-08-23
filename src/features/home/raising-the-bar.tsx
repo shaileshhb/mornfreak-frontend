@@ -159,7 +159,7 @@ export function RaisingTheBar() {
 
         {/* Unified responsive stage: hexagon + product + corner callouts */}
         <div className="relative mx-auto aspect-square w-full max-w-[17rem] sm:max-w-[28rem] md:max-w-[36rem] lg:max-w-[48rem] xl:max-w-[56rem]">
-          <div className="absolute left-1/2 top-1/2 aspect-square -translate-x-1/2 -translate-y-1/2 overflow-visible w-[72%] sm:w-[78%] lg:w-[74%]">
+          <div className="absolute left-1/2 top-1/2 aspect-square w-[58%] -translate-x-1/2 -translate-y-1/2 overflow-visible sm:w-[78%] lg:w-[74%]">
             <HexagonFrame />
             <div
               className="pointer-events-none absolute inset-[22%] rounded-full bg-primary/20 blur-3xl"
@@ -247,12 +247,12 @@ function FeatureCallout({
           side === "bottom" &&
           "left-1/2 top-full mt-2 w-[9rem] -translate-x-1/2 text-center sm:mt-3 sm:w-[11rem] md:w-[13rem] lg:w-[15rem]",
           side === "left" &&
-          "right-full top-1/2 mr-2 w-[6.5rem] -translate-y-1/2 text-right sm:mr-3 sm:w-[8.5rem] md:w-[10.5rem] lg:w-[12.5rem] xl:w-[14rem]",
+          "right-full top-1/2 mr-1 w-[4.5rem] -translate-y-1/2 text-right sm:mr-3 sm:w-[8.5rem] md:w-[10.5rem] lg:w-[12.5rem] xl:w-[14rem]",
           side === "right" &&
-          "left-full top-1/2 ml-2 w-[6.5rem] -translate-y-1/2 text-left sm:ml-3 sm:w-[8.5rem] md:w-[10.5rem] lg:w-[12.5rem] xl:w-[14rem]",
+          "left-full top-1/2 ml-1 w-[4.5rem] -translate-y-1/2 text-left sm:ml-3 sm:w-[8.5rem] md:w-[10.5rem] lg:w-[12.5rem] xl:w-[14rem]",
         )}
       >
-        <h3 className="font-sans text-[0.55rem] font-semibold uppercase leading-tight tracking-[0.1em] text-primary sm:text-[0.7rem] sm:tracking-[0.12em] lg:text-xs">
+        <h3 className="font-sans text-[0.5rem] font-semibold uppercase leading-tight tracking-[0.06em] text-primary sm:text-[0.7rem] sm:tracking-[0.12em] lg:text-xs">
           {title}
         </h3>
       </div>

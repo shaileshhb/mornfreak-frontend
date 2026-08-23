@@ -46,7 +46,7 @@ export function Nav() {
                 key={link.label}
                 href={link.href}
                 className={cn(
-                  "font-sans text-sm transition-colors hover:text-primary",
+                  "font-sans text-base transition-colors hover:text-primary",
                   isActivePath(pathname, link.href)
                     ? "font-semibold text-foreground"
                     : "font-medium text-foreground/80",

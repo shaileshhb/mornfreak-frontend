@@ -134,7 +134,7 @@ export function RaisingTheBar() {
 
 
         <div
-          className="mx-auto mt-9 flex w-full max-w-md rounded-full bg-muted/70 p-1"
+          className="mx-auto mt-9 flex w-fit max-w-full rounded-full bg-muted/70 p-1 mb-3 sm:mb-0"
           role="tablist"
           aria-label="Choose a product"
         >
@@ -146,7 +146,7 @@ export function RaisingTheBar() {
               aria-selected={activeProduct === key}
               onClick={() => setActiveProduct(key)}
               className={cn(
-                "min-w-0 flex-1 whitespace-nowrap rounded-full px-3 py-2.5 font-sans text-[0.65rem] font-semibold uppercase tracking-[0.10em] transition-colors sm:px-5 sm:text-[0.7rem] sm:tracking-[0.08em] md:px-8",
+                "min-w-0 flex-1 rounded-full px-3 py-2.5 text-center font-sans text-[0.65rem] font-semibold uppercase leading-tight tracking-[0.10em] transition-colors sm:flex-none sm:px-5 sm:text-[0.7rem] sm:tracking-[0.08em] md:px-8",
                 activeProduct === key
                   ? "bg-primary text-primary-foreground"
                   : "bg-transparent text-foreground hover:bg-foreground/5",
@@ -196,7 +196,7 @@ export function RaisingTheBar() {
           </div>
         </div>
 
-        <div className="mt-4 text-center sm:mt-0">
+        <div className="text-center mt-4 sm:mt-0">
           <Link
             className="inline-flex h-12 items-center justify-center gap-2 bg-foreground px-8 font-sans text-sm font-semibold uppercase tracking-[0.12em] text-white transition-transform hover:-translate-y-0.5"
             href="/products">

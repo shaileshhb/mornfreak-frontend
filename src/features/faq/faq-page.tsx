@@ -30,10 +30,10 @@ export function FaqPage() {
       <Section>
         <Container className="max-w-5xl">
           <div className="rounded-2xl bg-cocoa-espresso px-6 py-10 text-center sm:px-10 sm:py-12">
-            <p className="font-sans text-xs font-bold uppercase tracking-[0.18em] text-toasted-almond">
+            <p className="font-sans text-xs font-semibold uppercase tracking-[0.18em] text-toasted-almond">
               Still have questions?
             </p>
-            <h2 className="mt-3 font-display text-3xl uppercase tracking-wide text-oat-cream sm:text-4xl">
+            <h2 className="mt-3 font-display text-3xl font-bold uppercase tracking-wide text-oat-cream sm:text-4xl">
               We&apos;re here.
             </h2>
             <p className="mx-auto mt-3 max-w-md font-sans text-sm leading-relaxed text-oat-cream/70 sm:text-base">

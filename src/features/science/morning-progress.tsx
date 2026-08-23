@@ -40,10 +40,10 @@ export function MorningProgress() {
   return (
     <div ref={ref} className="relative mx-auto mt-12 max-w-xl px-2">
       <div className="flex items-end justify-between gap-4">
-        <p className="font-sans text-xs font-bold uppercase tracking-[0.16em] text-muted-foreground">
+        <p className="font-sans text-xs font-semibold uppercase tracking-[0.16em] text-muted-foreground">
           First Bowl
         </p>
-        <p className="font-sans text-xs font-bold uppercase tracking-[0.16em] text-muted-foreground">
+        <p className="font-sans text-xs font-semibold uppercase tracking-[0.16em] text-muted-foreground">
           Every Morning
         </p>
       </div>
@@ -55,7 +55,7 @@ export function MorningProgress() {
       </div>
       <div className="mt-4 flex justify-center">
         <span className="inline-flex min-w-[5.5rem] flex-col items-center justify-center rounded-xl border border-primary/20 bg-primary px-5 py-3 text-center text-primary-foreground">
-          <span className="font-display text-3xl leading-none tracking-wide">{percent}%</span>
+          <span className="font-display text-3xl font-extrabold leading-none tracking-wide">{percent}%</span>
         </span>
       </div>
     </div>

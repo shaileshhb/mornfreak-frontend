@@ -22,7 +22,7 @@ function ContactBlock({ contact }: { contact: LegalContact }) {
   return (
     <section>
       {contact.heading ? (
-        <h2 className="font-display text-xl uppercase tracking-wide text-foreground sm:text-2xl">
+        <h2 className="font-display text-xl font-bold uppercase tracking-wide text-foreground sm:text-2xl">
           {contact.heading}
         </h2>
       ) : null}
@@ -81,7 +81,7 @@ export function LegalDocumentPage({ document }: { document: LegalDocument }) {
         <div className="mt-12 space-y-10 md:mt-16">
           {document.sections.map((section) => (
             <section key={section.heading}>
-              <h2 className="font-display text-xl uppercase tracking-wide text-foreground sm:text-2xl">
+              <h2 className="font-display text-xl font-bold uppercase tracking-wide text-foreground sm:text-2xl">
                 {section.heading}
               </h2>
               <div className="mt-4 space-y-4">

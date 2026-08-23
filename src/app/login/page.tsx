@@ -15,7 +15,7 @@ export default function LoginPage() {
     <section className="bg-background py-20 sm:py-28">
       <Container className="max-w-xl">
         <div className="border border-foreground/10 bg-card px-6 py-12 text-center sm:px-10 sm:py-16">
-          <p className="font-sans text-xs font-bold uppercase tracking-[0.22em] text-primary">
+          <p className="font-sans text-xs font-semibold uppercase tracking-[0.22em] text-primary">
             Account
           </p>
           <Heading variant="display" as="h1" className="mt-4 leading-none">

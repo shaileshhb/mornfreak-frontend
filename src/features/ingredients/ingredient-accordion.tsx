@@ -47,7 +47,7 @@ export function IngredientAccordion({
                 className="flex w-full items-start justify-between gap-4 text-left"
               >
                 <div className="min-w-0">
-                  <h3 className="font-sans text-base font-bold uppercase tracking-[0.08em] text-product-foreground sm:text-lg">
+                  <h3 className="font-display text-base font-bold uppercase tracking-[0.08em] text-product-foreground sm:text-lg">
                     {ingredient.title}
                   </h3>
                   <p className="mt-2 text-sm leading-relaxed text-product-foreground/65 sm:text-base">
@@ -84,7 +84,7 @@ export function IngredientAccordion({
                     )}
                     {...(!isOpen ? { inert: true as const } : {})}
                   >
-                    <p className="font-sans text-xs font-bold uppercase tracking-[0.16em] text-product-primary">
+                    <p className="font-sans text-xs font-semibold uppercase tracking-[0.16em] text-product-primary">
                       Key Features:
                     </p>
                     <ul className="mt-3 space-y-2">

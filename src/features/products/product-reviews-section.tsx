@@ -38,7 +38,7 @@ export function ProductReviewCard({ review }: ProductReviewCardProps) {
     <article className="flex flex-col rounded-2xl bg-card p-6">
       <Stars rating={review.rating} />
       {review.title && (
-        <h3 className="mt-5 font-display text-2xl uppercase leading-none tracking-wide sm:text-3xl">
+        <h3 className="mt-5 font-display text-2xl font-bold uppercase leading-none tracking-wide sm:text-3xl">
           {review.title}
         </h3>
       )}
@@ -48,7 +48,7 @@ export function ProductReviewCard({ review }: ProductReviewCardProps) {
       <div className="mt-6 border-t border-foreground/15 pt-5">
         <div className="flex flex-wrap items-center justify-between gap-3">
           <div>
-            <p className="font-sans text-sm font-bold">{review.author}</p>
+            <p className="font-sans text-sm font-semibold">{review.author}</p>
             {review.verified && (
               <p className="mt-1 flex items-center gap-1 text-xs text-muted-foreground">
                 <CheckCircle2 aria-hidden size={13} /> Verified buyer
@@ -144,14 +144,14 @@ export function ProductReviewsSection({
       <Container>
         <header className="flex flex-col gap-6 border-b border-foreground/10 pb-10 lg:flex-row lg:items-end lg:justify-between">
           <div>
-            <p className="font-sans text-xs font-bold uppercase tracking-[0.18em] text-foreground/50">
+            <p className="font-sans text-xs font-semibold uppercase tracking-[0.18em] text-foreground/50">
               Customer reviews
             </p>
             <Heading variant="h2" as="h2" className="mt-3">
               The reviews are in
             </Heading>
             <div className="mt-5 flex flex-wrap items-end gap-4">
-              <p className="font-display text-5xl leading-none tracking-wide tabular-nums">
+              <p className="font-display text-5xl font-extrabold leading-none tracking-wide tabular-nums">
                 {reviews.averageRating.toFixed(1)}
               </p>
               <div className="pb-1">

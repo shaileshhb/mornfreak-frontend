@@ -53,7 +53,7 @@ export function StickyMobileCartBar({
           <p className="truncate font-sans text-xs text-muted-foreground">
             {product.name}
           </p>
-          <p className="font-display text-lg tracking-wide">
+          <p className="font-display text-lg font-bold tracking-wide">
             {formatMoney(product.price, product.currency)}
           </p>
         </div>

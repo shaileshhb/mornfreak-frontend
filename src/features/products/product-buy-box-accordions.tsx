@@ -40,7 +40,7 @@ function AccordionPanel({
           onClick={onToggle}
           className="flex w-full items-center justify-between gap-3 py-4 text-left"
         >
-          <span className="font-sans text-sm font-bold uppercase tracking-[0.12em]">
+          <span className="font-sans text-sm font-semibold uppercase tracking-[0.12em]">
             {title}
           </span>
           <ChevronDown

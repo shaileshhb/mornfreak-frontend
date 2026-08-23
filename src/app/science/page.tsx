@@ -121,7 +121,7 @@ function BenefitList({ benefits }: { benefits: Benefit[] }) {
         <li key={title} className="flex gap-4">
           <Icon aria-hidden className="mt-0.5 shrink-0 text-primary" size={22} strokeWidth={1.7} />
           <div>
-            <p className="font-sans text-sm font-bold uppercase tracking-[0.08em] text-foreground">
+            <p className="font-sans text-sm font-semibold uppercase tracking-[0.08em] text-foreground">
               {title}
             </p>
             <p className="mt-1 font-sans text-sm leading-relaxed text-muted-foreground">{body}</p>
@@ -183,16 +183,16 @@ export default function SciencePage() {
                   <p
                     className={
                       item.highlighted
-                        ? "font-sans text-xs font-bold uppercase tracking-[0.18em] text-primary-foreground/70"
-                        : "font-sans text-xs font-bold uppercase tracking-[0.18em] text-primary"
+                        ? "font-sans text-xs font-semibold uppercase tracking-[0.18em] text-primary-foreground/70"
+                        : "font-sans text-xs font-semibold uppercase tracking-[0.18em] text-primary"
                     }>
                     {item.eyebrow}
                   </p>
                   <h2
                     className={
                       item.highlighted
-                        ? "mt-2 font-display text-xl uppercase tracking-wide text-primary-foreground sm:text-xl"
-                        : "mt-2 font-display text-2xl uppercase tracking-wide text-foreground sm:text-2xl"
+                        ? "mt-2 font-display text-xl font-bold uppercase tracking-wide text-primary-foreground sm:text-xl"
+                        : "mt-2 font-display text-2xl font-bold uppercase tracking-wide text-foreground sm:text-2xl"
                     }
                   >
                     {item.title}
@@ -241,7 +241,7 @@ export default function SciencePage() {
           <div className="mt-12 grid gap-6 lg:grid-cols-2">
             <article className="rounded-2xl border border-border bg-card p-6 sm:p-8">
               <div className="rounded-lg bg-foreground px-4 py-3">
-                <p className="font-sans text-xs font-bold uppercase tracking-[0.16em] text-primary-foreground">
+                <p className="font-sans text-xs font-semibold uppercase tracking-[0.16em] text-primary-foreground">
                   Protein Oats
                 </p>
               </div>
@@ -250,7 +250,7 @@ export default function SciencePage() {
 
             <article className="rounded-2xl border border-border bg-card p-6 sm:p-8">
               <div className="rounded-lg bg-primary px-4 py-3">
-                <p className="font-sans text-xs font-bold uppercase tracking-[0.16em] text-primary-foreground">
+                <p className="font-sans text-xs font-semibold uppercase tracking-[0.16em] text-primary-foreground">
                   Peanut Butter Powder
                 </p>
               </div>
@@ -287,7 +287,7 @@ export default function SciencePage() {
                     className="object-cover"
                   />
                 </div>
-                <h3 className="mt-5 font-display text-2xl uppercase tracking-wide text-foreground sm:text-3xl">
+                <h3 className="mt-5 font-display text-2xl font-bold uppercase tracking-wide text-foreground sm:text-3xl">
                   {item.title}
                 </h3>
                 <p className="mt-2 max-w-md font-sans text-sm leading-relaxed text-muted-foreground sm:text-base">

@@ -69,7 +69,7 @@ function BuyBoxStat({ stat }: { stat: ProductStat }) {
         strokeWidth={1.75}
         className="text-product-primary"
       />
-      <span className="mt-1.5 font-display text-2xl leading-none tracking-wide">
+      <span className="mt-1.5 font-display text-2xl font-bold leading-none tracking-wide">
         {stat.value}
       </span>
       <span className="mt-1 font-sans text-[0.6875rem] font-medium uppercase tracking-widest text-product-foreground/80">
@@ -118,7 +118,7 @@ export function ProductBuyBox({ product }: ProductBuyBoxProps) {
         <p className="font-sans text-kicker font-semibold uppercase text-product-primary">
           {eyebrow}
         </p>
-        <h1 className="mt-2 font-display text-[clamp(2.25rem,5vw,3.5rem)] uppercase leading-[0.9] tracking-wide text-product-foreground">
+        <h1 className="mt-2 font-display text-[clamp(2.25rem,5vw,3.5rem)] font-bold uppercase leading-[0.9] tracking-wide text-product-foreground">
           {product.name}
         </h1>
         <p className="mt-3 font-sans text-base leading-relaxed text-product-foreground/70 sm:text-lg">
@@ -135,7 +135,7 @@ export function ProductBuyBox({ product }: ProductBuyBoxProps) {
 
       <div>
         <div className="flex items-baseline gap-3">
-          <p className="font-display text-[2rem] leading-none tracking-wide text-product-foreground sm:text-4xl">
+          <p className="font-display text-[2rem] font-bold leading-none tracking-wide text-product-foreground sm:text-4xl">
             {formatMoney(product.price, product.currency)}
           </p>
           {product.compareAtPrice != null && product.compareAtPrice > product.price && (

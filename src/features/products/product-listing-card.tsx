@@ -53,7 +53,7 @@ export function ProductListingCard({ product }: { product: ProductContent }) {
 
       <div className="flex flex-col gap-3 px-1">
         <div>
-          <h2 className="font-sans text-xl font-semibold tracking-tight text-foreground">
+          <h2 className="font-display text-xl font-bold tracking-tight text-foreground">
             {product.name}
           </h2>
           <p className="mt-1 font-sans text-sm text-muted-foreground">{product.tagline}</p>

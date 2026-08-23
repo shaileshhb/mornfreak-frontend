@@ -10,7 +10,7 @@ export function BuiltForRealMornings() {
       <Container className="max-w-[90rem]">
         <div className="grid grid-cols-1 justify-items-center lg:grid-cols-[minmax(0,1.05fr)_minmax(0,0.95fr)] lg:items-center lg:justify-items-start lg:gap-x-10 xl:gap-x-16">
           <div className="w-full text-center lg:flex lg:flex-col lg:items-start lg:text-left">
-            <p className="font-sans text-base font-bold uppercase tracking-[0.15em] text-primary">
+            <p className="font-sans text-base font-semibold uppercase tracking-[0.15em] text-primary">
               Built for real mornings
             </p>
             <h2 className="mt-3 font-display text-[clamp(1.85rem,7.5vw,2.5rem)] font-bold uppercase leading-[0.9] tracking-tight text-foreground lg:mt-5 lg:text-[clamp(4.5rem,6.2vw,6.75rem)] lg:leading-[0.84]">
@@ -28,7 +28,7 @@ export function BuiltForRealMornings() {
               </span>
             </h2>
             <Link
-              className="mt-8 inline-flex h-12 items-center justify-center gap-2 bg-foreground px-7 font-sans text-sm font-bold uppercase tracking-[0.12em] text-background transition-transform hover:-translate-y-0.5 focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background lg:mt-10"
+              className="mt-8 inline-flex h-12 items-center justify-center gap-2 bg-foreground px-7 font-sans text-sm font-semibold uppercase tracking-[0.12em] text-background transition-transform hover:-translate-y-0.5 focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background lg:mt-10"
               href="/products"
             >
               Shop Mornfreak <ArrowRight aria-hidden size={17} />

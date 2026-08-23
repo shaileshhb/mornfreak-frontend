@@ -138,7 +138,7 @@ export function HowWeStackUp() {
               aria-selected={activeProduct === key}
               onClick={() => setActiveProduct(key)}
               className={cn(
-                "min-w-0 flex-1 whitespace-nowrap rounded-full px-3 py-2.5 font-sans text-[0.65rem] font-bold uppercase tracking-[0.10em] transition-colors sm:px-5 sm:text-[0.7rem] sm:tracking-[0.08em] md:px-8",
+                "min-w-0 flex-1 whitespace-nowrap rounded-full px-3 py-2.5 font-sans text-[0.65rem] font-semibold uppercase tracking-[0.10em] transition-colors sm:px-5 sm:text-[0.7rem] sm:tracking-[0.08em] md:px-8",
                 activeProduct === key
                   ? "bg-primary text-primary-foreground"
                   : "bg-transparent text-foreground hover:bg-foreground/5",
@@ -170,7 +170,7 @@ export function HowWeStackUp() {
                       key={column}
                       scope="col"
                       className={cn(
-                        "border-b p-4 text-center font-sans text-[0.65rem] font-bold uppercase tracking-[0.1em] sm:p-5 sm:text-xs sm:tracking-[0.12em]",
+                        "border-b p-4 text-center font-sans text-[0.65rem] font-semibold uppercase tracking-[0.1em] sm:p-5 sm:text-xs sm:tracking-[0.12em]",
                         activeProduct === "peanutButter" && "w-[10rem] sm:w-[12rem]",
                         index === 0
                           ? "rounded-t-lg border-primary bg-primary text-primary-foreground"

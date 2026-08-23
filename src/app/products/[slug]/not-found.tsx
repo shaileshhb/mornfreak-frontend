@@ -7,7 +7,7 @@ export default function NotFound() {
   return (
     <section className="bg-background py-20 sm:py-28">
       <Container className="max-w-xl text-center">
-        <p className="font-sans text-xs font-bold uppercase tracking-[0.18em] text-foreground/50">
+        <p className="font-sans text-xs font-semibold uppercase tracking-[0.18em] text-foreground/50">
           404
         </p>
         <Heading variant="h2" as="h1" className="mt-3">

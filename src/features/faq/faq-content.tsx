@@ -143,7 +143,7 @@ export function FaqContent() {
       <div className="space-y-12">
         {FAQ_CATEGORIES.map((category) => (
           <section key={category.id} id={category.id} className="scroll-mt-28">
-            <h2 className="font-display text-xl uppercase tracking-wide text-foreground sm:text-2xl">
+            <h2 className="font-display text-xl font-bold uppercase tracking-wide text-foreground sm:text-2xl">
               {category.title}
             </h2>
             <div className="mt-4 border-b border-border">

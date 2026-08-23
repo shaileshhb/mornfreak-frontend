@@ -112,7 +112,7 @@ export function RaisingTheBar() {
     <section className="overflow-hidden bg-background py-8 sm:py-10">
       <Container className="max-w-[90rem]">
         <header className="mx-auto max-w-5xl text-center">
-          <p className="font-sans text-s font-bold uppercase tracking-[0.15em] text-primary">
+          <p className="font-sans text-s font-semibold uppercase tracking-[0.15em] text-primary">
             How we're raising the bar
           </p>
           <Heading
@@ -146,7 +146,7 @@ export function RaisingTheBar() {
               aria-selected={activeProduct === key}
               onClick={() => setActiveProduct(key)}
               className={cn(
-                "min-w-0 flex-1 whitespace-nowrap rounded-full px-3 py-2.5 font-sans text-[0.65rem] font-bold uppercase tracking-[0.10em] transition-colors sm:px-5 sm:text-[0.7rem] sm:tracking-[0.08em] md:px-8",
+                "min-w-0 flex-1 whitespace-nowrap rounded-full px-3 py-2.5 font-sans text-[0.65rem] font-semibold uppercase tracking-[0.10em] transition-colors sm:px-5 sm:text-[0.7rem] sm:tracking-[0.08em] md:px-8",
                 activeProduct === key
                   ? "bg-primary text-primary-foreground"
                   : "bg-transparent text-foreground hover:bg-foreground/5",
@@ -198,7 +198,7 @@ export function RaisingTheBar() {
 
         <div className="mt-4 text-center sm:mt-0">
           <Link
-            className="inline-flex h-12 items-center justify-center gap-2 bg-foreground px-8 font-sans text-sm font-bold uppercase tracking-[0.12em] text-white transition-transform hover:-translate-y-0.5"
+            className="inline-flex h-12 items-center justify-center gap-2 bg-foreground px-8 font-sans text-sm font-semibold uppercase tracking-[0.12em] text-white transition-transform hover:-translate-y-0.5"
             href="/products">
             Shop now <ArrowRight aria-hidden size={17} />
           </Link>
@@ -252,7 +252,7 @@ function FeatureCallout({
           "left-full top-1/2 ml-2 w-[6.5rem] -translate-y-1/2 text-left sm:ml-3 sm:w-[8.5rem] md:w-[10.5rem] lg:w-[12.5rem] xl:w-[14rem]",
         )}
       >
-        <h3 className="font-sans text-[0.55rem] font-bold uppercase leading-tight tracking-[0.1em] text-primary sm:text-[0.7rem] sm:tracking-[0.12em] lg:text-xs">
+        <h3 className="font-sans text-[0.55rem] font-semibold uppercase leading-tight tracking-[0.1em] text-primary sm:text-[0.7rem] sm:tracking-[0.12em] lg:text-xs">
           {title}
         </h3>
       </div>

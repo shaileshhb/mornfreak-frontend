@@ -30,7 +30,7 @@ export function WhyMornfreak() {
       <Container className="max-w-[90rem]">
         <div className="grid gap-14 lg:grid-cols-[1.05fr_0.95fr] lg:items-stretch">
           <div className="lg:py-6">
-            <p className="font-sans text-s font-bold uppercase tracking-[0.15em] text-primary">
+            <p className="font-sans text-s font-semibold uppercase tracking-[0.15em] text-primary">
               Why Mornfreak
             </p>
             <Heading variant="display" as="h2" className="mt-4 max-w-2xl leading-[0.92]">
@@ -42,11 +42,11 @@ export function WhyMornfreak() {
               {REASONS.map(({ number, title, body, icon: Icon }) => (
                 <article key={number} className="grid grid-cols-[3.75rem_1fr] gap-5 py-7 first:pt-0">
                   <div className="text-primary">
-                    <span className="font-display text-3xl tracking-wide">{number}</span>
+                    <span className="font-display text-3xl font-bold tracking-wide">{number}</span>
                     <Icon aria-hidden className="mt-2" size={21} strokeWidth={1.7} />
                   </div>
                   <div>
-                    <h3 className="font-sans text-lg font-bold">{title}</h3>
+                    <h3 className="font-display text-lg font-bold">{title}</h3>
                     <p className="mt-2 max-w-lg text-sm leading-relaxed text-muted-foreground sm:text-base">
                       {body}
                     </p>
@@ -56,7 +56,7 @@ export function WhyMornfreak() {
             </div>
 
             <Link
-              className="mt-8 inline-flex h-12 items-center justify-center gap-2 bg-primary px-7 font-sans text-sm font-bold uppercase tracking-[0.12em] text-white transition-transform hover:-translate-y-0.5"
+              className="mt-8 inline-flex h-12 items-center justify-center gap-2 bg-primary px-7 font-sans text-sm font-semibold uppercase tracking-[0.12em] text-white transition-transform hover:-translate-y-0.5"
               href="/products">
               Shop now <ArrowRight aria-hidden size={17} />
             </Link>

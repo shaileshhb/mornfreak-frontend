@@ -10,7 +10,7 @@ export function PeanutButterIngredients() {
     <ProductSection product="peanutButter">
       <Container className="max-w-[82rem]">
         <header className="max-w-2xl">
-          <p className="font-sans text-xs font-bold uppercase tracking-[0.22em] text-product-primary">
+          <p className="font-sans text-xs font-semibold uppercase tracking-[0.22em] text-product-primary">
             Peanut Butter Powder
           </p>
           <Heading

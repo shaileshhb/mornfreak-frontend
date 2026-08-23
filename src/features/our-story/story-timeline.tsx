@@ -76,7 +76,7 @@ function MilestoneItem({
       <div className="relative flex w-9 shrink-0 justify-center self-stretch">
         <span
           className={cn(
-            "relative z-10 flex h-9 w-9 shrink-0 items-center justify-center rounded-full font-display text-sm tracking-wide text-white transition-colors duration-500",
+            "relative z-10 flex h-9 w-9 shrink-0 items-center justify-center rounded-full font-display text-sm font-bold tracking-wide text-white transition-colors duration-500",
             inView ? "bg-primary" : "bg-foreground",
           )}
         >
@@ -88,10 +88,10 @@ function MilestoneItem({
           <Icon aria-hidden size={20} strokeWidth={1.7} />
         </span>
         <div>
-          <p className="font-sans text-[0.68rem] font-bold uppercase tracking-[0.18em] text-primary">
+          <p className="font-sans text-[0.68rem] font-semibold uppercase tracking-[0.18em] text-primary">
             {year}
           </p>
-          <h3 className="mt-2 font-display text-2xl uppercase leading-tight tracking-wide sm:text-3xl">
+          <h3 className="mt-2 font-display text-2xl font-bold uppercase leading-tight tracking-wide sm:text-3xl">
             {title}
           </h3>
           <p className="mt-3 max-w-xl font-sans text-sm leading-relaxed text-muted-foreground sm:text-base">
@@ -112,7 +112,7 @@ export function StoryTimeline() {
         <div className="grid gap-14 lg:grid-cols-[0.82fr_1.18fr] lg:gap-20">
           <div className="lg:sticky lg:top-32 lg:self-start">
             <Sunrise aria-hidden className="text-orange" size={28} strokeWidth={1.7} />
-            <h2 className="mt-4 max-w-xl font-display text-[clamp(2.75rem,5vw,4.75rem)] uppercase leading-[0.92] tracking-wide">
+            <h2 className="mt-4 max-w-xl font-display text-[clamp(2.75rem,5vw,4.75rem)] font-bold uppercase leading-[0.92] tracking-wide">
               WE BELIEVE <span>MORNINGS</span> CHANGE EVERYTHING.
             </h2>
             <div className="mt-5 h-[2px] w-12 bg-primary" aria-hidden />

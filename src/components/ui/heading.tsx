@@ -7,11 +7,11 @@ const headingVariants = cva("text-foreground", {
   variants: {
     variant: {
       display:
-        "font-display text-[clamp(2.25rem,7vw,4.5rem)] tracking-wide uppercase text-balance",
-      h1: "font-display text-[clamp(2rem,6vw,3.75rem)] tracking-wide uppercase text-balance",
-      h2: "font-display text-3xl tracking-wide uppercase sm:text-4xl",
-      h3: "font-sans text-2xl font-semibold tracking-tight",
-      h4: "font-sans text-xl font-semibold tracking-tight",
+        "font-display text-[clamp(2.25rem,7vw,4.5rem)] font-extrabold leading-[0.95] tracking-[-0.03em] uppercase text-balance",
+      h1: "font-display text-[clamp(2rem,6vw,3.75rem)] font-bold leading-[1.0] tracking-[-0.02em] uppercase text-balance",
+      h2: "font-display text-[clamp(1.75rem,4vw,2.5rem)] font-bold leading-[1.05] tracking-[-0.02em] uppercase sm:text-4xl",
+      h3: "font-display text-2xl font-bold tracking-tight",
+      h4: "font-display text-xl font-bold tracking-tight",
     },
   },
   defaultVariants: {

@@ -248,7 +248,7 @@ function SlideText({
     >
       <p
         className={cn(
-          "font-display font-semibold uppercase",
+          "font-sans font-semibold uppercase",
           isGlow
             ? "text-[clamp(0.95rem,0.85rem+0.4vw,1.15rem)] tracking-[0.08em]"
             : "text-kicker",
@@ -260,9 +260,9 @@ function SlideText({
 
       <h2
         className={cn(
-          "font-display font-bold",
+          "font-display font-extrabold",
           isGlow
-            ? "mt-4 text-[clamp(2.5rem,1.6rem+4.2vw,5.75rem)] leading-[1.08] lg:mt-5"
+            ? "mt-4 text-[clamp(2.5rem,1.6rem+4.2vw,5.75rem)] leading-[1.0] tracking-[-0.03em] lg:mt-5"
             : "mt-3 text-h1",
           isDark ? "text-paper" : "text-ink",
         )}
@@ -272,7 +272,7 @@ function SlideText({
               segment.accent ? (
                 <span
                   key={segmentIndex}
-                  className="font-accent italic font-medium"
+                  className="font-display font-bold"
                 >
                   {segment.text}
                 </span>
@@ -286,7 +286,7 @@ function SlideText({
       {slide.body ? (
         <p
           className={cn(
-            "font-body font-normal",
+            "font-sans font-normal",
             isGlow
               ? "mt-5 text-[clamp(1.1rem,1rem+0.5vw,1.375rem)] leading-[1.6] lg:mt-6"
               : "mt-4 text-body",
@@ -319,7 +319,7 @@ function SlideText({
           ) : null}
           <p
             className={cn(
-              "font-accent italic",
+              "font-sans font-medium",
               isGlow
                 ? "text-[clamp(1.05rem,1rem+0.3vw,1.25rem)]"
                 : "text-body",
@@ -338,7 +338,7 @@ function SlideText({
           className={cn(
             "inline-flex items-center justify-center bg-ember-clay",
             isGlow ? "px-6 py-3 lg:px-8 lg:py-4" : "px-6 py-3",
-            "font-display font-semibold text-paper",
+            "font-sans font-semibold text-paper",
             isGlow
               ? "text-[clamp(1rem,0.95rem+0.25vw,1.15rem)]"
               : "text-cta",
@@ -441,16 +441,16 @@ function FullBleedSlide({
                 : "translate-y-3 opacity-0"),
           )}
         >
-          <h1 className="font-display text-[clamp(2rem,5.5vw,4.25rem)] font-bold leading-[1.05] tracking-tight text-white">
+          <h1 className="font-display text-[clamp(2rem,5.5vw,4.25rem)] font-extrabold leading-[1.0] tracking-[-0.03em] text-white">
             Functional. Simple. Purposeful.
           </h1>
-          <p className="mt-4 font-sans text-xs font-bold uppercase tracking-[0.18em] text-white/90 sm:text-sm">
+          <p className="mt-4 font-sans text-xs font-semibold uppercase tracking-[0.18em] text-white/90 sm:text-sm">
             FUEL YOUR MORNING. ELEVATE YOUR EVERYDAY.
           </p>
           <Link
             href="/products"
             tabIndex={active ? 0 : -1}
-            className="mt-8 inline-flex h-12 items-center justify-center bg-[#f5c518] px-8 font-sans text-sm font-bold uppercase tracking-[0.14em] text-foreground transition-transform hover:-translate-y-0.5 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white"
+            className="mt-8 inline-flex h-12 items-center justify-center bg-[#f5c518] px-8 font-sans text-sm font-semibold uppercase tracking-[0.14em] text-foreground transition-transform hover:-translate-y-0.5 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white"
           >
             Shop now
           </Link>

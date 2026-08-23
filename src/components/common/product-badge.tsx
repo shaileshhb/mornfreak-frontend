@@ -17,7 +17,7 @@ export function ProductBadge({
     <span
       data-product={product}
       className={cn(
-        "inline-flex items-center rounded-md bg-product-badge px-2.5 py-0.5 font-sans text-xs font-medium text-product-badge-foreground",
+        "inline-flex items-center rounded-md bg-product-badge px-2.5 py-0.5 font-sans text-xs font-semibold text-product-badge-foreground",
         className,
       )}
       {...props}

@@ -1,9 +1,12 @@
 "use client";
 
 import { Menu, ShoppingBag, UserRound, X } from "lucide-react";
-import Link from "next/link";
-import { useState } from "react";
 import Image from "next/image";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
+import { useState } from "react";
+
+import { cn } from "@/lib/cn";
 
 const NAV_LINKS = [
   { label: "Shop", href: "/products" },
@@ -11,8 +14,13 @@ const NAV_LINKS = [
   { label: "Science", href: "/science" },
 ] as const;
 
+function isActivePath(pathname: string, href: string) {
+  return pathname === href || pathname.startsWith(`${href}/`);
+}
+
 export function Nav() {
   const [menuOpen, setMenuOpen] = useState(false);
+  const pathname = usePathname();
 
   return (
     <header className="sticky top-0 z-50 border-b border-foreground/10 bg-card/95 backdrop-blur-md">
@@ -37,7 +45,12 @@ export function Nav() {
               <Link
                 key={link.label}
                 href={link.href}
-                className="font-sans text-sm font-bold uppercase tracking-[0.16em] transition-colors hover:text-primary"
+                className={cn(
+                  "font-sans text-sm transition-colors hover:text-primary",
+                  isActivePath(pathname, link.href)
+                    ? "font-semibold text-foreground"
+                    : "font-medium text-foreground/80",
+                )}
               >
                 {link.label}
               </Link>
@@ -80,7 +93,12 @@ export function Nav() {
                   key={link.label}
                   href={link.href}
                   onClick={() => setMenuOpen(false)}
-                  className="border-b border-foreground/10 px-2 py-4 font-sans text-sm font-bold uppercase tracking-[0.16em] transition-colors hover:text-primary"
+                  className={cn(
+                    "border-b border-foreground/10 px-2 py-4 font-sans text-sm transition-colors hover:text-primary",
+                    isActivePath(pathname, link.href)
+                      ? "font-semibold text-foreground"
+                      : "font-medium text-foreground/80",
+                  )}
                 >
                   {link.label}
                 </Link>
@@ -88,7 +106,7 @@ export function Nav() {
               <Link
                 href="/login"
                 onClick={() => setMenuOpen(false)}
-                className="px-2 py-4 font-sans text-sm font-bold uppercase tracking-[0.16em] text-primary"
+                className="px-2 py-4 font-sans text-sm font-semibold text-primary"
               >
                 Account
               </Link>

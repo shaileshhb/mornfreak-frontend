@@ -32,7 +32,7 @@ export function ProductCard({
     >
       {badge ? <div>{badge}</div> : null}
       <div className="flex flex-col gap-2">
-        <h3 className="font-sans text-lg font-semibold tracking-tight text-product-foreground">
+        <h3 className="font-display text-lg font-bold tracking-tight text-product-foreground">
           {title}
         </h3>
         {description ? (

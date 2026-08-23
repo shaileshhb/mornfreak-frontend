@@ -68,11 +68,11 @@ export function Footer() {
             <Link
               href="/"
               aria-label="Mornfreak home"
-              className="inline-block font-display text-4xl uppercase leading-none tracking-normal text-oat-cream transition-colors hover:text-toasted-almond"
+              className="inline-block font-sans text-4xl font-semibold uppercase leading-none tracking-normal text-oat-cream transition-colors hover:text-toasted-almond"
             >
               Mornfreak
             </Link>
-            <p className="mt-4 max-w-xs text-sm leading-relaxed text-oat-cream/70">
+            <p className="mt-4 max-w-xs font-sans text-sm font-normal leading-relaxed text-oat-cream/70">
               Protein-forward breakfast for people who train, work, and move fast
               in the morning.
             </p>
@@ -80,7 +80,7 @@ export function Footer() {
 
           {FOOTER_GROUPS.map((group) => (
             <div key={group.title}>
-              <p className="font-sans text-xs font-bold uppercase tracking-[0.18em] text-toasted-almond">
+              <p className="font-sans text-xs font-semibold uppercase tracking-[0.18em] text-toasted-almond">
                 {group.title}
               </p>
               <ul className="mt-6 space-y-3">
@@ -88,7 +88,7 @@ export function Footer() {
                   <li key={link.label}>
                     <Link
                       href={link.href}
-                      className="font-sans text-sm text-oat-cream/70 transition-colors hover:text-oat-cream"
+                      className="font-sans text-sm font-normal text-oat-cream/70 transition-colors hover:text-oat-cream"
                     >
                       {link.label}
                     </Link>
@@ -106,7 +106,7 @@ export function Footer() {
         <Link
           href="/"
           aria-label="Mornfreak home"
-          className="font-display text-xl uppercase tracking-normal text-oat-cream transition-colors hover:text-toasted-almond"
+          className="font-sans text-xl font-semibold uppercase tracking-normal text-oat-cream transition-colors hover:text-toasted-almond"
         >
           Mornfreak
         </Link>

@@ -29,7 +29,7 @@ export function Reviews() {
               <Star key={index} aria-hidden size={17} fill="currentColor" />
             ))}
           </div>
-          <p className="mt-3 font-sans text-xs font-bold uppercase tracking-[0.18em]">
+          <p className="mt-3 font-sans text-xs font-semibold uppercase tracking-[0.18em]">
             5.0 Stars <span className="mx-2 text-foreground/30">|</span> Early customer reviews
           </p>
           <Heading variant="display" as="h2" className="mt-4 leading-none">
@@ -72,7 +72,7 @@ function Reviewer({ review, inverse = false }: { review: Review; inverse?: boole
   return (
     <div className="flex items-center justify-between gap-4">
       <div>
-        <p className="font-sans text-sm font-bold">{review.name}</p>
+        <p className="font-sans text-sm font-semibold">{review.name}</p>
         {review.verified && (
           <p className={`mt-1 flex items-center gap-1 text-xs ${inverse ? "text-white/65" : "text-muted-foreground"}`}>
             <CheckCircle2 aria-hidden size={13} /> Verified buyer
@@ -92,11 +92,11 @@ function TextReviewCard({ review }: { review: Review }) {
   return (
     <article className="flex min-h-[31rem] w-[19rem] shrink-0 snap-start flex-col rounded-2xl bg-card p-6 sm:w-[21rem]">
       <Stars rating={review.rating} />
-      <h3 className="mt-6 font-display text-3xl uppercase leading-none tracking-wide">{review.title}</h3>
+      <h3 className="mt-6 font-display text-3xl font-bold uppercase leading-none tracking-wide">{review.title}</h3>
       <p className="mt-5 flex-1 text-sm leading-relaxed text-muted-foreground">{review.body}</p>
       <div className="border-t border-foreground/15 pt-5">
         <Reviewer review={review} />
-        <p className="mt-4 text-[0.65rem] font-bold uppercase tracking-[0.12em] text-primary">
+        <p className="mt-4 text-[0.65rem] font-semibold uppercase tracking-[0.12em] text-primary">
           Review for: {review.productLabel}
         </p>
       </div>
@@ -148,7 +148,7 @@ function VideoReviewCard({
       <div className="relative z-10 flex h-full min-h-[31rem] flex-col p-6">
         <div className={`transition-opacity duration-300 ${isPlaying ? "opacity-0 group-hover:opacity-100" : "opacity-100"}`}>
           <Stars rating={review.rating} />
-          <h3 className="mt-5 font-display text-3xl uppercase leading-none tracking-wide">{review.title}</h3>
+          <h3 className="mt-5 font-display text-3xl font-bold uppercase leading-none tracking-wide">{review.title}</h3>
         </div>
         <button
           type="button"
@@ -168,7 +168,7 @@ function VideoReviewCard({
             }`}
         >
           <Reviewer review={review} inverse />
-          <p className="mt-4 text-[0.65rem] font-bold uppercase tracking-[0.12em] text-orange">
+          <p className="mt-4 text-[0.65rem] font-semibold uppercase tracking-[0.12em] text-orange">
             Review for: {review.productLabel}
           </p>
         </div>

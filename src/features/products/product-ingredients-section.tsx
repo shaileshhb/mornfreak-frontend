@@ -31,7 +31,7 @@ function IngredientCard({ ingredient }: { ingredient: ProductIngredient }) {
           className="object-cover object-center"
         />
       </div>
-      <h3 className="mt-5 font-sans text-base font-bold text-product-foreground">
+      <h3 className="mt-5 font-display text-base font-bold text-product-foreground">
         {ingredient.name}
       </h3>
       <p className="mt-2 text-sm leading-relaxed text-product-foreground/65">
@@ -119,7 +119,7 @@ export function ProductIngredientsSection({
     <ProductSection product={productId}>
       <Container className="max-w-[82rem]">
         <header className="max-w-2xl">
-          <p className="font-sans text-xs font-bold uppercase tracking-[0.22em] text-product-primary">
+          <p className="font-sans text-xs font-semibold uppercase tracking-[0.22em] text-product-primary">
             {productLabel}
           </p>
           <Heading
@@ -203,7 +203,7 @@ export function ProductIngredientsSection({
         <div className="mt-12">
           <Link
             href="/ingredients"
-            className="font-sans text-sm font-bold uppercase tracking-[0.14em] text-product-foreground underline decoration-product-primary/50 underline-offset-4 transition-colors hover:text-product-primary"
+            className="font-sans text-sm font-semibold uppercase tracking-[0.14em] text-product-foreground underline decoration-product-primary/50 underline-offset-4 transition-colors hover:text-product-primary"
           >
             See all ingredients we trust
           </Link>

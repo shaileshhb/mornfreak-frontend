@@ -89,12 +89,12 @@ function StoryHero() {
 
       <Container className="relative z-10 w-full max-w-[90rem] py-16 sm:py-20 lg:px-10">
         <div className="max-w-2xl text-white">
-          <p className="font-sans text-xs font-bold uppercase tracking-[0.22em] text-orange">
+          <p className="font-sans text-xs font-semibold uppercase tracking-[0.22em] text-orange">
             Our story
           </p>
           <h1
             id="our-story-title"
-            className="mt-5 max-w-2xl font-display text-[clamp(3rem,6.5vw,6.25rem)] uppercase leading-[0.9] tracking-[0.01em]"
+            className="mt-5 max-w-2xl font-display text-[clamp(3rem,6.5vw,6.25rem)] font-bold uppercase leading-[0.9] tracking-[0.01em]"
           >
             <p>Great days</p>
             <p>Start here</p>
@@ -104,7 +104,7 @@ function StoryHero() {
           </p>
           <a
             href="#our-beginning"
-            className="mt-8 inline-flex h-12 items-center justify-center gap-2 border border-white/45 px-6 font-sans text-xs font-bold uppercase tracking-[0.16em] text-white transition-colors hover:bg-white hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-foreground"
+            className="mt-8 inline-flex h-12 items-center justify-center gap-2 border border-white/45 px-6 font-sans text-xs font-semibold uppercase tracking-[0.16em] text-white transition-colors hover:bg-white hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-foreground"
           >
             Read our story <ArrowDown aria-hidden size={16} />
           </a>
@@ -119,12 +119,12 @@ function BuiltForMornings() {
     <section className="bg-background py-20 sm:py-24" aria-labelledby="built-for-title">
       <Container className="max-w-[82rem]">
         <div className="mx-auto max-w-3xl text-center">
-          <p className="font-sans text-xs font-bold uppercase tracking-[0.18em] text-primary">
+          <p className="font-sans text-xs font-semibold uppercase tracking-[0.18em] text-primary">
             WHO WE BUILT THIS FOR
           </p>
           <h2
             id="built-for-title"
-            className="mt-4 font-display text-[clamp(2.5rem,5vw,4.25rem)] uppercase leading-[0.95] tracking-wide"
+            className="mt-4 font-display text-[clamp(2.5rem,5vw,4.25rem)] font-bold uppercase leading-[0.95] tracking-wide"
           >
             THIS IS FOR YOU IF
           </h2>
@@ -136,7 +136,7 @@ function BuiltForMornings() {
               <div className="flex h-11 w-11 items-center justify-center rounded-full bg-primary/10 text-primary">
                 <Icon aria-hidden size={21} strokeWidth={1.8} />
               </div>
-              <h3 className="mt-5 font-sans text-base font-bold uppercase tracking-[0.06em]">
+              <h3 className="mt-5 font-sans text-base font-semibold uppercase tracking-[0.06em]">
                 {title}
               </h3>
               <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{body}</p>
@@ -155,10 +155,10 @@ function BreakfastCta() {
         <div className="grid grid-cols-1 overflow-hidden bg-foreground shadow-lg lg:min-h-[30rem] lg:grid-cols-[0.82fr_1.18fr]">
           <div className="flex min-w-0 items-center px-6 py-12 text-white sm:px-10 lg:px-14">
             <div className="w-full min-w-0 max-w-md">
-              <p className="font-sans text-xs font-bold uppercase tracking-[0.22em] text-orange">
+              <p className="font-sans text-xs font-semibold uppercase tracking-[0.22em] text-orange">
                 Fuel your start
               </p>
-              <h2 className="mt-4 font-display text-[clamp(2.75rem,5vw,4.75rem)] uppercase leading-[0.92] tracking-wide">
+              <h2 className="mt-4 font-display text-[clamp(2.75rem,5vw,4.75rem)] font-bold uppercase leading-[0.92] tracking-wide">
                 Better morning. Better You.
               </h2>
               <p className="mt-5 text-base leading-relaxed text-white/70 mb-0">
@@ -169,7 +169,7 @@ function BreakfastCta() {
               </p>
               <Link
                 href="/products"
-                className="mt-8 inline-flex h-12 items-center justify-center gap-2 bg-orange px-7 font-sans text-xs font-bold uppercase tracking-[0.15em] text-foreground transition-transform hover:-translate-y-0.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-foreground"
+                className="mt-8 inline-flex h-12 items-center justify-center gap-2 bg-orange px-7 font-sans text-xs font-semibold uppercase tracking-[0.15em] text-foreground transition-transform hover:-translate-y-0.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-foreground"
               >
                 Shop Mornfreak <ArrowRight aria-hidden size={17} />
               </Link>

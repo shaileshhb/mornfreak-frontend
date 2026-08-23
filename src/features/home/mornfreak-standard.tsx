@@ -33,7 +33,7 @@ export function MornfreakStandard() {
               <span className="flex size-11 items-center justify-center rounded-full border border-primary/30">
                 <Icon aria-hidden className="text-primary" size={20} strokeWidth={1.6} />
               </span>
-              <span className="text-base font-bold uppercase tracking-[0.12em]">{label}</span>
+              <span className="font-display text-base font-bold uppercase tracking-[0.12em]">{label}</span>
             </div>
           );
         })}

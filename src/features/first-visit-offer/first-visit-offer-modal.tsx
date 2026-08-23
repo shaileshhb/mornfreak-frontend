@@ -127,12 +127,12 @@ function OfferDialog({ onDismiss }: { onDismiss: () => void }) {
             <SuccessMessage discountCode={result.discountCode} titleId={titleId} />
           ) : (
             <>
-              <p className="font-offer text-[0.7rem] uppercase leading-none tracking-[0.22em] text-neutral-400 sm:text-xs">
+              <p className="font-sans text-[0.7rem] font-semibold uppercase leading-none tracking-[0.22em] text-neutral-400 sm:text-xs">
                 Welcome to Mornfreak
               </p>
               <h2
                 id={titleId}
-                className="font-offer mt-4 text-[clamp(1.65rem,4.2vw,2.85rem)] uppercase leading-[0.95] tracking-[-0.01em] text-neutral-950"
+                className="font-display mt-4 text-[clamp(1.65rem,4.2vw,2.85rem)] font-extrabold uppercase leading-[0.95] tracking-[-0.03em] text-neutral-950"
               >
                 Get 10% off your first order
               </h2>
@@ -169,7 +169,7 @@ function OfferDialog({ onDismiss }: { onDismiss: () => void }) {
                 <button
                   type="submit"
                   disabled={pending}
-                  className="h-12 w-full rounded-xl bg-primary font-sans text-sm font-bold uppercase tracking-[0.12em] text-primary-foreground transition-colors hover:bg-primary/90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:opacity-60"
+                  className="h-12 w-full rounded-xl bg-primary font-sans text-sm font-semibold uppercase tracking-[0.12em] text-primary-foreground transition-colors hover:bg-primary/90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:opacity-60"
                 >
                   {pending ? "Sending…" : "Get 10% off now"}
                 </button>
@@ -210,12 +210,12 @@ function SuccessMessage({
 }) {
   return (
     <div>
-      <p className="font-offer text-[0.7rem] uppercase leading-none tracking-[0.22em] text-neutral-400 sm:text-xs">
+      <p className="font-sans text-[0.7rem] font-semibold uppercase leading-none tracking-[0.22em] text-neutral-400 sm:text-xs">
         Welcome to Mornfreak
       </p>
       <h2
         id={titleId}
-        className="font-offer mt-4 text-[clamp(1.65rem,4.2vw,2.85rem)] uppercase leading-[0.95] tracking-[-0.01em] text-neutral-950"
+        className="font-display mt-4 text-[clamp(1.65rem,4.2vw,2.85rem)] font-extrabold uppercase leading-[0.95] tracking-[-0.03em] text-neutral-950"
       >
         You&apos;re in
       </h2>
@@ -225,7 +225,7 @@ function SuccessMessage({
           : "Check your inbox for your 10% off code."}
       </p>
       {discountCode ? (
-        <p className="mt-4 rounded-xl bg-neutral-100 px-4 py-3 font-sans text-sm font-bold tracking-[0.16em] text-foreground uppercase">
+        <p className="mt-4 rounded-xl bg-neutral-100 px-4 py-3 font-sans text-sm font-semibold tracking-[0.16em] text-foreground uppercase">
           {discountCode}
         </p>
       ) : null}

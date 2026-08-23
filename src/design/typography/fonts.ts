@@ -1,67 +1,19 @@
-import {
-  Caveat,
-  DM_Sans,
-  Manrope,
-  Montserrat,
-  Oswald,
-  Source_Sans_3,
-} from "next/font/google";
-import localFont from "next/font/local";
+import { Inter, Manrope } from "next/font/google";
 
-export const fontDisplay = Montserrat({
-  weight: "700",
-  style: ["normal", "italic"],
-  subsets: ["latin"],
-  variable: "--font-montserrat",
-  display: "swap",
-});
-
-export const fontSans = DM_Sans({
-  subsets: ["latin"],
-  variable: "--font-dm-sans",
-  display: "swap",
-});
-
-export const fontScript = Caveat({
-  subsets: ["latin"],
-  variable: "--font-caveat",
-  display: "swap",
-});
-
-export const fontVariables = `${fontDisplay.variable} ${fontSans.variable} ${fontScript.variable}`;
-
-/** Draft2 “Ember Signal” — Oswald display + Manrope body */
-export const fontDraft2Display = Oswald({
-  subsets: ["latin"],
-  variable: "--font-oswald",
-  display: "swap",
-});
-
-export const fontDraft2Sans = Manrope({
+/** Brand / display — marketing headings, product titles, metrics */
+export const fontDisplay = Manrope({
+  weight: ["600", "700", "800"],
   subsets: ["latin"],
   variable: "--font-manrope",
   display: "swap",
 });
 
-export const draft2FontVariables = `${fontDraft2Display.variable} ${fontDraft2Sans.variable}`;
-
-/**
- * Draft3 “Heat Wake” — Big Shoulders + Source Sans 3
- * Self-hosted via `next/font/local` (rather than `next/font/google`) because
- * Next's bundled fallback-metrics table has no entry for the bare "Big
- * Shoulders" family, which otherwise logs a build-time error on every request.
- */
-export const fontDraft3Display = localFont({
-  src: "./fonts/big-shoulders/BigShoulders-Variable.woff2",
-  weight: "100 900",
-  variable: "--font-big-shoulders",
-  display: "swap",
-});
-
-export const fontDraft3Sans = Source_Sans_3({
+/** UI / body — navigation, buttons, labels, forms, copy */
+export const fontSans = Inter({
+  weight: ["400", "500", "600", "700"],
   subsets: ["latin"],
-  variable: "--font-source-sans",
+  variable: "--font-inter",
   display: "swap",
 });
 
-export const draft3FontVariables = `${fontDraft3Display.variable} ${fontDraft3Sans.variable}`;
+export const fontVariables = `${fontDisplay.variable} ${fontSans.variable}`;

@@ -23,11 +23,11 @@ const config: Config = {
         ],
         h1: [
           "clamp(2.1rem, 1.3rem + 3.2vw, 4.25rem)",
-          { lineHeight: "1.08", letterSpacing: "-0.01em" },
+          { lineHeight: "1.0", letterSpacing: "-0.03em" },
         ],
         h2: [
           "clamp(1.75rem, 1.2rem + 2.2vw, 3rem)",
-          { lineHeight: "1.08", letterSpacing: "-0.01em" },
+          { lineHeight: "1.05", letterSpacing: "-0.02em" },
         ],
         body: [
           "clamp(1rem, 0.94rem + 0.25vw, 1.125rem)",
@@ -39,10 +39,8 @@ const config: Config = {
         ],
       },
       fontFamily: {
-        display: ["var(--font-sora)", "sans-serif"],
-        body: ["var(--font-inter)", "sans-serif"],
-        accent: ["var(--font-fraunces)", "serif"],
-        offer: ["var(--font-archivo-black)", "sans-serif"],
+        sans: ["var(--font-inter)", "sans-serif"],
+        display: ["var(--font-manrope)", "sans-serif"],
       },
     },
   },

@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import { Archivo_Black, Sora, Fraunces, Inter } from "next/font/google";
 
 import { AnnouncementBar } from "@/components/layout/announcement-bar";
 import { Footer } from "@/components/layout/footer";
@@ -8,35 +7,6 @@ import { fontVariables } from "@/design/typography";
 import { FirstVisitOfferModal } from "@/features/first-visit-offer/first-visit-offer-modal";
 
 import "./globals.css";
-
-const fontSora = Sora({
-  weight: ["500", "600", "700", "800"],
-  subsets: ["latin"],
-  variable: "--font-sora",
-  display: "swap",
-});
-
-const fontInter = Inter({
-  weight: ["400", "500"],
-  subsets: ["latin"],
-  variable: "--font-inter",
-  display: "swap",
-});
-
-const fontFraunces = Fraunces({
-  weight: "400",
-  style: ["italic"],
-  subsets: ["latin"],
-  variable: "--font-fraunces",
-  display: "swap",
-});
-
-const fontArchivoBlack = Archivo_Black({
-  weight: "400",
-  subsets: ["latin"],
-  variable: "--font-archivo-black",
-  display: "swap",
-});
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://mornfreak.com"),
@@ -71,10 +41,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html
-      lang="en"
-      className={`${fontVariables} ${fontSora.variable} ${fontInter.variable} ${fontFraunces.variable} ${fontArchivoBlack.variable} h-full antialiased`}
-    >
+    <html lang="en" className={`${fontVariables} h-full antialiased`}>
       <body className="flex min-h-full flex-col bg-background font-sans text-foreground">
         <AnnouncementBar />
         <Nav />

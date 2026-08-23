@@ -184,7 +184,7 @@ const BENEFITS = [
   { label: ["MADE WITH", "SUPER SEEDS & ALMONDS"], Icon: SeedsIcon },
   { label: ["NO REFINED", "SUGAR"], Icon: NoSugarIcon },
   { label: ["NO ARTIFICIAL", "SWEETENERS"], Icon: NoArtificialIcon },
-  { label: ["READY IN", "2 MINUTES"], Icon: ReadyIcon },
+  { label: ["READY IN", "SECONDS"], Icon: ReadyIcon },
   { label: ["SCIENCE-BACKED", "NUTRITION"], Icon: ScienceIcon },
 ] as const;
 

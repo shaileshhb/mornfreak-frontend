@@ -10,9 +10,8 @@ import {
   useState,
   type PointerEvent as ReactPointerEvent,
 } from "react";
-
 import { cn } from "@/lib/cn";
-
+import "./home-hero.css";
 import img1Desktop from "../../../public/images/hero/img_1_desktop.jpeg";
 import img1Mobile from "../../../public/images/hero/img_1_mobile.jpeg";
 import proteinOatsCutout from "../../../public/images/hero/img_2_no_bg.png";
@@ -196,9 +195,9 @@ function FuelGauge({
                 "absolute inset-y-0 left-0 w-full origin-left bg-ember-clay",
                 isActive && !reducedMotion && "animate-hero-progress",
                 isActive &&
-                  !reducedMotion &&
-                  paused &&
-                  "[animation-play-state:paused]",
+                !reducedMotion &&
+                paused &&
+                "[animation-play-state:paused]",
                 isActive && reducedMotion && "scale-x-100",
                 !isActive && "scale-x-0",
               )}
@@ -269,17 +268,17 @@ function SlideText({
       >
         {slide.headlineSegments
           ? slide.headlineSegments.map((segment, segmentIndex) =>
-              segment.accent ? (
-                <span
-                  key={segmentIndex}
-                  className="font-display font-bold"
-                >
-                  {segment.text}
-                </span>
-              ) : (
-                <span key={segmentIndex}>{segment.text}</span>
-              ),
-            )
+            segment.accent ? (
+              <span
+                key={segmentIndex}
+                className="font-display font-bold"
+              >
+                {segment.text}
+              </span>
+            ) : (
+              <span key={segmentIndex}>{segment.text}</span>
+            ),
+          )
           : slide.headline}
       </h2>
 
@@ -371,12 +370,9 @@ function SlideText({
 
 function slideShellClass(active: boolean, reducedMotion: boolean) {
   return cn(
-    // Active slide sets height below lg; all slides fill the fixed band at lg+.
-    active ? "relative z-10 lg:absolute lg:inset-0" : "absolute inset-0 z-0",
+    "[grid-area:1/1] w-full",
     !reducedMotion && "transition-opacity ease-out",
-    active
-      ? "opacity-100 duration-300"
-      : "pointer-events-none opacity-0 duration-200",
+    active ? "opacity-100 duration-300 z-10" : "pointer-events-none opacity-0 duration-200 z-0",
     reducedMotion && (active ? "opacity-100" : "pointer-events-none opacity-0"),
   );
 }
@@ -410,7 +406,8 @@ function FullBleedSlide({
     <div
       className={cn(
         slideShellClass(active, reducedMotion),
-        active && "min-h-[clamp(560px,78vh,860px)] lg:min-h-0",
+        active &&
+        "min-h-[clamp(560px,78vh,860px)] lg:min-h-[clamp(560px,78vh,860px)]",
       )}
       aria-hidden={!active}
       inert={!active ? true : undefined}
@@ -434,11 +431,11 @@ function FullBleedSlide({
           className={cn(
             "flex max-w-3xl flex-col items-center",
             !reducedMotion &&
-              "transition-[opacity,transform] duration-300 ease-out",
+            "transition-[opacity,transform] duration-300 ease-out",
             !reducedMotion &&
-              (introReady
-                ? "translate-y-0 opacity-100"
-                : "translate-y-3 opacity-0"),
+            (introReady
+              ? "translate-y-0 opacity-100"
+              : "translate-y-3 opacity-0"),
           )}
         >
           <h1 className="font-display text-[clamp(2rem,5.5vw,4.25rem)] font-extrabold leading-[1.0] tracking-[-0.03em] text-white">
@@ -508,7 +505,7 @@ function SplitSlide({
       aria-roledescription="slide"
       aria-label={slide.headline}
     >
-      <div className="grid h-full min-h-[clamp(560px,78vh,860px)] grid-cols-1 lg:min-h-0 lg:grid-cols-[minmax(420px,38%)_1fr]">
+      <div className="grid h-full min-h-[clamp(560px,78vh,860px)] grid-cols-1 lg:min-h-[clamp(560px,78vh,860px)] lg:grid-cols-[minmax(420px,38%)_1fr]">
         {/* Image first on mobile/tablet; right column on desktop — h-full, zero padding */}
         <div className="relative order-1 h-[min(100vw,32rem)] w-full p-0 md:h-[min(75vw,36rem)] lg:order-2 lg:h-full lg:min-h-0">
           <div className="relative h-full w-full">
@@ -570,9 +567,16 @@ function GlowSlide({
       inert={!active ? true : undefined}
       role="group"
       aria-roledescription="slide"
-      aria-label={slide.headline}
-    >
-      <div className="grid h-full min-h-[clamp(560px,78vh,860px)] grid-cols-1 bg-product-background lg:min-h-0 lg:grid-cols-[1fr_minmax(420px,44%)]">
+      aria-label={slide.headline}>
+      {/* <div className="grid h-full min-h-[clamp(560px,78vh,860px)] grid-cols-1 bg-product-background lg:min-h-[clamp(560px,78vh,860px)] lg:grid-cols-[1fr_minmax(420px,44%)]"> */}
+      <div
+        className={cn(
+          "grid h-full min-h-[clamp(560px,78vh,860px)] grid-cols-1 lg:min-h-[clamp(560px,78vh,860px)] lg:grid-cols-[1fr_minmax(420px,44%)]",
+          slide.dataProduct === "proteinOats"
+            ? "hero-slide-protein-oats"
+            : "bg-product-background",
+        )}
+      >
         <div className="relative order-1 h-[min(90vw,28rem)] w-full overflow-hidden lg:order-2 lg:h-full lg:min-h-0">
           <div
             className="absolute inset-0"
@@ -694,7 +698,7 @@ export function HomeHero() {
       }}
     >
       <div
-        className="relative isolate min-h-[clamp(560px,78vh,860px)] overflow-hidden bg-ink lg:h-[clamp(560px,78vh,860px)] lg:min-h-0"
+        className="relative isolate grid min-h-[clamp(560px,78vh,860px)] overflow-hidden bg-ink lg:min-h-[clamp(560px,78vh,860px)]"
         onPointerDown={onPointerDown}
         onPointerUp={onPointerUp}
         onPointerCancel={() => {

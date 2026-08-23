@@ -119,14 +119,13 @@ export function ProductIngredientsSection({
     <ProductSection product={productId}>
       <Container className="max-w-[82rem]">
         <header className="max-w-2xl">
-          <p className="font-sans text-xs font-semibold uppercase tracking-[0.22em] text-product-primary">
+          <p className="font-sans text-sm font-semibold uppercase tracking-[0.12em] text-product-primary">
             {productLabel}
           </p>
           <Heading
-            variant="display"
             as="h2"
-            className="mt-4 leading-[0.92] text-product-foreground"
-          >
+            variant="display"
+            className="mt-4 leading-[0.92] text-product-foreground">
             Meet the Ingredients
           </Heading>
           <p className="mt-4 text-sm leading-relaxed text-product-foreground/65 sm:text-base">

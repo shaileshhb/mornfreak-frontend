@@ -51,52 +51,52 @@ export const PROTEIN_OATS_INGREDIENTS: Ingredient[] = [
     id: "super-seed-mix",
     title: "Pumpkin Seeds",
     description:
-      "Pumpkin seeds",
+      "Hulled pumpkin seeds for plant protein, minerals and crunch that holds up in hot oats.",
     image: "/images/ingredients/pumpkin-seeds.avif",
     imageAlt: "Bowl of pumpkin seeds",
     keyFeatures: [
-      "Pumpkin seeds",
-      "Rich in healthy fats and fibre",
-      "Adds crunch and nutrition",
+      "Plant protein and magnesium",
+      "Naturally rich in zinc",
+      "Crunch in every bowl",
     ],
   },
   {
     id: "super-seed-mix",
     title: "Sunflower Seeds",
     description:
-      "Sunflower seeds",
+      "Hulled sunflower seeds for vitamin E, mild nuttiness and extra bite without extra sugar.",
     image: "/images/ingredients/sunflower-seeds.avif",
     imageAlt: "Bowl of sunflower seeds",
     keyFeatures: [
-      "Sunflower seeds",
-      "Rich in healthy fats and fibre",
-      "Adds crunch and nutrition",
+      "Source of vitamin E",
+      "Mild, nutty flavour",
+      "Healthy plant fats",
     ],
   },
   {
     id: "super-seed-mix",
     title: "Flax Seeds",
     description:
-      "Flax seeds",
+      "Flax seeds for omega-3 fats and fibre that help the bowl keep you full.",
     image: "/images/ingredients/flax-seeds.avif",
     imageAlt: "Bowl of flax seeds",
     keyFeatures: [
-      "Flax seeds",
-      "Rich in omega-3 fatty acids",
-      "Adds crunch and nutrition",
+      "Rich in omega-3 (ALA)",
+      "High in fibre",
+      "Supports satiety",
     ],
   },
   {
     id: "super-seed-mix",
     title: "Chia Seeds",
     description:
-      "Chia seeds",
+      "Tiny chia seeds that soak up liquid, add fibre and help the oats stay filling.",
     image: "/images/ingredients/chia-seeds.avif",
     imageAlt: "Bowl of chia seeds",
     keyFeatures: [
-      "Chia seeds",
-      "Rich in healthy fats and fibre",
-      "Adds crunch and nutrition",
+      "High in soluble fibre",
+      "Plant omega-3",
+      "Helps keep you full",
     ],
   },
   {

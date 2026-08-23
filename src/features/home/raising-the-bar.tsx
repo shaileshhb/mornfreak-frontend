@@ -146,7 +146,7 @@ export function RaisingTheBar() {
               aria-selected={activeProduct === key}
               onClick={() => setActiveProduct(key)}
               className={cn(
-                "min-w-0 flex-1 whitespace-nowrap rounded-full px-3 py-2.5 font-sans text-[0.65rem] font-bold uppercase tracking-[0.12em] transition-colors sm:px-5 sm:text-[0.7rem] sm:tracking-[0.14em] md:px-8",
+                "min-w-0 flex-1 whitespace-nowrap rounded-full px-3 py-2.5 font-sans text-[0.65rem] font-bold uppercase tracking-[0.10em] transition-colors sm:px-5 sm:text-[0.7rem] sm:tracking-[0.08em] md:px-8",
                 activeProduct === key
                   ? "bg-primary text-primary-foreground"
                   : "bg-transparent text-foreground hover:bg-foreground/5",
@@ -196,7 +196,7 @@ export function RaisingTheBar() {
           </div>
         </div>
 
-        <div className="text-center">
+        <div className="mt-4 text-center sm:mt-0">
           <Link
             className="inline-flex h-12 items-center justify-center gap-2 bg-foreground px-8 font-sans text-sm font-bold uppercase tracking-[0.12em] text-white transition-transform hover:-translate-y-0.5"
             href="/products">

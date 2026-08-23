@@ -23,13 +23,15 @@ function IngredientCard({ ingredient }: { ingredient: ProductIngredient }) {
   return (
     <article className="flex w-[78%] shrink-0 snap-start flex-col sm:w-[46%] md:w-[32%] lg:w-[21%]">
       <div className="relative aspect-[3/4.4] overflow-hidden rounded-full bg-muted">
-        <Image
-          src={ingredient.image}
-          alt={ingredient.imageAlt || ingredient.name}
-          fill
-          sizes="(max-width: 640px) 78vw, (max-width: 768px) 46vw, (max-width: 1024px) 32vw, 21vw"
-          className="object-cover object-center"
-        />
+        <div className="absolute -inset-[20%]">
+          <Image
+            src={ingredient.image}
+            alt={ingredient.imageAlt || ingredient.name}
+            fill
+            sizes="(max-width: 640px) 78vw, (max-width: 768px) 46vw, (max-width: 1024px) 32vw, 21vw"
+            className="object-cover object-center"
+          />
+        </div>
       </div>
       <h3 className="mt-5 font-display text-base font-bold text-product-foreground">
         {ingredient.name}

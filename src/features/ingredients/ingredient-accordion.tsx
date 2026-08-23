@@ -114,19 +114,23 @@ export function IngredientAccordion({
           const isActive = ingredient.id === activeId;
 
           return (
-            <Image
+            <div
               key={ingredient.id}
-              src={ingredient.image}
-              alt={ingredient.imageAlt}
-              fill
-              sizes="(max-width: 1024px) 100vw, 45vw"
               aria-hidden={!isActive}
               className={cn(
-                "object-cover object-center motion-safe:transition-opacity motion-safe:duration-500 motion-safe:ease-out",
+                "absolute -inset-[12%] motion-safe:transition-opacity motion-safe:duration-500 motion-safe:ease-out",
                 isActive ? "z-10 opacity-100" : "z-0 opacity-0",
               )}
-              priority={ingredient.id === ingredients[0]?.id}
-            />
+            >
+              <Image
+                src={ingredient.image}
+                alt={ingredient.imageAlt}
+                fill
+                sizes="(max-width: 1024px) 100vw, 45vw"
+                className="object-cover object-center"
+                priority={ingredient.id === ingredients[0]?.id}
+              />
+            </div>
           );
         })}
       </div>

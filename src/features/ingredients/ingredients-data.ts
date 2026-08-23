@@ -48,7 +48,7 @@ export const PROTEIN_OATS_INGREDIENTS: Ingredient[] = [
     ],
   },
   {
-    id: "super-seed-mix",
+    id: "pumpkin-seeds",
     title: "Pumpkin Seeds",
     description:
       "Hulled pumpkin seeds for plant protein, minerals and crunch that holds up in hot oats.",
@@ -61,7 +61,7 @@ export const PROTEIN_OATS_INGREDIENTS: Ingredient[] = [
     ],
   },
   {
-    id: "super-seed-mix",
+    id: "sunflower-seeds",
     title: "Sunflower Seeds",
     description:
       "Hulled sunflower seeds for vitamin E, mild nuttiness and extra bite without extra sugar.",
@@ -74,7 +74,7 @@ export const PROTEIN_OATS_INGREDIENTS: Ingredient[] = [
     ],
   },
   {
-    id: "super-seed-mix",
+    id: "flax-seeds",
     title: "Flax Seeds",
     description:
       "Flax seeds for omega-3 fats and fibre that help the bowl keep you full.",
@@ -87,7 +87,7 @@ export const PROTEIN_OATS_INGREDIENTS: Ingredient[] = [
     ],
   },
   {
-    id: "super-seed-mix",
+    id: "chia-seeds",
     title: "Chia Seeds",
     description:
       "Tiny chia seeds that soak up liquid, add fibre and help the oats stay filling.",

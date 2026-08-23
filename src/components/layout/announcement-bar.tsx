@@ -64,7 +64,7 @@ export function AnnouncementBar() {
 
   return (
     <Link
-      className="block bg-foreground px-4 py-2.5 text-center text-[0.7rem] font-bold uppercase tracking-[0.08em] text-background transition-colors hover:bg-primary hover:text-primary-foreground sm:text-xs"
+      className="block bg-foreground px-4 py-2.5 text-center font-sans text-[0.7rem] font-medium uppercase tracking-[0.08em] text-background transition-colors hover:bg-primary hover:text-primary-foreground sm:text-xs"
       href="/products"
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}

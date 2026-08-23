@@ -42,8 +42,8 @@ export function StatChip({
 }: StatChipProps) {
   return (
     <div className={cn(statChipVariants({ variant, size }), className)} {...props}>
-      <span className="font-display text-2xl leading-none tracking-wide">{value}</span>
-      <span className="mt-1 font-sans text-xs font-medium uppercase tracking-widest opacity-80">
+      <span className="font-display text-2xl font-extrabold leading-none tracking-tight">{value}</span>
+      <span className="mt-1 font-sans text-xs font-semibold uppercase tracking-widest opacity-80">
         {label}
       </span>
     </div>

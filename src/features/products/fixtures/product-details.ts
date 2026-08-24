@@ -97,7 +97,7 @@ export const PRODUCT_DETAIL_FIXTURES: Record<string, ProductDetail> = {
     images: PEANUT_BUTTER_GALLERY_IMAGES,
     overlayBadge: "100% Peanuts",
     // galleryCallouts: PEANUT_BUTTER_GALLERY_CALLOUTS,
-    price: 449,
+    price: 30,
     compareAtPrice: null,
     currency: "AED",
     stats: peanutButter.stats.map((stat) => ({
@@ -179,7 +179,7 @@ export const PRODUCT_DETAIL_FIXTURES: Record<string, ProductDetail> = {
     images: PEANUT_BUTTER_GALLERY_IMAGES,
     overlayBadge: "100% Peanuts",
     galleryCallouts: PEANUT_BUTTER_GALLERY_CALLOUTS,
-    price: 449,
+    price: 50,
     compareAtPrice: null,
     currency: "AED",
     stats: peanutButter.stats.map((stat) => ({
@@ -296,8 +296,8 @@ export const PRODUCT_DETAIL_FIXTURES: Record<string, ProductDetail> = {
         alt: "Single-serve cup back panel with ingredients and prep steps",
       },
     ],
-    price: 599,
-    compareAtPrice: 699,
+    price: 32,
+    compareAtPrice: null,
     currency: "AED",
     stats: proteinOats425g.stats.map((stat) => ({
       label: stat.label,
@@ -428,8 +428,8 @@ export const PRODUCT_DETAIL_FIXTURES: Record<string, ProductDetail> = {
         alt: "Single-serve cup back panel with ingredients and prep steps",
       },
     ],
-    price: 599,
-    compareAtPrice: 699,
+    price: 58,
+    compareAtPrice: null,
     currency: "AED",
     stats: proteinOats425gPackOf2.stats.map((stat) => ({
       label: stat.label,
@@ -541,7 +541,7 @@ export const PRODUCT_DETAIL_FIXTURES: Record<string, ProductDetail> = {
         alt: "Meet the ingredients"
       },
     ],
-    price: 100,
+    price: 10,
     compareAtPrice: null,
     currency: "AED",
     stats: proteinOats77g.stats.map((stat) => ({
@@ -653,7 +653,7 @@ export const PRODUCT_DETAIL_FIXTURES: Record<string, ProductDetail> = {
         alt: "Meet the ingredients"
       },
     ],
-    price: 100,
+    price: 50,
     compareAtPrice: null,
     currency: "AED",
     stats: proteinOats77gPackOf6.stats.map((stat) => ({

@@ -268,7 +268,7 @@ export const PRODUCT_DETAIL_FIXTURES: Record<string, ProductDetail> = {
         alt: "Protein Oats 425g pouch",
       },
       {
-        url: "/images/products/oats/oats-425g-back.jpeg",
+        url: "/images/products/oats/oats-425g-back.avif",
         alt: "Protein Oats 425g pouch back panel",
       },
       {
@@ -288,7 +288,7 @@ export const PRODUCT_DETAIL_FIXTURES: Record<string, ProductDetail> = {
         alt: "Rich Chocolate oats",
       },
       {
-        url: "/images/products/oats/oats-nutrition.jpeg",
+        url: "/images/products/oats/oats-nutrition.avif",
         alt: "Protein Oats nutritional information table",
       },
       {
@@ -396,7 +396,7 @@ export const PRODUCT_DETAIL_FIXTURES: Record<string, ProductDetail> = {
         alt: "Protein Oats 425g pouch",
       },
       {
-        url: "/images/products/oats/oats-425g-back.jpeg",
+        url: "/images/products/oats/oats-425g-back.avif",
         alt: "Protein Oats 425g pouch back panel",
       },
       {
@@ -416,7 +416,7 @@ export const PRODUCT_DETAIL_FIXTURES: Record<string, ProductDetail> = {
         alt: "Rich Chocolate oats",
       },
       {
-        url: "/images/products/oats/oats-nutrition.jpeg",
+        url: "/images/products/oats/oats-nutrition.avif",
         alt: "Protein Oats nutritional information table",
       },
       {

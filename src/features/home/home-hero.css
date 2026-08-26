@@ -1,3 +1,2 @@
-.hero-slide-protein-oats {
-  background-color: #EFDFC3;
-}
+/* Hero-specific utilities. Slide 2 (protein oats) uses Tailwind `bg-oat-cream`
+   on GlowSlide when `showGlow` is false — no extra color tokens here. */

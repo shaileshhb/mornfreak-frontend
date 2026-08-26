@@ -73,7 +73,7 @@ const PRODUCT_FEATURES = {
   },
   peanutButter: {
     label: "Peanut Butter Powder",
-    image: "/images/raising-the-bar/peanut_butter_powder.png",
+    image: "/images/raising-the-bar/peanut_butter_powder.avif",
     imageAlt: "Mornfreak Peanut Butter Powder jar",
     features: [
       {

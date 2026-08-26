@@ -32,12 +32,12 @@ export const PRODUCT_CONTENT: Record<ProductId, ProductContent> = {
     description:
       "100% peanuts. 9g protein per serving, 87% less fat than traditional peanut butter. The clean, versatile protein boost your mornings have been missing.",
     images: [
-      "/images/peanut_butter_powder_2.jpeg",
+      "/images/products/peanut-butter/peanut-powder.jpeg",
       "/images/products/peanut-butter/peanut-butter-pour.jpeg",
     ],
-    heroImage: "/images/peanut_butter_powder_2.jpeg",
+    heroImage: "/images/products/peanut-butter/peanut-powder.jpeg",
     hoverImage: "/images/products/peanut-butter/peanut-butter-pour.jpeg",
-    serveImage: "/images/peanut_butter_powder_2.jpeg",
+    serveImage: "/images/products/peanut-butter/peanut-powder.jpeg",
     stats: [
       { value: "9g", label: "Protein / Serving" },
       { value: "87%", label: "Less Fat" },
@@ -74,12 +74,12 @@ export const PRODUCT_CONTENT: Record<ProductId, ProductContent> = {
     description:
       "100% peanuts. 9g protein per serving, 87% less fat than traditional peanut butter. The clean, versatile protein boost your mornings have been missing.",
     images: [
-      "/images/peanut_butter_powder_2.jpeg",
+      "/images/products/peanut-butter/peanut-powder.jpeg",
       "/images/products/peanut-butter/peanut-butter-pour.jpeg",
     ],
-    heroImage: "/images/peanut_butter_powder_2.jpeg",
+    heroImage: "/images/products/peanut-butter/peanut-powder.jpeg",
     hoverImage: "/images/products/peanut-butter/peanut-butter-pour.jpeg",
-    serveImage: "/images/peanut_butter_powder_2.jpeg",
+    serveImage: "/images/products/peanut-butter/peanut-powder.jpeg",
     stats: [
       { value: "9g", label: "Protein / Serving" },
       { value: "87%", label: "Less Fat" },

@@ -32,7 +32,7 @@ const peanutButterPackOf2 = PRODUCT_CONTENT.peanutButterPackOf2;
 
 const PEANUT_BUTTER_GALLERY_IMAGES: ProductImage[] = [
   {
-    url: "/images/peanut_butter_powder_2.jpeg",
+    url: "/images/products/peanut-butter/peanut-powder.jpeg",
     alt: "Mornfreak Pure Peanut Butter Powder jar",
   },
   {

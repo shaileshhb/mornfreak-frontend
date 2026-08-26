@@ -23,8 +23,6 @@ type ProductKey = "proteinOats" | "peanutButter";
 const PRODUCT_COMPARISONS = {
   proteinOats: {
     label: "Protein Oats",
-    image: "/images/oats_1.jpeg",
-    imageAlt: "Mornfreak Protein Oats pouch",
     columns: [
       "MORNFREAK PROTEIN OATS",
       "Other Oats",
@@ -60,8 +58,6 @@ const PRODUCT_COMPARISONS = {
   },
   peanutButter: {
     label: "Peanut Butter Powder",
-    image: "/images/peanut_butter_powder_1.jpeg",
-    imageAlt: "Mornfreak Peanut Butter Powder jar",
     columns: [
       "MORNFREAK PEANUT BUTTER POWDER",
       "Regular Peanut Butter",

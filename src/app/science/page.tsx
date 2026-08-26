@@ -103,13 +103,13 @@ const LIFESTYLE = [
   {
     title: "Fuel Your Day",
     body: "Our protein oats and Peanut Butter Powder are crafted to keep you full, focused and energized, every morning.",
-    image: "/images/science/fuel-your-day.jpg",
+    image: "/images/science/fuel-your-day.avif",
     alt: "Couple sharing breakfast in a sunlit kitchen",
   },
   {
     title: "Built for Performance",
     body: "High-protein, clean ingredients and smart nutrition to support your training and recovery.",
-    image: "/images/science/performance.jpeg",
+    image: "/images/science/performance.avif",
     alt: "Athletes high-fiving over barbells after a workout",
   },
 ] as const;
@@ -138,7 +138,7 @@ export default function SciencePage() {
       {/* Hero */}
       <section className="relative overflow-hidden bg-ink">
         <Image
-          src="/images/science/banner.png"
+          src="/images/science/banner.avif"
           alt="Motion-blurred runner in a dark industrial setting"
           fill
           priority

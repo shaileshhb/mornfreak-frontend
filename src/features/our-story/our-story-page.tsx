@@ -47,7 +47,7 @@ function StoryHeroImage() {
     props: { srcSet: desktopSrcSet },
   } = getImageProps({
     ...common,
-    src: "/images/our-story/person_with_mug.png",
+    src: "/images/our-story/person_with_mug.avif",
     width: 1983,
     height: 793,
   });
@@ -55,7 +55,7 @@ function StoryHeroImage() {
     props: { srcSet: mobileSrcSet, ...mobileProps },
   } = getImageProps({
     ...common,
-    src: "/images/our-story/person_with_mug_mobile.png",
+    src: "/images/our-story/person_with_mug_mobile.avif",
     width: 1122,
     height: 1402,
     priority: true,
@@ -177,7 +177,7 @@ function BreakfastCta() {
           </div>
           <div className="relative aspect-[4/3] min-h-[20rem] min-w-0 w-full overflow-hidden lg:aspect-auto">
             <Image
-              src="/images/science-oats-bowl.jpg"
+              src="/images/science-oats-bowl.avif"
               alt="A chocolate oat bowl topped with fruit, nuts, seeds and dark chocolate"
               fill
               sizes="(max-width: 1024px) 100vw, 58vw"

@@ -37,7 +37,7 @@ export function BuiltForRealMornings() {
 
           <div className="mt-8 w-full max-w-md lg:col-start-auto lg:row-start-auto lg:mt-0 lg:max-w-none lg:self-center lg:justify-self-end">
             <Image
-              src="/images/built-for-real-morning.png"
+              src="/images/built-for-real-morning.avif"
               alt="Mornfreak Protein Oats pouch and Peanut Butter Powder jar"
               width={1199}
               height={1312}

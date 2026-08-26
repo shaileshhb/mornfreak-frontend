@@ -22,7 +22,7 @@ export const metadata: Metadata = {
       "Protein-forward breakfast for people who train, work, and move fast in the morning.",
     url: "https://mornfreak.com",
     siteName: "MORNFREAK",
-    images: [{ url: "/images/logo.jpeg", width: 800, height: 800, alt: "MORNFREAK logo" }],
+    images: [{ url: "/images/logo.avif", width: 800, height: 800, alt: "MORNFREAK logo" }],
     locale: "en_US",
     type: "website",
   },
@@ -31,7 +31,7 @@ export const metadata: Metadata = {
     title: "MORNFREAK: Fuel Your Start",
     description:
       "Protein-forward breakfast for people who train, work, and move fast in the morning.",
-    images: ["/images/logo.jpeg"],
+    images: ["/images/logo.avif"],
   },
 };
 

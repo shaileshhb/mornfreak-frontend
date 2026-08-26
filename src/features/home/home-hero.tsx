@@ -12,21 +12,29 @@ import {
 } from "react";
 import { cn } from "@/lib/cn";
 import "./home-hero.css";
-import img1Desktop from "../../../public/images/hero/img_1_desktop.jpeg";
-import img1Mobile from "../../../public/images/hero/img_1_mobile.jpeg";
-import proteinOatsCutout from "../../../public/images/hero/img_2_no_bg.png";
-import peanutButterCutout from "../../../public/images/raising-the-bar/peanut_butter_powder.png";
+import img1Desktop from "../../../public/images/hero/img_1_desktop.avif";
+import img1Mobile from "../../../public/images/hero/img_1_mobile.avif";
+import proteinOatsDashboard from "../../../public/images/hero/protein-dashboard-1.avif";
+import peanutButterCutout from "../../../public/images/raising-the-bar/peanut_butter_powder.avif";
 
 interface Slide {
   id: string;
   kicker: string;
   headline: string;
-  headlineSegments?: { text: string; accent?: boolean }[];
+  headlineSegments?: {
+    text: string;
+    accent?: boolean;
+    italic?: boolean;
+    breakBefore?: boolean;
+  }[];
   body?: string;
   rating?: string;
   ratingStars?: number;
+  ratingCount?: string;
   ctaLabel: string;
   ctaHref: string;
+  ctaLabel2?: string;
+  ctaHref2?: string;
   imageAlt: string;
   theme: "light" | "dark";
   layout: "full-bleed" | "split" | "glow";
@@ -41,6 +49,8 @@ interface Slide {
   objectPositionDesktop?: string;
   cutoutImage?: StaticImageData;
   dataProduct?: "proteinOats" | "peanutButter";
+  /** Radial product glow + float. Defaults to true for glow-layout slides. */
+  showGlow?: boolean;
 }
 
 const SLIDES: Slide[] = [
@@ -61,25 +71,32 @@ const SLIDES: Slide[] = [
     objectPositionDesktop: "center",
   },
   {
+    // Protein oats hero (slide 2). New fields vs other glow slides:
+    // ratingCount (star row above headline), italic headline segment,
+    // ctaLabel2/ctaHref2 (outline pill), showGlow: false (flat oat-cream).
+    // Copy below is placeholder and can be swapped for final marketing text.
     id: "protein-oats",
     kicker: "Protein oats",
-    headline: "Fuel your day. Feed your goals.",
+    headline: "Discover your favourites. One meal at a time.",
     headlineSegments: [
-      { text: "Fuel your day. " },
-      { text: "Feed", accent: true },
-      { text: " your goals." },
+      { text: "Discover your " },
+      { text: "favourites. ", italic: true, breakBefore: true },
+      { text: "One meal at a time.", breakBefore: true },
     ],
-    body: "Rich chocolate oats with 26g protein, super seeds, nuts and prebiotics — no added sugar.",
-    rating: "Loved by early tasters",
+    body: "Mix and match 12 or more single-serve meals across shakes, sachets, and hot meals. Find what you love, then make it a habit.",
     ratingStars: 5,
+    ratingCount: "2,400+ happy mornings",
     ctaLabel: "Shop Protein Oats",
     ctaHref: "/products/protein-oats",
+    ctaLabel2: "Shop all Mornfreak",
+    ctaHref2: "/products",
     imageAlt:
-      "Mornfreak Protein Oats pouches with a bowl of rich chocolate oats and fresh toppings",
+      "Mornfreak Protein Oats pouch with a bowl of rich chocolate oats, chocolate splash, and floating nuts and seeds",
     theme: "light",
     layout: "glow",
-    cutoutImage: proteinOatsCutout,
+    cutoutImage: proteinOatsDashboard,
     dataProduct: "proteinOats",
+    showGlow: false,
   },
   {
     id: "peanut-butter",
@@ -232,12 +249,19 @@ function SlideText({
 }) {
   const isDark = slide.theme === "dark";
   const isGlow = variant === "glow";
+  const isItalicHeadline = Boolean(
+    slide.headlineSegments?.some((segment) => segment.italic),
+  );
 
   return (
     <div
       className={cn(
         "flex w-full flex-col",
-        isGlow ? "max-w-[38rem]" : "max-w-[42ch]",
+        isGlow
+          ? slide.ctaLabel2
+            ? "max-w-[42rem]"
+            : "max-w-[38rem]"
+          : "max-w-[42ch]",
         "motion-reduce:translate-y-0",
         !reducedMotion && "transition-[opacity,transform] ease-out",
         active
@@ -245,40 +269,78 @@ function SlideText({
           : "pointer-events-none translate-y-3 opacity-0 duration-200",
       )}
     >
-      <p
-        className={cn(
-          "font-sans font-semibold uppercase",
-          isGlow
-            ? "text-[clamp(0.95rem,0.85rem+0.4vw,1.15rem)] tracking-[0.08em]"
-            : "text-kicker",
-          isDark ? "text-oat-cream/80" : "text-ink/70",
-        )}
-      >
-        {slide.kicker}
-      </p>
+      {slide.ratingCount ? (
+        <div className="flex flex-wrap items-center gap-x-2 gap-y-1">
+          {slide.ratingStars ? (
+            <div className="flex items-center gap-0.5" aria-hidden>
+              {Array.from({ length: slide.ratingStars }, (_, starIndex) => (
+                <Star
+                  key={starIndex}
+                  className={cn(
+                    "fill-ember-clay text-ember-clay",
+                    isGlow ? "h-5 w-5 lg:h-6 lg:w-6" : "h-4 w-4",
+                  )}
+                />
+              ))}
+            </div>
+          ) : null}
+          <p
+            className={cn(
+              "font-sans font-medium",
+              isGlow
+                ? "text-[clamp(1.05rem,1rem+0.3vw,1.25rem)]"
+                : "text-body",
+              isDark ? "text-toasted-almond" : "text-cocoa-espresso",
+            )}
+          >
+            {slide.ratingCount}
+          </p>
+        </div>
+      ) : (
+        <p
+          className={cn(
+            "font-sans font-semibold uppercase",
+            isGlow
+              ? "text-[clamp(0.95rem,0.85rem+0.4vw,1.15rem)] tracking-[0.08em]"
+              : "text-kicker",
+            isDark ? "text-oat-cream/80" : "text-ink/70",
+          )}
+        >
+          {slide.kicker}
+        </p>
+      )}
 
       <h2
         className={cn(
           "font-display font-extrabold",
           isGlow
-            ? "mt-4 text-[clamp(2.5rem,1.6rem+4.2vw,5.75rem)] leading-[1.0] tracking-[-0.03em] lg:mt-5"
+            ? isItalicHeadline
+              ? "mt-4 text-[clamp(2.25rem,1.1rem+2.6vw,4rem)] leading-[1.08] tracking-[-0.03em] lg:mt-5 lg:leading-[1.05]"
+              : "mt-4 text-[clamp(2.5rem,1.6rem+4.2vw,5.75rem)] leading-[1.0] tracking-[-0.03em] lg:mt-5"
             : "mt-3 text-h1",
           isDark ? "text-paper" : "text-ink",
         )}
       >
         {slide.headlineSegments
-          ? slide.headlineSegments.map((segment, segmentIndex) =>
-            segment.accent ? (
-              <span
-                key={segmentIndex}
-                className="font-display font-bold"
-              >
-                {segment.text}
+          ? slide.headlineSegments.map((segment, segmentIndex) => (
+              <span key={segmentIndex}>
+                {segment.breakBefore ? (
+                  <br className="hidden lg:block" />
+                ) : null}
+                <span
+                  className={cn(
+                    segment.accent && "font-display font-bold",
+                    segment.italic &&
+                      "font-serif text-[0.92em] font-medium italic tracking-normal",
+                    segment.breakBefore &&
+                      !segment.italic &&
+                      "lg:whitespace-nowrap",
+                  )}
+                >
+                  {segment.text}
+                </span>
               </span>
-            ) : (
-              <span key={segmentIndex}>{segment.text}</span>
-            ),
-          )
+            ))
           : slide.headline}
       </h2>
 
@@ -330,13 +392,19 @@ function SlideText({
         </div>
       ) : null}
 
-      <div className={cn(isGlow ? "mt-6 lg:mt-8" : "mt-6")}>
+      <div
+        className={cn(
+          "flex flex-wrap items-center gap-3",
+          isGlow ? "mt-6 lg:mt-8" : "mt-6",
+        )}
+      >
         <Link
           href={slide.ctaHref}
           tabIndex={active ? 0 : -1}
           className={cn(
             "inline-flex items-center justify-center bg-ember-clay",
             isGlow ? "px-6 py-3 lg:px-8 lg:py-4" : "px-6 py-3",
+            slide.ctaLabel2 && "rounded-full",
             "font-sans font-semibold text-paper",
             isGlow
               ? "text-[clamp(1rem,0.95rem+0.25vw,1.15rem)]"
@@ -349,6 +417,26 @@ function SlideText({
         >
           {slide.ctaLabel}
         </Link>
+        {slide.ctaLabel2 && slide.ctaHref2 ? (
+          <Link
+            href={slide.ctaHref2}
+            tabIndex={active ? 0 : -1}
+            className={cn(
+              "inline-flex items-center justify-center rounded-full border border-ink bg-transparent",
+              isGlow ? "px-6 py-3 lg:px-8 lg:py-4" : "px-6 py-3",
+              "font-sans font-semibold text-ink",
+              isGlow
+                ? "text-[clamp(1rem,0.95rem+0.25vw,1.15rem)]"
+                : "text-cta",
+              "focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4",
+              isDark
+                ? "focus-visible:outline-oat-cream"
+                : "focus-visible:outline-ink",
+            )}
+          >
+            {slide.ctaLabel2}
+          </Link>
+        ) : null}
       </div>
 
       {/* Mobile only — must not render in the text column on md+ */}
@@ -559,6 +647,9 @@ function GlowSlide({
   paused: boolean;
   onSelect: (slideIndex: number) => void;
 }) {
+  const showGlow = slide.showGlow !== false;
+  const flatCream = !showGlow;
+
   return (
     <div
       className={slideShellClass(active, reducedMotion)}
@@ -567,26 +658,40 @@ function GlowSlide({
       inert={!active ? true : undefined}
       role="group"
       aria-roledescription="slide"
-      aria-label={slide.headline}>
-      {/* <div className="grid h-full min-h-[clamp(560px,78vh,860px)] grid-cols-1 bg-product-background lg:min-h-[clamp(560px,78vh,860px)] lg:grid-cols-[1fr_minmax(420px,44%)]"> */}
+      aria-label={slide.headline}
+    >
       <div
         className={cn(
           "grid h-full min-h-[clamp(560px,78vh,860px)] grid-cols-1 lg:min-h-[clamp(560px,78vh,860px)] lg:grid-cols-[1fr_minmax(420px,44%)]",
-          slide.dataProduct === "proteinOats"
-            ? "hero-slide-protein-oats"
-            : "bg-product-background",
+          flatCream ? "bg-oat-cream" : "bg-product-background",
         )}
       >
-        <div className="relative order-1 h-[min(90vw,28rem)] w-full overflow-hidden lg:order-2 lg:h-full lg:min-h-0">
+        <div
+          className={cn(
+            "relative order-1 w-full overflow-hidden lg:order-2 lg:h-full lg:min-h-0",
+            flatCream
+              ? "h-[min(82vw,26rem)] md:h-[min(70vw,30rem)]"
+              : "h-[min(90vw,28rem)]",
+          )}
+        >
+          {showGlow ? (
+            <div
+              className="absolute inset-0"
+              aria-hidden
+              style={{
+                background:
+                  "radial-gradient(closest-side, var(--product-glow), transparent 70%)",
+              }}
+            />
+          ) : null}
           <div
-            className="absolute inset-0"
-            aria-hidden
-            style={{
-              background:
-                "radial-gradient(closest-side, var(--product-glow), transparent 70%)",
-            }}
-          />
-          <div className="relative h-full w-full p-8 md:p-12 lg:p-10 motion-safe:animate-float">
+            className={cn(
+              "relative h-full w-full",
+              flatCream
+                ? "p-3 md:p-6 lg:p-4 xl:p-6"
+                : "p-8 md:p-12 lg:p-10 motion-safe:animate-float",
+            )}
+          >
             {slide.cutoutImage ? (
               <div className="relative h-full w-full">
                 <Image
@@ -595,7 +700,11 @@ function GlowSlide({
                   fill
                   sizes="(min-width: 1024px) 44vw, 90vw"
                   style={{ objectFit: "contain", objectPosition: "center" }}
-                  className="drop-shadow-[0_24px_40px_rgba(0,0,0,0.18)]"
+                  className={
+                    showGlow
+                      ? "drop-shadow-[0_24px_40px_rgba(0,0,0,0.18)]"
+                      : undefined
+                  }
                 />
               </div>
             ) : null}
@@ -605,7 +714,9 @@ function GlowSlide({
         <div
           className={cn(
             "order-2 flex items-center lg:order-1 lg:h-full",
-            "p-4 md:p-8 lg:p-10 xl:p-16 2xl:p-[clamp(4rem,4vw,7rem)]",
+            flatCream
+              ? "p-5 md:p-10 lg:p-12 xl:p-16 2xl:p-[clamp(4rem,4vw,7rem)]"
+              : "p-4 md:p-8 lg:p-10 xl:p-16 2xl:p-[clamp(4rem,4vw,7rem)]",
           )}
         >
           <SlideText

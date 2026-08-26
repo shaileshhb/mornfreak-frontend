@@ -42,7 +42,7 @@ const CALLOUT_POSITIONS: { className: string; side: CalloutSide }[] = [
 const PRODUCT_FEATURES = {
   proteinOats: {
     label: "Protein Oats",
-    image: "/images/raising-the-bar/protein_oats.png",
+    image: "/images/raising-the-bar/protein_oats.avif",
     imageAlt: "Mornfreak Protein Oats pouch",
     features: [
       {

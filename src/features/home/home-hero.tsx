@@ -1,7 +1,7 @@
 "use client";
 
 import { Star } from "lucide-react";
-import Image, { type StaticImageData } from "next/image";
+import Image from "next/image";
 import Link from "next/link";
 import {
   useEffect,
@@ -12,10 +12,6 @@ import {
 } from "react";
 import { cn } from "@/lib/cn";
 import "./home-hero.css";
-import img1Desktop from "../../../public/images/hero/img_1_desktop.avif";
-import img1Mobile from "../../../public/images/hero/img_1_mobile.avif";
-import proteinOatsDashboard from "../../../public/images/hero/protein-dashboard-1.avif";
-import peanutButterCutout from "../../../public/images/raising-the-bar/peanut_butter_powder.avif";
 
 interface Slide {
   id: string;
@@ -42,12 +38,12 @@ interface Slide {
    * Product shots with tight framing (no spare margin) should use contain +
    * toasted-almond panel. Current oats/PB assets have enough margin for cover.
    */
-  imageDesktop?: StaticImageData;
-  imageMobile?: StaticImageData;
+  imageDesktop?: string;
+  imageMobile?: string;
   objectFit?: "cover" | "contain";
   objectPositionMobile?: string;
   objectPositionDesktop?: string;
-  cutoutImage?: StaticImageData;
+  cutoutImage?: string;
   dataProduct?: "proteinOats" | "peanutButter";
   /** Radial product glow + float. Defaults to true for glow-layout slides. */
   showGlow?: boolean;
@@ -60,8 +56,8 @@ const SLIDES: Slide[] = [
     headline: "Functional. Simple. Purposeful.",
     ctaLabel: "Shop now",
     ctaHref: "/products",
-    imageDesktop: img1Desktop,
-    imageMobile: img1Mobile,
+    imageDesktop: "/images/hero/img_1_desktop.avif",
+    imageMobile: "/images/hero/img_1_mobile.avif",
     imageAlt:
       "People fueling their mornings with Mornfreak — eating, commuting, training, and studying",
     theme: "dark",
@@ -94,7 +90,7 @@ const SLIDES: Slide[] = [
       "Mornfreak Protein Oats pouch with a bowl of rich chocolate oats, chocolate splash, and floating nuts and seeds",
     theme: "light",
     layout: "glow",
-    cutoutImage: proteinOatsDashboard,
+    cutoutImage: "/images/hero/protein-dashboard-1.avif",
     dataProduct: "proteinOats",
     showGlow: false,
   },
@@ -114,7 +110,7 @@ const SLIDES: Slide[] = [
       "Mornfreak peanut butter powder jar with peanuts and a bowl of peanut powder",
     theme: "light",
     layout: "glow",
-    cutoutImage: peanutButterCutout,
+    cutoutImage: "/images/raising-the-bar/peanut_butter_powder.avif",
     dataProduct: "peanutButter",
   },
 ];

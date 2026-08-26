@@ -32,47 +32,47 @@ const peanutButterPackOf2 = PRODUCT_CONTENT.peanutButterPackOf2;
 
 const PEANUT_BUTTER_GALLERY_IMAGES: ProductImage[] = [
   {
-    url: "/images/products/peanut-butter/peanut-powder.jpeg",
+    url: "/images/products/peanut-butter/peanut-powder.avif",
     alt: "Mornfreak Pure Peanut Butter Powder jar",
   },
   {
-    url: "/images/products/peanut-butter/peanut-butter-pour.jpeg",
+    url: "/images/products/peanut-butter/peanut-butter-pour.avif",
     alt: "Peanut butter powder poured from the jar",
   },
   {
-    url: "/images/products/peanut-butter/pb-power-2.jpeg",
+    url: "/images/products/peanut-butter/pb-power-2.avif",
     alt: "Peanut Butter Powder benefits: muscle repair, fibre, energy and weight control",
   },
   {
-    url: "/images/products/peanut-butter/pb-serving.jpeg",
+    url: "/images/products/peanut-butter/pb-serving.avif",
     alt: "Calories and macros: 66.5 kcal per serving versus regular peanut butter",
   },
   {
-    url: "/images/products/peanut-butter/pb-nutrition-2.jpeg",
+    url: "/images/products/peanut-butter/pb-nutrition-2.avif",
     alt: "Nutrition table per 100g and per 16g serving",
   },
   {
-    url: "/images/products/peanut-butter/pb-ingredients.jpeg",
+    url: "/images/products/peanut-butter/pb-ingredients.avif",
     alt: "Jar back panel: 100% roasted peanuts and 7-second mix instructions",
   },
   {
-    url: "/images/products/peanut-butter/pb-graph.jpeg",
+    url: "/images/products/peanut-butter/pb-graph.avif",
     alt: "Graph of calories per gram of protein versus regular peanut butter",
   },
   {
-    url: "/images/products/peanut-butter/pb-crafting.jpeg",
+    url: "/images/products/peanut-butter/pb-crafting.avif",
     alt: "How peanut butter powder is crafted: roast, mill, refine and seal",
   },
   {
-    url: "/images/products/peanut-butter/pb-power.jpeg",
+    url: "/images/products/peanut-butter/pb-power.avif",
     alt: "Pure peanut butter powder with twice the protein and no added sugar",
   },
   {
-    url: "/images/products/peanut-butter/pb-peanuts.jpeg",
+    url: "/images/products/peanut-butter/pb-peanuts.avif",
     alt: "Premium Java and Bold peanuts slow-roasted in small batches",
   },
   {
-    url: "/images/products/peanut-butter/pb-compare.jpeg",
+    url: "/images/products/peanut-butter/pb-compare.avif",
     alt: "Peanut Butter Powder compared with regular peanut butter",
   },
 ];
@@ -264,7 +264,7 @@ export const PRODUCT_DETAIL_FIXTURES: Record<string, ProductDetail> = {
         alt: "Protein Oats 425g pouch",
       },
       {
-        url: "/images/products/oats/oats-425g-2.jpeg",
+        url: "/images/products/oats/oats-425g-2.avif",
         alt: "Protein Oats 425g pouch",
       },
       {
@@ -272,19 +272,19 @@ export const PRODUCT_DETAIL_FIXTURES: Record<string, ProductDetail> = {
         alt: "Protein Oats 425g pouch back panel",
       },
       {
-        url: "/images/products/oats/oats-425g-3.jpeg",
+        url: "/images/products/oats/oats-425g-3.avif",
         alt: "Protein Oats 425g pouch with a prepared chocolate oat bowl",
       },
       {
-        url: "/images/products/oats/oats-425g-4.jpeg",
+        url: "/images/products/oats/oats-425g-4.avif",
         alt: "Optimize your life",
       },
       {
-        url: "/images/products/oats/oats-425g-5.jpeg",
+        url: "/images/products/oats/oats-425g-5.avif",
         alt: "Super seeds and nuts",
       },
       {
-        url: "/images/products/oats/oats-general-1.jpeg",
+        url: "/images/products/oats/oats-general-1.avif",
         alt: "Rich Chocolate oats",
       },
       {
@@ -292,7 +292,7 @@ export const PRODUCT_DETAIL_FIXTURES: Record<string, ProductDetail> = {
         alt: "Protein Oats nutritional information table",
       },
       {
-        url: "/images/products/oats/oats-ingredients.jpeg",
+        url: "/images/products/oats/oats-ingredients.avif",
         alt: "Single-serve cup back panel with ingredients and prep steps",
       },
     ],
@@ -392,7 +392,7 @@ export const PRODUCT_DETAIL_FIXTURES: Record<string, ProductDetail> = {
         alt: "Protein Oats 425g pouch",
       },
       {
-        url: "/images/products/oats/oats-425g-2.jpeg",
+        url: "/images/products/oats/oats-425g-2.avif",
         alt: "Protein Oats 425g pouch",
       },
       {
@@ -400,19 +400,19 @@ export const PRODUCT_DETAIL_FIXTURES: Record<string, ProductDetail> = {
         alt: "Protein Oats 425g pouch back panel",
       },
       {
-        url: "/images/products/oats/oats-425g-3.jpeg",
+        url: "/images/products/oats/oats-425g-3.avif",
         alt: "Protein Oats 425g pouch with a prepared chocolate oat bowl",
       },
       {
-        url: "/images/products/oats/oats-425g-4.jpeg",
+        url: "/images/products/oats/oats-425g-4.avif",
         alt: "Optimize your life",
       },
       {
-        url: "/images/products/oats/oats-425g-5.jpeg",
+        url: "/images/products/oats/oats-425g-5.avif",
         alt: "Super seeds and nuts",
       },
       {
-        url: "/images/products/oats/oats-general-1.jpeg",
+        url: "/images/products/oats/oats-general-1.avif",
         alt: "Rich Chocolate oats",
       },
       {
@@ -420,11 +420,11 @@ export const PRODUCT_DETAIL_FIXTURES: Record<string, ProductDetail> = {
         alt: "Protein Oats nutritional information table",
       },
       {
-        url: "/images/products/oats/oats-ingredients-2.jpeg",
+        url: "/images/products/oats/oats-ingredients-2.avif",
         alt: "Meet the ingredients: oats, protein blend, dates, seeds, almonds and raisins",
       },
       {
-        url: "/images/products/oats/oats-ingredients.jpeg",
+        url: "/images/products/oats/oats-ingredients.avif",
         alt: "Single-serve cup back panel with ingredients and prep steps",
       },
     ],
@@ -521,7 +521,7 @@ export const PRODUCT_DETAIL_FIXTURES: Record<string, ProductDetail> = {
     description: proteinOats77g.description,
     images: [
       {
-        url: "/images/products/oats/oats-77g-1.jpeg",
+        url: "/images/products/oats/oats-77g-1.avif",
         alt: "Protein Oats pouch with a prepared chocolate oat bowl"
       },
       {
@@ -529,15 +529,15 @@ export const PRODUCT_DETAIL_FIXTURES: Record<string, ProductDetail> = {
         alt: "Protein Oats pouch with a prepared chocolate oat bowl"
       },
       {
-        url: "/images/products/oats/oats-77g-back.jpeg",
+        url: "/images/products/oats/oats-77g-back.avif",
         alt: "Protein Oats pouch back panel"
       },
       {
-        url: "/images/products/oats/oats-77g-pour.jpeg",
+        url: "/images/products/oats/oats-77g-pour.avif",
         alt: "Protein Oats pour",
       },
       {
-        url: "/images/products/oats/oats-ingredients.jpeg",
+        url: "/images/products/oats/oats-ingredients.avif",
         alt: "Meet the ingredients"
       },
     ],
@@ -633,7 +633,7 @@ export const PRODUCT_DETAIL_FIXTURES: Record<string, ProductDetail> = {
     description: proteinOats77gPackOf6.description,
     images: [
       {
-        url: "/images/products/oats/oats-77g-1.jpeg",
+        url: "/images/products/oats/oats-77g-1.avif",
         alt: "Protein Oats pouch with a prepared chocolate oat bowl"
       },
       {
@@ -641,15 +641,15 @@ export const PRODUCT_DETAIL_FIXTURES: Record<string, ProductDetail> = {
         alt: "Protein Oats pouch with a prepared chocolate oat bowl"
       },
       {
-        url: "/images/products/oats/oats-77g-back.jpeg",
+        url: "/images/products/oats/oats-77g-back.avif",
         alt: "Protein Oats pouch back panel"
       },
       {
-        url: "/images/products/oats/oats-77g-pour.jpeg",
+        url: "/images/products/oats/oats-77g-pour.avif",
         alt: "Protein Oats pour",
       },
       {
-        url: "/images/products/oats/oats-ingredients.jpeg",
+        url: "/images/products/oats/oats-ingredients.avif",
         alt: "Meet the ingredients"
       },
     ],

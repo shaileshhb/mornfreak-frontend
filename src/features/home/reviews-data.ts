@@ -19,7 +19,7 @@ export const REVIEWS: Review[] = [
     rating: 5,
     verified: true,
     productLabel: "Peanut Butter Powder",
-    productImage: "/images/products/peanut-butter/peanut-powder.jpeg",
+    productImage: "/images/products/peanut-butter/peanut-powder.avif",
     videoUrl: "/videos/review_3.mp4",
   },
   {
@@ -30,7 +30,7 @@ export const REVIEWS: Review[] = [
     rating: 5,
     verified: true,
     productLabel: "Rich Chocolate Protein Oats",
-    productImage: "/images/products/oats/oats-425g-2.jpeg",
+    productImage: "/images/products/oats/oats-425g-2.avif",
     videoUrl: "/videos/review_1.mp4",
   },
   {
@@ -41,7 +41,7 @@ export const REVIEWS: Review[] = [
     rating: 5,
     verified: true,
     productLabel: "Protein Oats",
-    productImage: "/images/products/oats/oats-bundle-1.jpeg",
+    productImage: "/images/products/oats/oats-bundle-1.avif",
     videoUrl: "/videos/review_2.mp4",
   },
   {
@@ -52,7 +52,7 @@ export const REVIEWS: Review[] = [
     rating: 5,
     verified: true,
     productLabel: "Rich Chocolate Protein Oats",
-    productImage: "/images/products/oats/oats-bundle-1.jpeg",
+    productImage: "/images/products/oats/oats-bundle-1.avif",
   },
   {
     id: "meera",
@@ -62,7 +62,7 @@ export const REVIEWS: Review[] = [
     rating: 5,
     verified: true,
     productLabel: "Rich Chocolate Protein Oats",
-    productImage: "/images/products/oats/oats-bundle-1.jpeg",
+    productImage: "/images/products/oats/oats-bundle-1.avif",
   },
   {
     id: "nisha",
@@ -72,7 +72,7 @@ export const REVIEWS: Review[] = [
     rating: 5,
     verified: true,
     productLabel: "Peanut Butter Powder",
-    productImage: "/images/products/peanut-butter/peanut-powder.jpeg",
+    productImage: "/images/products/peanut-butter/peanut-powder.avif",
   },
   {
     id: "arjun",
@@ -82,6 +82,6 @@ export const REVIEWS: Review[] = [
     rating: 5,
     verified: true,
     productLabel: "Rich Chocolate Protein Oats",
-    productImage: "/images/products/oats/oats-425g-2.jpeg",
+    productImage: "/images/products/oats/oats-425g-2.avif",
   },
 ];

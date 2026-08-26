@@ -32,12 +32,12 @@ export const PRODUCT_CONTENT: Record<ProductId, ProductContent> = {
     description:
       "100% peanuts. 9g protein per serving, 87% less fat than traditional peanut butter. The clean, versatile protein boost your mornings have been missing.",
     images: [
-      "/images/products/peanut-butter/peanut-powder.jpeg",
-      "/images/products/peanut-butter/peanut-butter-pour.jpeg",
+      "/images/products/peanut-butter/peanut-powder.avif",
+      "/images/products/peanut-butter/peanut-butter-pour.avif",
     ],
-    heroImage: "/images/products/peanut-butter/peanut-powder.jpeg",
-    hoverImage: "/images/products/peanut-butter/peanut-butter-pour.jpeg",
-    serveImage: "/images/products/peanut-butter/peanut-powder.jpeg",
+    heroImage: "/images/products/peanut-butter/peanut-powder.avif",
+    hoverImage: "/images/products/peanut-butter/peanut-butter-pour.avif",
+    serveImage: "/images/products/peanut-butter/peanut-powder.avif",
     stats: [
       { value: "9g", label: "Protein / Serving" },
       { value: "87%", label: "Less Fat" },
@@ -74,12 +74,12 @@ export const PRODUCT_CONTENT: Record<ProductId, ProductContent> = {
     description:
       "100% peanuts. 9g protein per serving, 87% less fat than traditional peanut butter. The clean, versatile protein boost your mornings have been missing.",
     images: [
-      "/images/products/peanut-butter/peanut-powder.jpeg",
-      "/images/products/peanut-butter/peanut-butter-pour.jpeg",
+      "/images/products/peanut-butter/pb-pack-of-2.avif",
+      "/images/products/peanut-butter/peanut-butter-pour.avif",
     ],
-    heroImage: "/images/products/peanut-butter/peanut-powder.jpeg",
-    hoverImage: "/images/products/peanut-butter/peanut-butter-pour.jpeg",
-    serveImage: "/images/products/peanut-butter/peanut-powder.jpeg",
+    heroImage: "/images/products/peanut-butter/pb-pack-of-2.avif",
+    hoverImage: "/images/products/peanut-butter/peanut-butter-pour.avif",
+    serveImage: "/images/products/peanut-butter/pb-pack-of-2.avif",
     stats: [
       { value: "9g", label: "Protein / Serving" },
       { value: "87%", label: "Less Fat" },
@@ -115,10 +115,10 @@ export const PRODUCT_CONTENT: Record<ProductId, ProductContent> = {
     tagline: "Rich Chocolate. Real Gains.",
     description:
       "26g of protein per 100g, sweetened naturally with dates, loaded with super seeds and nuts. The breakfast that works as hard as you do.",
-    images: ["/images/products/oats/oats-425g-2.jpeg", "/images/products/oats/oats-425g-pour.avif"],
-    heroImage: "/images/products/oats/oats-425g-2.jpeg",
+    images: ["/images/products/oats/oats-425g-1.avif", "/images/products/oats/oats-425g-pour.avif"],
+    heroImage: "/images/products/oats/oats-425g-1.avif",
     hoverImage: "/images/products/oats/oats-425g-pour.avif",
-    serveImage: "/images/products/oats/oats-425g-2.jpeg",
+    serveImage: "/images/products/oats/oats-425g-1.avif",
     weight: "425g resealable pouch · 70g single-serve cup (20g protein/cup)",
     stats: [
       { value: "26g", label: "Protein / 100g" },
@@ -154,10 +154,10 @@ export const PRODUCT_CONTENT: Record<ProductId, ProductContent> = {
     tagline: "Rich Chocolate. Real Gains.",
     description:
       "26g of protein per 100g, sweetened naturally with dates, loaded with super seeds and nuts. The breakfast that works as hard as you do.",
-    images: ["/images/products/oats/oats-425g-2.jpeg", "/images/products/oats/oats-425g-pour.avif"],
-    heroImage: "/images/products/oats/oats-425g-2.jpeg",
+    images: ["/images/products/oats/oats-425g-2.avif", "/images/products/oats/oats-425g-pour.avif"],
+    heroImage: "/images/products/oats/oats-425g-2.avif",
     hoverImage: "/images/products/oats/oats-425g-pour.avif",
-    serveImage: "/images/products/oats/oats-425g-2.jpeg",
+    serveImage: "/images/products/oats/oats-425g-2.avif",
     weight: "425g resealable pouch · 70g single-serve cup (20g protein/cup)",
     stats: [
       { value: "26g", label: "Protein / 100g" },
@@ -193,10 +193,10 @@ export const PRODUCT_CONTENT: Record<ProductId, ProductContent> = {
     tagline: "Rich Chocolate. Real Gains.",
     description:
       "26g of protein per 100g, sweetened naturally with dates, loaded with super seeds and nuts. The breakfast that works as hard as you do.",
-    images: ["/images/products/oats/oats-77g-1.jpeg", "/images/products/oats/oats-77g-pour.jpeg"],
-    heroImage: "/images/products/oats/oats-77g-1.jpeg",
-    hoverImage: "/images/products/oats/oats-77g-pour.jpeg",
-    serveImage: "/images/products/oats/oats-77g-1.jpeg",
+    images: ["/images/products/oats/oats-77g-1.avif", "/images/products/oats/oats-77g-pour.avif"],
+    heroImage: "/images/products/oats/oats-77g-1.avif",
+    hoverImage: "/images/products/oats/oats-77g-pour.avif",
+    serveImage: "/images/products/oats/oats-77g-1.avif",
     weight: "77g single-serve cup (20g protein/cup)",
     stats: [
       { value: "26g", label: "Protein / 100g" },
@@ -232,10 +232,10 @@ export const PRODUCT_CONTENT: Record<ProductId, ProductContent> = {
     tagline: "Rich Chocolate. Real Gains.",
     description:
       "26g of protein per 100g, sweetened naturally with dates, loaded with super seeds and nuts. The breakfast that works as hard as you do.",
-    images: ["/images/products/oats/oats-77g-1.jpeg", "/images/products/oats/oats-77g-pour.jpeg"],
-    heroImage: "/images/products/oats/oats-77g-1.jpeg",
-    hoverImage: "/images/products/oats/oats-77g-pour.jpeg",
-    serveImage: "/images/products/oats/oats-77g-1.jpeg",
+    images: ["/images/products/oats/oats-77g-pack-of-6.avif", "/images/products/oats/oats-77g-pour.avif"],
+    heroImage: "/images/products/oats/oats-77g-pack-of-6.avif",
+    hoverImage: "/images/products/oats/oats-77g-pour.avif",
+    serveImage: "/images/products/oats/oats-77g-pack-of-6.avif",
     weight: "77g single-serve cup (20g protein/cup)",
     stats: [
       { value: "26g", label: "Protein / 100g" },

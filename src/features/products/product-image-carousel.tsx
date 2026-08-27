@@ -306,7 +306,9 @@ export function ProductImageCarousel({
         className={cn(
           "relative w-full overflow-hidden rounded-2xl bg-product-background outline-none focus-visible:ring-2 focus-visible:ring-product-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background",
           portrait ? "aspect-[4/5]" : "aspect-square",
-          "lg:max-h-[min(70vh,calc(100vh-19rem))] lg:w-[min(100%,70vh,calc(100vh-19rem))]",
+          portrait
+            ? "lg:max-h-[min(80vh,calc(100vh-12rem))] lg:w-[min(100%,64vh)]"
+            : "lg:max-h-[min(70vh,calc(100vh-19rem))] lg:w-[min(100%,70vh,calc(100vh-19rem))]",
         )}
       >
         <p id={labelId} className="sr-only">

@@ -29,6 +29,7 @@ export function ProductDetailPage({ product }: ProductDetailPageProps) {
               productName={product.name}
               overlayBadge={product.overlayBadge}
               galleryCallouts={product.galleryCallouts}
+              portrait
             />
             <div className="lg:sticky lg:top-24">
               <ProductBuyBox product={product} />

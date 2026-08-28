@@ -1,3 +1,5 @@
+import type { ProductId } from "@/types/product";
+
 export type FaqItem = {
   id: string;
   question: string;
@@ -81,10 +83,22 @@ export const FAQ_CATEGORIES: FaqCategory[] = [
           "It is a convenient powdered form of peanut butter that can be mixed into smoothies, oats, yogurt, shakes, or used in recipes.",
       },
       {
+        id: "how-much-protein",
+        question: "How much protein is in Peanut Butter Powder?",
+        answer:
+          "Each **16g serving provides approximately 9g of protein**, making it a convenient way to add plant-based protein to your meals and snacks.",
+      },
+      {
+        id: "added-sugar",
+        question: "Does Peanut Butter Powder contain added sugar?",
+        answer:
+          "No. Mornfreak Pure Peanut Butter Powder contains **no added sugar or salt**. It is also unsweetened, allowing you to enjoy the natural flavor of roasted peanuts.",
+      },
+      {
         id: "how-to-use-pb-powder",
         question: "How can I use Peanut Butter Powder?",
         answer:
-          "Mix it with water or milk to make peanut butter, or add it directly to **oats, smoothies, yogurt, pancakes, and desserts**.",
+          "There are endless ways to enjoy it. Mix it with water to create a peanut butter spread, or add it to **smoothies, oats, yogurt, pancakes, toast, desserts and baked recipes**.",
       },
     ],
   },
@@ -109,6 +123,20 @@ export const FAQ_CATEGORIES: FaqCategory[] = [
 ];
 
 export const FAQ_ITEMS = FAQ_CATEGORIES.flatMap((category) => category.items);
+
+const PRODUCT_FAQ_CATEGORY_ID: Record<ProductId, string> = {
+  peanutButter: "peanut-butter-powder",
+  peanutButterPackOf2: "peanut-butter-powder",
+  proteinOats425g: "protein-oats",
+  proteinOats425gPackOf2: "protein-oats",
+  proteinOats77g: "protein-oats",
+  proteinOats77gPackOf6: "protein-oats",
+};
+
+export function getFaqItemsForProduct(productId: ProductId): FaqItem[] {
+  const categoryId = PRODUCT_FAQ_CATEGORY_ID[productId];
+  return FAQ_CATEGORIES.find((category) => category.id === categoryId)?.items ?? [];
+}
 
 export function plainFaqAnswer(answer: string) {
   return answer.replace(/\*\*/g, "");

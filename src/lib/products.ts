@@ -30,7 +30,7 @@ export const PRODUCT_CONTENT: Record<ProductId, ProductContent> = {
     name: "Peanut Butter Powder",
     tagline: "Clean Fuel. Real Results.",
     description:
-      "100% peanuts. 9g protein per serving, 87% less fat than traditional peanut butter. The clean, versatile protein boost your mornings have been missing.",
+      "Instantly boost your protein intake with MornFreak Pure Peanut Butter Powder, made from 100% roasted peanuts. This clever powder transforms into creamy peanut butter in just 7 seconds — simply mix 2 tablespoons of PB powder with 1.5–2 tablespoons of water and stir until smooth! With 87% less fat and 1/3 fewer calories compared to traditional peanut butter, it's the smarter choice for health-conscious individuals. Each serving delivers 9g of plant-based protein, making it ideal for muscle repair and sustained energy throughout the day. It's gluten-free, unsweetened, contains no trans fat, no added sugar or salt, and is completely cholesterol free. Nutrient dense and fibre rich, it supports weight control as part of a balanced diet. Use it as a spread, blend it into smoothies and shakes, or incorporate it into your favourite baked goods like cookies, brownies, and pancakes. Available in a 230g jar, this versatile powder is a clean, powerful addition to any diet.",
     images: [
       "/images/products/peanut-butter/peanut-powder.avif",
       "/images/products/peanut-butter/peanut-butter-pour.avif",
@@ -72,7 +72,7 @@ export const PRODUCT_CONTENT: Record<ProductId, ProductContent> = {
     name: "Peanut Butter Powder (Pack of 2)",
     tagline: "Clean Fuel. Real Results.",
     description:
-      "100% peanuts. 9g protein per serving, 87% less fat than traditional peanut butter. The clean, versatile protein boost your mornings have been missing.",
+      "Instantly boost your protein intake with MornFreak Pure Peanut Butter Powder, made from 100% roasted peanuts. This clever powder transforms into creamy peanut butter in just 7 seconds — simply mix 2 tablespoons of PB powder with 1.5–2 tablespoons of water and stir until smooth! With 87% less fat and 1/3 fewer calories compared to traditional peanut butter, it's the smarter choice for health-conscious individuals. Each serving delivers 9g of plant-based protein, making it ideal for muscle repair and sustained energy throughout the day. It's gluten-free, unsweetened, contains no trans fat, no added sugar or salt, and is completely cholesterol free. Nutrient dense and fibre rich, it supports weight control as part of a balanced diet. Use it as a spread, blend it into smoothies and shakes, or incorporate it into your favourite baked goods like cookies, brownies, and pancakes. Available in a 230g jar, this versatile powder is a clean, powerful addition to any diet.",
     images: [
       "/images/products/peanut-butter/pb-pack-of-2.avif",
       "/images/products/peanut-butter/peanut-butter-pour.avif",
@@ -114,7 +114,7 @@ export const PRODUCT_CONTENT: Record<ProductId, ProductContent> = {
     name: "Protein Oats 425g",
     tagline: "Rich Chocolate. Real Gains.",
     description:
-      "26g of protein per 100g, sweetened naturally with dates, loaded with super seeds and nuts. The breakfast that works as hard as you do.",
+      "Start your mornings the smart way with MornFreak Protein Oats – Super Seeds & Nuts in Rich Chocolate flavour. Each serving delivers an impressive 26g of protein through a balanced blend of whey and plant-based sources, combined with complex carbohydrates and dietary fibre to keep you fuelled throughout the day. Enriched with omega-3 healthy fats from a super seeds mix of chia, flax, and pumpkin seeds, plus added prebiotics to support gut health and digestion, this nutrient-dense breakfast is designed for real performance. Naturally sweetened with dates powder and monk fruit, it contains zero added sugar and no artificial flavours or preservatives. The gluten-free, non-GMO formula is easy to digest and ready in under a minute – enjoy it as a hot bowl, overnight oats, protein smoothie, or snack bowl. With real ingredients like almonds, cocoa, black raisins, and pink salt, every scoop is crafted to deliver balanced nutrition without compromising on taste. Ideal for breakfast, pre- or post-workout meals, or an evening snack.",
     images: ["/images/products/oats-425g/oats-425g-1.avif", "/images/products/oats-425g/oats-425g-pour.avif"],
     heroImage: "/images/products/oats-425g/oats-425g-1.avif",
     hoverImage: "/images/products/oats-425g/oats-425g-pour.avif",
@@ -153,7 +153,7 @@ export const PRODUCT_CONTENT: Record<ProductId, ProductContent> = {
     name: "Protein Oats 425g (Pack of 2)",
     tagline: "Rich Chocolate. Real Gains.",
     description:
-      "26g of protein per 100g, sweetened naturally with dates, loaded with super seeds and nuts. The breakfast that works as hard as you do.",
+      "Start your mornings the smart way with MornFreak Protein Oats – Super Seeds & Nuts in Rich Chocolate flavour. Each serving delivers an impressive 26g of protein through a balanced blend of whey and plant-based sources, combined with complex carbohydrates and dietary fibre to keep you fuelled throughout the day. Enriched with omega-3 healthy fats from a super seeds mix of chia, flax, and pumpkin seeds, plus added prebiotics to support gut health and digestion, this nutrient-dense breakfast is designed for real performance. Naturally sweetened with dates powder and monk fruit, it contains zero added sugar and no artificial flavours or preservatives. The gluten-free, non-GMO formula is easy to digest and ready in under a minute – enjoy it as a hot bowl, overnight oats, protein smoothie, or snack bowl. With real ingredients like almonds, cocoa, black raisins, and pink salt, every scoop is crafted to deliver balanced nutrition without compromising on taste. Ideal for breakfast, pre- or post-workout meals, or an evening snack.",
     images: ["/images/products/oats-425g/oats-425g-1.avif", "/images/products/oats-425g/oats-425g-pour.avif"],
     heroImage: "/images/products/oats-425g/oats-425g-1.avif",
     hoverImage: "/images/products/oats-425g/oats-425g-pour.avif",
@@ -192,7 +192,7 @@ export const PRODUCT_CONTENT: Record<ProductId, ProductContent> = {
     name: "Mornfreak Protein Oats 77g",
     tagline: "Rich Chocolate. Real Gains.",
     description:
-      "26g of protein per 100g, sweetened naturally with dates, loaded with super seeds and nuts. The breakfast that works as hard as you do.",
+      "Start your mornings with MornFreak Protein Oats – Rich Chocolate, a delicious and satisfying breakfast made for busy, active days. Each 77g serving delivers 20g of protein from a whey and plant-based protein blend, along with wholesome oats, nuts, seeds, fibre, and added prebiotics. Naturally sweetened with dates and monk fruit, it delivers rich chocolate flavour without refined sugar. Easy to prepare in under a minute, enjoy it as hot oats, overnight oats, a smoothie, or a convenient pre- or post-workout meal.",
     images: ["/images/products/oats-77g/oats-77g-nobg-1.avif", "/images/products/oats-77g/oats-77g-pour.avif"],
     heroImage: "/images/products/oats-77g/oats-77g-nobg-1.avif",
     hoverImage: "/images/products/oats-77g/oats-77g-pour.avif",
@@ -231,7 +231,7 @@ export const PRODUCT_CONTENT: Record<ProductId, ProductContent> = {
     name: "Protein Oats 77g (Pack of 6)",
     tagline: "Rich Chocolate. Real Gains.",
     description:
-      "26g of protein per 100g, sweetened naturally with dates, loaded with super seeds and nuts. The breakfast that works as hard as you do.",
+      "Start your mornings with MornFreak Protein Oats – Rich Chocolate, a delicious and satisfying breakfast made for busy, active days. Each 77g serving delivers 20g of protein from a whey and plant-based protein blend, along with wholesome oats, nuts, seeds, fibre, and added prebiotics. Naturally sweetened with dates and monk fruit, it delivers rich chocolate flavour without refined sugar. Easy to prepare in under a minute, enjoy it as hot oats, overnight oats, a smoothie, or a convenient pre- or post-workout meal.",
     images: ["/images/products/oats-77g/oats-77g-pack-of-6.avif", "/images/products/oats-77g/oats-77g-pour.avif"],
     heroImage: "/images/products/oats-77g/oats-77g-pack-of-6.avif",
     hoverImage: "/images/products/oats-77g/oats-77g-pour.avif",

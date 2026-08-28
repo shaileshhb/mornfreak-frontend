@@ -13,12 +13,25 @@ export function FaqPage() {
     <>
       <Section className="pb-0">
         <Container className="max-w-5xl">
-          <header className="mx-auto max-w-2xl text-center">
+          {/* <header className="mx-auto max-w-2xl text-center">
             <p className="font-sans text-sm text-muted-foreground">Have a question?</p>
             <Heading variant="h1" as="h1" className="mt-3">
               Frequently Asked Questions
             </Heading>
             <p className="mt-4 font-sans text-base text-muted-foreground sm:text-lg">
+              Everything you need to know about Mornfreak Protein Oats and Peanut Butter Powder.
+            </p>
+          </header> */}
+          <header className="text-center">
+            <p className="font-sans text-sm text-muted-foreground">Have a question?</p>
+            <Heading
+              variant="h1"
+              as="h1"
+              className="mt-3 text-[clamp(1.25rem,5.2vw,3.75rem)] whitespace-nowrap"
+            >
+              Frequently Asked Questions
+            </Heading>
+            <p className="mx-auto mt-4 max-w-2xl font-sans text-base text-muted-foreground sm:text-lg">
               Everything you need to know about Mornfreak Protein Oats and Peanut Butter Powder.
             </p>
           </header>

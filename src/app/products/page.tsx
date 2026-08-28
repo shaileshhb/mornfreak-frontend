@@ -25,7 +25,7 @@ export default function ProductsPage() {
             fill
             priority
             sizes="100vw"
-            className="object-cover object-[70%_center]"
+            className="object-cover object-[70%_center] lg:object-[82%_center]"
           />
           <div
             aria-hidden
@@ -33,9 +33,9 @@ export default function ProductsPage() {
           />
         </div>
 
-        <Container className="relative z-10">
-          <div className="flex max-w-md flex-col gap-3 py-10 lg:-ml-4 lg:min-h-[30rem] lg:max-w-sm lg:justify-center lg:py-16">
-            <span className="font-sans text-s font-semibold uppercase tracking-widest text-muted-foreground lg:text-paper/60">
+        <Container className="relative z-10 max-w-[90rem] lg:pl-6">
+          <div className="flex max-w-md flex-col gap-3 py-10 lg:min-h-[30rem] lg:max-w-sm lg:justify-center lg:py-16 2xl:-ml-8">
+            <span className="font-sans text-lg font-semibold uppercase text-muted-foreground lg:text-paper/80">
               Our Products
             </span>
             <Heading

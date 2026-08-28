@@ -115,10 +115,10 @@ export const PRODUCT_CONTENT: Record<ProductId, ProductContent> = {
     tagline: "Rich Chocolate. Real Gains.",
     description:
       "26g of protein per 100g, sweetened naturally with dates, loaded with super seeds and nuts. The breakfast that works as hard as you do.",
-    images: ["/images/products/oats/oats-425g-1.avif", "/images/products/oats/oats-425g-pour.avif"],
-    heroImage: "/images/products/oats/oats-425g-1.avif",
-    hoverImage: "/images/products/oats/oats-425g-pour.avif",
-    serveImage: "/images/products/oats/oats-425g-1.avif",
+    images: ["/images/products/oats-425g/oats-425g-1.avif", "/images/products/oats-425g/oats-425g-pour.avif"],
+    heroImage: "/images/products/oats-425g/oats-425g-1.avif",
+    hoverImage: "/images/products/oats-425g/oats-425g-pour.avif",
+    serveImage: "/images/products/oats-425g/oats-425g-1.avif",
     weight: "425g resealable pouch · 70g single-serve cup (20g protein/cup)",
     stats: [
       { value: "26g", label: "Protein / 100g" },
@@ -154,10 +154,10 @@ export const PRODUCT_CONTENT: Record<ProductId, ProductContent> = {
     tagline: "Rich Chocolate. Real Gains.",
     description:
       "26g of protein per 100g, sweetened naturally with dates, loaded with super seeds and nuts. The breakfast that works as hard as you do.",
-    images: ["/images/products/oats/oats-425g-2.avif", "/images/products/oats/oats-425g-pour.avif"],
-    heroImage: "/images/products/oats/oats-425g-2.avif",
-    hoverImage: "/images/products/oats/oats-425g-pour.avif",
-    serveImage: "/images/products/oats/oats-425g-2.avif",
+    images: ["/images/products/oats-425g/oats-425g-1.avif", "/images/products/oats-425g/oats-425g-pour.avif"],
+    heroImage: "/images/products/oats-425g/oats-425g-1.avif",
+    hoverImage: "/images/products/oats-425g/oats-425g-pour.avif",
+    serveImage: "/images/products/oats-425g/oats-425g-1.avif",
     weight: "425g resealable pouch · 70g single-serve cup (20g protein/cup)",
     stats: [
       { value: "26g", label: "Protein / 100g" },
@@ -193,10 +193,10 @@ export const PRODUCT_CONTENT: Record<ProductId, ProductContent> = {
     tagline: "Rich Chocolate. Real Gains.",
     description:
       "26g of protein per 100g, sweetened naturally with dates, loaded with super seeds and nuts. The breakfast that works as hard as you do.",
-    images: ["/images/products/oats/oats-77g-1.avif", "/images/products/oats/oats-77g-pour.avif"],
-    heroImage: "/images/products/oats/oats-77g-1.avif",
-    hoverImage: "/images/products/oats/oats-77g-pour.avif",
-    serveImage: "/images/products/oats/oats-77g-1.avif",
+    images: ["/images/products/oats-77g/oats-77g-nobg-1.avif", "/images/products/oats-77g/oats-77g-pour.avif"],
+    heroImage: "/images/products/oats-77g/oats-77g-nobg-1.avif",
+    hoverImage: "/images/products/oats-77g/oats-77g-pour.avif",
+    serveImage: "/images/products/oats-77g/oats-77g-nobg-1.avif",
     weight: "77g single-serve cup (20g protein/cup)",
     stats: [
       { value: "26g", label: "Protein / 100g" },
@@ -232,10 +232,10 @@ export const PRODUCT_CONTENT: Record<ProductId, ProductContent> = {
     tagline: "Rich Chocolate. Real Gains.",
     description:
       "26g of protein per 100g, sweetened naturally with dates, loaded with super seeds and nuts. The breakfast that works as hard as you do.",
-    images: ["/images/products/oats/oats-77g-pack-of-6.avif", "/images/products/oats/oats-77g-pour.avif"],
-    heroImage: "/images/products/oats/oats-77g-pack-of-6.avif",
-    hoverImage: "/images/products/oats/oats-77g-pour.avif",
-    serveImage: "/images/products/oats/oats-77g-pack-of-6.avif",
+    images: ["/images/products/oats-77g/oats-77g-pack-of-6.avif", "/images/products/oats-77g/oats-77g-pour.avif"],
+    heroImage: "/images/products/oats-77g/oats-77g-pack-of-6.avif",
+    hoverImage: "/images/products/oats-77g/oats-77g-pour.avif",
+    serveImage: "/images/products/oats-77g/oats-77g-pack-of-6.avif",
     weight: "77g single-serve cup (20g protein/cup)",
     stats: [
       { value: "26g", label: "Protein / 100g" },

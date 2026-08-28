@@ -36,12 +36,12 @@ const PEANUT_BUTTER_GALLERY_IMAGES: ProductImage[] = [
     alt: "Mornfreak Pure Peanut Butter Powder jar",
   },
   {
-    url: "/images/products/peanut-butter/peanut-butter-pour.avif",
-    alt: "Peanut butter powder poured from the jar",
-  },
-  {
     url: "/images/products/peanut-butter/pb-power-2.avif",
     alt: "Peanut Butter Powder benefits: muscle repair, fibre, energy and weight control",
+  },
+  {
+    url: "/images/products/peanut-butter/pb-compare.avif",
+    alt: "Peanut Butter Powder compared with regular peanut butter",
   },
   {
     url: "/images/products/peanut-butter/pb-serving.avif",
@@ -71,11 +71,73 @@ const PEANUT_BUTTER_GALLERY_IMAGES: ProductImage[] = [
     url: "/images/products/peanut-butter/pb-peanuts.avif",
     alt: "Premium Java and Bold peanuts slow-roasted in small batches",
   },
-  {
-    url: "/images/products/peanut-butter/pb-compare.avif",
-    alt: "Peanut Butter Powder compared with regular peanut butter",
-  },
 ];
+
+const PROTEIN_OATS_425G_GALLERY_IMAGES: ProductImage[] = [
+  {
+    url: "/images/products/oats-425g/oats-425g-1.avif",
+    alt: "Protein Oats 425g pouch",
+  },
+  {
+    url: "/images/products/oats-425g/oats-425g-back.avif",
+    alt: "Protein Oats 425g pouch back panel",
+  },
+  {
+    url: "/images/products/oats-425g/oats-425g-3.avif",
+    alt: "Protein Oats 425g pouch with a prepared chocolate oat bowl",
+  },
+  {
+    url: "/images/products/oats-425g/oats-425-optimize.avif",
+    alt: "Optimize your life",
+  },
+  {
+    url: "/images/products/oats-425g/oats-425g-4.avif",
+    alt: "Super seeds and nuts",
+  },
+  {
+    url: "/images/products/oats/oats-general-1.avif",
+    alt: "Rich Chocolate oats",
+  },
+  {
+    url: "/images/products/oats/oats-nutrition.avif",
+    alt: "Protein Oats nutritional information table",
+  },
+  {
+    url: "/images/products/oats/oats-ingredients.avif",
+    alt: "Single-serve cup back panel with ingredients and prep steps",
+  },
+]
+
+const PROTEIN_OATS_77G_GALLERY_IMAGES: ProductImage[] = [
+  {
+    url: "/images/products/oats-77g/oats-77g-2.avif",
+    alt: "Protein Oats pouch with a prepared chocolate oat bowl"
+  },
+  {
+    url: "/images/products/oats-77g/oats-77g-back.avif",
+    alt: "Protein Oats pouch back panel"
+  },
+  {
+    url: "/images/products/oats-77g/oats-77g-4.avif",
+    alt: "Super seeds and nuts"
+  },
+  {
+    url: "/images/products/oats-77g/oats-77g-3.avif",
+    alt: "Protein Oats 77g pouch with a prepared chocolate oat bowl"
+  },
+  {
+    url: "/images/products/oats-77g/oats-77g-optimize.avif",
+    alt: "Optimize your life"
+  },
+  {
+    url: "/images/products/oats/oats-nutrition.avif",
+    alt: "Protein Oats nutritional information table",
+  },
+  {
+    url: "/images/products/oats/oats-ingredients.avif",
+    alt: "Meet the ingredients"
+  },
+]
 
 const PEANUT_BUTTER_GALLERY_CALLOUTS: ProductGalleryCallout[] = [
   { icon: "dumbbell", label: "Muscle Repair" },
@@ -95,7 +157,7 @@ export const PRODUCT_DETAIL_FIXTURES: Record<string, ProductDetail> = {
     tagline: peanutButter.tagline,
     description: peanutButter.description,
     images: PEANUT_BUTTER_GALLERY_IMAGES,
-    overlayBadge: "100% Peanuts",
+    // overlayBadge: "100% Peanuts",
     // galleryCallouts: PEANUT_BUTTER_GALLERY_CALLOUTS,
     price: 30,
     compareAtPrice: null,
@@ -258,44 +320,7 @@ export const PRODUCT_DETAIL_FIXTURES: Record<string, ProductDetail> = {
     label: proteinOats425g.label,
     tagline: proteinOats425g.tagline,
     description: proteinOats425g.description,
-    images: [
-      {
-        url: "/images/products/oats/oats-425g-1.avif",
-        alt: "Protein Oats 425g pouch",
-      },
-      {
-        url: "/images/products/oats/oats-425g-2.avif",
-        alt: "Protein Oats 425g pouch",
-      },
-      {
-        url: "/images/products/oats/oats-425g-back.avif",
-        alt: "Protein Oats 425g pouch back panel",
-      },
-      {
-        url: "/images/products/oats/oats-425g-3.avif",
-        alt: "Protein Oats 425g pouch with a prepared chocolate oat bowl",
-      },
-      {
-        url: "/images/products/oats/oats-425g-4.avif",
-        alt: "Optimize your life",
-      },
-      {
-        url: "/images/products/oats/oats-425g-5.avif",
-        alt: "Super seeds and nuts",
-      },
-      {
-        url: "/images/products/oats/oats-general-1.avif",
-        alt: "Rich Chocolate oats",
-      },
-      {
-        url: "/images/products/oats/oats-nutrition.avif",
-        alt: "Protein Oats nutritional information table",
-      },
-      {
-        url: "/images/products/oats/oats-ingredients.avif",
-        alt: "Single-serve cup back panel with ingredients and prep steps",
-      },
-    ],
+    images: PROTEIN_OATS_425G_GALLERY_IMAGES,
     price: 32,
     compareAtPrice: null,
     currency: "AED",
@@ -386,48 +411,7 @@ export const PRODUCT_DETAIL_FIXTURES: Record<string, ProductDetail> = {
     label: proteinOats425gPackOf2.label,
     tagline: proteinOats425gPackOf2.tagline,
     description: proteinOats425gPackOf2.description,
-    images: [
-      {
-        url: "/images/products/oats/oats-425g-1.avif",
-        alt: "Protein Oats 425g pouch",
-      },
-      {
-        url: "/images/products/oats/oats-425g-2.avif",
-        alt: "Protein Oats 425g pouch",
-      },
-      {
-        url: "/images/products/oats/oats-425g-back.avif",
-        alt: "Protein Oats 425g pouch back panel",
-      },
-      {
-        url: "/images/products/oats/oats-425g-3.avif",
-        alt: "Protein Oats 425g pouch with a prepared chocolate oat bowl",
-      },
-      {
-        url: "/images/products/oats/oats-425g-4.avif",
-        alt: "Optimize your life",
-      },
-      {
-        url: "/images/products/oats/oats-425g-5.avif",
-        alt: "Super seeds and nuts",
-      },
-      {
-        url: "/images/products/oats/oats-general-1.avif",
-        alt: "Rich Chocolate oats",
-      },
-      {
-        url: "/images/products/oats/oats-nutrition.avif",
-        alt: "Protein Oats nutritional information table",
-      },
-      {
-        url: "/images/products/oats/oats-ingredients-2.avif",
-        alt: "Meet the ingredients: oats, protein blend, dates, seeds, almonds and raisins",
-      },
-      {
-        url: "/images/products/oats/oats-ingredients.avif",
-        alt: "Single-serve cup back panel with ingredients and prep steps",
-      },
-    ],
+    images: PROTEIN_OATS_425G_GALLERY_IMAGES,
     price: 58,
     compareAtPrice: null,
     currency: "AED",
@@ -519,28 +503,10 @@ export const PRODUCT_DETAIL_FIXTURES: Record<string, ProductDetail> = {
     label: proteinOats77g.label,
     tagline: proteinOats77g.tagline,
     description: proteinOats77g.description,
-    images: [
-      {
-        url: "/images/products/oats/oats-77g-1.avif",
-        alt: "Protein Oats pouch with a prepared chocolate oat bowl"
-      },
-      {
-        url: "/images/products/oats/oats-77g-2.avif",
-        alt: "Protein Oats pouch with a prepared chocolate oat bowl"
-      },
-      {
-        url: "/images/products/oats/oats-77g-back.avif",
-        alt: "Protein Oats pouch back panel"
-      },
-      {
-        url: "/images/products/oats/oats-77g-pour.avif",
-        alt: "Protein Oats pour",
-      },
-      {
-        url: "/images/products/oats/oats-ingredients.avif",
-        alt: "Meet the ingredients"
-      },
-    ],
+    images: [{
+      url: "/images/products/oats-77g/oats-77g-nobg-1.avif",
+      alt: "Protein Oats pouch with a prepared chocolate oat bowl"
+    }, ...PROTEIN_OATS_77G_GALLERY_IMAGES],
     price: 10,
     compareAtPrice: null,
     currency: "AED",
@@ -631,28 +597,10 @@ export const PRODUCT_DETAIL_FIXTURES: Record<string, ProductDetail> = {
     label: proteinOats77gPackOf6.label,
     tagline: proteinOats77gPackOf6.tagline,
     description: proteinOats77gPackOf6.description,
-    images: [
-      {
-        url: "/images/products/oats/oats-77g-1.avif",
-        alt: "Protein Oats pouch with a prepared chocolate oat bowl"
-      },
-      {
-        url: "/images/products/oats/oats-77g-2.avif",
-        alt: "Protein Oats pouch with a prepared chocolate oat bowl"
-      },
-      {
-        url: "/images/products/oats/oats-77g-back.avif",
-        alt: "Protein Oats pouch back panel"
-      },
-      {
-        url: "/images/products/oats/oats-77g-pour.avif",
-        alt: "Protein Oats pour",
-      },
-      {
-        url: "/images/products/oats/oats-ingredients.avif",
-        alt: "Meet the ingredients"
-      },
-    ],
+    images: [{
+      url: "/images/products/oats-77g/oats-77g-pack-of-6.avif",
+      alt: "Protein Oats pack of 6"
+    }, ...PROTEIN_OATS_77G_GALLERY_IMAGES],
     price: 50,
     compareAtPrice: null,
     currency: "AED",

@@ -30,7 +30,7 @@ export const REVIEWS: Review[] = [
     rating: 5,
     verified: true,
     productLabel: "Rich Chocolate Protein Oats",
-    productImage: "/images/products/oats/oats-425g-2.avif",
+    productImage: "/images/products/oats-425g/oats-425g-2.avif",
     videoUrl: "/videos/review_1.mp4",
   },
   {
@@ -82,6 +82,6 @@ export const REVIEWS: Review[] = [
     rating: 5,
     verified: true,
     productLabel: "Rich Chocolate Protein Oats",
-    productImage: "/images/products/oats/oats-425g-2.avif",
+    productImage: "/images/products/oats-425g/oats-425g-2.avif",
   },
 ];

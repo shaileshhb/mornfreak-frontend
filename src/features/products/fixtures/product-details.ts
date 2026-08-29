@@ -7,6 +7,7 @@ import { PRODUCT_CONTENT } from "@/lib/products";
 import type {
   ProductDetail,
   ProductGalleryCallout,
+  ProductHowToUseMedia,
   ProductImage,
   ProductIngredient,
 } from "../types";
@@ -148,6 +149,27 @@ const PEANUT_BUTTER_GALLERY_CALLOUTS: ProductGalleryCallout[] = [
   { icon: "scale", label: "Weight Control" },
 ];
 
+const PEANUT_BUTTER_HOW_TO_USE_MEDIA: ProductHowToUseMedia = {
+  url: "/images/products/peanut-butter/pb-recipes.avif",
+  alt: "Mornfreak peanut butter powder used four ways: spread on toast, blended into smoothies, drizzled on pancakes, and baked into cookies.",
+  shape: "square",
+  caption: "Beyond the shake. Spread it, blend it, bake it.",
+};
+
+const PROTEIN_OATS_425G_HOW_TO_USE_MEDIA: ProductHowToUseMedia = {
+  url: "/images/products/oats-425g/oats-425g-pour.avif",
+  alt: "Mornfreak Protein Oats 425g pouch pouring into a bowl.",
+  shape: "portrait",
+  caption: "One pour, one stir, done.",
+};
+
+const PROTEIN_OATS_77G_HOW_TO_USE_MEDIA: ProductHowToUseMedia = {
+  url: "/images/products/oats-77g/oats-77g-pour.avif",
+  alt: "Mornfreak Protein Oats 77g pouch pouring into a bowl.",
+  shape: "portrait",
+  caption: "One pour, one stir, done.",
+};
+
 export const PRODUCT_DETAIL_FIXTURES: Record<string, ProductDetail> = {
   "peanut-butter-powder": {
     id: peanutButter.id,
@@ -174,6 +196,7 @@ export const PRODUCT_DETAIL_FIXTURES: Record<string, ProductDetail> = {
       { text: "Mix with 1.5–2 tbsp water." },
       { text: "Stir until smooth (about 7 seconds)." },
     ],
+    howToUseMedia: PEANUT_BUTTER_HOW_TO_USE_MEDIA,
     ingredientStatement: "Roasted peanuts (100%).",
     nutrition: [
       { label: "Serving size", value: "16g" },
@@ -256,6 +279,7 @@ export const PRODUCT_DETAIL_FIXTURES: Record<string, ProductDetail> = {
       { text: "Mix with 1.5–2 tbsp water." },
       { text: "Stir until smooth (about 7 seconds)." },
     ],
+    howToUseMedia: PEANUT_BUTTER_HOW_TO_USE_MEDIA,
     ingredientStatement: "Roasted peanuts (100%).",
     nutrition: [
       { label: "Serving size", value: "16g (2 tbsp)" },
@@ -337,6 +361,7 @@ export const PRODUCT_DETAIL_FIXTURES: Record<string, ProductDetail> = {
       { text: "Stir well, rest 2 minutes" },
       { text: "Enjoy warm" },
     ],
+    howToUseMedia: PROTEIN_OATS_425G_HOW_TO_USE_MEDIA,
     ingredientStatement:
       "Gluten-free oats, protein blend (texturized soy protein, whey protein concentrate and soy protein isolate), dates powder, seeds nuts and fruits mix (almonds, pumpkin seeds, sunflower seeds, chia seeds, flax seeds and black raisins), prebiotic fibre, cocoa, pink salt and monk fruit.",
     nutrition: [
@@ -428,6 +453,7 @@ export const PRODUCT_DETAIL_FIXTURES: Record<string, ProductDetail> = {
       { text: "Stir well, rest 2 minutes" },
       { text: "Enjoy warm" },
     ],
+    howToUseMedia: PROTEIN_OATS_425G_HOW_TO_USE_MEDIA,
     ingredientStatement:
       "Gluten-free oats, protein blend (texturized soy protein, whey protein concentrate and soy protein isolate), dates powder, seeds nuts and fruits mix (almonds, pumpkin seeds, sunflower seeds, chia seeds, flax seeds and black raisins), prebiotic fibre, cocoa, pink salt and monk fruit.",
     nutrition: [
@@ -522,6 +548,7 @@ export const PRODUCT_DETAIL_FIXTURES: Record<string, ProductDetail> = {
       { text: "Pour over hot milk or water." },
       { text: "Stir, rest 2 minutes, then eat." },
     ],
+    howToUseMedia: PROTEIN_OATS_77G_HOW_TO_USE_MEDIA,
     ingredientStatement:
       "Gluten-free oats, protein blend (texturized soy protein, whey protein concentrate and soy protein isolate), dates powder, seeds nuts and fruits mix (almonds, pumpkin seeds, sunflower seeds, chia seeds, flax seeds and black raisins), prebiotic fibre, cocoa, pink salt and monk fruit.",
     nutrition: [
@@ -616,6 +643,7 @@ export const PRODUCT_DETAIL_FIXTURES: Record<string, ProductDetail> = {
       { text: "Pour over hot milk or water." },
       { text: "Stir, rest 2 minutes, then eat." },
     ],
+    howToUseMedia: PROTEIN_OATS_77G_HOW_TO_USE_MEDIA,
     ingredientStatement:
       "Gluten-free oats, protein blend (texturized soy protein, whey protein concentrate and soy protein isolate), dates powder, seeds nuts and fruits mix (almonds, pumpkin seeds, sunflower seeds, chia seeds, flax seeds and black raisins), prebiotic fibre, cocoa, pink salt and monk fruit.",
     nutrition: [

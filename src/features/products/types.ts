@@ -22,6 +22,11 @@ export type ProductHowToUseStep = {
   text: string;
 };
 
+export type ProductHowToUseMedia = ProductImage & {
+  shape: "portrait" | "square";
+  caption: string;
+};
+
 export type ProductProofPointIcon =
   | "zap"
   | "leaf"
@@ -86,6 +91,7 @@ export type ProductDetail = {
   servingInfo: string;
   comingSoon: boolean;
   howToUse: ProductHowToUseStep[];
+  howToUseMedia?: ProductHowToUseMedia;
   ingredientStatement: string;
   nutrition: NutritionRow[];
   nutritionCaption: string;

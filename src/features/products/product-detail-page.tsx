@@ -2,6 +2,7 @@ import { Container } from "@/components/ui/container";
 
 import { ProductBuyBox } from "./product-buy-box";
 import { ProductFaqSection } from "./product-faq-section";
+import { ProductHowToUseSection } from "./product-how-to-use-section";
 import { ProductImageCarousel } from "./product-image-carousel";
 import { ProductIngredientsSection } from "./product-ingredients-section";
 import { ProductProofPointsSection } from "./product-proof-points-section";
@@ -39,6 +40,12 @@ export function ProductDetailPage({ product }: ProductDetailPageProps) {
           </div>
         </Container>
       </section>
+
+      <ProductHowToUseSection
+        productId={product.id}
+        steps={product.howToUse}
+        media={product.howToUseMedia}
+      />
 
       <ProductIngredientsSection
         productId={product.id}

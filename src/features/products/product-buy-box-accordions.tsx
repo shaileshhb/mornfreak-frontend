@@ -7,7 +7,7 @@ import { cn } from "@/lib/cn";
 
 import type { ProductDetail } from "./types";
 
-type PanelId = "how-to-use" | "description" | "ingredients" | "nutrition";
+type PanelId = "description" | "ingredients" | "nutrition";
 
 type ProductBuyBoxAccordionsProps = {
   product: ProductDetail;
@@ -75,32 +75,6 @@ function AccordionPanel({
   );
 }
 
-function HowToUseContent({ steps }: { steps: ProductDetail["howToUse"] }) {
-  if (steps.length === 0) {
-    return (
-          <p className="font-sans text-sm leading-relaxed text-foreground/70">
-            Preparation instructions coming soon.
-          </p>
-    );
-  }
-
-  return (
-    <ol className="space-y-3">
-      {steps.map((step, index) => (
-        <li key={step.text} className="flex gap-3 font-sans text-sm leading-relaxed text-foreground/80">
-          <span
-            aria-hidden
-            className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-foreground/10 text-xs font-bold tabular-nums text-foreground"
-          >
-            {index + 1}
-          </span>
-          <span>{step.text}</span>
-        </li>
-      ))}
-    </ol>
-  );
-}
-
 function IngredientsContent({
   statement,
 }: {
@@ -158,7 +132,7 @@ function NutritionContent({
 
 export function ProductBuyBoxAccordions({ product }: ProductBuyBoxAccordionsProps) {
   const baseId = useId();
-  const [openPanel, setOpenPanel] = useState<PanelId | null>("how-to-use");
+  const [openPanel, setOpenPanel] = useState<PanelId | null>("description");
 
   const toggle = (panel: PanelId) => {
     setOpenPanel((current) => (current === panel ? null : panel));
@@ -166,15 +140,6 @@ export function ProductBuyBoxAccordions({ product }: ProductBuyBoxAccordionsProp
 
   return (
     <div className="border-b border-border">
-      <AccordionPanel
-        id={`${baseId}-how-to-use`}
-        title="How to Use"
-        open={openPanel === "how-to-use"}
-        onToggle={() => toggle("how-to-use")}
-      >
-        <HowToUseContent steps={product.howToUse} />
-      </AccordionPanel>
-
       <AccordionPanel
         id={`${baseId}-description`}
         title="Description"

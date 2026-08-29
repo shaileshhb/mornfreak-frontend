@@ -1,6 +1,7 @@
 import { Container } from "@/components/ui/container";
 
 import { ProductBuyBox } from "./product-buy-box";
+import { ProductClaimsMarquee } from "./product-claims-marquee";
 import { ProductFaqSection } from "./product-faq-section";
 import { ProductHowToUseSection } from "./product-how-to-use-section";
 import { ProductImageCarousel } from "./product-image-carousel";
@@ -52,6 +53,8 @@ export function ProductDetailPage({ product }: ProductDetailPageProps) {
         productLabel={productLabel}
         ingredients={product.ingredients}
       />
+
+      <ProductClaimsMarquee productId={product.id} />
 
       <ProductProofPointsSection
         productId={product.id}

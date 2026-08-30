@@ -4,7 +4,7 @@ import { X } from "lucide-react";
 import Image from "next/image";
 import { FormEvent, useEffect, useId, useRef, useState } from "react";
 
-import { isAuthenticated } from "@/lib/auth";
+import { useAuth } from "@/features/auth/auth-provider";
 import { cn } from "@/lib/cn";
 
 import { OFFER_IMAGE_ALT, OFFER_IMAGE_SRC, OFFER_SHOW_DELAY_MS } from "./constants";
@@ -21,16 +21,18 @@ type SubmitResult = {
 };
 
 export function FirstVisitOfferModal() {
+  const { status } = useAuth();
   const [open, setOpen] = useState(false);
 
   useEffect(() => {
-    if (isAuthenticated()) return;
+    // Wait for the session check so a restored session never flashes the offer.
+    if (status !== "signedOut") return;
     if (hasOfferSubscription()) return;
     if (isOfferDismissedRecently()) return;
 
     const timer = window.setTimeout(() => setOpen(true), OFFER_SHOW_DELAY_MS);
     return () => window.clearTimeout(timer);
-  }, []);
+  }, [status]);
 
   if (!open) return null;
 

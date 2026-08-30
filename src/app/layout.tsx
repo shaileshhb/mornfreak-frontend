@@ -4,6 +4,7 @@ import { AnnouncementBar } from "@/components/layout/announcement-bar";
 import { Footer } from "@/components/layout/footer";
 import { Nav } from "@/components/layout/nav";
 import { fontVariables } from "@/design/typography";
+import { AuthProvider } from "@/features/auth/auth-provider";
 import { FirstVisitOfferModal } from "@/features/first-visit-offer/first-visit-offer-modal";
 
 import "./globals.css";
@@ -43,11 +44,13 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${fontVariables} h-full antialiased`}>
       <body className="flex min-h-full flex-col bg-background font-sans text-foreground">
-        <AnnouncementBar />
-        <Nav />
-        <main className="flex-1">{children}</main>
-        <Footer />
-        <FirstVisitOfferModal />
+        <AuthProvider>
+          <AnnouncementBar />
+          <Nav />
+          <main className="flex-1">{children}</main>
+          <Footer />
+          <FirstVisitOfferModal />
+        </AuthProvider>
       </body>
     </html>
   );

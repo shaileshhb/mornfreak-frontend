@@ -1,44 +1,12 @@
 import type { Metadata } from "next";
-import Link from "next/link";
 
-import { Button } from "@/components/ui/button";
-import { Container } from "@/components/ui/container";
-import { Heading } from "@/components/ui/heading";
+import { LoginView } from "@/features/auth/login-view";
 
 export const metadata: Metadata = {
   title: "Login",
-  description: "Sign in to your Mornfreak account. Account access is coming soon.",
+  description: "Sign in to your Mornfreak account.",
 };
 
 export default function LoginPage() {
-  return (
-    <section className="bg-background py-20 sm:py-28">
-      <Container className="max-w-xl">
-        <div className="border border-foreground/10 bg-card px-6 py-12 text-center sm:px-10 sm:py-16">
-          <p className="font-sans text-xs font-semibold uppercase tracking-[0.22em] text-primary">
-            Account
-          </p>
-          <Heading variant="display" as="h1" className="mt-4 leading-none">
-            Login
-          </Heading>
-          <p className="mx-auto mt-5 max-w-md text-sm leading-relaxed text-muted-foreground sm:text-base">
-            Account access is coming soon. We&apos;re building a cleaner way to
-            manage your orders, favourites, and morning routine.
-          </p>
-          <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
-            <Link href="/products">
-              <Button variant="primary" size="lg">
-                Shop products
-              </Button>
-            </Link>
-            <Link href="/">
-              <Button variant="outline" size="lg">
-                Back to home
-              </Button>
-            </Link>
-          </div>
-        </div>
-      </Container>
-    </section>
-  );
+  return <LoginView />;
 }

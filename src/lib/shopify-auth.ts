@@ -11,14 +11,42 @@ const REFRESH_MAX_AGE = 60 * 60 * 24 * 30;
 const ACCESS_EXPIRY_SKEW_SECONDS = 60;
 const CUSTOMER_API_VERSION = "2026-07";
 
+const ORDERS_PER_PAGE = 10;
+const LINE_ITEMS_PER_ORDER = 3;
+
 const CUSTOMER_QUERY = /* GraphQL */ `
-  query CurrentCustomer {
+  query CurrentCustomer($orders: Int!, $lineItems: Int!) {
     customer {
       id
       firstName
       lastName
       emailAddress {
         emailAddress
+      }
+      phoneNumber {
+        phoneNumber
+      }
+      defaultAddress {
+        formatted(withName: false)
+      }
+      orders(first: $orders, sortKey: PROCESSED_AT, reverse: true) {
+        nodes {
+          id
+          name
+          processedAt
+          financialStatus
+          fulfillmentStatus
+          statusPageUrl
+          totalPrice {
+            amount
+            currencyCode
+          }
+          lineItems(first: $lineItems) {
+            nodes {
+              title
+            }
+          }
+        }
       }
     }
   }
@@ -44,11 +72,47 @@ export type ShopifyAuthConfig = {
   graphqlUrl: string;
 };
 
+export type CustomerOrder = {
+  id: string;
+  name: string;
+  processedAt: string;
+  financialStatus: string | null;
+  fulfillmentStatus: string | null;
+  statusPageUrl: string;
+  total: { amount: string; currencyCode: string } | null;
+  itemTitles: string[];
+};
+
 export type CurrentCustomer = {
   id: string;
   firstName: string | null;
   lastName: string | null;
   email: string | null;
+  phone: string | null;
+  /** Address lines already formatted by Shopify for the address' country. */
+  addressLines: string[];
+  orders: CustomerOrder[];
+};
+
+type CustomerQueryResult = {
+  id?: string;
+  firstName?: string | null;
+  lastName?: string | null;
+  emailAddress?: { emailAddress?: string | null } | null;
+  phoneNumber?: { phoneNumber?: string | null } | null;
+  defaultAddress?: { formatted?: string[] } | null;
+  orders?: {
+    nodes?: {
+      id: string;
+      name: string;
+      processedAt: string;
+      financialStatus?: string | null;
+      fulfillmentStatus?: string | null;
+      statusPageUrl: string;
+      totalPrice?: { amount: string; currencyCode: string } | null;
+      lineItems?: { nodes?: { title: string }[] } | null;
+    }[];
+  } | null;
 };
 
 type TokenResponse = {
@@ -311,20 +375,19 @@ export async function getCurrentCustomer(): Promise<CurrentCustomer | null> {
       Authorization: accessToken,
       Origin: config.appUrl,
     },
-    body: JSON.stringify({ query: CUSTOMER_QUERY }),
+    body: JSON.stringify({
+      query: CUSTOMER_QUERY,
+      variables: {
+        orders: ORDERS_PER_PAGE,
+        lineItems: LINE_ITEMS_PER_ORDER,
+      },
+    }),
   });
 
   if (!response.ok) return null;
 
   const payload = (await response.json()) as {
-    data?: {
-      customer?: {
-        id?: string;
-        firstName?: string | null;
-        lastName?: string | null;
-        emailAddress?: { emailAddress?: string | null } | null;
-      } | null;
-    };
+    data?: { customer?: CustomerQueryResult | null };
   };
 
   const customer = payload.data?.customer;
@@ -335,5 +398,17 @@ export async function getCurrentCustomer(): Promise<CurrentCustomer | null> {
     firstName: customer.firstName ?? null,
     lastName: customer.lastName ?? null,
     email: customer.emailAddress?.emailAddress ?? null,
+    phone: customer.phoneNumber?.phoneNumber ?? null,
+    addressLines: customer.defaultAddress?.formatted ?? [],
+    orders: (customer.orders?.nodes ?? []).map((order) => ({
+      id: order.id,
+      name: order.name,
+      processedAt: order.processedAt,
+      financialStatus: order.financialStatus ?? null,
+      fulfillmentStatus: order.fulfillmentStatus ?? null,
+      statusPageUrl: order.statusPageUrl,
+      total: order.totalPrice ?? null,
+      itemTitles: (order.lineItems?.nodes ?? []).map((item) => item.title),
+    })),
   };
 }

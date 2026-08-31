@@ -15,7 +15,7 @@ export async function GET(request: NextRequest) {
   const refreshToken = request.cookies.get(COOKIE.refresh)?.value;
 
   if (!refreshToken) {
-    return NextResponse.redirect(new URL("/login", origin));
+    return NextResponse.redirect(new URL("/api/auth/login", origin));
   }
 
   let config: ReturnType<typeof getShopifyAuthConfig>;
@@ -23,7 +23,7 @@ export async function GET(request: NextRequest) {
   try {
     config = getShopifyAuthConfig();
   } catch {
-    return NextResponse.redirect(new URL("/login?error=config", origin));
+    return NextResponse.redirect(new URL("/?authError=config", origin));
   }
 
   try {
@@ -42,7 +42,7 @@ export async function GET(request: NextRequest) {
     });
     return response;
   } catch {
-    const response = NextResponse.redirect(new URL("/login?error=token", origin));
+    const response = NextResponse.redirect(new URL("/?authError=token", origin));
     clearSessionCookies(response);
     return response;
   }

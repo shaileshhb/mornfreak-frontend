@@ -1,3 +1,4 @@
+import { AuthErrorNotice } from "@/features/auth";
 import {
   BenefitsMarquee,
   HowWeStackUp,
@@ -10,9 +11,14 @@ import {
   MornfreakStandard,
 } from "@/features/home";
 
-export default function Home() {
+export default async function Home({ searchParams }: PageProps<"/">) {
+  const { authError } = await searchParams;
+
   return (
     <>
+      <AuthErrorNotice
+        code={typeof authError === "string" ? authError : undefined}
+      />
       <HomeHero />
       <BenefitsMarquee />
       <BuiltForRealMornings />

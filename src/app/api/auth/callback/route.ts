@@ -11,8 +11,10 @@ import {
 
 export async function GET(request: NextRequest) {
   const origin = request.nextUrl.origin;
-  const loginError = (code: string) => {
-    const response = NextResponse.redirect(new URL(`/login?error=${code}`, origin));
+  const backHome = (code?: string) => {
+    const response = NextResponse.redirect(
+      new URL(code ? `/?authError=${code}` : "/", origin),
+    );
     clearPkceCookies(response);
     return response;
   };
@@ -22,18 +24,18 @@ export async function GET(request: NextRequest) {
   const oauthError = request.nextUrl.searchParams.get("error");
 
   if (oauthError) {
-    return loginError("denied");
+    return backHome();
   }
 
   if (!code || !returnedState) {
-    return loginError("missing");
+    return backHome("missing");
   }
 
   const expectedState = request.cookies.get(COOKIE.state)?.value;
   const codeVerifier = request.cookies.get(COOKIE.verifier)?.value;
 
   if (!expectedState || !codeVerifier || !statesMatch(expectedState, returnedState)) {
-    return loginError("csrf");
+    return backHome("csrf");
   }
 
   let config: ReturnType<typeof getShopifyAuthConfig>;
@@ -41,7 +43,7 @@ export async function GET(request: NextRequest) {
   try {
     config = getShopifyAuthConfig();
   } catch {
-    return loginError("config");
+    return backHome("config");
   }
 
   let tokens: Awaited<ReturnType<typeof exchangeAuthorizationCode>>;
@@ -53,11 +55,11 @@ export async function GET(request: NextRequest) {
       codeVerifier,
     });
   } catch {
-    return loginError("token");
+    return backHome("token");
   }
 
   if (!tokens.access_token || !tokens.expires_in) {
-    return loginError("token");
+    return backHome("token");
   }
 
   const response = NextResponse.redirect(new URL("/account", origin));

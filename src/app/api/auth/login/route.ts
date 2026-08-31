@@ -16,7 +16,7 @@ export async function GET(request: NextRequest) {
     config = getShopifyAuthConfig();
   } catch {
     return NextResponse.redirect(
-      new URL("/login?error=config", request.nextUrl.origin),
+      new URL("/?authError=config", request.nextUrl.origin),
     );
   }
 

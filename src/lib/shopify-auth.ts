@@ -3,6 +3,7 @@ import "server-only";
 import { createHash, randomBytes, timingSafeEqual } from "node:crypto";
 
 import { cookies } from "next/headers";
+import { redirect } from "next/navigation";
 import type { NextResponse } from "next/server";
 
 const SCOPE = "openid email customer-account-api:full";
@@ -13,21 +14,39 @@ const CUSTOMER_API_VERSION = "2026-07";
 
 const ORDERS_PER_PAGE = 10;
 const LINE_ITEMS_PER_ORDER = 3;
+const ADDRESSES_PER_PAGE = 20;
 
 const CUSTOMER_QUERY = /* GraphQL */ `
-  query CurrentCustomer($orders: Int!, $lineItems: Int!) {
+  query CurrentCustomer($orders: Int!, $lineItems: Int!, $addresses: Int!) {
     customer {
       id
       firstName
       lastName
       emailAddress {
         emailAddress
+        marketingState
       }
       phoneNumber {
         phoneNumber
       }
       defaultAddress {
-        formatted(withName: false)
+        id
+      }
+      addresses(first: $addresses) {
+        nodes {
+          id
+          firstName
+          lastName
+          formatted(withName: true)
+          address1
+          address2
+          city
+          zip
+          zoneCode
+          territoryCode
+          phoneNumber
+          company
+        }
       }
       orders(first: $orders, sortKey: PROCESSED_AT, reverse: true) {
         nodes {
@@ -83,24 +102,85 @@ export type CustomerOrder = {
   itemTitles: string[];
 };
 
+export type EmailMarketingState =
+  | "SUBSCRIBED"
+  | "NOT_SUBSCRIBED"
+  | "PENDING"
+  | "UNSUBSCRIBED"
+  | "INVALID"
+  | "REDACTED"
+  | string;
+
+export type CustomerAddress = {
+  id: string;
+  firstName: string | null;
+  lastName: string | null;
+  formatted: string[];
+  address1: string | null;
+  address2: string | null;
+  city: string | null;
+  zip: string | null;
+  zoneCode: string | null;
+  territoryCode: string | null;
+  phoneNumber: string | null;
+  company: string | null;
+  isDefault: boolean;
+};
+
+export type CustomerAddressInput = {
+  firstName?: string;
+  lastName?: string;
+  address1?: string;
+  address2?: string;
+  city?: string;
+  zip?: string;
+  zoneCode?: string;
+  territoryCode?: string;
+  phoneNumber?: string;
+  company?: string;
+};
+
 export type CurrentCustomer = {
   id: string;
   firstName: string | null;
   lastName: string | null;
   email: string | null;
   phone: string | null;
-  /** Address lines already formatted by Shopify for the address' country. */
-  addressLines: string[];
+  emailMarketingState: EmailMarketingState | null;
+  addresses: CustomerAddress[];
   orders: CustomerOrder[];
+};
+
+export type CustomerAccountGraphqlResult<T> =
+  | { ok: true; data: T }
+  | { ok: false; status: "unauthenticated" | "request_failed" };
+
+type AddressNode = {
+  id: string;
+  firstName?: string | null;
+  lastName?: string | null;
+  formatted?: string[];
+  address1?: string | null;
+  address2?: string | null;
+  city?: string | null;
+  zip?: string | null;
+  zoneCode?: string | null;
+  territoryCode?: string | null;
+  phoneNumber?: string | null;
+  company?: string | null;
 };
 
 type CustomerQueryResult = {
   id?: string;
   firstName?: string | null;
   lastName?: string | null;
-  emailAddress?: { emailAddress?: string | null } | null;
+  emailAddress?: {
+    emailAddress?: string | null;
+    marketingState?: EmailMarketingState | null;
+  } | null;
   phoneNumber?: { phoneNumber?: string | null } | null;
-  defaultAddress?: { formatted?: string[] } | null;
+  defaultAddress?: { id?: string | null } | null;
+  addresses?: { nodes?: AddressNode[] } | null;
   orders?: {
     nodes?: {
       id: string;
@@ -363,9 +443,22 @@ export async function hasRefreshToken(): Promise<boolean> {
   return Boolean(store.get(COOKIE.refresh)?.value);
 }
 
-export async function getCurrentCustomer(): Promise<CurrentCustomer | null> {
+export async function requireAccountAccess(nextPath = "/account"): Promise<void> {
+  if (await readUnexpiredAccessToken()) return;
+
+  redirect(
+    (await hasRefreshToken())
+      ? `/api/auth/refresh?next=${encodeURIComponent(nextPath)}`
+      : "/api/auth/login",
+  );
+}
+
+export async function customerAccountGraphql<T>(
+  query: string,
+  variables?: Record<string, unknown>,
+): Promise<CustomerAccountGraphqlResult<T>> {
   const accessToken = await readUnexpiredAccessToken();
-  if (!accessToken) return null;
+  if (!accessToken) return { ok: false, status: "unauthenticated" };
 
   const config = getShopifyAuthConfig();
   const response = await fetch(config.graphqlUrl, {
@@ -375,23 +468,56 @@ export async function getCurrentCustomer(): Promise<CurrentCustomer | null> {
       Authorization: accessToken,
       Origin: config.appUrl,
     },
-    body: JSON.stringify({
-      query: CUSTOMER_QUERY,
-      variables: {
-        orders: ORDERS_PER_PAGE,
-        lineItems: LINE_ITEMS_PER_ORDER,
-      },
-    }),
+    body: JSON.stringify({ query, variables }),
   });
 
-  if (!response.ok) return null;
+  if (response.status === 401) {
+    return { ok: false, status: "unauthenticated" };
+  }
 
-  const payload = (await response.json()) as {
-    data?: { customer?: CustomerQueryResult | null };
+  if (!response.ok) return { ok: false, status: "request_failed" };
+
+  const payload = (await response.json()) as { data?: T };
+
+  if (!payload.data) return { ok: false, status: "request_failed" };
+
+  return { ok: true, data: payload.data };
+}
+
+function mapAddress(node: AddressNode, defaultAddressId: string | null): CustomerAddress {
+  return {
+    id: node.id,
+    firstName: node.firstName ?? null,
+    lastName: node.lastName ?? null,
+    formatted: node.formatted ?? [],
+    address1: node.address1 ?? null,
+    address2: node.address2 ?? null,
+    city: node.city ?? null,
+    zip: node.zip ?? null,
+    zoneCode: node.zoneCode ?? null,
+    territoryCode: node.territoryCode ?? null,
+    phoneNumber: node.phoneNumber ?? null,
+    company: node.company ?? null,
+    isDefault: Boolean(defaultAddressId && node.id === defaultAddressId),
   };
+}
 
-  const customer = payload.data?.customer;
+export async function getCurrentCustomer(): Promise<CurrentCustomer | null> {
+  const result = await customerAccountGraphql<{ customer?: CustomerQueryResult | null }>(
+    CUSTOMER_QUERY,
+    {
+      orders: ORDERS_PER_PAGE,
+      lineItems: LINE_ITEMS_PER_ORDER,
+      addresses: ADDRESSES_PER_PAGE,
+    },
+  );
+
+  if (!result.ok) return null;
+
+  const customer = result.data.customer;
   if (!customer?.id) return null;
+
+  const defaultAddressId = customer.defaultAddress?.id ?? null;
 
   return {
     id: customer.id,
@@ -399,7 +525,10 @@ export async function getCurrentCustomer(): Promise<CurrentCustomer | null> {
     lastName: customer.lastName ?? null,
     email: customer.emailAddress?.emailAddress ?? null,
     phone: customer.phoneNumber?.phoneNumber ?? null,
-    addressLines: customer.defaultAddress?.formatted ?? [],
+    emailMarketingState: customer.emailAddress?.marketingState ?? null,
+    addresses: (customer.addresses?.nodes ?? [])
+      .map((node) => mapAddress(node, defaultAddressId))
+      .sort((a, b) => Number(b.isDefault) - Number(a.isDefault)),
     orders: (customer.orders?.nodes ?? []).map((order) => ({
       id: order.id,
       name: order.name,

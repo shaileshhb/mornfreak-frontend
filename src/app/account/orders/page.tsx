@@ -1,20 +1,20 @@
 import type { Metadata } from "next";
 import { redirect } from "next/navigation";
 
-import { ProfilePage } from "@/features/account";
+import { OrdersList } from "@/features/account";
 import { getCurrentCustomer } from "@/lib/shopify-auth";
 
 export const metadata: Metadata = {
-  title: "Account",
-  description: "Your Mornfreak account.",
+  title: "Orders",
+  description: "Your Mornfreak orders.",
 };
 
-export default async function Account() {
+export default async function AccountOrders() {
   const customer = await getCurrentCustomer();
 
   if (!customer) {
     redirect("/?authError=token");
   }
 
-  return <ProfilePage customer={customer} />;
+  return <OrdersList customer={customer} />;
 }

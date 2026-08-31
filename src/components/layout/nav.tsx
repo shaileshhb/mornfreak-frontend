@@ -72,8 +72,8 @@ export function Nav() {
 
           <div className="flex flex-1 items-center justify-end gap-5">
             <Link
-              href="/login"
-              aria-label="Account login"
+              href="/account"
+              aria-label="Account"
               className="transition-colors hover:text-primary"
             >
               <UserRound aria-hidden size={19} />
@@ -107,7 +107,7 @@ export function Nav() {
                 </Link>
               ))}
               <Link
-                href="/login"
+                href="/account"
                 onClick={() => setMenuOpen(false)}
                 className="px-2 py-4 font-sans text-sm font-semibold text-primary"
               >

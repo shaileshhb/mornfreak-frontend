@@ -5,6 +5,7 @@ import { Footer } from "@/components/layout/footer";
 import { Nav } from "@/components/layout/nav";
 import { fontVariables } from "@/design/typography";
 import { FirstVisitOfferModal } from "@/features/first-visit-offer/first-visit-offer-modal";
+import { hasCustomerSession } from "@/lib/shopify-auth";
 
 import "./globals.css";
 
@@ -35,11 +36,13 @@ export const metadata: Metadata = {
   },
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const signedIn = await hasCustomerSession();
+
   return (
     <html lang="en" className={`${fontVariables} h-full antialiased`}>
       <body className="flex min-h-full flex-col bg-background font-sans text-foreground">
@@ -47,7 +50,7 @@ export default function RootLayout({
         <Nav />
         <main className="flex-1">{children}</main>
         <Footer />
-        <FirstVisitOfferModal />
+        <FirstVisitOfferModal signedIn={signedIn} />
       </body>
     </html>
   );

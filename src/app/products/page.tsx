@@ -18,9 +18,9 @@ export default function ProductsPage() {
   return (
     <>
       <section className="relative bg-background">
-        <div className="relative aspect-[4/3] w-full overflow-hidden lg:absolute lg:inset-0 lg:aspect-auto">
+        <div className="relative aspect-[3/2] w-full overflow-hidden lg:aspect-[4/1]">
           <Image
-            src="/images/shop/banner.png"
+            src="/images/shop/banner.avif"
             alt="Mornfreak Protein Oats pouch, peanut butter powder, branded cup, and a prepared bowl on a wooden table"
             fill
             priority
@@ -33,8 +33,8 @@ export default function ProductsPage() {
           />
         </div>
 
-        <Container className="relative z-10 max-w-[90rem] lg:pl-6">
-          <div className="flex max-w-md flex-col gap-3 py-10 lg:min-h-[30rem] lg:max-w-sm lg:justify-center lg:py-16 2xl:-ml-8">
+        <Container className="relative z-10 max-w-[90rem] lg:absolute lg:inset-0 lg:flex lg:items-center lg:pl-6">
+          <div className="flex max-w-md flex-col gap-3 py-10 lg:max-w-sm lg:py-0 2xl:-ml-8">
             <span className="font-sans text-lg font-semibold uppercase text-muted-foreground lg:text-paper/80">
               Our Products
             </span>

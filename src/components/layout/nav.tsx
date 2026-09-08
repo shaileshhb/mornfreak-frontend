@@ -65,7 +65,7 @@ export function Nav() {
               alt="Mornfreak"
               width={1800}
               height={600}
-              style={{ height: "3rem", width: "10rem" }}
+              style={{ height: "3rem", width: "11rem" }}
               priority
             />
           </Link>

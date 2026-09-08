@@ -646,6 +646,13 @@ function GlowSlide({
   const showGlow = slide.showGlow !== false;
   const flatCream = !showGlow;
 
+  const slideBg =
+  slide.id === "peanut-butter"
+    ? "bg-[#FFE35B]"
+    : flatCream
+      ? "bg-oat-cream"
+      : "bg-product-background";
+
   return (
     <div
       className={slideShellClass(active, reducedMotion)}
@@ -659,7 +666,7 @@ function GlowSlide({
       <div
         className={cn(
           "grid h-full min-h-[clamp(560px,78vh,860px)] grid-cols-1 lg:min-h-[clamp(560px,78vh,860px)] lg:grid-cols-[1fr_minmax(420px,44%)]",
-          flatCream ? "bg-oat-cream" : "bg-product-background",
+          slideBg,
         )}
       >
         <div

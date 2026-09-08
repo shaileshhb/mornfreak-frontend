@@ -37,7 +37,7 @@ export function ProductHowToUseSection({
   return (
     <Section ref={ref} data-product={productId} className="bg-background">
       <Container>
-        <div className="rounded-3xl bg-oat-cream px-6 py-12 sm:px-10 sm:py-14 lg:px-16 lg:py-16">
+        <div className="rounded-3xl bg-oat-cream px-6 py-4 sm:px-10 sm:py-6 lg:px-16 lg:py-4">
           <div
             className={cn(
               "grid items-start gap-10 lg:gap-16",

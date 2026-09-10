@@ -24,7 +24,7 @@ const PRODUCT_COMPARISONS = {
   proteinOats: {
     label: "Protein Oats",
     columns: [
-      "MORNFREAK PROTEIN OATS",
+      "PROTEIN OATS",
       "Other Oats",
       "Regular Chocolate Oats",
     ] as const,

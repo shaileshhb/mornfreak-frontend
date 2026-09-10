@@ -189,7 +189,7 @@ export const PRODUCT_CONTENT: Record<ProductId, ProductContent> = {
     id: "proteinOats77g",
     slug: "protein-oats-77g",
     label: "Protein Oats 77g",
-    name: "Mornfreak Protein Oats 77g",
+    name: "Protein Oats 77g",
     tagline: "Rich Chocolate. Real Gains.",
     description:
       "Start your mornings with MornFreak Protein Oats – Rich Chocolate, a delicious and satisfying breakfast made for busy, active days. Each 77g serving delivers 20g of protein from a whey and plant-based protein blend, along with wholesome oats, nuts, seeds, fibre, and added prebiotics. Naturally sweetened with dates and monk fruit, it delivers rich chocolate flavour without refined sugar. Easy to prepare in under a minute, enjoy it as hot oats, overnight oats, a smoothie, or a convenient pre- or post-workout meal.",

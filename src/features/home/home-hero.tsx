@@ -83,7 +83,7 @@ const SLIDES: Slide[] = [
     ratingStars: 5,
     ratingCount: "2,400+ happy mornings",
     ctaLabel: "Shop Protein Oats",
-    ctaHref: "/products/protein-oats",
+    ctaHref: "/products/protein-oats-425g",
     ctaLabel2: "Shop all Mornfreak",
     ctaHref2: "/products",
     imageAlt:

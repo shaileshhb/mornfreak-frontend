@@ -5,8 +5,8 @@ import { Container } from "@/components/ui/container";
 import { Heading } from "@/components/ui/heading";
 import { Section } from "@/components/ui/section";
 import { Text } from "@/components/ui/text";
+import { getListingProducts } from "@/features/products/api/get-listing-products";
 import { ProductListingCard } from "@/features/products/product-listing-card";
-import { ALL_PRODUCTS } from "@/lib/products";
 
 export const metadata: Metadata = {
   title: "Products",
@@ -14,7 +14,9 @@ export const metadata: Metadata = {
     "Two high-performance breakfast staples. Real ingredients, real results. Mornfreak Protein Oats and Pure Peanut Butter Powder.",
 };
 
-export default function ProductsPage() {
+export default async function ProductsPage() {
+  const products = await getListingProducts();
+
   return (
     <>
       <section className="relative bg-background">
@@ -54,7 +56,7 @@ export default function ProductsPage() {
       <Section>
         <Container>
           <div className="grid grid-cols-1 gap-10 sm:grid-cols-2 sm:gap-8 lg:grid-cols-3 lg:gap-6">
-            {ALL_PRODUCTS.map((product) => (
+            {products.map((product) => (
               <ProductListingCard key={product.id} product={product} />
             ))}
           </div>

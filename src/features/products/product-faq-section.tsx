@@ -16,7 +16,10 @@ export function ProductFaqSection({ productId }: ProductFaqSectionProps) {
   }
 
   return (
-    <section id="faq" className="scroll-mt-24 bg-background py-16 sm:py-20 lg:py-24">
+    <section
+      id="faq"
+      className="scroll-mt-24 bg-background pt-0 pb-16 sm:pt-0 sm:pb-20 lg:pt-0 lg:pb-24"
+    >
       <Container>
         <Heading variant="h2" as="h2">
           Frequently asked questions

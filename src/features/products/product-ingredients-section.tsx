@@ -19,16 +19,33 @@ type ProductIngredientsSectionProps = {
   ingredients: ProductIngredient[];
 };
 
-function IngredientCard({ ingredient }: { ingredient: ProductIngredient }) {
+function IngredientCard({
+  ingredient,
+  compact = false,
+}: {
+  ingredient: ProductIngredient;
+  compact?: boolean;
+}) {
   return (
-    <article className="flex w-[78%] shrink-0 snap-start flex-col sm:w-[46%] md:w-[32%] lg:w-[21%]">
+    <article
+      className={cn(
+        "flex shrink-0 snap-start flex-col",
+        compact
+          ? "w-full max-w-[16rem]"
+          : "w-[78%] sm:w-[46%] md:w-[32%] lg:w-[21%]",
+      )}
+    >
       <div className="relative aspect-[3/4.4] overflow-hidden rounded-full bg-muted">
         <div className="absolute -inset-[20%]">
           <Image
             src={ingredient.image}
             alt={ingredient.imageAlt || ingredient.name}
             fill
-            sizes="(max-width: 640px) 78vw, (max-width: 768px) 46vw, (max-width: 1024px) 32vw, 21vw"
+            sizes={
+              compact
+                ? "256px"
+                : "(max-width: 640px) 78vw, (max-width: 768px) 46vw, (max-width: 1024px) 32vw, 21vw"
+            }
             className="object-cover object-center"
           />
         </div>
@@ -104,12 +121,13 @@ export function ProductIngredientsSection({
   const goPrev = () => scrollToIndex(Math.max(0, activeIndex - 1));
   const goNext = () =>
     scrollToIndex(Math.min(ingredients.length - 1, activeIndex + 1));
+  const isCarousel = ingredients.length > 1;
 
   if (ingredients.length === 0) {
     return (
       <ProductSection
         product={productId}
-        className="pt-0 pb-16 sm:pt-0 sm:pb-20 lg:pt-0 lg:pb-24"
+        className="pt-0 pb-6 sm:pt-0 sm:pb-8 lg:pt-0 lg:pb-8 bg-background"
       >
         <Container className="max-w-[82rem]">
           <p className="font-sans text-sm text-product-foreground/60">
@@ -123,7 +141,7 @@ export function ProductIngredientsSection({
   return (
     <ProductSection
       product={productId}
-      className="pt-0 pb-16 sm:pt-0 sm:pb-20 lg:pt-0 lg:pb-24"
+      className="bg-background pt-0 pb-6 sm:pt-0 sm:pb-8 lg:pt-0 lg:pb-8"
     >
       <Container className="max-w-[82rem]">
         <header className="max-w-2xl">
@@ -144,7 +162,7 @@ export function ProductIngredientsSection({
 
         <div
           role="region"
-          aria-roledescription="carousel"
+          aria-roledescription={isCarousel ? "carousel" : undefined}
           aria-labelledby={labelId}
           className="mt-12"
         >
@@ -154,16 +172,22 @@ export function ProductIngredientsSection({
 
           <div
             ref={scrollerRef}
-            className="flex gap-5 overflow-x-auto pb-2 snap-x snap-mandatory scrollbar-hide"
+            className={cn(
+              "flex gap-5 pb-2",
+              isCarousel &&
+                "snap-x snap-mandatory overflow-x-auto scrollbar-hide",
+            )}
           >
             {ingredients.map((ingredient) => (
               <IngredientCard
                 key={ingredient.name}
                 ingredient={ingredient}
+                compact={!isCarousel}
               />
             ))}
           </div>
 
+          {isCarousel ? (
           <div className="mt-8 flex items-center justify-between gap-4">
             <div className="flex items-center gap-2" aria-label="Ingredient slides">
               {ingredients.map((ingredient, index) => {
@@ -205,6 +229,7 @@ export function ProductIngredientsSection({
               </button>
             </div>
           </div>
+          ) : null}
         </div>
 
         <div className="mt-12">

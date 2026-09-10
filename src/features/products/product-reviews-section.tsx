@@ -127,7 +127,7 @@ export function ProductReviewsSection({
     return (
       <section
         id="reviews"
-        className="scroll-mt-24 bg-background pt-0 pb-16 sm:pt-0 sm:pb-20 lg:pt-0 lg:pb-24"
+        className="scroll-mt-24 bg-background pt-0 pb-6 sm:pt-0 sm:pb-8 lg:pt-0 lg:pb-8"
       >
         <Container>
           <Heading variant="h2" as="h2">
@@ -145,7 +145,7 @@ export function ProductReviewsSection({
   return (
     <section
       id="reviews"
-      className="scroll-mt-24 bg-background pt-0 pb-16 sm:pt-0 sm:pb-20 lg:pt-0 lg:pb-24"
+      className="scroll-mt-24 bg-background pt-0 pb-6 sm:pt-0 sm:pb-8 lg:pt-0 lg:pb-8"
     >
       <Container>
         <header className="flex flex-col gap-6 border-b border-foreground/10 pb-10 lg:flex-row lg:items-end lg:justify-between">

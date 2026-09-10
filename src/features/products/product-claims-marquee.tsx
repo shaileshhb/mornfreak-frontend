@@ -197,7 +197,7 @@ export function ProductClaimsMarquee({ productId }: ProductClaimsMarqueeProps) {
   return (
     <section
       aria-label="Product claims"
-      className="group overflow-hidden mt-3"
+      className="group overflow-hidden"
       style={{ backgroundColor: "#FDE8E3", color: "#B90B19" }}
     >
       <div className="flex w-max animate-marquee group-hover:[animation-play-state:paused]">

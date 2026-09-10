@@ -35,7 +35,11 @@ export function ProductHowToUseSection({
   if (steps.length === 0) return null;
 
   return (
-    <Section ref={ref} data-product={productId} className="bg-background">
+    <Section
+      ref={ref}
+      data-product={productId}
+      className="bg-background pt-0 pb-6 sm:pt-0 sm:pb-8 lg:pt-0 lg:pb-8"
+    >
       <Container>
         <div className="rounded-3xl bg-oat-cream px-6 py-4 sm:px-10 sm:py-6 lg:px-16 lg:py-4">
           <div

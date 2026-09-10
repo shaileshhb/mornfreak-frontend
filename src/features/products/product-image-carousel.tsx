@@ -38,7 +38,6 @@ type ProductImageCarouselProps = {
   productName: string;
   overlayBadge?: string;
   galleryCallouts?: ProductGalleryCallout[];
-  portrait?: boolean;
   className?: string;
 };
 
@@ -215,7 +214,6 @@ export function ProductImageCarousel({
   productName,
   overlayBadge,
   galleryCallouts,
-  portrait = false,
   className,
 }: ProductImageCarouselProps) {
   const labelId = useId();
@@ -304,18 +302,14 @@ export function ProductImageCarousel({
         onPointerDown={onPointerDown}
         onPointerUp={onPointerUp}
         className={cn(
-          "relative w-full overflow-hidden rounded-2xl bg-product-background outline-none focus-visible:ring-2 focus-visible:ring-product-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background",
-          portrait ? "aspect-[4/5]" : "aspect-square",
-          portrait
-            ? "lg:max-h-[min(80vh,calc(100vh-12rem))] lg:w-[min(100%,64vh)]"
-            : "lg:max-h-[min(70vh,calc(100vh-19rem))] lg:w-[min(100%,70vh,calc(100vh-19rem))]",
+          "relative aspect-square w-full overflow-hidden rounded-2xl bg-background outline-none focus-visible:ring-2 focus-visible:ring-product-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background",
+          "lg:max-h-[min(70vh,calc(100vh-19rem))] lg:w-[min(100%,70vh,calc(100vh-19rem))]",
         )}
       >
         <p id={labelId} className="sr-only">
           {productName} product images
         </p>
 
-        {/* TODO: replace with 4:5 product photo, target 1200px × 1500px (4:5) */}
         {images.map((image, index) => (
           <Image
             key={image.url}
@@ -326,7 +320,7 @@ export function ProductImageCarousel({
             priority={index === 0}
             loading={index === 0 ? "eager" : "lazy"}
             className={cn(
-              "object-contain p-4 motion-safe:transition-opacity motion-safe:duration-500 motion-safe:ease-out sm:p-6",
+              "object-contain object-center motion-safe:transition-opacity motion-safe:duration-500 motion-safe:ease-out",
               index === activeIndex ? "z-10 opacity-100" : "z-0 opacity-0",
             )}
             aria-hidden={index !== activeIndex}
@@ -386,19 +380,18 @@ export function ProductImageCarousel({
               aria-current={index === activeIndex ? "true" : undefined}
               onClick={() => goTo(index)}
               className={cn(
-                "relative aspect-square h-20 w-20 mt-1 ms-1  shrink-0 overflow-hidden rounded-xl bg-product-background outline-none ring-2 ring-offset-2 ring-offset-background transition-opacity focus-visible:ring-product-primary sm:h-24 sm:w-24 lg:h-[6.75rem] lg:w-[6.75rem]",
+                "relative mt-1 ms-1 aspect-square h-20 w-20 shrink-0 overflow-hidden rounded-xl bg-background outline-none ring-2 ring-offset-2 ring-offset-background transition-opacity focus-visible:ring-product-primary sm:h-24 sm:w-24 lg:h-[6.75rem] lg:w-[6.75rem]",
                 index === activeIndex
                   ? "ring-product-primary"
                   : "ring-transparent opacity-70 hover:opacity-100",
               )}
             >
-              {/* TODO: replace with matching 4:5 crop, target 320px × 400px (4:5) */}
               <Image
                 src={image.url}
                 alt=""
                 fill
                 sizes="108px"
-                className="object-contain p-1"
+                className="object-contain object-center"
                 loading="lazy"
               />
             </button>

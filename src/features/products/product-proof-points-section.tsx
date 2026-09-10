@@ -40,7 +40,10 @@ export function ProductProofPointsSection({
   if (points.length === 0) return null;
 
   return (
-    <Section data-product={productId} className="bg-background">
+    <Section
+      data-product={productId}
+      className="bg-background pt-16 pb-6 sm:pt-20 sm:pb-8 lg:pt-24 lg:pb-8"
+    >
       <Container>
         <div className="rounded-3xl bg-oat-cream px-6 py-12 sm:px-10 sm:py-14 lg:px-16 lg:py-16">
           <Heading

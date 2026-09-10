@@ -125,7 +125,10 @@ export function ProductReviewsSection({
 
   if (reviews.count === 0 || reviews.items.length === 0) {
     return (
-      <section id="reviews" className="scroll-mt-24 bg-background py-16 sm:py-20 lg:py-24">
+      <section
+        id="reviews"
+        className="scroll-mt-24 bg-background pt-0 pb-16 sm:pt-0 sm:pb-20 lg:pt-0 lg:pb-24"
+      >
         <Container>
           <Heading variant="h2" as="h2">
             Reviews
@@ -140,7 +143,10 @@ export function ProductReviewsSection({
   }
 
   return (
-    <section id="reviews" className="scroll-mt-24 bg-background py-16 sm:py-20 lg:py-24">
+    <section
+      id="reviews"
+      className="scroll-mt-24 bg-background pt-0 pb-16 sm:pt-0 sm:pb-20 lg:pt-0 lg:pb-24"
+    >
       <Container>
         <header className="flex flex-col gap-6 border-b border-foreground/10 pb-10 lg:flex-row lg:items-end lg:justify-between">
           <div>

@@ -107,7 +107,10 @@ export function ProductIngredientsSection({
 
   if (ingredients.length === 0) {
     return (
-      <ProductSection product={productId}>
+      <ProductSection
+        product={productId}
+        className="pt-0 pb-16 sm:pt-0 sm:pb-20 lg:pt-0 lg:pb-24"
+      >
         <Container className="max-w-[82rem]">
           <p className="font-sans text-sm text-product-foreground/60">
             Ingredient details for this product are coming soon.
@@ -118,7 +121,10 @@ export function ProductIngredientsSection({
   }
 
   return (
-    <ProductSection product={productId}>
+    <ProductSection
+      product={productId}
+      className="pt-0 pb-16 sm:pt-0 sm:pb-20 lg:pt-0 lg:pb-24"
+    >
       <Container className="max-w-[82rem]">
         <header className="max-w-2xl">
           <p className="font-sans text-sm font-semibold uppercase tracking-[0.12em] text-product-primary">

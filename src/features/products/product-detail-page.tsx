@@ -22,7 +22,7 @@ export function ProductDetailPage({ product }: ProductDetailPageProps) {
     <>
       <section
         data-product={product.id}
-        className="bg-background pb-16 pt-6 sm:pb-20 sm:pt-8 lg:pb-24 lg:pt-10"
+        className="bg-background pb-6 pt-6 sm:pb-8 sm:pt-8 lg:pb-8 lg:pt-10"
       >
         <Container className="max-w-[90rem]">
           <div className="grid gap-8 lg:grid-cols-[minmax(0,1.15fr)_minmax(0,0.85fr)] lg:items-start lg:gap-10">
@@ -32,7 +32,6 @@ export function ProductDetailPage({ product }: ProductDetailPageProps) {
               productName={product.name}
               overlayBadge={product.overlayBadge}
               galleryCallouts={product.galleryCallouts}
-              portrait
             />
             <div className="lg:sticky lg:top-24">
               <ProductBuyBox product={product} />

@@ -6,6 +6,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
 
+import { useCart } from "@/features/cart";
 import { cn } from "@/lib/cn";
 
 const NAV_LINKS = [
@@ -21,6 +22,8 @@ function isActivePath(pathname: string, href: string) {
 export function Nav() {
   const [menuOpen, setMenuOpen] = useState(false);
   const pathname = usePathname();
+  const { cart } = useCart();
+  const cartCount = cart?.totalQuantity ?? 0;
 
   return (
     <header className="sticky top-0 z-50 border-b border-foreground/10 bg-card/95 backdrop-blur-md">
@@ -79,11 +82,16 @@ export function Nav() {
               <UserRound aria-hidden size={19} />
             </Link>
             <Link
-              href="/products"
-              aria-label="Shop products"
-              className="transition-colors hover:text-primary"
+              href="/cart"
+              aria-label={`Cart${cartCount > 0 ? `, ${cartCount} items` : ""}`}
+              className="relative transition-colors hover:text-primary"
             >
               <ShoppingBag aria-hidden size={19} />
+              {cartCount > 0 && (
+                <span className="absolute -right-2.5 -top-2 flex min-h-4 min-w-4 items-center justify-center rounded-full bg-primary px-1 font-sans text-[0.625rem] font-bold leading-none text-primary-foreground">
+                  {cartCount > 99 ? "99+" : cartCount}
+                </span>
+              )}
             </Link>
           </div>
         </div>

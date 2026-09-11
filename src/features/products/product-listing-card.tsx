@@ -2,6 +2,7 @@ import { Droplet, Dumbbell, Wheat } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 
+import { AddToCartButton } from "@/features/cart";
 import { cn } from "@/lib/cn";
 
 import type { ProductListing, ProductStat } from "./types";
@@ -35,12 +36,7 @@ function ListingStat({ stat }: { stat: ProductStat }) {
 export function ProductListingCard({ product }: { product: ProductListing }) {
   const stats = product.stats.slice(0, 2);
   const href = `/products/${product.slug}`;
-  const statusLabel =
-    product.availability === "sold_out"
-      ? "Sold out"
-      : product.availability === "backorder"
-        ? "Available to order"
-        : "In stock";
+  const available = product.availability !== "sold_out";
 
   return (
     <article className="flex flex-col gap-5">
@@ -92,16 +88,17 @@ export function ProductListingCard({ product }: { product: ProductListing }) {
         >
           View product
         </Link>
-        <span
+        <AddToCartButton
+          merchandiseId={product.selectedVariant.id}
+          available={available}
+          variant={available ? "ghost" : "outline"}
+          size="sm"
+          label={product.availability === "backorder" ? "Pre-order" : "Add to cart"}
           className={cn(
-            "shrink-0 font-sans text-sm font-semibold",
-            product.availability === "sold_out"
-              ? "text-muted-foreground"
-              : "text-primary",
+            "h-8 shrink-0 px-2 text-sm text-primary hover:text-primary",
+            !available && "cursor-not-allowed text-muted-foreground",
           )}
-        >
-          {statusLabel}
-        </span>
+        />
       </div>
     </article>
   );

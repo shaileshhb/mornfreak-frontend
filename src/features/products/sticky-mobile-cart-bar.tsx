@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 
-import { Button } from "@/components/ui/button";
+import { AddToCartButton } from "@/features/cart";
 import { cn } from "@/lib/cn";
 
 import type { ProductDetail } from "./types";
@@ -37,7 +37,8 @@ export function StickyMobileCartBar({
   }, [sentinelId]);
 
   const soldOut = product.availability === "sold_out";
-  const label = soldOut ? "Sold out" : "Coming soon";
+  const label =
+    product.availability === "backorder" ? "Pre-order" : "Add to cart";
 
   return (
     <div
@@ -58,14 +59,17 @@ export function StickyMobileCartBar({
             {formatMoney(product.selectedVariant.price)}
           </p>
         </div>
-        <Button
+        <AddToCartButton
+          merchandiseId={product.selectedVariant.id}
+          available={!soldOut}
+          label={label}
           variant="primary"
           size="md"
-          disabled
-          className="shrink-0 cursor-not-allowed bg-product-primary text-primary-foreground opacity-80"
-        >
-          {label}
-        </Button>
+          className={cn(
+            "shrink-0 bg-product-primary text-primary-foreground",
+            soldOut && "cursor-not-allowed opacity-80",
+          )}
+        />
       </div>
     </div>
   );

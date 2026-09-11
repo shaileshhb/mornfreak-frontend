@@ -28,6 +28,30 @@ export type CommerceProduct = {
   variants: CommerceVariant[];
 };
 
+export type CartLine = {
+  id: string;
+  quantity: number;
+  total: Money;
+  merchandise: {
+    id: string;
+    title: string;
+    price: Money;
+    selectedOptions: { name: string; value: string }[];
+    product: {
+      title: string;
+      handle: string;
+      image: ProductImage | null;
+    };
+  };
+};
+
+export type Cart = {
+  lines: CartLine[];
+  totalQuantity: number;
+  subtotal: Money;
+  total: Money;
+};
+
 export type ProductImage = {
   url: string;
   alt: string;

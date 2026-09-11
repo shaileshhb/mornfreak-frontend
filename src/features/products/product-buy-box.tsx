@@ -4,7 +4,7 @@ import { Ban, Droplet, Dumbbell, Star } from "lucide-react";
 import Link from "next/link";
 import { useState } from "react";
 
-import { Button } from "@/components/ui/button";
+import { AddToCartButton } from "@/features/cart";
 import { cn } from "@/lib/cn";
 
 import { ProductBuyBoxAccordions } from "./product-buy-box-accordions";
@@ -97,7 +97,8 @@ export function ProductBuyBox({ product }: ProductBuyBoxProps) {
       : selectedVariant.quantityAvailable == null
         ? "In stock"
         : `${selectedVariant.quantityAvailable} in stock`;
-  const ctaLabel = soldOut ? "Sold out" : "Coming soon";
+  const ctaLabel =
+    availability === "backorder" ? "Pre-order" : "Add to cart";
   const maxQuantity = Math.max(
     1,
     Math.min(selectedVariant.quantityAvailable ?? 10, 10),
@@ -234,19 +235,20 @@ export function ProductBuyBox({ product }: ProductBuyBoxProps) {
           value={quantity}
           onChange={setQuantity}
           max={maxQuantity}
-          disabled
+          disabled={soldOut}
         />
-        <Button
+        <AddToCartButton
+          merchandiseId={selectedVariant.id}
+          quantity={quantity}
+          available={!soldOut}
+          label={ctaLabel}
           variant="primary"
           size="lg"
-          disabled
           className={cn(
             "h-12 min-h-11 w-full min-w-0 flex-1 bg-product-primary text-primary-foreground hover:bg-product-primary/90 sm:w-auto",
-            "cursor-not-allowed disabled:opacity-100",
+            soldOut && "cursor-not-allowed disabled:opacity-100",
           )}
-        >
-          {ctaLabel}
-        </Button>
+        />
       </div>
 
       <ProductBuyBoxAccordions product={product} />

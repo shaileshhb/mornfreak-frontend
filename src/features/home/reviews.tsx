@@ -2,12 +2,8 @@
 
 import {
   CheckCircle2,
-  Dumbbell,
-  Leaf,
   Pause,
   Play,
-  ShieldCheck,
-  Sparkles,
   Star,
 } from "lucide-react";
 import Image from "next/image";

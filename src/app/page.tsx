@@ -8,7 +8,6 @@ import {
   Reviews,
   FollowUsOnInstagram,
   WhyMornfreak,
-  MornfreakStandard,
 } from "@/features/home";
 
 export default async function Home({ searchParams }: PageProps<"/">) {
@@ -27,7 +26,6 @@ export default async function Home({ searchParams }: PageProps<"/">) {
       <HowWeStackUp />
       <Reviews />
       <FollowUsOnInstagram />
-      {/* <MornfreakStandard /> */}
     </>
   );
 }

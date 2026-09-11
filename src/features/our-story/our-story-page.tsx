@@ -100,7 +100,7 @@ function StoryHero() {
             <p>Start here</p>
           </h1>
           <p className="mt-6 max-w-xl font-sans text-base leading-relaxed text-white/80 sm:text-lg">
-            We aren't just making breakfast. We're building a movement for people who believe every great day starts with a <em className="font-bold">great morning</em>.
+            We aren&apos;t just making breakfast. We&apos;re building a movement for people who believe every great day starts with a <em className="font-bold">great morning</em>.
           </p>
           <a
             href="#our-beginning"

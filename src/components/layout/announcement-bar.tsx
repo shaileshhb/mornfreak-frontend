@@ -23,7 +23,10 @@ export function AnnouncementBar() {
 
   useEffect(() => {
     const mq = window.matchMedia("(prefers-reduced-motion: reduce)");
-    const sync = () => setReducedMotion(mq.matches);
+    const sync = () => {
+      setReducedMotion(mq.matches);
+      if (mq.matches) setSliding(false);
+    };
     sync();
     mq.addEventListener("change", sync);
     return () => mq.removeEventListener("change", sync);
@@ -33,7 +36,6 @@ export function AnnouncementBar() {
     if (hovered) return;
 
     if (reducedMotion) {
-      setSliding(false);
       const dwell = window.setTimeout(() => {
         setIndex((current) => (current + 1) % MESSAGES.length);
       }, DWELL_MS);

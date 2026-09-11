@@ -1,6 +1,6 @@
 "use client";
 
-import { Ban, Droplet, Dumbbell, Star, type LucideIcon } from "lucide-react";
+import { Ban, Droplet, Dumbbell, Star } from "lucide-react";
 import Link from "next/link";
 import { useState } from "react";
 
@@ -16,11 +16,18 @@ type ProductBuyBoxProps = {
   product: ProductDetail;
 };
 
-function iconForStat(label: string): LucideIcon {
+function StatIcon({ label }: { label: string }) {
   const key = label.toLowerCase();
-  if (key.includes("protein")) return Dumbbell;
-  if (key.includes("sugar")) return Ban;
-  return Droplet;
+  const props = {
+    "aria-hidden": true,
+    size: 16,
+    strokeWidth: 1.75,
+    className: "text-product-primary",
+  } as const;
+
+  if (key.includes("protein")) return <Dumbbell {...props} />;
+  if (key.includes("sugar")) return <Ban {...props} />;
+  return <Droplet {...props} />;
 }
 
 function StarsSummary({
@@ -59,16 +66,9 @@ function StarsSummary({
 }
 
 function BuyBoxStat({ stat }: { stat: ProductStat }) {
-  const Icon = iconForStat(stat.label);
-
   return (
     <div className="flex min-w-[6.5rem] flex-1 flex-col items-center rounded-xl border border-product-primary/50 bg-product-background px-3 py-3 text-center text-product-foreground sm:min-w-[7.5rem] sm:px-4 sm:py-3.5">
-      <Icon
-        aria-hidden
-        size={16}
-        strokeWidth={1.75}
-        className="text-product-primary"
-      />
+      <StatIcon label={stat.label} />
       <span className="mt-1.5 font-display text-2xl font-bold leading-none tracking-wide">
         {stat.value}
       </span>

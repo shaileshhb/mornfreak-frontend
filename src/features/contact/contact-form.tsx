@@ -3,9 +3,7 @@
 import { type FormEvent, useState } from "react";
 
 import { Button } from "@/components/ui/button";
-import { Container } from "@/components/ui/container";
 import { Heading } from "@/components/ui/heading";
-import { Section } from "@/components/ui/section";
 import { Text } from "@/components/ui/text";
 import { cn } from "@/lib/cn";
 

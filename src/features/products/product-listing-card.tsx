@@ -1,4 +1,4 @@
-import { Droplet, Dumbbell, ShoppingBag, Wheat, type LucideIcon } from "lucide-react";
+import { Droplet, Dumbbell, ShoppingBag, Wheat } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -6,19 +6,23 @@ import type { ProductContent, ProductStat } from "@/lib/products";
 
 import { PRODUCT_DETAIL_FIXTURES } from "./fixtures/product-details";
 
-function iconForStat(label: string): LucideIcon {
+function StatIcon({ label }: { label: string }) {
   const key = label.toLowerCase();
-  if (key.includes("protein")) return Dumbbell;
-  if (key.includes("fibre") || key.includes("fiber")) return Wheat;
-  return Droplet;
+  const className = "size-4 shrink-0 text-muted-foreground";
+
+  if (key.includes("protein")) {
+    return <Dumbbell aria-hidden className={className} />;
+  }
+  if (key.includes("fibre") || key.includes("fiber")) {
+    return <Wheat aria-hidden className={className} />;
+  }
+  return <Droplet aria-hidden className={className} />;
 }
 
 function ListingStat({ stat }: { stat: ProductStat }) {
-  const Icon = iconForStat(stat.label);
-
   return (
     <div className="flex items-center gap-2 text-foreground">
-      <Icon aria-hidden className="size-4 shrink-0 text-muted-foreground" />
+      <StatIcon label={stat.label} />
       <p className="font-sans text-sm">
         <span className="font-semibold">{stat.value}</span>{" "}
         <span className="text-muted-foreground">{stat.label}</span>

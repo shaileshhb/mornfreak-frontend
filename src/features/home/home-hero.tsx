@@ -225,7 +225,6 @@ function FuelGauge({
 function SlideText({
   slide,
   active,
-  introReady,
   reducedMotion,
   index,
   progressKey,
@@ -235,7 +234,6 @@ function SlideText({
 }: {
   slide: Slide;
   active: boolean;
-  introReady: boolean;
   reducedMotion: boolean;
   index: number;
   progressKey: number;
@@ -561,7 +559,6 @@ function FullBleedSlide({
 function SplitSlide({
   slide,
   active,
-  introReady,
   reducedMotion,
   index,
   progressKey,
@@ -570,7 +567,6 @@ function SplitSlide({
 }: {
   slide: Slide;
   active: boolean;
-  introReady: boolean;
   reducedMotion: boolean;
   index: number;
   progressKey: number;
@@ -611,7 +607,6 @@ function SplitSlide({
           <SlideText
             slide={slide}
             active={active}
-            introReady={introReady}
             reducedMotion={reducedMotion}
             index={index}
             progressKey={progressKey}
@@ -627,7 +622,6 @@ function SplitSlide({
 function GlowSlide({
   slide,
   active,
-  introReady,
   reducedMotion,
   index,
   progressKey,
@@ -636,7 +630,6 @@ function GlowSlide({
 }: {
   slide: Slide;
   active: boolean;
-  introReady: boolean;
   reducedMotion: boolean;
   index: number;
   progressKey: number;
@@ -726,7 +719,6 @@ function GlowSlide({
             slide={slide}
             variant="glow"
             active={active}
-            introReady={introReady}
             reducedMotion={reducedMotion}
             index={index}
             progressKey={progressKey}
@@ -824,7 +816,6 @@ export function HomeHero() {
           const shared = {
             slide,
             active,
-            introReady,
             reducedMotion,
             index,
             progressKey,
@@ -837,6 +828,7 @@ export function HomeHero() {
               <FullBleedSlide
                 key={slide.id}
                 {...shared}
+                introReady={introReady}
                 priority={slideIndex === 0}
               />
             );

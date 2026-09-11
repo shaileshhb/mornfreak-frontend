@@ -113,7 +113,7 @@ export function RaisingTheBar() {
       <Container className="max-w-[90rem]">
         <header className="mx-auto max-w-5xl text-center">
           <p className="font-sans text-s font-semibold uppercase tracking-[0.15em] text-primary">
-            How we're raising the bar
+            How we&apos;re raising the bar
           </p>
           <Heading
             variant="display"

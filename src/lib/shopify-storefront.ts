@@ -1,117 +1,256 @@
 import "server-only";
 
+import type {
+  CommerceProduct,
+  CommerceVariant,
+  Money,
+} from "@/features/products/types";
+
 const STOREFRONT_API_VERSION = "2026-07";
 const LISTING_PRODUCTS_FIRST = 50;
+const VARIANTS_FIRST = 50;
+const STOREFRONT_REVALIDATE_SECONDS = 30;
+const STOREFRONT_TIMEOUT_MS = 8_000;
 
-const LISTING_PRODUCTS_QUERY = /* GraphQL */ `
-  query ListingProducts($first: Int!) {
-    products(first: $first) {
-      nodes {
-        id
-        handle
+const COMMERCE_FIELDS = /* GraphQL */ `
+  id
+  handle
+  title
+  description
+  variants(first: ${VARIANTS_FIRST}) {
+    nodes {
+      id
+      title
+      sku
+      availableForSale
+      currentlyNotInStock
+      quantityAvailable
+      price {
+        amount
+        currencyCode
+      }
+      compareAtPrice {
+        amount
+        currencyCode
+      }
+      selectedOptions {
+        name
+        value
       }
     }
   }
 `;
 
-export type StorefrontProduct = {
-  id: string;
-  handle: string;
-};
+const LISTING_PRODUCTS_QUERY = /* GraphQL */ `
+  query ListingProducts($first: Int!, $country: CountryCode!)
+  @inContext(country: $country) {
+    products(first: $first) {
+      nodes {
+        ${COMMERCE_FIELDS}
+      }
+    }
+  }
+`;
+
+const PRODUCT_BY_HANDLE_QUERY = /* GraphQL */ `
+  query ProductByHandle($handle: String!, $country: CountryCode!)
+  @inContext(country: $country) {
+    product(handle: $handle) {
+      ${COMMERCE_FIELDS}
+    }
+  }
+`;
 
 type StorefrontConfig = {
   graphqlUrl: string;
   token: string;
+  country: string;
+};
+
+type RawMoney = {
+  amount?: string;
+  currencyCode?: string;
+};
+
+type RawVariant = {
+  id?: string;
+  title?: string;
+  sku?: string | null;
+  availableForSale?: boolean;
+  currentlyNotInStock?: boolean;
+  quantityAvailable?: number | null;
+  price?: RawMoney;
+  compareAtPrice?: RawMoney | null;
+  selectedOptions?: { name?: string; value?: string }[];
+};
+
+type RawProduct = {
+  id?: string;
+  handle?: string;
+  title?: string;
+  description?: string;
+  variants?: { nodes?: RawVariant[] | null } | null;
 };
 
 type ListingProductsData = {
-  products?: {
-    nodes?: StorefrontProduct[] | null;
-  } | null;
+  products?: { nodes?: RawProduct[] | null } | null;
 };
 
-function getStorefrontConfig(): StorefrontConfig | null {
-  const domain = process.env.SHOPIFY_STORE_DOMAIN?.trim().replace(/^https?:\/\//, "").replace(/\/$/, "");
-  const token = process.env.SHOPIFY_STOREFRONT_PRIVATE_TOKEN?.trim();
+type ProductByHandleData = {
+  product?: RawProduct | null;
+};
 
-  if (!domain || !token) return null;
+export class CatalogUnavailableError extends Error {
+  constructor(message = "The Shopify catalog is unavailable") {
+    super(message);
+    this.name = "CatalogUnavailableError";
+  }
+}
+
+function getStorefrontConfig(): StorefrontConfig {
+  const domain = process.env.SHOPIFY_STORE_DOMAIN?.trim()
+    .replace(/^https?:\/\//, "")
+    .replace(/\/$/, "");
+  const token = process.env.SHOPIFY_STOREFRONT_PRIVATE_TOKEN?.trim();
+  const country = (
+    process.env.SHOPIFY_STOREFRONT_COUNTRY?.trim() || "AE"
+  ).toUpperCase();
+
+  if (!domain || !token) {
+    throw new CatalogUnavailableError("Shopify Storefront env is not configured");
+  }
+
+  if (!/^[A-Z]{2}$/.test(country)) {
+    throw new CatalogUnavailableError(
+      "SHOPIFY_STOREFRONT_COUNTRY must be an ISO country code",
+    );
+  }
 
   return {
     graphqlUrl: `https://${domain}/api/${STOREFRONT_API_VERSION}/graphql.json`,
     token,
+    country,
   };
 }
 
-function storefrontHeaders(token: string, mode: "private" | "public"): HeadersInit {
-  const headers: Record<string, string> = {
-    "Content-Type": "application/json",
+function parseMoney(value: RawMoney | null | undefined): Money | null {
+  if (!value?.amount || !value.currencyCode) return null;
+  return { amount: value.amount, currencyCode: value.currencyCode };
+}
+
+function parseVariant(value: RawVariant): CommerceVariant | null {
+  const price = parseMoney(value.price);
+  if (!value.id || !value.title || !price) return null;
+
+  return {
+    id: value.id,
+    title: value.title,
+    sku: value.sku ?? null,
+    availableForSale: value.availableForSale === true,
+    currentlyNotInStock: value.currentlyNotInStock === true,
+    quantityAvailable:
+      typeof value.quantityAvailable === "number"
+        ? value.quantityAvailable
+        : null,
+    price,
+    compareAtPrice: parseMoney(value.compareAtPrice),
+    selectedOptions: (value.selectedOptions ?? []).flatMap((option) =>
+      option.name && option.value
+        ? [{ name: option.name, value: option.value }]
+        : [],
+    ),
   };
+}
 
-  if (mode === "private") {
-    headers["Shopify-Storefront-Private-Token"] = token;
-  } else {
-    headers["X-Shopify-Storefront-Access-Token"] = token;
-  }
+function parseProduct(value: RawProduct): CommerceProduct | null {
+  if (!value.id || !value.handle || !value.title) return null;
 
-  return headers;
+  const variants = (value.variants?.nodes ?? []).flatMap((variant) => {
+    const parsed = parseVariant(variant);
+    return parsed ? [parsed] : [];
+  });
+
+  if (variants.length === 0) return null;
+
+  return {
+    id: value.id,
+    handle: value.handle,
+    title: value.title,
+    description: value.description ?? "",
+    variants,
+  };
 }
 
 async function storefrontGraphql<T>(
-  config: StorefrontConfig,
   query: string,
   variables: Record<string, unknown>,
-  mode: "private" | "public",
-): Promise<{ ok: true; data: T } | { ok: false; status: number }> {
-  const response = await fetch(config.graphqlUrl, {
-    method: "POST",
-    headers: storefrontHeaders(config.token, mode),
-    body: JSON.stringify({ query, variables }),
-    next: { revalidate: 60 },
-  });
+  tags: string[],
+): Promise<T> {
+  const config = getStorefrontConfig();
+
+  let response: Response;
+  try {
+    response = await fetch(config.graphqlUrl, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "Shopify-Storefront-Private-Token": config.token,
+        "User-Agent": "mornfreak-storefront",
+      },
+      body: JSON.stringify({
+        query,
+        variables: { ...variables, country: config.country },
+      }),
+      signal: AbortSignal.timeout(STOREFRONT_TIMEOUT_MS),
+      next: { revalidate: STOREFRONT_REVALIDATE_SECONDS, tags },
+    });
+  } catch {
+    throw new CatalogUnavailableError();
+  }
 
   if (!response.ok) {
-    return { ok: false, status: response.status };
+    throw new CatalogUnavailableError(`Shopify returned HTTP ${response.status}`);
   }
 
-  const payload = (await response.json()) as { data?: T; errors?: unknown };
-
-  if (!payload.data) {
-    return { ok: false, status: response.status };
-  }
-
-  return { ok: true, data: payload.data };
-}
-
-/**
- * Published Storefront catalog (handle + id). Returns null on missing env or API failure.
- */
-export async function fetchStorefrontProducts(): Promise<StorefrontProduct[] | null> {
-  const config = getStorefrontConfig();
-  if (!config) return null;
+  let payload: {
+    data?: T;
+    errors?: { message?: string }[];
+  };
 
   try {
-    let result = await storefrontGraphql<ListingProductsData>(
-      config,
-      LISTING_PRODUCTS_QUERY,
-      { first: LISTING_PRODUCTS_FIRST },
-      "private",
-    );
-
-    if (!result.ok && (result.status === 401 || result.status === 403)) {
-      result = await storefrontGraphql<ListingProductsData>(
-        config,
-        LISTING_PRODUCTS_QUERY,
-        { first: LISTING_PRODUCTS_FIRST },
-        "public",
-      );
-    }
-
-    if (!result.ok) return null;
-
-    return (result.data.products?.nodes ?? []).filter(
-      (node): node is StorefrontProduct => Boolean(node?.id && node.handle),
-    );
+    payload = (await response.json()) as typeof payload;
   } catch {
-    return null;
+    throw new CatalogUnavailableError("Shopify returned an invalid response");
   }
+
+  if (payload.errors?.length || !payload.data) {
+    throw new CatalogUnavailableError("Shopify returned a GraphQL error");
+  }
+
+  return payload.data;
+}
+
+export async function fetchStorefrontProducts(): Promise<CommerceProduct[]> {
+  const data = await storefrontGraphql<ListingProductsData>(
+    LISTING_PRODUCTS_QUERY,
+    { first: LISTING_PRODUCTS_FIRST },
+    ["shopify:catalog"],
+  );
+
+  return (data.products?.nodes ?? []).flatMap((product) => {
+    const parsed = parseProduct(product);
+    return parsed ? [parsed] : [];
+  });
+}
+
+export async function fetchStorefrontProduct(
+  handle: string,
+): Promise<CommerceProduct | null> {
+  const data = await storefrontGraphql<ProductByHandleData>(
+    PRODUCT_BY_HANDLE_QUERY,
+    { handle },
+    ["shopify:catalog", `shopify:product:${handle}`],
+  );
+
+  return data.product ? parseProduct(data.product) : null;
 }

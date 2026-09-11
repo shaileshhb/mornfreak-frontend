@@ -8,6 +8,7 @@ import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/cn";
 
 import { ProductBuyBoxAccordions } from "./product-buy-box-accordions";
+import { getVariantAvailability } from "./api/product-mappers";
 import { QuantityStepper } from "./quantity-stepper";
 import type { ProductDetail, ProductStat } from "./types";
 import { formatMoney } from "./utils";
@@ -81,13 +82,40 @@ function BuyBoxStat({ stat }: { stat: ProductStat }) {
 
 export function ProductBuyBox({ product }: ProductBuyBoxProps) {
   const [quantity, setQuantity] = useState(1);
-  const canPurchase = !product.comingSoon;
-  const ctaLabel = product.comingSoon ? "Coming Soon" : "Add to Cart";
+  const [selectedVariantId, setSelectedVariantId] = useState(
+    product.selectedVariant.id,
+  );
+  const selectedVariant =
+    product.variants.find((variant) => variant.id === selectedVariantId) ??
+    product.selectedVariant;
+  const availability = getVariantAvailability(selectedVariant);
+  const soldOut = availability === "sold_out";
+  const availabilityLabel = soldOut
+    ? "Sold out"
+    : availability === "backorder"
+      ? "Available to order"
+      : selectedVariant.quantityAvailable == null
+        ? "In stock"
+        : `${selectedVariant.quantityAvailable} in stock`;
+  const ctaLabel = soldOut ? "Sold out" : "Coming soon";
+  const maxQuantity = Math.max(
+    1,
+    Math.min(selectedVariant.quantityAvailable ?? 10, 10),
+  );
+  const compareAtPrice = selectedVariant.compareAtPrice;
+  const showCompareAtPrice =
+    compareAtPrice != null &&
+    compareAtPrice.currencyCode === selectedVariant.price.currencyCode &&
+    Number(compareAtPrice.amount) > Number(selectedVariant.price.amount);
   const eyebrow =
     product.label !== product.name ? product.label : "Mornfreak";
 
   return (
-    <div data-product={product.id} className="flex flex-col gap-5 sm:gap-6">
+    <div
+      data-product={product.id}
+      data-variant={selectedVariant.id}
+      className="flex flex-col gap-5 sm:gap-6"
+    >
       <nav aria-label="Breadcrumb" className="font-sans text-sm text-product-foreground/45">
         <ol className="flex flex-wrap items-center gap-1.5">
           <li>
@@ -136,18 +164,54 @@ export function ProductBuyBox({ product }: ProductBuyBoxProps) {
       <div>
         <div className="flex items-baseline gap-3">
           <p className="font-display text-[2rem] font-bold leading-none tracking-wide text-product-foreground sm:text-4xl">
-            {formatMoney(product.price, product.currency)}
+            {formatMoney(selectedVariant.price)}
           </p>
-          {product.compareAtPrice != null && product.compareAtPrice > product.price && (
+          {showCompareAtPrice && (
             <p className="font-sans text-base text-product-foreground/45 line-through">
-              {formatMoney(product.compareAtPrice, product.currency)}
+              {formatMoney(compareAtPrice)}
             </p>
           )}
         </div>
+        <p
+          className={cn(
+            "mt-2 font-sans text-sm font-semibold",
+            soldOut ? "text-destructive" : "text-product-primary",
+          )}
+        >
+          {availabilityLabel}
+        </p>
         <p className="mt-1.5 font-sans text-sm text-product-foreground/60">
           {product.servingInfo}
         </p>
       </div>
+
+      {product.variants.length > 1 ? (
+        <label className="flex flex-col gap-2 font-sans text-sm font-medium text-product-foreground">
+          Option
+          <select
+            value={selectedVariant.id}
+            onChange={(event) => {
+              setSelectedVariantId(event.target.value);
+              setQuantity(1);
+            }}
+            className="h-11 rounded-lg border border-product-primary/40 bg-product-background px-3 text-product-foreground outline-none focus-visible:ring-2 focus-visible:ring-product-primary"
+          >
+            {product.variants.map((variant) => {
+              const variantAvailability = getVariantAvailability(variant);
+              const optionLabel =
+                variant.selectedOptions.map((option) => option.value).join(" / ") ||
+                variant.title;
+
+              return (
+                <option key={variant.id} value={variant.id}>
+                  {optionLabel} — {formatMoney(variant.price)}
+                  {variantAvailability === "sold_out" ? " — Sold out" : ""}
+                </option>
+              );
+            })}
+          </select>
+        </label>
+      ) : null}
 
       <div className="flex flex-wrap gap-2">
         {product.stats.slice(0, 3).map((stat) => (
@@ -169,16 +233,16 @@ export function ProductBuyBox({ product }: ProductBuyBoxProps) {
         <QuantityStepper
           value={quantity}
           onChange={setQuantity}
-          disabled={!canPurchase}
+          max={maxQuantity}
+          disabled
         />
         <Button
           variant="primary"
           size="lg"
-          disabled={!canPurchase}
+          disabled
           className={cn(
             "h-12 min-h-11 w-full min-w-0 flex-1 bg-product-primary text-primary-foreground hover:bg-product-primary/90 sm:w-auto",
-            !canPurchase &&
-              "cursor-not-allowed disabled:opacity-100",
+            "cursor-not-allowed disabled:opacity-100",
           )}
         >
           {ctaLabel}

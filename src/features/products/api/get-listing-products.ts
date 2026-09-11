@@ -1,25 +1,21 @@
-import { ALL_PRODUCTS, type ProductContent } from "@/lib/products";
+import { ALL_PRODUCTS } from "@/lib/products";
 import { fetchStorefrontProducts } from "@/lib/shopify-storefront";
+import type { ProductListing } from "../types";
 
-/**
- * Map Shopify handles that differ from local slugs.
- * Identity matching is the default (`handle` === `ProductContent.slug`).
- */
-const SHOPIFY_HANDLE_TO_SLUG: Record<string, string> = {
-  "protein-oats": "protein-oats-425g",
-};
+import { composeListingProduct } from "./product-mappers";
 
-export async function getListingProducts(): Promise<ProductContent[]> {
+export async function getListingProducts(): Promise<ProductListing[]> {
   const shopifyProducts = await fetchStorefrontProducts();
-  if (!shopifyProducts?.length) return ALL_PRODUCTS;
+  const commerceByHandle = new Map(
+    shopifyProducts.map((product) => [product.handle, product]),
+  );
 
-  const matchedSlugs = new Set<string>();
-
-  for (const product of shopifyProducts) {
-    const slug = SHOPIFY_HANDLE_TO_SLUG[product.handle] ?? product.handle;
-    matchedSlugs.add(slug);
-  }
-
-  const ordered = ALL_PRODUCTS.filter((product) => matchedSlugs.has(product.slug));
-  return ordered.length > 0 ? ordered : ALL_PRODUCTS;
+  // Preserve the intentional local merchandising order, but only include
+  // products that Shopify publishes to the configured market.
+  return ALL_PRODUCTS.flatMap((local) => {
+    const commerce = commerceByHandle.get(local.shopifyHandle);
+    if (!commerce) return [];
+    const product = composeListingProduct(local, commerce);
+    return product ? [product] : [];
+  });
 }

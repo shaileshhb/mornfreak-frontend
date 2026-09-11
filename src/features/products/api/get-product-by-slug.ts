@@ -1,29 +1,26 @@
-import { PRODUCT_DETAIL_FIXTURES } from "../fixtures/product-details";
+import { cache } from "react";
+
+import { ALL_PRODUCTS } from "@/lib/products";
+import { fetchStorefrontProduct } from "@/lib/shopify-storefront";
+
+import { LOCAL_PRODUCT_DETAILS } from "../fixtures/product-details";
 import type { ProductDetail } from "../types";
+import { composeProductDetail } from "./product-mappers";
 
 /**
- * Fetch a product detail by slug.
- *
- * Currently served from a local fixture. To wire the live API, replace the
- * body with a one-line fetch against GET /api/products/{slug} (or your backend).
+ * Compose Shopify commerce data with locally managed editorial content.
+ * Shopify remains authoritative for publication, title, price and inventory.
  */
-export async function getProductBySlug(
-  slug: string,
-): Promise<ProductDetail | null> {
-  // LIVE API SWAP:
-  // const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/products/${slug}`, { next: { revalidate: 60 } });
-  // if (res.status === 404) return null;
-  // if (!res.ok) throw new Error("Failed to load product");
-  // return res.json() as Promise<ProductDetail>;
+export const getProductBySlug = cache(
+  async (slug: string): Promise<ProductDetail | null> => {
+    const localSummary = ALL_PRODUCTS.find((product) => product.slug === slug);
+    const localDetail = LOCAL_PRODUCT_DETAILS[slug];
 
-  const product = PRODUCT_DETAIL_FIXTURES[slug] ?? null;
+    if (!localSummary || !localDetail) return null;
 
-  // Simulate async boundary so loading.tsx / Suspense behave like a real fetch.
-  await Promise.resolve();
+    const commerce = await fetchStorefrontProduct(localSummary.shopifyHandle);
+    if (!commerce) return null;
 
-  return product;
-}
-
-export async function getAllProductSlugs(): Promise<string[]> {
-  return Object.keys(PRODUCT_DETAIL_FIXTURES);
-}
+    return composeProductDetail(localDetail, commerce);
+  },
+);

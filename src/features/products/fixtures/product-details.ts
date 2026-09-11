@@ -5,7 +5,7 @@ import {
 import { PRODUCT_CONTENT } from "@/lib/products";
 
 import type {
-  ProductDetail,
+  LocalProductDetail,
   ProductGalleryCallout,
   ProductHowToUseMedia,
   ProductImage,
@@ -172,27 +172,21 @@ const PROTEIN_OATS_77G_HOW_TO_USE_MEDIA: ProductHowToUseMedia = {
   caption: "One pour, one stir, done.",
 };
 
-export const PRODUCT_DETAIL_FIXTURES: Record<string, ProductDetail> = {
+export const LOCAL_PRODUCT_DETAILS: Record<string, LocalProductDetail> = {
   "peanut-butter-powder": {
     id: peanutButter.id,
     slug: peanutButter.slug,
-    name: peanutButter.name,
     label: peanutButter.label,
     tagline: peanutButter.tagline,
-    description: peanutButter.description,
     images: PEANUT_BUTTER_GALLERY_IMAGES,
     // overlayBadge: "100% Peanuts",
     // galleryCallouts: PEANUT_BUTTER_GALLERY_CALLOUTS,
-    price: 30,
-    compareAtPrice: null,
-    currency: "AED",
     stats: peanutButter.stats.map((stat) => ({
       label: stat.label,
       value: stat.value,
     })),
     trustBadges: peanutButter.badges,
     servingInfo: peanutButter.weight,
-    comingSoon: true,
     howToUse: [
       { text: "Take 2 tbsp (16g) of powder." },
       { text: "Mix with 1.5–2 tbsp water." },
@@ -227,23 +221,17 @@ export const PRODUCT_DETAIL_FIXTURES: Record<string, ProductDetail> = {
   "peanut-butter-powder-pack-of-2": {
     id: peanutButterPackOf2.id,
     slug: peanutButterPackOf2.slug,
-    name: peanutButterPackOf2.name,
     label: peanutButterPackOf2.label,
     tagline: peanutButterPackOf2.tagline,
-    description: peanutButterPackOf2.description,
     images: PEANUT_BUTTER_GALLERY_IMAGES,
     overlayBadge: "100% Peanuts",
     galleryCallouts: PEANUT_BUTTER_GALLERY_CALLOUTS,
-    price: 50,
-    compareAtPrice: null,
-    currency: "AED",
     stats: peanutButter.stats.map((stat) => ({
       label: stat.label,
       value: stat.value,
     })),
     trustBadges: peanutButter.badges,
     servingInfo: peanutButter.weight,
-    comingSoon: true,
     howToUse: [
       { text: "Take 2 tbsp (16g) of powder." },
       { text: "Mix with 1.5–2 tbsp water." },
@@ -278,21 +266,15 @@ export const PRODUCT_DETAIL_FIXTURES: Record<string, ProductDetail> = {
   "protein-oats-425g": {
     id: proteinOats425g.id,
     slug: proteinOats425g.slug,
-    name: proteinOats425g.name,
     label: proteinOats425g.label,
     tagline: proteinOats425g.tagline,
-    description: proteinOats425g.description,
     images: PROTEIN_OATS_425G_GALLERY_IMAGES,
-    price: 32,
-    compareAtPrice: null,
-    currency: "AED",
     stats: proteinOats425g.stats.map((stat) => ({
       label: stat.label,
       value: stat.value,
     })),
     trustBadges: proteinOats425g.badges,
     servingInfo: proteinOats425g.weight,
-    comingSoon: true,
     howToUse: [
       { text: "Add a 70g serving to a bowl." },
       { text: "Pour over hot milk or water." },
@@ -329,21 +311,15 @@ export const PRODUCT_DETAIL_FIXTURES: Record<string, ProductDetail> = {
   "protein-oats-425g-pack-of-2": {
     id: proteinOats425gPackOf2.id,
     slug: proteinOats425gPackOf2.slug,
-    name: proteinOats425gPackOf2.name,
     label: proteinOats425gPackOf2.label,
     tagline: proteinOats425gPackOf2.tagline,
-    description: proteinOats425gPackOf2.description,
     images: PROTEIN_OATS_425G_GALLERY_IMAGES,
-    price: 58,
-    compareAtPrice: null,
-    currency: "AED",
     stats: proteinOats425gPackOf2.stats.map((stat) => ({
       label: stat.label,
       value: stat.value,
     })),
     trustBadges: proteinOats425gPackOf2.badges,
     servingInfo: proteinOats425gPackOf2.weight,
-    comingSoon: true,
     howToUse: [
       { text: "Add a 70g serving to a bowl." },
       { text: "Pour over hot milk or water." },
@@ -381,24 +357,18 @@ export const PRODUCT_DETAIL_FIXTURES: Record<string, ProductDetail> = {
   "protein-oats-77g": {
     id: proteinOats77g.id,
     slug: proteinOats77g.slug,
-    name: proteinOats77g.name,
     label: proteinOats77g.label,
     tagline: proteinOats77g.tagline,
-    description: proteinOats77g.description,
     images: [{
       url: "/images/products/oats-77g/oats-77g-nobg-1.avif",
       alt: "Protein Oats pouch with a prepared chocolate oat bowl"
     }, ...PROTEIN_OATS_77G_GALLERY_IMAGES],
-    price: 10,
-    compareAtPrice: null,
-    currency: "AED",
     stats: proteinOats77g.stats.map((stat) => ({
       label: stat.label,
       value: stat.value,
     })),
     trustBadges: proteinOats77g.badges,
     servingInfo: proteinOats77g.weight,
-    comingSoon: true,
     howToUse: [
       { text: "Add a 70g serving to a bowl." },
       { text: "Pour over hot milk or water." },
@@ -435,24 +405,18 @@ export const PRODUCT_DETAIL_FIXTURES: Record<string, ProductDetail> = {
   "protein-oats-77g-pack-of-6": {
     id: proteinOats77gPackOf6.id,
     slug: proteinOats77gPackOf6.slug,
-    name: proteinOats77gPackOf6.name,
     label: proteinOats77gPackOf6.label,
     tagline: proteinOats77gPackOf6.tagline,
-    description: proteinOats77gPackOf6.description,
     images: [{
       url: "/images/products/oats-77g/oats-77g-pack-of-6.avif",
       alt: "Protein Oats pack of 6"
     }, ...PROTEIN_OATS_77G_GALLERY_IMAGES],
-    price: 50,
-    compareAtPrice: null,
-    currency: "AED",
     stats: proteinOats77gPackOf6.stats.map((stat) => ({
       label: stat.label,
       value: stat.value,
     })),
     trustBadges: proteinOats77gPackOf6.badges,
     servingInfo: proteinOats77gPackOf6.weight,
-    comingSoon: true,
     howToUse: [
       { text: "Add a 70g serving to a bowl." },
       { text: "Pour over hot milk or water." },
@@ -487,5 +451,3 @@ export const PRODUCT_DETAIL_FIXTURES: Record<string, ProductDetail> = {
     reviews: PROTEIN_OATS_REVIEWS,
   },
 };
-
-export const PRODUCT_DETAIL_SLUGS = Object.keys(PRODUCT_DETAIL_FIXTURES);

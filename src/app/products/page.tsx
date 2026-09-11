@@ -55,11 +55,22 @@ export default async function ProductsPage() {
 
       <Section>
         <Container>
-          <div className="grid grid-cols-1 gap-10 sm:grid-cols-2 sm:gap-8 lg:grid-cols-3 lg:gap-6">
-            {products.map((product) => (
-              <ProductListingCard key={product.id} product={product} />
-            ))}
-          </div>
+          {products.length > 0 ? (
+            <div className="grid grid-cols-1 gap-10 sm:grid-cols-2 sm:gap-8 lg:grid-cols-3 lg:gap-6">
+              {products.map((product) => (
+                <ProductListingCard key={product.id} product={product} />
+              ))}
+            </div>
+          ) : (
+            <div className="rounded-2xl border border-border bg-card px-6 py-12 text-center">
+              <Heading variant="h2" as="h2">
+                No products available
+              </Heading>
+              <Text variant="muted" className="mt-3">
+                There are no products published for this market right now.
+              </Text>
+            </div>
+          )}
         </Container>
       </Section>
     </>

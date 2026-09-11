@@ -1,9 +1,10 @@
-export function formatMoney(amount: number, currency: string): string {
-  return new Intl.NumberFormat("en-IN", {
+import type { Money } from "./types";
+
+export function formatMoney(money: Money): string {
+  return new Intl.NumberFormat("en-AE", {
     style: "currency",
-    currency,
-    maximumFractionDigits: 0,
-  }).format(amount);
+    currency: money.currencyCode,
+  }).format(Number(money.amount));
 }
 
 export function formatReviewDate(isoDate: string): string {

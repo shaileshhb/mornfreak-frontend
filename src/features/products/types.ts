@@ -1,4 +1,32 @@
 import type { ProductId } from "@/types/product";
+import type { ProductContent } from "@/lib/products";
+
+export type Money = {
+  amount: string;
+  currencyCode: string;
+};
+
+export type ProductAvailability = "available" | "backorder" | "sold_out";
+
+export type CommerceVariant = {
+  id: string;
+  title: string;
+  sku: string | null;
+  availableForSale: boolean;
+  currentlyNotInStock: boolean;
+  quantityAvailable: number | null;
+  price: Money;
+  compareAtPrice: Money | null;
+  selectedOptions: { name: string; value: string }[];
+};
+
+export type CommerceProduct = {
+  id: string;
+  handle: string;
+  title: string;
+  description: string;
+  variants: CommerceVariant[];
+};
 
 export type ProductImage = {
   url: string;
@@ -73,23 +101,17 @@ export type ProductReviews = {
   items: ProductReview[];
 };
 
-export type ProductDetail = {
+export type LocalProductDetail = {
   id: ProductId;
   slug: string;
   label: string;
-  name: string;
   tagline: string;
-  description: string;
   images: ProductImage[];
   overlayBadge?: string;
   galleryCallouts?: ProductGalleryCallout[];
-  price: number;
-  compareAtPrice: number | null;
-  currency: string;
   stats: ProductStat[];
   trustBadges: string[];
   servingInfo: string;
-  comingSoon: boolean;
   howToUse: ProductHowToUseStep[];
   howToUseMedia?: ProductHowToUseMedia;
   ingredientStatement: string;
@@ -98,4 +120,23 @@ export type ProductDetail = {
   ingredients: ProductIngredient[];
   proofPoints: ProductProofPoint[];
   reviews: ProductReviews;
+};
+
+export type ProductDetail = LocalProductDetail & {
+  shopifyId: string;
+  name: string;
+  description: string;
+  variants: CommerceVariant[];
+  selectedVariant: CommerceVariant;
+  availability: ProductAvailability;
+};
+
+export type ProductListing = ProductContent & {
+  shopifyId: string;
+  name: string;
+  description: string;
+  variants: CommerceVariant[];
+  selectedVariant: CommerceVariant;
+  availability: ProductAvailability;
+  hasVariablePrice: boolean;
 };

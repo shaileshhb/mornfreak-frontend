@@ -1,10 +1,11 @@
-import { Droplet, Dumbbell, ShoppingBag, Wheat } from "lucide-react";
+import { Droplet, Dumbbell, Wheat } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 
-import type { ProductContent, ProductStat } from "@/lib/products";
+import { cn } from "@/lib/cn";
 
-import { PRODUCT_DETAIL_FIXTURES } from "./fixtures/product-details";
+import type { ProductListing, ProductStat } from "./types";
+import { formatMoney } from "./utils";
 
 function StatIcon({ label }: { label: string }) {
   const key = label.toLowerCase();
@@ -31,42 +32,15 @@ function ListingStat({ stat }: { stat: ProductStat }) {
   );
 }
 
-function ListingCartCta({
-  canPurchase,
-  ctaLabel,
-}: {
-  canPurchase: boolean;
-  ctaLabel: string;
-}) {
-  if (!canPurchase) {
-    return (
-      <span
-        aria-disabled="true"
-        className="inline-flex shrink-0 cursor-default items-center gap-1.5 font-sans text-sm font-medium text-muted-foreground"
-      >
-        <ShoppingBag aria-hidden size={15} />
-        {ctaLabel}
-      </span>
-    );
-  }
-
-  return (
-    <button
-      type="button"
-      className="inline-flex shrink-0 cursor-pointer items-center gap-1.5 font-sans text-sm font-medium text-primary underline-offset-4 outline-none hover:underline focus-visible:underline"
-    >
-      <ShoppingBag aria-hidden size={15} />
-      {ctaLabel}
-    </button>
-  );
-}
-
-export function ProductListingCard({ product }: { product: ProductContent }) {
+export function ProductListingCard({ product }: { product: ProductListing }) {
   const stats = product.stats.slice(0, 2);
   const href = `/products/${product.slug}`;
-  const comingSoon = PRODUCT_DETAIL_FIXTURES[product.slug]?.comingSoon ?? true;
-  const canPurchase = !comingSoon;
-  const ctaLabel = comingSoon ? "Coming Soon" : "Add to Cart";
+  const statusLabel =
+    product.availability === "sold_out"
+      ? "Sold out"
+      : product.availability === "backorder"
+        ? "Available to order"
+        : "In stock";
 
   return (
     <article className="flex flex-col gap-5">
@@ -95,6 +69,10 @@ export function ProductListingCard({ product }: { product: ProductContent }) {
               {product.name}
             </h2>
             <p className="mt-1 font-sans text-sm text-muted-foreground">{product.tagline}</p>
+            <p className="mt-2 font-sans text-base font-semibold text-foreground">
+              {product.hasVariablePrice ? "From " : ""}
+              {formatMoney(product.selectedVariant.price)}
+            </p>
           </div>
 
           <div className="h-px w-full bg-foreground/80" />
@@ -114,7 +92,16 @@ export function ProductListingCard({ product }: { product: ProductContent }) {
         >
           View product
         </Link>
-        <ListingCartCta canPurchase={canPurchase} ctaLabel={ctaLabel} />
+        <span
+          className={cn(
+            "shrink-0 font-sans text-sm font-semibold",
+            product.availability === "sold_out"
+              ? "text-muted-foreground"
+              : "text-primary",
+          )}
+        >
+          {statusLabel}
+        </span>
       </div>
     </article>
   );

@@ -36,7 +36,8 @@ export function StickyMobileCartBar({
     return () => observerRef.current?.disconnect();
   }, [sentinelId]);
 
-  const label = product.comingSoon ? "Coming Soon" : "Add to Cart";
+  const soldOut = product.availability === "sold_out";
+  const label = soldOut ? "Sold out" : "Coming soon";
 
   return (
     <div
@@ -54,7 +55,7 @@ export function StickyMobileCartBar({
             {product.name}
           </p>
           <p className="font-display text-lg font-bold tracking-wide">
-            {formatMoney(product.price, product.currency)}
+            {formatMoney(product.selectedVariant.price)}
           </p>
         </div>
         <Button

@@ -5,6 +5,11 @@ import {
   getProductBySlug,
   ProductDetailPage,
 } from "@/features/products";
+import {
+  createBreadcrumbJsonLd,
+  createProductJsonLd,
+  safeJsonLd,
+} from "@/lib/seo";
 
 type PageProps = {
   params: Promise<{ slug: string }>;
@@ -21,14 +26,14 @@ export async function generateMetadata({
   }
 
   return {
-    title: product.name,
-    description: product.description,
+    title: `${product.name} UAE`,
+    description: `${product.description} Shop online in the UAE from Mornfreak.`,
     alternates: {
       canonical: `/products/${product.slug}`,
     },
     openGraph: {
-      title: product.name,
-      description: product.description,
+      title: `${product.name} UAE`,
+      description: `${product.description} Shop online in the UAE from Mornfreak.`,
       images: product.images[0]
         ? [{ url: product.images[0].url, alt: product.images[0].alt }]
         : undefined,
@@ -44,5 +49,24 @@ export default async function Page({ params }: PageProps) {
     notFound();
   }
 
-  return <ProductDetailPage product={product} />;
+  const jsonLd = [
+    createBreadcrumbJsonLd([
+      { name: "Home", path: "/" },
+      { name: "Products", path: "/products" },
+      { name: product.name, path: `/products/${product.slug}` },
+    ]),
+    createProductJsonLd(product),
+  ];
+
+  return (
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: safeJsonLd(jsonLd),
+        }}
+      />
+      <ProductDetailPage product={product} />
+    </>
+  );
 }

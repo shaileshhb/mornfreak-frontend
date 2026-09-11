@@ -7,18 +7,32 @@ import { Section } from "@/components/ui/section";
 import { Text } from "@/components/ui/text";
 import { getListingProducts } from "@/features/products/api/get-listing-products";
 import { ProductListingCard } from "@/features/products/product-listing-card";
+import { createBreadcrumbJsonLd, safeJsonLd } from "@/lib/seo";
 
 export const metadata: Metadata = {
-  title: "Products",
+  title: "Protein Oats & Peanut Butter Powder UAE",
   description:
-    "Two high-performance breakfast staples. Real ingredients, real results. Mornfreak Protein Oats and Pure Peanut Butter Powder.",
+    "Shop Mornfreak Protein Oats and Pure Peanut Butter Powder online in the UAE. Clean, high-protein breakfast staples with no added sugar.",
+  alternates: {
+    canonical: "/products",
+  },
 };
 
 export default async function ProductsPage() {
   const products = await getListingProducts();
+  const breadcrumbJsonLd = createBreadcrumbJsonLd([
+    { name: "Home", path: "/" },
+    { name: "Products", path: "/products" },
+  ]);
 
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: safeJsonLd(breadcrumbJsonLd),
+        }}
+      />
       <section className="relative bg-background">
         <div className="relative aspect-[3/2] w-full overflow-hidden lg:aspect-[4/1]">
           <Image

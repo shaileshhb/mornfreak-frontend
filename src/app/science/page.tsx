@@ -21,9 +21,12 @@ import { Text } from "@/components/ui/text";
 import { MorningProgress } from "@/features/science/morning-progress";
 
 export const metadata: Metadata = {
-  title: "Science",
+  title: "Nutrition Science for High-Protein Breakfast",
   description:
-    "The science of better mornings. How protein oats and peanut butter powder work together as one daily habit.",
+    "The science behind Mornfreak Protein Oats and Peanut Butter Powder for high-protein breakfast routines across the UAE.",
+  alternates: {
+    canonical: "/science",
+  },
 };
 
 const FORMULA = [

@@ -8,7 +8,11 @@ import { ContactForm } from "@/features/contact/contact-form";
 
 export const metadata: Metadata = {
   title: "Contact",
-  description: "Get in touch with Mornfreak. Questions, feedback, or just to say hi.",
+  description:
+    "Contact Mornfreak for UAE online store support, product questions, feedback, and wholesale enquiries.",
+  alternates: {
+    canonical: "/contact",
+  },
 };
 
 export default function ContactPage() {

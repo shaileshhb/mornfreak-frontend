@@ -1,3 +1,5 @@
+import type { Metadata } from "next";
+
 import { AuthErrorNotice } from "@/features/auth";
 import {
   BenefitsMarquee,
@@ -9,6 +11,15 @@ import {
   FollowUsOnInstagram,
   WhyMornfreak,
 } from "@/features/home";
+import { UAE_MARKET_DESCRIPTION } from "@/lib/seo";
+
+export const metadata: Metadata = {
+  title: "Protein Oats & Peanut Butter Powder UAE",
+  description: UAE_MARKET_DESCRIPTION,
+  alternates: {
+    canonical: "/",
+  },
+};
 
 export default async function Home({ searchParams }: PageProps<"/">) {
   const { authError } = await searchParams;

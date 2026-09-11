@@ -3,8 +3,10 @@ import { redirect } from "next/navigation";
 
 import { ProfilePage } from "@/features/account";
 import { getCurrentCustomer } from "@/lib/shopify-auth";
+import { PRIVATE_ROUTE_METADATA } from "@/lib/seo";
 
 export const metadata: Metadata = {
+  ...PRIVATE_ROUTE_METADATA,
   title: "Account",
   description: "Your Mornfreak account.",
 };

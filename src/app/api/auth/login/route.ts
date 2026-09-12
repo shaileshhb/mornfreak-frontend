@@ -6,6 +6,7 @@ import {
   generateCodeVerifier,
   generateState,
   getShopifyAuthConfig,
+  safeNextPath,
   setPkceCookies,
 } from "@/lib/shopify-auth";
 
@@ -23,9 +24,10 @@ export async function GET(request: NextRequest) {
   const verifier = generateCodeVerifier();
   const codeChallenge = generateCodeChallenge(verifier);
   const state = generateState();
+  const nextPath = safeNextPath(request.nextUrl.searchParams.get("next"));
   const authorizeUrl = buildAuthorizeUrl(config, { state, codeChallenge });
 
   const response = NextResponse.redirect(authorizeUrl);
-  setPkceCookies(response, { verifier, state });
+  setPkceCookies(response, { verifier, state, nextPath });
   return response;
 }

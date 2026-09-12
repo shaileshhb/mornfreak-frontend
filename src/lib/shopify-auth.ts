@@ -74,6 +74,7 @@ const CUSTOMER_QUERY = /* GraphQL */ `
 export const COOKIE = {
   verifier: "mf_ca_verifier",
   state: "mf_ca_state",
+  next: "mf_ca_next",
   access: "mf_ca_access",
   refresh: "mf_ca_refresh",
   idToken: "mf_ca_id",
@@ -82,6 +83,7 @@ export const COOKIE = {
 
 export type ShopifyAuthConfig = {
   shopId: string;
+  authDomain: string | null;
   clientId: string;
   appUrl: string;
   redirectUri: string;
@@ -202,8 +204,20 @@ type TokenResponse = {
   refresh_token?: string;
 };
 
+function normalizeShopifyDomain(value: string | undefined): string | null {
+  const domain = value
+    ?.trim()
+    .replace(/^https?:\/\//, "")
+    .replace(/\/$/, "");
+
+  return domain || null;
+}
+
 export function getShopifyAuthConfig(): ShopifyAuthConfig {
   const shopId = process.env.SHOPIFY_SHOP_ID?.trim();
+  const authDomain = normalizeShopifyDomain(
+    process.env.SHOPIFY_CUSTOMER_ACCOUNT_DOMAIN,
+  );
   const clientId = process.env.SHOPIFY_CUSTOMER_ACCOUNT_CLIENT_ID?.trim();
   const appUrl = process.env.SHOPIFY_APP_URL?.trim().replace(/\/$/, "");
 
@@ -211,14 +225,19 @@ export function getShopifyAuthConfig(): ShopifyAuthConfig {
     throw new Error("Shopify Customer Account env is not configured");
   }
 
+  const authBaseUrl = authDomain
+    ? `https://${authDomain}/authentication`
+    : `https://shopify.com/authentication/${shopId}`;
+
   return {
     shopId,
+    authDomain,
     clientId,
     appUrl,
     redirectUri: `${appUrl}/api/auth/callback`,
-    authorizeUrl: `https://shopify.com/authentication/${shopId}/oauth/authorize`,
-    tokenUrl: `https://shopify.com/authentication/${shopId}/oauth/token`,
-    logoutUrl: `https://shopify.com/authentication/${shopId}/logout`,
+    authorizeUrl: `${authBaseUrl}/oauth/authorize`,
+    tokenUrl: `${authBaseUrl}/oauth/token`,
+    logoutUrl: `${authBaseUrl}/logout`,
     graphqlUrl: `https://shopify.com/${shopId}/account/customer/api/${CUSTOMER_API_VERSION}/graphql`,
   };
 }
@@ -284,17 +303,19 @@ export function buildAuthorizeUrl(
 
 export function setPkceCookies(
   response: NextResponse,
-  params: { verifier: string; state: string },
+  params: { verifier: string; state: string; nextPath: string },
 ): void {
   const options = pkceCookieOptions();
   response.cookies.set(COOKIE.verifier, params.verifier, options);
   response.cookies.set(COOKIE.state, params.state, options);
+  response.cookies.set(COOKIE.next, params.nextPath, options);
 }
 
 export function clearPkceCookies(response: NextResponse): void {
   const options = { ...pkceCookieOptions(), maxAge: 0 };
   response.cookies.set(COOKIE.verifier, "", options);
   response.cookies.set(COOKIE.state, "", options);
+  response.cookies.set(COOKIE.next, "", options);
 }
 
 async function postTokenRequest(
@@ -446,10 +467,12 @@ export async function hasRefreshToken(): Promise<boolean> {
 export async function requireAccountAccess(nextPath = "/account"): Promise<void> {
   if (await readUnexpiredAccessToken()) return;
 
+  const loginPath = `/api/auth/login?next=${encodeURIComponent(nextPath)}`;
+
   redirect(
     (await hasRefreshToken())
       ? `/api/auth/refresh?next=${encodeURIComponent(nextPath)}`
-      : "/api/auth/login",
+      : loginPath,
   );
 }
 

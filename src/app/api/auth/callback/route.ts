@@ -5,6 +5,7 @@ import {
   clearPkceCookies,
   exchangeAuthorizationCode,
   getShopifyAuthConfig,
+  safeNextPath,
   setSessionCookies,
   statesMatch,
 } from "@/lib/shopify-auth";
@@ -33,6 +34,7 @@ export async function GET(request: NextRequest) {
 
   const expectedState = request.cookies.get(COOKIE.state)?.value;
   const codeVerifier = request.cookies.get(COOKIE.verifier)?.value;
+  const nextPath = safeNextPath(request.cookies.get(COOKIE.next)?.value ?? null);
 
   if (!expectedState || !codeVerifier || !statesMatch(expectedState, returnedState)) {
     return backHome("csrf");
@@ -62,7 +64,7 @@ export async function GET(request: NextRequest) {
     return backHome("token");
   }
 
-  const response = NextResponse.redirect(new URL("/account", origin));
+  const response = NextResponse.redirect(new URL(nextPath, origin));
   clearPkceCookies(response);
   setSessionCookies(response, {
     accessToken: tokens.access_token,

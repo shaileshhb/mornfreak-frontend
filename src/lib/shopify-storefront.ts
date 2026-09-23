@@ -383,13 +383,6 @@ function getStorefrontConfig(): StorefrontConfig {
   };
 }
 
-function getShopifyStoreHost(): string {
-  const domain = process.env.SHOPIFY_STORE_DOMAIN?.trim();
-  return domain
-    ? domain.replace(/^https?:\/\//, "").replace(/\/$/, "").toLowerCase()
-    : "";
-}
-
 function parseCheckoutUrl(value: string | undefined): string | null {
   if (!value) return null;
 
@@ -400,9 +393,7 @@ function parseCheckoutUrl(value: string | undefined): string | null {
     return null;
   }
 
-  const allowedHost = getShopifyStoreHost();
-  if (url.protocol !== "https:" || !allowedHost) return null;
-  if (url.hostname.toLowerCase() !== allowedHost) return null;
+  if (url.protocol !== "https:") return null;
 
   return url.toString();
 }

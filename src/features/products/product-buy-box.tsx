@@ -11,7 +11,7 @@ import { ProductBuyBoxAccordions } from "./product-buy-box-accordions";
 import { getVariantAvailability } from "./api/product-mappers";
 import { QuantityStepper } from "./quantity-stepper";
 import type { ProductDetail, ProductStat } from "./types";
-import { formatMoney } from "./utils";
+import { formatMoney, hasVisibleCompareAtPrice } from "./utils";
 
 type ProductBuyBoxProps = {
   product: ProductDetail;
@@ -104,10 +104,10 @@ export function ProductBuyBox({ product }: ProductBuyBoxProps) {
     Math.min(selectedVariant.quantityAvailable ?? 10, 10),
   );
   const compareAtPrice = selectedVariant.compareAtPrice;
-  const showCompareAtPrice =
-    compareAtPrice != null &&
-    compareAtPrice.currencyCode === selectedVariant.price.currencyCode &&
-    Number(compareAtPrice.amount) > Number(selectedVariant.price.amount);
+  const showCompareAtPrice = hasVisibleCompareAtPrice(
+    selectedVariant.price,
+    compareAtPrice,
+  );
   const eyebrow =
     product.label !== product.name ? product.label : "Mornfreak";
   const keepTitleOnOneLine = product.name.length <= 22;

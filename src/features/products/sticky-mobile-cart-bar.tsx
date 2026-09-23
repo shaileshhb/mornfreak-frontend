@@ -6,7 +6,7 @@ import { AddToCartButton } from "@/features/cart";
 import { cn } from "@/lib/cn";
 
 import type { ProductDetail } from "./types";
-import { formatMoney } from "./utils";
+import { formatMoney, hasVisibleCompareAtPrice } from "./utils";
 
 type StickyMobileCartBarProps = {
   product: ProductDetail;
@@ -39,6 +39,9 @@ export function StickyMobileCartBar({
   const soldOut = product.availability === "sold_out";
   const label =
     product.availability === "backorder" ? "Pre-order" : "Add to cart";
+  const price = product.selectedVariant.price;
+  const compareAtPrice = product.selectedVariant.compareAtPrice;
+  const showCompareAtPrice = hasVisibleCompareAtPrice(price, compareAtPrice);
 
   return (
     <div
@@ -55,9 +58,16 @@ export function StickyMobileCartBar({
           <p className="truncate font-sans text-xs text-muted-foreground">
             {product.name}
           </p>
-          <p className="font-display text-lg font-bold tracking-wide">
-            {formatMoney(product.selectedVariant.price)}
-          </p>
+          <div className="flex flex-wrap items-baseline gap-x-2 gap-y-0.5">
+            <p className="font-display text-lg font-bold tracking-wide">
+              {formatMoney(price)}
+            </p>
+            {showCompareAtPrice && (
+              <p className="font-sans text-xs font-medium text-muted-foreground line-through">
+                {formatMoney(compareAtPrice)}
+              </p>
+            )}
+          </div>
         </div>
         <AddToCartButton
           merchandiseId={product.selectedVariant.id}

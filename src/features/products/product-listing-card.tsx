@@ -6,7 +6,7 @@ import { AddToCartButton } from "@/features/cart";
 import { cn } from "@/lib/cn";
 
 import type { ProductListing, ProductStat } from "./types";
-import { formatMoney } from "./utils";
+import { formatMoney, hasVisibleCompareAtPrice } from "./utils";
 
 function StatIcon({ label }: { label: string }) {
   const key = label.toLowerCase();
@@ -37,6 +37,9 @@ export function ProductListingCard({ product }: { product: ProductListing }) {
   const stats = product.stats.slice(0, 2);
   const href = `/products/${product.slug}`;
   const available = product.availability !== "sold_out";
+  const price = product.selectedVariant.price;
+  const compareAtPrice = product.selectedVariant.compareAtPrice;
+  const showCompareAtPrice = hasVisibleCompareAtPrice(price, compareAtPrice);
 
   return (
     <article className="flex flex-col gap-5">
@@ -65,10 +68,17 @@ export function ProductListingCard({ product }: { product: ProductListing }) {
               {product.name}
             </h2>
             <p className="mt-1 font-sans text-sm text-muted-foreground">{product.tagline}</p>
-            <p className="mt-2 font-sans text-base font-semibold text-foreground">
-              {product.hasVariablePrice ? "From " : ""}
-              {formatMoney(product.selectedVariant.price)}
-            </p>
+            <div className="mt-2 flex flex-wrap items-baseline gap-x-2 gap-y-1 font-sans text-base">
+              <p className="font-semibold text-foreground">
+                {product.hasVariablePrice ? "From " : ""}
+                {formatMoney(price)}
+              </p>
+              {showCompareAtPrice && (
+                <p className="text-sm font-medium text-muted-foreground line-through">
+                  {formatMoney(compareAtPrice)}
+                </p>
+              )}
+            </div>
           </div>
 
           <div className="h-px w-full bg-foreground/80" />

@@ -12,6 +12,17 @@ export function formatMoney(money: Money): string {
   }).format(Number(money.amount));
 }
 
+export function hasVisibleCompareAtPrice(
+  price: Money,
+  compareAtPrice: Money | null,
+): compareAtPrice is Money {
+  return (
+    compareAtPrice != null &&
+    compareAtPrice.currencyCode === price.currencyCode &&
+    Number(compareAtPrice.amount) > Number(price.amount)
+  );
+}
+
 export function formatReviewDate(isoDate: string): string {
   const date = new Date(isoDate);
   if (Number.isNaN(date.getTime())) return isoDate;

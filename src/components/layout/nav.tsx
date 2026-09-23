@@ -8,6 +8,9 @@ import { useState } from "react";
 
 import { useCart } from "@/features/cart";
 import { cn } from "@/lib/cn";
+import type { MarketCode } from "@/lib/markets";
+
+import { MarketSelector } from "./market-selector";
 
 const NAV_LINKS = [
   { label: "Shop", href: "/products" },
@@ -19,7 +22,11 @@ function isActivePath(pathname: string, href: string) {
   return pathname === href || pathname.startsWith(`${href}/`);
 }
 
-export function Nav() {
+export function Nav({
+  currentMarketCode,
+}: {
+  currentMarketCode: MarketCode;
+}) {
   const [menuOpen, setMenuOpen] = useState(false);
   const pathname = usePathname();
   const { cart } = useCart();
@@ -73,7 +80,11 @@ export function Nav() {
             />
           </Link>
 
-          <div className="flex flex-1 items-center justify-end gap-5">
+          <div className="flex flex-1 items-center justify-end gap-4 sm:gap-5">
+            <MarketSelector
+              currentMarketCode={currentMarketCode}
+              className="hidden sm:inline-flex"
+            />
             <Link
               href="/account"
               aria-label="Account"
@@ -121,6 +132,9 @@ export function Nav() {
               >
                 Account
               </Link>
+              <div className="px-2 pt-4">
+                <MarketSelector currentMarketCode={currentMarketCode} />
+              </div>
             </div>
           </div>
         )}

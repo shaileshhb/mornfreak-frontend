@@ -1,14 +1,18 @@
 import { NextRequest, NextResponse } from "next/server";
 
-import { clearCartCookie, getBuyerIp, readCartId } from "@/features/cart/server";
+import { clearCartCookie, readCartId } from "@/features/cart/server";
+import { getCurrentMarket } from "@/lib/market-server";
 import {
+  CartCurrencyMismatchError,
   CartOperationError,
   CatalogUnavailableError,
   fetchCartCheckout,
 } from "@/lib/shopify-storefront";
 
 export async function POST(request: NextRequest) {
-  const cartId = readCartId(request);
+  const market = await getCurrentMarket();
+  const country = market.countryCode;
+  const cartId = readCartId(request, country);
 
   if (!cartId) {
     return NextResponse.json({ error: "Cart not found" }, { status: 404 });
@@ -16,7 +20,7 @@ export async function POST(request: NextRequest) {
 
   try {
     const checkout = await fetchCartCheckout(cartId, {
-      buyerIp: getBuyerIp(request),
+      country,
     });
 
     if (!checkout || checkout.cart.totalQuantity < 1) {
@@ -24,7 +28,7 @@ export async function POST(request: NextRequest) {
         { error: "Cart is empty" },
         { status: 400 },
       );
-      if (!checkout) clearCartCookie(response);
+      if (!checkout) clearCartCookie(response, country);
       return response;
     }
 
@@ -37,12 +41,19 @@ export async function POST(request: NextRequest) {
       );
     }
 
+    if (error instanceof CartCurrencyMismatchError) {
+      return NextResponse.json(
+        { error: error.message || "Checkout market is out of sync" },
+        { status: error.status },
+      );
+    }
+
     if (error instanceof CartOperationError) {
       const response = NextResponse.json(
         { error: error.message || "Checkout is unavailable" },
         { status: error.status },
       );
-      clearCartCookie(response);
+      clearCartCookie(response, country);
       return response;
     }
 

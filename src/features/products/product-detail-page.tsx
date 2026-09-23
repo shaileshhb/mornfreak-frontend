@@ -24,8 +24,8 @@ export function ProductDetailPage({ product }: ProductDetailPageProps) {
         data-product={product.id}
         className="bg-background pb-6 pt-6 sm:pb-8 sm:pt-8 lg:pb-8 lg:pt-10"
       >
-        <Container className="max-w-[90rem]">
-          <div className="grid gap-8 lg:grid-cols-[minmax(0,1.15fr)_minmax(0,0.85fr)] lg:items-start lg:gap-10">
+        <Container className="max-w-[84rem]">
+          <div className="grid gap-8 lg:grid-cols-[minmax(0,0.98fr)_minmax(0,1.02fr)] lg:items-start lg:gap-7 xl:gap-8">
             <ProductImageCarousel
               key={product.slug}
               images={product.images}

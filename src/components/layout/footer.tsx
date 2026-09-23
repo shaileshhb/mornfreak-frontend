@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import { FaTiktok } from "react-icons/fa6";
 
@@ -59,19 +60,37 @@ function TikTokIcon({ size = 16 }: { size?: number }) {
   return <FaTiktok size={size} aria-hidden />;
 }
 
+function FooterLogo({
+  className,
+  sizes,
+}: {
+  className: string;
+  sizes: string;
+}) {
+  return (
+    <Link href="/" aria-label="Mornfreak home" className="inline-block">
+      <Image
+        src="/logo/logo-white.png"
+        alt="Mornfreak"
+        width={2161}
+        height={728}
+        sizes={sizes}
+        className={className}
+      />
+    </Link>
+  );
+}
+
 export function Footer() {
   return (
     <footer className="bg-ember-clay">
       <div className="mx-auto max-w-[90rem] px-4 py-14 sm:px-6 sm:py-16 lg:px-10">
         <div className="grid gap-12 sm:grid-cols-2 lg:grid-cols-[1.1fr_0.9fr_0.9fr_0.9fr] lg:gap-16">
           <div>
-            <Link
-              href="/"
-              aria-label="Mornfreak home"
-              className="inline-block font-sans text-4xl font-semibold uppercase leading-none tracking-normal text-oat-cream transition-colors hover:text-toasted-almond"
-            >
-              Mornfreak
-            </Link>
+            <FooterLogo
+              className="h-12 w-auto sm:h-14"
+              sizes="(min-width: 640px) 166px, 142px"
+            />
             <p className="mt-4 max-w-xs font-sans text-sm font-normal leading-relaxed text-oat-cream/70">
               Protein-forward breakfast for people who train, work, and move fast
               in the morning.
@@ -103,13 +122,7 @@ export function Footer() {
       </div>
 
       <div className="mx-auto flex max-w-[90rem] flex-wrap items-center justify-between gap-4 px-4 py-6 sm:px-6 lg:px-10">
-        <Link
-          href="/"
-          aria-label="Mornfreak home"
-          className="font-sans text-xl font-semibold uppercase tracking-normal text-oat-cream transition-colors hover:text-toasted-almond"
-        >
-          Mornfreak
-        </Link>
+        <FooterLogo className="h-10 w-auto" sizes="120px" />
         <div className="flex items-center gap-3">
           <a
             href="https://www.instagram.com/mornfreak"

@@ -7,19 +7,52 @@ import { Section } from "@/components/ui/section";
 import { Text } from "@/components/ui/text";
 import { getListingProducts } from "@/features/products/api/get-listing-products";
 import { ProductListingCard } from "@/features/products/product-listing-card";
-import { createBreadcrumbJsonLd, safeJsonLd } from "@/lib/seo";
+import { getCurrentMarket } from "@/lib/market-server";
+import {
+  getMarketFromSearchParams,
+  marketAlternates,
+  marketPath,
+  type MarketSearchParams,
+} from "@/lib/market-routing";
+import {
+  createBreadcrumbJsonLd,
+  marketDescription,
+  marketTitleLabel,
+  safeJsonLd,
+} from "@/lib/seo";
 
-export const metadata: Metadata = {
-  title: "Protein Oats & Peanut Butter Powder UAE",
-  description:
-    "Shop Mornfreak Protein Oats and Pure Peanut Butter Powder online in the UAE. Clean, high-protein breakfast staples with no added sugar.",
-  alternates: {
-    canonical: "/products",
-  },
+type ProductsPageProps = {
+  searchParams: Promise<MarketSearchParams>;
 };
 
-export default async function ProductsPage() {
-  const products = await getListingProducts();
+async function resolveMarket(searchParams: Promise<MarketSearchParams>) {
+  const params = await searchParams;
+  return getMarketFromSearchParams(params) ?? (await getCurrentMarket());
+}
+
+export async function generateMetadata({
+  searchParams,
+}: ProductsPageProps): Promise<Metadata> {
+  const market = await resolveMarket(searchParams);
+  const path = "/products";
+
+  return {
+    title: `Protein Oats & Peanut Butter Powder ${marketTitleLabel(market)}`,
+    description: marketDescription(market),
+    alternates: {
+      canonical: marketPath(path, market),
+      languages: marketAlternates(path),
+    },
+    openGraph: {
+      title: `Protein Oats & Peanut Butter Powder ${marketTitleLabel(market)}`,
+      description: marketDescription(market),
+    },
+  };
+}
+
+export default async function ProductsPage({ searchParams }: ProductsPageProps) {
+  const market = await resolveMarket(searchParams);
+  const products = await getListingProducts(market.countryCode);
   const breadcrumbJsonLd = createBreadcrumbJsonLd([
     { name: "Home", path: "/" },
     { name: "Products", path: "/products" },
@@ -34,7 +67,7 @@ export default async function ProductsPage() {
         }}
       />
       <section className="relative bg-background">
-        <div className="relative aspect-[3/2] w-full overflow-hidden lg:aspect-[4/1]">
+        <div className="relative h-[28svh] min-h-[180px] max-h-[220px] w-full overflow-hidden sm:h-[30svh] sm:max-h-[260px] lg:h-[28svh] lg:max-h-[300px]">
           <Image
             src="/images/shop/banner.avif"
             alt="Mornfreak Protein Oats pouch, peanut butter powder, branded cup, and a prepared bowl on a wooden table"
@@ -45,29 +78,29 @@ export default async function ProductsPage() {
           />
           <div
             aria-hidden
-            className="pointer-events-none absolute inset-y-0 left-0 hidden w-[40%] bg-gradient-to-r from-ink/55 to-transparent lg:block"
+            className="pointer-events-none absolute inset-y-0 left-0 w-[70%] bg-gradient-to-r from-ink/70 to-transparent sm:w-[50%] lg:w-[40%] lg:from-ink/55"
           />
         </div>
 
-        <Container className="relative z-10 max-w-[90rem] lg:absolute lg:inset-0 lg:flex lg:items-center lg:pl-6">
-          <div className="flex max-w-md flex-col gap-3 py-10 lg:max-w-sm lg:py-0 2xl:-ml-8">
-            <span className="font-sans text-lg font-semibold uppercase text-muted-foreground lg:text-paper/80">
+        <Container className="absolute inset-0 z-10 flex max-w-[90rem] items-center lg:pl-6">
+          <div className="flex max-w-md flex-col gap-1.5 sm:gap-3 lg:max-w-sm 2xl:-ml-8">
+            <span className="font-sans text-sm font-semibold uppercase text-paper/80 sm:text-lg">
               Our Products
             </span>
             <Heading
               variant="display"
-              className="text-foreground lg:leading-[0.9] lg:text-paper"
+              className="leading-[0.9] text-paper"
               as="h1">
               Made Better.
             </Heading>
-            <Text variant="lead" className="max-w-md text-muted-foreground lg:text-paper/80">
+            <Text variant="lead" className="max-w-md text-paper/80">
               Real ingredients, real results.
             </Text>
           </div>
         </Container>
       </section>
 
-      <Section>
+      <Section className="py-8 sm:py-10 lg:py-12">
         <Container>
           {products.length > 0 ? (
             <div className="grid grid-cols-1 gap-10 sm:grid-cols-2 sm:gap-8 lg:grid-cols-3 lg:gap-6">

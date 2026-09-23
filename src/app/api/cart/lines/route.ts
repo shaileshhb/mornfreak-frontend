@@ -6,6 +6,7 @@ import {
   readCartId,
   setCartCookie,
 } from "@/features/cart/server";
+import { getCurrentMarket } from "@/lib/market-server";
 import {
   addCartLines,
   CartOperationError,
@@ -65,6 +66,8 @@ function cartErrorResponse(error: CartOperationError) {
 }
 
 export async function POST(request: NextRequest) {
+  const market = await getCurrentMarket();
+  const country = market.countryCode;
   const body = await readJson<AddLineBody>(request);
   const merchandiseId = body?.merchandiseId;
   const quantity = parseQuantity(body?.quantity ?? 1);
@@ -75,14 +78,14 @@ export async function POST(request: NextRequest) {
 
   const buyerIp = getBuyerIp(request);
   const lines = [{ merchandiseId, quantity }];
-  const existingCartId = readCartId(request);
+  const existingCartId = readCartId(request, country);
 
   try {
     const result = existingCartId
-      ? await addCartLines(existingCartId, lines, { buyerIp })
-      : await createCart(lines, { buyerIp });
+      ? await addCartLines(existingCartId, lines, { buyerIp, country })
+      : await createCart(lines, { buyerIp, country });
     const response = NextResponse.json({ cart: result.cart });
-    setCartCookie(response, result.cartId);
+    setCartCookie(response, result.cartId, country);
     return response;
   } catch (error) {
     if (
@@ -91,9 +94,9 @@ export async function POST(request: NextRequest) {
       isStaleCartError(error)
     ) {
       try {
-        const result = await createCart(lines, { buyerIp });
+        const result = await createCart(lines, { buyerIp, country });
         const response = NextResponse.json({ cart: result.cart });
-        setCartCookie(response, result.cartId);
+        setCartCookie(response, result.cartId, country);
         return response;
       } catch (createError) {
         if (createError instanceof CatalogUnavailableError) {
@@ -127,7 +130,9 @@ export async function POST(request: NextRequest) {
 }
 
 export async function PATCH(request: NextRequest) {
-  const cartId = readCartId(request);
+  const market = await getCurrentMarket();
+  const country = market.countryCode;
+  const cartId = readCartId(request, country);
   if (!cartId) {
     return NextResponse.json({ error: "Cart not found" }, { status: 404 });
   }
@@ -144,10 +149,10 @@ export async function PATCH(request: NextRequest) {
     const result = await updateCartLines(
       cartId,
       [{ id: lineId, quantity }],
-      { buyerIp: getBuyerIp(request) },
+      { buyerIp: getBuyerIp(request), country },
     );
     const response = NextResponse.json({ cart: result.cart });
-    setCartCookie(response, result.cartId);
+    setCartCookie(response, result.cartId, country);
     return response;
   } catch (error) {
     if (error instanceof CatalogUnavailableError) {
@@ -160,7 +165,7 @@ export async function PATCH(request: NextRequest) {
     if (error instanceof CartOperationError) {
       if (isStaleCartError(error)) {
         const response = NextResponse.json({ cart: null }, { status: 404 });
-        clearCartCookie(response);
+        clearCartCookie(response, country);
         return response;
       }
       return cartErrorResponse(error);
@@ -171,7 +176,9 @@ export async function PATCH(request: NextRequest) {
 }
 
 export async function DELETE(request: NextRequest) {
-  const cartId = readCartId(request);
+  const market = await getCurrentMarket();
+  const country = market.countryCode;
+  const cartId = readCartId(request, country);
   if (!cartId) {
     return NextResponse.json({ error: "Cart not found" }, { status: 404 });
   }
@@ -186,9 +193,10 @@ export async function DELETE(request: NextRequest) {
   try {
     const result = await removeCartLines(cartId, [lineId], {
       buyerIp: getBuyerIp(request),
+      country,
     });
     const response = NextResponse.json({ cart: result.cart });
-    setCartCookie(response, result.cartId);
+    setCartCookie(response, result.cartId, country);
     return response;
   } catch (error) {
     if (error instanceof CatalogUnavailableError) {
@@ -201,7 +209,7 @@ export async function DELETE(request: NextRequest) {
     if (error instanceof CartOperationError) {
       if (isStaleCartError(error)) {
         const response = NextResponse.json({ cart: null }, { status: 404 });
-        clearCartCookie(response);
+        clearCartCookie(response, country);
         return response;
       }
       return cartErrorResponse(error);

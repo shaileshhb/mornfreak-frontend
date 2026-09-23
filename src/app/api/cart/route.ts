@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 
 import { clearCartCookie, getBuyerIp, readCartId } from "@/features/cart/server";
+import { getCurrentMarket } from "@/lib/market-server";
 import {
   CartOperationError,
   CatalogUnavailableError,
@@ -8,18 +9,23 @@ import {
 } from "@/lib/shopify-storefront";
 
 export async function GET(request: NextRequest) {
-  const cartId = readCartId(request);
+  const market = await getCurrentMarket();
+  const country = market.countryCode;
+  const cartId = readCartId(request, country);
 
   if (!cartId) {
     return NextResponse.json({ cart: null });
   }
 
   try {
-    const cart = await fetchCart(cartId, { buyerIp: getBuyerIp(request) });
+    const cart = await fetchCart(cartId, {
+      buyerIp: getBuyerIp(request),
+      country,
+    });
     const response = NextResponse.json({ cart });
 
     if (!cart) {
-      clearCartCookie(response);
+      clearCartCookie(response, country);
     }
 
     return response;
@@ -33,7 +39,7 @@ export async function GET(request: NextRequest) {
 
     if (error instanceof CartOperationError) {
       const response = NextResponse.json({ cart: null });
-      clearCartCookie(response);
+      clearCartCookie(response, country);
       return response;
     }
 
@@ -42,7 +48,8 @@ export async function GET(request: NextRequest) {
 }
 
 export async function DELETE() {
+  const market = await getCurrentMarket();
   const response = NextResponse.json({ cart: null });
-  clearCartCookie(response);
+  clearCartCookie(response, market.countryCode);
   return response;
 }

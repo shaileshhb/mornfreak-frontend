@@ -51,6 +51,7 @@
 
   /* Product semantic colors (scoped via [data-product]) */
   --color-product-primary: var(--product-primary);
+  --color-product-accent: var(--product-accent);
   --color-product-secondary: var(--product-secondary);
   --color-product-background: var(--product-background);
   --color-product-foreground: var(--product-foreground);

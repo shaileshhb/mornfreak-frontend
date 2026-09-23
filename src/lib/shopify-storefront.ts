@@ -7,6 +7,7 @@ import type {
   CommerceVariant,
   Money,
 } from "@/features/products/types";
+import { DEFAULT_MARKET, type MarketCountryCode } from "@/lib/markets";
 
 const STOREFRONT_API_VERSION = "2026-07";
 const LISTING_PRODUCTS_FIRST = 50;
@@ -201,12 +202,12 @@ const CART_LINES_REMOVE_MUTATION = /* GraphQL */ `
 type StorefrontConfig = {
   graphqlUrl: string;
   token: string;
-  country: string;
 };
 
 type StorefrontRequestOptions = {
   buyerIp?: string | null;
   cache?: "default" | "no-store";
+  country?: MarketCountryCode;
   tags?: string[];
 };
 
@@ -330,24 +331,14 @@ function getStorefrontConfig(): StorefrontConfig {
     .replace(/^https?:\/\//, "")
     .replace(/\/$/, "");
   const token = process.env.SHOPIFY_STOREFRONT_PRIVATE_TOKEN?.trim();
-  const country = (
-    process.env.SHOPIFY_STOREFRONT_COUNTRY?.trim() || "AE"
-  ).toUpperCase();
 
   if (!domain || !token) {
     throw new CatalogUnavailableError("Shopify Storefront env is not configured");
   }
 
-  if (!/^[A-Z]{2}$/.test(country)) {
-    throw new CatalogUnavailableError(
-      "SHOPIFY_STOREFRONT_COUNTRY must be an ISO country code",
-    );
-  }
-
   return {
     graphqlUrl: `https://${domain}/api/${STOREFRONT_API_VERSION}/graphql.json`,
     token,
-    country,
   };
 }
 
@@ -422,7 +413,10 @@ async function storefrontGraphql<T>(
       headers,
       body: JSON.stringify({
         query,
-        variables: { ...variables, country: config.country },
+        variables: {
+          ...variables,
+          country: options.country ?? DEFAULT_MARKET.countryCode,
+        },
       }),
       signal: AbortSignal.timeout(STOREFRONT_TIMEOUT_MS),
       ...(options.cache === "no-store"
@@ -460,11 +454,13 @@ async function storefrontGraphql<T>(
   return payload.data;
 }
 
-export async function fetchStorefrontProducts(): Promise<CommerceProduct[]> {
+export async function fetchStorefrontProducts(
+  country: MarketCountryCode = DEFAULT_MARKET.countryCode,
+): Promise<CommerceProduct[]> {
   const data = await storefrontGraphql<ListingProductsData>(
     LISTING_PRODUCTS_QUERY,
     { first: LISTING_PRODUCTS_FIRST },
-    { tags: ["shopify:catalog"] },
+    { country, tags: ["shopify:catalog", `shopify:catalog:${country}`] },
   );
 
   return (data.products?.nodes ?? []).flatMap((product) => {
@@ -475,11 +471,19 @@ export async function fetchStorefrontProducts(): Promise<CommerceProduct[]> {
 
 export async function fetchStorefrontProduct(
   handle: string,
+  country: MarketCountryCode = DEFAULT_MARKET.countryCode,
 ): Promise<CommerceProduct | null> {
   const data = await storefrontGraphql<ProductByHandleData>(
     PRODUCT_BY_HANDLE_QUERY,
     { handle },
-    { tags: ["shopify:catalog", `shopify:product:${handle}`] },
+    {
+      country,
+      tags: [
+        "shopify:catalog",
+        `shopify:catalog:${country}`,
+        `shopify:product:${handle}`,
+      ],
+    },
   );
 
   return data.product ? parseProduct(data.product) : null;

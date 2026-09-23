@@ -1,7 +1,12 @@
 import type { Money } from "./types";
 
+const CURRENCY_LOCALES: Record<string, string> = {
+  AED: "en-AE",
+  INR: "en-IN",
+};
+
 export function formatMoney(money: Money): string {
-  return new Intl.NumberFormat("en-AE", {
+  return new Intl.NumberFormat(CURRENCY_LOCALES[money.currencyCode] ?? "en", {
     style: "currency",
     currency: money.currencyCode,
   }).format(Number(money.amount));

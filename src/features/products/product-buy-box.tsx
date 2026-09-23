@@ -68,12 +68,12 @@ function StarsSummary({
 
 function BuyBoxStat({ stat }: { stat: ProductStat }) {
   return (
-    <div className="flex min-w-[6.5rem] flex-1 flex-col items-center rounded-xl border border-product-primary/50 bg-product-background px-3 py-3 text-center text-product-foreground sm:min-w-[7.5rem] sm:px-4 sm:py-3.5">
+    <div className="flex min-h-[6.25rem] min-w-0 flex-col items-center justify-center rounded-xl border border-product-primary/50 bg-product-background px-2.5 py-3 text-center text-product-foreground sm:px-3 sm:py-3.5">
       <StatIcon label={stat.label} />
       <span className="mt-1.5 font-display text-2xl font-bold leading-none tracking-wide">
         {stat.value}
       </span>
-      <span className="mt-1 font-sans text-[0.6875rem] font-medium uppercase tracking-widest text-product-foreground/80">
+      <span className="mt-1 max-w-full break-words font-sans text-[0.625rem] font-medium uppercase leading-tight tracking-widest text-product-foreground/80 sm:text-[0.6875rem]">
         {stat.label}
       </span>
     </div>
@@ -110,6 +110,7 @@ export function ProductBuyBox({ product }: ProductBuyBoxProps) {
     Number(compareAtPrice.amount) > Number(selectedVariant.price.amount);
   const eyebrow =
     product.label !== product.name ? product.label : "Mornfreak";
+  const keepTitleOnOneLine = product.name.length <= 22;
 
   return (
     <div
@@ -144,10 +145,16 @@ export function ProductBuyBox({ product }: ProductBuyBoxProps) {
       </nav>
 
       <div>
-        <p className="font-sans text-kicker font-semibold uppercase text-product-primary">
+        <p className="font-sans text-kicker font-semibold uppercase text-product-accent">
           {eyebrow}
         </p>
-        <h1 className="mt-2 font-display text-[clamp(2.25rem,5vw,3.5rem)] font-bold uppercase leading-[0.9] tracking-wide text-product-foreground">
+        <h1
+          className={cn(
+            "mt-2 max-w-full font-display text-[clamp(2rem,7vw,2.75rem)] font-bold uppercase leading-[0.95] tracking-normal text-product-foreground sm:text-[clamp(2.25rem,5vw,3rem)] lg:text-[clamp(2.25rem,3vw,2.875rem)]",
+            keepTitleOnOneLine && "lg:whitespace-nowrap",
+            !keepTitleOnOneLine && "lg:text-[clamp(2rem,2.8vw,2.75rem)]",
+          )}
+        >
           {product.name}
         </h1>
         <p className="mt-3 font-sans text-base leading-relaxed text-product-foreground/70 sm:text-lg">
@@ -176,7 +183,7 @@ export function ProductBuyBox({ product }: ProductBuyBoxProps) {
         <p
           className={cn(
             "mt-2 font-sans text-sm font-semibold",
-            soldOut ? "text-destructive" : "text-product-primary",
+            soldOut ? "text-destructive" : "text-product-accent",
           )}
         >
           {availabilityLabel}
@@ -214,7 +221,7 @@ export function ProductBuyBox({ product }: ProductBuyBoxProps) {
         </label>
       ) : null}
 
-      <div className="flex flex-wrap gap-2">
+      <div className="grid grid-cols-3 gap-2">
         {product.stats.slice(0, 3).map((stat) => (
           <BuyBoxStat key={stat.label} stat={stat} />
         ))}

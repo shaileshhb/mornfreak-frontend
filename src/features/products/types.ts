@@ -55,6 +55,7 @@ export type Cart = {
 export type ProductImage = {
   url: string;
   alt: string;
+  presentation?: "standard" | "prominent";
 };
 
 export type ProductStat = {

@@ -4,22 +4,35 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 
 import { cn } from "@/lib/cn";
+import type { MarketCode } from "@/lib/markets";
 
-const MESSAGES = [
-  "Same day delivery available in dubai",
-  "Free delivery above 99 AED",
-] as const;
+const MARKET_MESSAGES: Record<MarketCode, readonly string[]> = {
+  AE: [
+    "Same day delivery available in Dubai",
+    "Free delivery above 99 AED",
+  ],
+  IN: [
+    "India pricing now available",
+    "Delivery available in selected India locations",
+  ],
+};
 
 const DWELL_MS = 4000;
 const SLIDE_MS = 550;
 
-export function AnnouncementBar() {
+export function AnnouncementBar({
+  currentMarketCode,
+}: {
+  currentMarketCode: MarketCode;
+}) {
   const [index, setIndex] = useState(0);
   const [sliding, setSliding] = useState(false);
   const [hovered, setHovered] = useState(false);
   const [reducedMotion, setReducedMotion] = useState(false);
 
-  const nextIndex = (index + 1) % MESSAGES.length;
+  const messages = MARKET_MESSAGES[currentMarketCode];
+  const currentIndex = index % messages.length;
+  const nextIndex = (currentIndex + 1) % messages.length;
 
   useEffect(() => {
     const mq = window.matchMedia("(prefers-reduced-motion: reduce)");
@@ -37,7 +50,7 @@ export function AnnouncementBar() {
 
     if (reducedMotion) {
       const dwell = window.setTimeout(() => {
-        setIndex((current) => (current + 1) % MESSAGES.length);
+        setIndex((current) => (current + 1) % messages.length);
       }, DWELL_MS);
       return () => window.clearTimeout(dwell);
     }
@@ -47,18 +60,18 @@ export function AnnouncementBar() {
     }, DWELL_MS);
 
     return () => window.clearTimeout(dwell);
-  }, [hovered, index, reducedMotion]);
+  }, [hovered, index, messages.length, reducedMotion]);
 
   useEffect(() => {
     if (!sliding || reducedMotion) return;
 
     const slide = window.setTimeout(() => {
-      setIndex((current) => (current + 1) % MESSAGES.length);
+      setIndex((current) => (current + 1) % messages.length);
       setSliding(false);
     }, SLIDE_MS);
 
     return () => window.clearTimeout(slide);
-  }, [sliding, reducedMotion]);
+  }, [messages.length, reducedMotion, sliding]);
 
   const slideClass = sliding
     ? "transition-transform duration-[550ms] ease-[cubic-bezier(0.4,0,0.2,1)]"
@@ -74,7 +87,7 @@ export function AnnouncementBar() {
       <span className="relative block h-[1.25em] overflow-hidden">
         {reducedMotion ? (
           <span aria-live="polite" className="block truncate">
-            {MESSAGES[index]}
+            {messages[currentIndex]}
           </span>
         ) : (
           <>
@@ -86,7 +99,7 @@ export function AnnouncementBar() {
                 sliding ? "-translate-x-full" : "translate-x-0",
               )}
             >
-              {MESSAGES[index]}
+              {messages[currentIndex]}
             </span>
             <span
               aria-hidden="true"
@@ -96,7 +109,7 @@ export function AnnouncementBar() {
                 sliding ? "translate-x-0" : "translate-x-full",
               )}
             >
-              {MESSAGES[nextIndex]}
+              {messages[nextIndex]}
             </span>
           </>
         )}

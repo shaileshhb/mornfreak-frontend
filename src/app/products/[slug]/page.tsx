@@ -10,6 +10,7 @@ import {
   createProductJsonLd,
   safeJsonLd,
 } from "@/lib/seo";
+import { getCurrentMarket } from "@/lib/market-server";
 
 type PageProps = {
   params: Promise<{ slug: string }>;
@@ -19,7 +20,8 @@ export async function generateMetadata({
   params,
 }: PageProps): Promise<Metadata> {
   const { slug } = await params;
-  const product = await getProductBySlug(slug);
+  const market = await getCurrentMarket();
+  const product = await getProductBySlug(slug, market.countryCode);
 
   if (!product) {
     return { title: "Product not found" };
@@ -43,7 +45,8 @@ export async function generateMetadata({
 
 export default async function Page({ params }: PageProps) {
   const { slug } = await params;
-  const product = await getProductBySlug(slug);
+  const market = await getCurrentMarket();
+  const product = await getProductBySlug(slug, market.countryCode);
 
   if (!product) {
     notFound();

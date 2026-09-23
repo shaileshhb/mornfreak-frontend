@@ -6,6 +6,7 @@ import { Nav } from "@/components/layout/nav";
 import { fontVariables } from "@/design/typography";
 import { CartProvider } from "@/features/cart";
 import { FirstVisitOfferModal } from "@/features/first-visit-offer/first-visit-offer-modal";
+import { getCurrentMarket } from "@/lib/market-server";
 import { hasCustomerSession } from "@/lib/shopify-auth";
 import {
   createOrganizationJsonLd,
@@ -58,7 +59,10 @@ export default async function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const signedIn = await hasCustomerSession();
+  const [signedIn, market] = await Promise.all([
+    hasCustomerSession(),
+    getCurrentMarket(),
+  ]);
   const jsonLd = [createOrganizationJsonLd(), createWebsiteJsonLd()];
 
   return (
@@ -70,9 +74,9 @@ export default async function RootLayout({
             __html: safeJsonLd(jsonLd),
           }}
         />
-        <CartProvider>
-          <AnnouncementBar />
-          <Nav />
+        <CartProvider key={market.countryCode}>
+          <AnnouncementBar currentMarketCode={market.countryCode} />
+          <Nav currentMarketCode={market.countryCode} />
           <main className="flex-1">{children}</main>
           <Footer />
           <FirstVisitOfferModal signedIn={signedIn} />

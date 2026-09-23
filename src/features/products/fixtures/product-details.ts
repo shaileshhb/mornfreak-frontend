@@ -361,7 +361,8 @@ export const LOCAL_PRODUCT_DETAILS: Record<string, LocalProductDetail> = {
     tagline: proteinOats77g.tagline,
     images: [{
       url: "/images/products/oats-77g/oats-77g-nobg-1.avif",
-      alt: "Protein Oats pouch with a prepared chocolate oat bowl"
+      alt: "Protein Oats pouch with a prepared chocolate oat bowl",
+      presentation: "prominent",
     }, ...PROTEIN_OATS_77G_GALLERY_IMAGES],
     stats: proteinOats77g.stats.map((stat) => ({
       label: stat.label,
@@ -370,7 +371,7 @@ export const LOCAL_PRODUCT_DETAILS: Record<string, LocalProductDetail> = {
     trustBadges: proteinOats77g.badges,
     servingInfo: proteinOats77g.weight,
     howToUse: [
-      { text: "Add a 70g serving to a bowl." },
+      { text: "Add a 77g serving to a bowl." },
       { text: "Pour over hot milk or water." },
       { text: "Stir, rest 2 minutes, then eat." },
     ],
@@ -418,7 +419,7 @@ export const LOCAL_PRODUCT_DETAILS: Record<string, LocalProductDetail> = {
     trustBadges: proteinOats77gPackOf6.badges,
     servingInfo: proteinOats77gPackOf6.weight,
     howToUse: [
-      { text: "Add a 70g serving to a bowl." },
+      { text: "Add a 77g serving to a bowl." },
       { text: "Pour over hot milk or water." },
       { text: "Stir, rest 2 minutes, then eat." },
     ],

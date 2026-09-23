@@ -209,6 +209,14 @@ const CALLOUT_ICONS: Record<ProductGalleryCalloutIcon, LucideIcon> = {
   scale: Scale,
 };
 
+const IMAGE_PRESENTATION_CLASSES: Record<
+  NonNullable<ProductImage["presentation"]>,
+  string
+> = {
+  standard: "",
+  prominent: "scale-110",
+};
+
 export function ProductImageCarousel({
   images,
   productName,
@@ -303,7 +311,7 @@ export function ProductImageCarousel({
         onPointerUp={onPointerUp}
         className={cn(
           "relative aspect-square w-full overflow-hidden rounded-2xl bg-background outline-none focus-visible:ring-2 focus-visible:ring-product-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background",
-          "lg:max-h-[min(70vh,calc(100vh-19rem))] lg:w-[min(100%,70vh,calc(100vh-19rem))]",
+          "lg:w-[min(100%,38rem)] xl:w-[min(100%,40rem)]",
         )}
       >
         <p id={labelId} className="sr-only">
@@ -320,7 +328,8 @@ export function ProductImageCarousel({
             priority={index === 0}
             loading={index === 0 ? "eager" : "lazy"}
             className={cn(
-              "object-contain object-center motion-safe:transition-opacity motion-safe:duration-500 motion-safe:ease-out",
+              "object-contain object-center motion-safe:transition-[opacity,transform] motion-safe:duration-500 motion-safe:ease-out",
+              IMAGE_PRESENTATION_CLASSES[image.presentation ?? "standard"],
               index === activeIndex ? "z-10 opacity-100" : "z-0 opacity-0",
             )}
             aria-hidden={index !== activeIndex}

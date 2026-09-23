@@ -8,34 +8,54 @@ import {
 import {
   createBreadcrumbJsonLd,
   createProductJsonLd,
+  marketDisplayName,
+  marketTitleLabel,
   safeJsonLd,
 } from "@/lib/seo";
 import { getCurrentMarket } from "@/lib/market-server";
+import {
+  getMarketFromSearchParams,
+  marketAlternates,
+  marketPath,
+  type MarketSearchParams,
+} from "@/lib/market-routing";
 
 type PageProps = {
   params: Promise<{ slug: string }>;
+  searchParams: Promise<MarketSearchParams>;
 };
+
+async function resolveMarket(searchParams: Promise<MarketSearchParams>) {
+  const params = await searchParams;
+  return getMarketFromSearchParams(params) ?? (await getCurrentMarket());
+}
 
 export async function generateMetadata({
   params,
+  searchParams,
 }: PageProps): Promise<Metadata> {
   const { slug } = await params;
-  const market = await getCurrentMarket();
+  const market = await resolveMarket(searchParams);
   const product = await getProductBySlug(slug, market.countryCode);
 
   if (!product) {
     return { title: "Product not found" };
   }
 
+  const title = `${product.name} ${marketTitleLabel(market)}`;
+  const description = `${product.description} Shop online in ${marketDisplayName(market)} from Mornfreak.`;
+  const path = `/products/${product.slug}`;
+
   return {
-    title: `${product.name} UAE`,
-    description: `${product.description} Shop online in the UAE from Mornfreak.`,
+    title,
+    description,
     alternates: {
-      canonical: `/products/${product.slug}`,
+      canonical: marketPath(path, market),
+      languages: marketAlternates(path),
     },
     openGraph: {
-      title: `${product.name} UAE`,
-      description: `${product.description} Shop online in the UAE from Mornfreak.`,
+      title,
+      description,
       images: product.images[0]
         ? [{ url: product.images[0].url, alt: product.images[0].alt }]
         : undefined,
@@ -43,9 +63,9 @@ export async function generateMetadata({
   };
 }
 
-export default async function Page({ params }: PageProps) {
+export default async function Page({ params, searchParams }: PageProps) {
   const { slug } = await params;
-  const market = await getCurrentMarket();
+  const market = await resolveMarket(searchParams);
   const product = await getProductBySlug(slug, market.countryCode);
 
   if (!product) {
@@ -58,7 +78,7 @@ export default async function Page({ params }: PageProps) {
       { name: "Products", path: "/products" },
       { name: product.name, path: `/products/${product.slug}` },
     ]),
-    createProductJsonLd(product),
+    createProductJsonLd(product, market),
   ];
 
   return (

@@ -7,7 +7,11 @@ import type {
   CommerceVariant,
   Money,
 } from "@/features/products/types";
-import { DEFAULT_MARKET, type MarketCountryCode } from "@/lib/markets";
+import {
+  DEFAULT_MARKET,
+  SUPPORTED_MARKETS,
+  type MarketCountryCode,
+} from "@/lib/markets";
 
 const STOREFRONT_API_VERSION = "2026-07";
 const LISTING_PRODUCTS_FIRST = 50;
@@ -124,9 +128,36 @@ const CART_QUERY = /* GraphQL */ `
 `;
 
 const CART_CREATE_MUTATION = /* GraphQL */ `
-  mutation CartCreate($lines: [CartLineInput!], $country: CountryCode!)
+  mutation CartCreate(
+    $lines: [CartLineInput!],
+    $buyerIdentity: CartBuyerIdentityInput!,
+    $country: CountryCode!
+  )
   @inContext(country: $country) {
-    cartCreate(input: { lines: $lines }) {
+    cartCreate(input: { lines: $lines, buyerIdentity: $buyerIdentity }) {
+      cart {
+        ${CART_FRAGMENT}
+      }
+      userErrors {
+        field
+        message
+        code
+      }
+      warnings {
+        message
+      }
+    }
+  }
+`;
+
+const CART_BUYER_IDENTITY_UPDATE_MUTATION = /* GraphQL */ `
+  mutation CartBuyerIdentityUpdate(
+    $cartId: ID!,
+    $buyerIdentity: CartBuyerIdentityInput!,
+    $country: CountryCode!
+  )
+  @inContext(country: $country) {
+    cartBuyerIdentityUpdate(cartId: $cartId, buyerIdentity: $buyerIdentity) {
       cart {
         ${CART_FRAGMENT}
       }
@@ -205,7 +236,6 @@ type StorefrontConfig = {
 };
 
 type StorefrontRequestOptions = {
-  buyerIp?: string | null;
   cache?: "default" | "no-store";
   country?: MarketCountryCode;
   tags?: string[];
@@ -293,6 +323,10 @@ type CartCreateData = {
   cartCreate?: CartPayload | null;
 };
 
+type CartBuyerIdentityUpdateData = {
+  cartBuyerIdentityUpdate?: CartPayload | null;
+};
+
 type CartLinesAddData = {
   cartLinesAdd?: CartPayload | null;
 };
@@ -326,6 +360,13 @@ export class CartOperationError extends Error {
   }
 }
 
+export class CartCurrencyMismatchError extends CartOperationError {
+  constructor(message = "Cart currency does not match the selected market") {
+    super(message, 409);
+    this.name = "CartCurrencyMismatchError";
+  }
+}
+
 function getStorefrontConfig(): StorefrontConfig {
   const domain = process.env.SHOPIFY_STORE_DOMAIN?.trim()
     .replace(/^https?:\/\//, "")
@@ -340,6 +381,30 @@ function getStorefrontConfig(): StorefrontConfig {
     graphqlUrl: `https://${domain}/api/${STOREFRONT_API_VERSION}/graphql.json`,
     token,
   };
+}
+
+function getShopifyStoreHost(): string {
+  const domain = process.env.SHOPIFY_STORE_DOMAIN?.trim();
+  return domain
+    ? domain.replace(/^https?:\/\//, "").replace(/\/$/, "").toLowerCase()
+    : "";
+}
+
+function parseCheckoutUrl(value: string | undefined): string | null {
+  if (!value) return null;
+
+  let url: URL;
+  try {
+    url = new URL(value);
+  } catch {
+    return null;
+  }
+
+  const allowedHost = getShopifyStoreHost();
+  if (url.protocol !== "https:" || !allowedHost) return null;
+  if (url.hostname.toLowerCase() !== allowedHost) return null;
+
+  return url.toString();
 }
 
 function parseMoney(value: RawMoney | null | undefined): Money | null {
@@ -401,10 +466,6 @@ async function storefrontGraphql<T>(
     "Shopify-Storefront-Private-Token": config.token,
     "User-Agent": "mornfreak-storefront",
   });
-
-  if (options.buyerIp) {
-    headers.set("Shopify-Storefront-Buyer-IP", options.buyerIp);
-  }
 
   let response: Response;
   try {
@@ -536,12 +597,13 @@ function parseCartLine(value: RawCartLine): CartLine | null {
 }
 
 function parseCart(value: RawCart | null | undefined): StorefrontCart | null {
+  const checkoutUrl = parseCheckoutUrl(value?.checkoutUrl);
   const subtotal = parseMoney(value?.cost?.subtotalAmount);
   const total = parseMoney(value?.cost?.totalAmount);
 
   if (
     !value?.id ||
-    !value.checkoutUrl ||
+    !checkoutUrl ||
     typeof value.totalQuantity !== "number" ||
     !subtotal ||
     !total
@@ -551,7 +613,7 @@ function parseCart(value: RawCart | null | undefined): StorefrontCart | null {
 
   return {
     totalQuantity: value.totalQuantity,
-    checkoutUrl: value.checkoutUrl,
+    checkoutUrl,
     subtotal,
     total,
     lines: (value.lines?.nodes ?? []).flatMap((line) => {
@@ -561,20 +623,95 @@ function parseCart(value: RawCart | null | undefined): StorefrontCart | null {
   };
 }
 
-function cartFromPayload(
-  payload: CartPayload | null | undefined,
-): { cart: Cart; cartId: string } {
+function expectedCurrencyForCountry(country: MarketCountryCode): string {
+  return (
+    Object.values(SUPPORTED_MARKETS).find(
+      (market) => market.countryCode === country,
+    )?.currencyCode ?? DEFAULT_MARKET.currencyCode
+  );
+}
+
+function isCartCurrencyValid(
+  cart: StorefrontCart,
+  country: MarketCountryCode,
+): boolean {
+  const expectedCurrency = expectedCurrencyForCountry(country);
+  const cartCurrencies = [
+    cart.subtotal.currencyCode,
+    cart.total.currencyCode,
+    ...cart.lines.flatMap((line) => [
+      line.total.currencyCode,
+      line.merchandise.price.currencyCode,
+    ]),
+  ];
+
+  return cartCurrencies.every((currency) => currency === expectedCurrency);
+}
+
+function assertCartCurrency(
+  cart: StorefrontCart,
+  country: MarketCountryCode,
+): void {
+  if (!isCartCurrencyValid(cart, country)) {
+    throw new CartCurrencyMismatchError();
+  }
+}
+
+function validateCartPayload(payload: CartPayload | null | undefined): void {
   const error = payload?.userErrors?.find((item) => item.message);
   if (error?.message) {
     throw new CartOperationError(error.message);
   }
+}
+
+function cartFromPayload(
+  payload: CartPayload | null | undefined,
+  country: MarketCountryCode = DEFAULT_MARKET.countryCode,
+): { cart: Cart; cartId: string } {
+  validateCartPayload(payload);
 
   const cart = parseCart(payload?.cart);
   if (!cart || !payload?.cart?.id) {
     throw new CartOperationError("Cart is unavailable", 404);
   }
 
+  assertCartCurrency(cart, country);
+
   return { cart: toPublicCart(cart), cartId: payload.cart.id };
+}
+
+function cartCheckoutFromPayload(
+  payload: CartPayload | null | undefined,
+  country: MarketCountryCode = DEFAULT_MARKET.countryCode,
+): { cart: Cart; cartId: string; checkoutUrl: string } {
+  validateCartPayload(payload);
+
+  const cart = parseCart(payload?.cart);
+  if (!cart || !payload?.cart?.id) {
+    throw new CartOperationError("Cart is unavailable", 404);
+  }
+
+  assertCartCurrency(cart, country);
+
+  return {
+    cart: toPublicCart(cart),
+    cartId: payload.cart.id,
+    checkoutUrl: cart.checkoutUrl,
+  };
+}
+
+async function updateCartBuyerIdentity(
+  cartId: string,
+  country: MarketCountryCode,
+  options: StorefrontRequestOptions = {},
+): Promise<{ cart: Cart; cartId: string; checkoutUrl: string }> {
+  const data = await storefrontGraphql<CartBuyerIdentityUpdateData>(
+    CART_BUYER_IDENTITY_UPDATE_MUTATION,
+    { cartId, buyerIdentity: { countryCode: country } },
+    { ...options, country, cache: "no-store" },
+  );
+
+  return cartCheckoutFromPayload(data.cartBuyerIdentityUpdate, country);
 }
 
 function toPublicCart(cart: StorefrontCart): Cart {
@@ -590,6 +727,7 @@ export async function fetchCart(
   cartId: string,
   options: StorefrontRequestOptions = {},
 ): Promise<Cart | null> {
+  const country = options.country ?? DEFAULT_MARKET.countryCode;
   const data = await storefrontGraphql<CartData>(
     CART_QUERY,
     { cartId },
@@ -597,36 +735,38 @@ export async function fetchCart(
   );
 
   const cart = parseCart(data.cart);
-  return cart ? toPublicCart(cart) : null;
+  if (!cart) return null;
+
+  if (!isCartCurrencyValid(cart, country)) {
+    const updated = await updateCartBuyerIdentity(cartId, country, options);
+    return updated.cart;
+  }
+
+  return toPublicCart(cart);
 }
 
 export async function fetchCartCheckout(
   cartId: string,
   options: StorefrontRequestOptions = {},
 ): Promise<{ cart: Cart; checkoutUrl: string } | null> {
-  const data = await storefrontGraphql<CartData>(
-    CART_QUERY,
-    { cartId },
-    { ...options, cache: "no-store" },
-  );
-  const cart = parseCart(data.cart);
+  const country = options.country ?? DEFAULT_MARKET.countryCode;
+  const result = await updateCartBuyerIdentity(cartId, country, options);
 
-  return cart
-    ? { cart: toPublicCart(cart), checkoutUrl: cart.checkoutUrl }
-    : null;
+  return { cart: result.cart, checkoutUrl: result.checkoutUrl };
 }
 
 export async function createCart(
   lines: { merchandiseId: string; quantity: number }[],
   options: StorefrontRequestOptions = {},
 ): Promise<{ cart: Cart; cartId: string }> {
+  const country = options.country ?? DEFAULT_MARKET.countryCode;
   const data = await storefrontGraphql<CartCreateData>(
     CART_CREATE_MUTATION,
-    { lines },
+    { lines, buyerIdentity: { countryCode: country } },
     { ...options, cache: "no-store" },
   );
 
-  return cartFromPayload(data.cartCreate);
+  return cartFromPayload(data.cartCreate, country);
 }
 
 export async function addCartLines(
@@ -634,13 +774,16 @@ export async function addCartLines(
   lines: { merchandiseId: string; quantity: number }[],
   options: StorefrontRequestOptions = {},
 ): Promise<{ cart: Cart; cartId: string }> {
+  const country = options.country ?? DEFAULT_MARKET.countryCode;
+  await updateCartBuyerIdentity(cartId, country, options);
+
   const data = await storefrontGraphql<CartLinesAddData>(
     CART_LINES_ADD_MUTATION,
     { cartId, lines },
     { ...options, cache: "no-store" },
   );
 
-  return cartFromPayload(data.cartLinesAdd);
+  return cartFromPayload(data.cartLinesAdd, country);
 }
 
 export async function updateCartLines(
@@ -648,13 +791,16 @@ export async function updateCartLines(
   lines: { id: string; quantity: number }[],
   options: StorefrontRequestOptions = {},
 ): Promise<{ cart: Cart; cartId: string }> {
+  const country = options.country ?? DEFAULT_MARKET.countryCode;
+  await updateCartBuyerIdentity(cartId, country, options);
+
   const data = await storefrontGraphql<CartLinesUpdateData>(
     CART_LINES_UPDATE_MUTATION,
     { cartId, lines },
     { ...options, cache: "no-store" },
   );
 
-  return cartFromPayload(data.cartLinesUpdate);
+  return cartFromPayload(data.cartLinesUpdate, country);
 }
 
 export async function removeCartLines(
@@ -662,11 +808,14 @@ export async function removeCartLines(
   lineIds: string[],
   options: StorefrontRequestOptions = {},
 ): Promise<{ cart: Cart; cartId: string }> {
+  const country = options.country ?? DEFAULT_MARKET.countryCode;
+  await updateCartBuyerIdentity(cartId, country, options);
+
   const data = await storefrontGraphql<CartLinesRemoveData>(
     CART_LINES_REMOVE_MUTATION,
     { cartId, lineIds },
     { ...options, cache: "no-store" },
   );
 
-  return cartFromPayload(data.cartLinesRemove);
+  return cartFromPayload(data.cartLinesRemove, country);
 }

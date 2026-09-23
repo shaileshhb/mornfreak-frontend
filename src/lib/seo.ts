@@ -1,6 +1,10 @@
 import type { Metadata } from "next";
 
 import type { ProductDetail, ProductListing } from "@/features/products/types";
+import {
+  DEFAULT_MARKET,
+  type Market,
+} from "@/lib/markets";
 
 export const SITE_URL = "https://mornfreak.com";
 export const SITE_NAME = "MORNFREAK";
@@ -8,10 +12,12 @@ export const SITE_LOCALE = "en_AE";
 export const SITE_LANGUAGE = "en-AE";
 
 export const DEFAULT_DESCRIPTION =
-  "Protein-forward breakfast for the UAE. Shop Mornfreak Protein Oats and Pure Peanut Butter Powder with clean ingredients and no added sugar.";
+  "Protein-forward breakfast for real mornings. Shop Mornfreak Protein Oats and Pure Peanut Butter Powder with clean ingredients and no added sugar.";
 
-export const UAE_MARKET_DESCRIPTION =
-  "Shop Mornfreak protein oats and peanut butter powder online in the UAE. High-protein breakfast staples with clean ingredients, no added sugar, and UAE delivery.";
+export const MARKET_DESCRIPTION =
+  "Shop Mornfreak protein oats and peanut butter powder online in the UAE and India. High-protein breakfast staples with clean ingredients, no added sugar.";
+
+export const UAE_MARKET_DESCRIPTION = MARKET_DESCRIPTION;
 
 export const PRIVATE_ROUTE_METADATA: Metadata = {
   robots: {
@@ -29,6 +35,59 @@ export function safeJsonLd(data: unknown) {
   return JSON.stringify(data).replace(/</g, "\\u003c");
 }
 
+export function marketDisplayName(market: Market): string {
+  return market.countryCode === "AE" ? "the UAE" : market.label;
+}
+
+export function marketTitleLabel(market: Market): string {
+  return market.shortLabel;
+}
+
+export function marketDescription(market: Market): string {
+  return `Shop Mornfreak protein oats and peanut butter powder online in ${marketDisplayName(market)}. High-protein breakfast staples with clean ingredients and no added sugar.`;
+}
+
+export function createRootMetadata(
+  market: Market = DEFAULT_MARKET,
+): Metadata {
+  const title = `MORNFREAK ${marketTitleLabel(market)}: Protein Oats & Peanut Butter Powder`;
+  const description = marketDescription(market);
+
+  return {
+    metadataBase: new URL(SITE_URL),
+    title: {
+      default: title,
+      template: `%s | ${SITE_NAME}`,
+    },
+    description,
+    applicationName: SITE_NAME,
+    category: "Food & Beverage",
+    keywords: [
+      `protein oats ${marketTitleLabel(market)}`,
+      `peanut butter powder ${marketTitleLabel(market)}`,
+      `high protein breakfast ${marketTitleLabel(market)}`,
+      "Mornfreak",
+    ],
+    openGraph: {
+      title,
+      description,
+      url: SITE_URL,
+      siteName: SITE_NAME,
+      images: [
+        { url: "/images/logo.avif", width: 800, height: 800, alt: "MORNFREAK logo" },
+      ],
+      locale: market.locale.replace("-", "_"),
+      type: "website",
+    },
+    twitter: {
+      card: "summary_large_image",
+      title,
+      description,
+      images: ["/images/logo.avif"],
+    },
+  };
+}
+
 export function createOrganizationJsonLd() {
   return {
     "@context": "https://schema.org",
@@ -40,7 +99,7 @@ export function createOrganizationJsonLd() {
       "@type": "ContactPoint",
       email: "hello@mornfreak.com",
       contactType: "customer support",
-      areaServed: "AE",
+      areaServed: ["AE", "IN"],
       availableLanguage: ["en"],
     },
     sameAs: [
@@ -50,13 +109,13 @@ export function createOrganizationJsonLd() {
   };
 }
 
-export function createWebsiteJsonLd() {
+export function createWebsiteJsonLd(market: Market = DEFAULT_MARKET) {
   return {
     "@context": "https://schema.org",
     "@type": "WebSite",
     name: SITE_NAME,
     url: SITE_URL,
-    inLanguage: SITE_LANGUAGE,
+    inLanguage: market.locale,
   };
 }
 
@@ -81,7 +140,10 @@ function availabilitySchema(availability: ProductListing["availability"]) {
   return "https://schema.org/InStock";
 }
 
-export function createProductJsonLd(product: ProductDetail) {
+export function createProductJsonLd(
+  product: ProductDetail,
+  market: Market = DEFAULT_MARKET,
+) {
   const productUrl = absoluteUrl(`/products/${product.slug}`);
   const imageUrls = product.images.map((image) => absoluteUrl(image.url));
 
@@ -110,7 +172,8 @@ export function createProductJsonLd(product: ProductDetail) {
       },
       areaServed: {
         "@type": "Country",
-        name: "United Arab Emirates",
+        name: market.label,
+        identifier: market.countryCode,
       },
     },
     ...(product.reviews.count > 0

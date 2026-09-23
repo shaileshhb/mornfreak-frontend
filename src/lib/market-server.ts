@@ -9,16 +9,11 @@ import {
   MARKET_COOKIE,
 } from "./markets";
 
-const COUNTRY_HEADER_CANDIDATES = [
-  "x-vercel-ip-country",
-  "cf-ipcountry",
-  "x-country-code",
-  "x-geo-country",
-  "cloudfront-viewer-country",
-  "fastly-client-country",
-] as const;
+const COUNTRY_HEADER_CANDIDATES = ["x-vercel-ip-country"] as const;
 
 function getVisitorCountry(headerStore: Headers): string | null {
+  if (process.env.VERCEL !== "1") return null;
+
   for (const header of COUNTRY_HEADER_CANDIDATES) {
     const value = headerStore.get(header)?.trim();
     if (value) return value;

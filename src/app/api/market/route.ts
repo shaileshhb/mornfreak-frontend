@@ -25,7 +25,25 @@ async function readJson<T>(request: NextRequest): Promise<T | null> {
   }
 }
 
+function isSameOriginRequest(request: NextRequest): boolean {
+  const origin = request.headers.get("origin");
+  if (!origin) return true;
+
+  try {
+    return new URL(origin).host === request.nextUrl.host;
+  } catch {
+    return false;
+  }
+}
+
 export async function POST(request: NextRequest) {
+  if (!isSameOriginRequest(request)) {
+    return NextResponse.json(
+      { error: "Invalid request origin" },
+      { status: 403 },
+    );
+  }
+
   const body = await readJson<MarketBody>(request);
   const market = body?.market;
 

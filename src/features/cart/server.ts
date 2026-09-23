@@ -35,11 +35,7 @@ export function readCartId(
   request: NextRequest,
   country: MarketCountryCode,
 ): string | null {
-  const value =
-    request.cookies.get(cartCookieName(country))?.value ??
-    (country === DEFAULT_MARKET.countryCode
-      ? request.cookies.get(CART_COOKIE)?.value
-      : undefined);
+  const value = request.cookies.get(cartCookieName(country))?.value;
   return isSafeStoredCartId(value) ? value : null;
 }
 
@@ -54,6 +50,9 @@ export function setCartCookie(
     cartId,
     cartCookieOptions(CART_MAX_AGE),
   );
+  if (country === DEFAULT_MARKET.countryCode) {
+    response.cookies.set(CART_COOKIE, "", cartCookieOptions(0));
+  }
 }
 
 export function clearCartCookie(
@@ -64,11 +63,4 @@ export function clearCartCookie(
   if (country === DEFAULT_MARKET.countryCode) {
     response.cookies.set(CART_COOKIE, "", cartCookieOptions(0));
   }
-}
-
-export function getBuyerIp(request: NextRequest): string | null {
-  const forwardedFor = request.headers.get("x-forwarded-for");
-  const value = forwardedFor?.split(",")[0]?.trim() || request.headers.get("x-real-ip");
-  if (!value || value.length > 100) return null;
-  return /^[a-zA-Z0-9.:_-]+$/.test(value) ? value : null;
 }

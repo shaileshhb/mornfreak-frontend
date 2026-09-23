@@ -1,8 +1,9 @@
 import { NextRequest, NextResponse } from "next/server";
 
-import { clearCartCookie, getBuyerIp, readCartId } from "@/features/cart/server";
+import { clearCartCookie, readCartId } from "@/features/cart/server";
 import { getCurrentMarket } from "@/lib/market-server";
 import {
+  CartCurrencyMismatchError,
   CartOperationError,
   CatalogUnavailableError,
   fetchCartCheckout,
@@ -19,7 +20,6 @@ export async function POST(request: NextRequest) {
 
   try {
     const checkout = await fetchCartCheckout(cartId, {
-      buyerIp: getBuyerIp(request),
       country,
     });
 
@@ -38,6 +38,13 @@ export async function POST(request: NextRequest) {
       return NextResponse.json(
         { error: "Checkout is temporarily unavailable" },
         { status: 503 },
+      );
+    }
+
+    if (error instanceof CartCurrencyMismatchError) {
+      return NextResponse.json(
+        { error: error.message || "Checkout market is out of sync" },
+        { status: error.status },
       );
     }
 

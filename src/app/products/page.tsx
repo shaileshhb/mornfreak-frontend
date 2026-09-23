@@ -8,19 +8,50 @@ import { Text } from "@/components/ui/text";
 import { getListingProducts } from "@/features/products/api/get-listing-products";
 import { ProductListingCard } from "@/features/products/product-listing-card";
 import { getCurrentMarket } from "@/lib/market-server";
-import { createBreadcrumbJsonLd, safeJsonLd } from "@/lib/seo";
+import {
+  getMarketFromSearchParams,
+  marketAlternates,
+  marketPath,
+  type MarketSearchParams,
+} from "@/lib/market-routing";
+import {
+  createBreadcrumbJsonLd,
+  marketDescription,
+  marketTitleLabel,
+  safeJsonLd,
+} from "@/lib/seo";
 
-export const metadata: Metadata = {
-  title: "Protein Oats & Peanut Butter Powder UAE",
-  description:
-    "Shop Mornfreak Protein Oats and Pure Peanut Butter Powder online in the UAE. Clean, high-protein breakfast staples with no added sugar.",
-  alternates: {
-    canonical: "/products",
-  },
+type ProductsPageProps = {
+  searchParams: Promise<MarketSearchParams>;
 };
 
-export default async function ProductsPage() {
-  const market = await getCurrentMarket();
+async function resolveMarket(searchParams: Promise<MarketSearchParams>) {
+  const params = await searchParams;
+  return getMarketFromSearchParams(params) ?? (await getCurrentMarket());
+}
+
+export async function generateMetadata({
+  searchParams,
+}: ProductsPageProps): Promise<Metadata> {
+  const market = await resolveMarket(searchParams);
+  const path = "/products";
+
+  return {
+    title: `Protein Oats & Peanut Butter Powder ${marketTitleLabel(market)}`,
+    description: marketDescription(market),
+    alternates: {
+      canonical: marketPath(path, market),
+      languages: marketAlternates(path),
+    },
+    openGraph: {
+      title: `Protein Oats & Peanut Butter Powder ${marketTitleLabel(market)}`,
+      description: marketDescription(market),
+    },
+  };
+}
+
+export default async function ProductsPage({ searchParams }: ProductsPageProps) {
+  const market = await resolveMarket(searchParams);
   const products = await getListingProducts(market.countryCode);
   const breadcrumbJsonLd = createBreadcrumbJsonLd([
     { name: "Home", path: "/" },

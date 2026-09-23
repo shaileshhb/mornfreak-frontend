@@ -23,7 +23,7 @@ import { MorningProgress } from "@/features/science/morning-progress";
 export const metadata: Metadata = {
   title: "Nutrition Science for High-Protein Breakfast",
   description:
-    "The science behind Mornfreak Protein Oats and Peanut Butter Powder for high-protein breakfast routines across the UAE.",
+    "The science behind Mornfreak Protein Oats and Peanut Butter Powder for high-protein breakfast routines.",
   alternates: {
     canonical: "/science",
   },

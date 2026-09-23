@@ -11,15 +11,22 @@ import {
   FollowUsOnInstagram,
   WhyMornfreak,
 } from "@/features/home";
-import { UAE_MARKET_DESCRIPTION } from "@/lib/seo";
+import { getCurrentMarket } from "@/lib/market-server";
+import { marketDescription } from "@/lib/seo";
 
-export const metadata: Metadata = {
-  title: "Protein Oats & Peanut Butter Powder UAE",
-  description: UAE_MARKET_DESCRIPTION,
-  alternates: {
-    canonical: "/",
-  },
-};
+export async function generateMetadata(): Promise<Metadata> {
+  const market = await getCurrentMarket();
+
+  return {
+    title: {
+      absolute: "MORNFREAK",
+    },
+    description: marketDescription(market),
+    alternates: {
+      canonical: "/",
+    },
+  };
+}
 
 export default async function Home({ searchParams }: PageProps<"/">) {
   const { authError } = await searchParams;

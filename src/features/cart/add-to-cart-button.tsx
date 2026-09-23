@@ -64,7 +64,11 @@ export function AddToCartButton({
       disabled={isDisabled}
       aria-live="polite"
       onClick={handleClick}
-      className={cn(status === "error" && "bg-destructive hover:bg-destructive/90", className)}
+      className={cn(
+        className,
+        status === "error" &&
+          "bg-destructive text-destructive-foreground hover:bg-destructive/90 hover:text-destructive-foreground",
+      )}
     >
       <ShoppingBag aria-hidden size={16} />
       {buttonLabel}

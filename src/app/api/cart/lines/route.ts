@@ -2,13 +2,13 @@ import { NextRequest, NextResponse } from "next/server";
 
 import {
   clearCartCookie,
-  getBuyerIp,
   readCartId,
   setCartCookie,
 } from "@/features/cart/server";
 import { getCurrentMarket } from "@/lib/market-server";
 import {
   addCartLines,
+  CartCurrencyMismatchError,
   CartOperationError,
   CatalogUnavailableError,
   createCart,
@@ -76,14 +76,13 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({ error: "Invalid cart line" }, { status: 400 });
   }
 
-  const buyerIp = getBuyerIp(request);
   const lines = [{ merchandiseId, quantity }];
   const existingCartId = readCartId(request, country);
 
   try {
     const result = existingCartId
-      ? await addCartLines(existingCartId, lines, { buyerIp, country })
-      : await createCart(lines, { buyerIp, country });
+      ? await addCartLines(existingCartId, lines, { country })
+      : await createCart(lines, { country });
     const response = NextResponse.json({ cart: result.cart });
     setCartCookie(response, result.cartId, country);
     return response;
@@ -94,7 +93,7 @@ export async function POST(request: NextRequest) {
       isStaleCartError(error)
     ) {
       try {
-        const result = await createCart(lines, { buyerIp, country });
+        const result = await createCart(lines, { country });
         const response = NextResponse.json({ cart: result.cart });
         setCartCookie(response, result.cartId, country);
         return response;
@@ -119,6 +118,10 @@ export async function POST(request: NextRequest) {
         { error: "Cart is temporarily unavailable" },
         { status: 503 },
       );
+    }
+
+    if (error instanceof CartCurrencyMismatchError) {
+      return cartErrorResponse(error);
     }
 
     if (error instanceof CartOperationError) {
@@ -149,7 +152,7 @@ export async function PATCH(request: NextRequest) {
     const result = await updateCartLines(
       cartId,
       [{ id: lineId, quantity }],
-      { buyerIp: getBuyerIp(request), country },
+      { country },
     );
     const response = NextResponse.json({ cart: result.cart });
     setCartCookie(response, result.cartId, country);
@@ -160,6 +163,10 @@ export async function PATCH(request: NextRequest) {
         { error: "Cart is temporarily unavailable" },
         { status: 503 },
       );
+    }
+
+    if (error instanceof CartCurrencyMismatchError) {
+      return cartErrorResponse(error);
     }
 
     if (error instanceof CartOperationError) {
@@ -192,7 +199,6 @@ export async function DELETE(request: NextRequest) {
 
   try {
     const result = await removeCartLines(cartId, [lineId], {
-      buyerIp: getBuyerIp(request),
       country,
     });
     const response = NextResponse.json({ cart: result.cart });
@@ -204,6 +210,10 @@ export async function DELETE(request: NextRequest) {
         { error: "Cart is temporarily unavailable" },
         { status: 503 },
       );
+    }
+
+    if (error instanceof CartCurrencyMismatchError) {
+      return cartErrorResponse(error);
     }
 
     if (error instanceof CartOperationError) {

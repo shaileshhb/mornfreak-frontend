@@ -23,11 +23,11 @@ export function CartPage() {
     updateLine,
     removeLine,
     clearCart,
-    // checkout,
+    checkout,
   } = useCart();
   const [busyLineId, setBusyLineId] = useState<string | null>(null);
-  // const [checkingOut, setCheckingOut] = useState(false);
-  // const [checkoutError, setCheckoutError] = useState<string | null>(null);
+  const [checkingOut, setCheckingOut] = useState(false);
+  const [checkoutError, setCheckoutError] = useState<string | null>(null);
 
   async function handleQuantity(lineId: string, quantity: number) {
     setBusyLineId(lineId);
@@ -47,21 +47,21 @@ export function CartPage() {
     }
   }
 
-  // async function handleCheckout() {
-  //   setCheckoutError(null);
-  //   setCheckingOut(true);
-  //   try {
-  //     const checkoutUrl = await checkout();
-  //     window.location.assign(checkoutUrl);
-  //   } catch (requestError) {
-  //     setCheckoutError(
-  //       requestError instanceof Error
-  //         ? requestError.message
-  //         : "Checkout is unavailable",
-  //     );
-  //     setCheckingOut(false);
-  //   }
-  // }
+  async function handleCheckout() {
+    setCheckoutError(null);
+    setCheckingOut(true);
+    try {
+      const checkoutUrl = await checkout();
+      window.location.assign(checkoutUrl);
+    } catch (requestError) {
+      setCheckoutError(
+        requestError instanceof Error
+          ? requestError.message
+          : "Checkout is unavailable",
+      );
+      setCheckingOut(false);
+    }
+  }
 
   const hasItems = Boolean(cart?.lines.length);
 
@@ -220,8 +220,21 @@ export function CartPage() {
                   {error}
                 </p>
               )}
-              <Button size="lg" className="mt-5 w-full" disabled>
-                Coming soon
+              {checkoutError && (
+                <p
+                  className="mt-4 font-sans text-sm font-semibold text-destructive"
+                  role="alert"
+                >
+                  {checkoutError}
+                </p>
+              )}
+              <Button
+                size="lg"
+                className="mt-5 w-full"
+                disabled={checkingOut}
+                onClick={() => void handleCheckout()}
+              >
+                {checkingOut ? "Redirecting to checkout..." : "Checkout"}
               </Button>
             </aside>
           </div>
